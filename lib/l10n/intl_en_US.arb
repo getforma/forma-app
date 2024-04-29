@@ -1,4 +1,7 @@
 {
   "@@locale": "en_US",
-  "app_name": "Forma"
+  "app_name": "Forma",
+  "home_scores": "Scores",
+  "home_last_days": "Last 4 days",
+  "home_percent": "%"
 }

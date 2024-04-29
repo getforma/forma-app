@@ -7,4 +7,10 @@ class AppColors {
   static const Color primaryBlack = Color(0xFF242424);
   static const Color accentOrange = Color(0xFFFD9535);
   static const Color accentLavender = Color(0xFFA3A9F5);
+
+  static const Color pureBlack10 = Color(0x1A000000);
+  static const Color blueGrey = Color(0xFF607D8B);
+  static const Color green = Color(0xFF28DD1B);
+  static const Color red = Color(0xFFDD1B1B);
+
 }

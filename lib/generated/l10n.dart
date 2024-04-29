@@ -59,6 +59,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Scores`
+  String get home_scores {
+    return Intl.message(
+      'Scores',
+      name: 'home_scores',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last 4 days`
+  String get home_last_days {
+    return Intl.message(
+      'Last 4 days',
+      name: 'home_last_days',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `%`
+  String get home_percent {
+    return Intl.message(
+      '%',
+      name: 'home_percent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
