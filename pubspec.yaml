@@ -40,6 +40,23 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-Italic.ttf
+          style: italic
+        - asset: fonts/Poppins-Thin.ttf
+          weight: 100
+        - asset: fonts/Poppins-ExtraLight.ttf
+          weight: 200
+        - asset: fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: fonts/Poppins-Black.ttf
+          weight: 900
+
 flutter_intl:
   enabled: true
   arb-dir: lib/l10n
