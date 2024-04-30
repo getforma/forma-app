@@ -45,6 +45,7 @@ class TextStyles {
   static final h6BoldDark = boldDark.copyWith(fontSize: 12);
 
   static final homeCardSubheading = h5Dark.copyWith(color: AppColors.blueGrey);
+  static final homeCardActionDescription = h5Dark.copyWith(color: AppColors.blueGrey);
 }
 
 extension TextStyleScaling on TextStyle {

@@ -3,5 +3,7 @@
   "app_name": "Forma",
   "home_scores": "Scores",
   "home_last_days": "Last 4 days",
-  "home_percent": "%"
+  "home_percent": "%",
+  "home_start": "Start",
+  "home_card_action_description": "Ready to improve your form?"
 }

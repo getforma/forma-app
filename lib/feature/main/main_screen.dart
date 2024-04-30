@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forma_app/generated/l10n.dart';
 import 'package:forma_app/styles/app_colors.dart';
+import 'package:forma_app/styles/button_styles.dart';
 import 'package:forma_app/styles/text_styles.dart';
 import 'package:forma_app/widget/app_divider.dart';
 
@@ -53,7 +54,7 @@ class MainScreen extends StatelessWidget {
                 S.of(context).app_name,
                 style: TextStyles.h1BoldLight.sp,
               ),
-              0.25.sh.verticalSpace,
+              0.2.sh.verticalSpace,
               _lastActivities(context),
             ],
           ),
@@ -92,6 +93,26 @@ class MainScreen extends StatelessWidget {
                             ),
                           ])
                       .toList(growable: false)),
+            ),
+            16.verticalSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32).w,
+              child: Text(
+                S.of(context).home_card_action_description,
+                style: TextStyles.homeCardActionDescription.sp,
+              ),
+            ),
+            8.verticalSpace,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16).w,
+              child: TextButton(
+                style: ButtonStyles.fullWidthOrange,
+                onPressed: () {},
+                child: Text(
+                  S.of(context).home_start,
+                  style: TextStyles.h3BoldLight.sp,
+                ),
+              ),
             ),
             16.verticalSpace,
           ],

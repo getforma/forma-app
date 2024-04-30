@@ -89,6 +89,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Start`
+  String get home_start {
+    return Intl.message(
+      'Start',
+      name: 'home_start',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ready to improve your form?`
+  String get home_card_action_description {
+    return Intl.message(
+      'Ready to improve your form?',
+      name: 'home_card_action_description',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
