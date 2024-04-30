@@ -28,7 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Ready to improve your form?"),
         "home_last_days": MessageLookupByLibrary.simpleMessage("Last 4 days"),
         "home_percent": MessageLookupByLibrary.simpleMessage("%"),
-        "home_premium": MessageLookupByLibrary.simpleMessage("Premium Club"),
+        "home_premium_club":
+            MessageLookupByLibrary.simpleMessage("Premium Club"),
         "home_scores": MessageLookupByLibrary.simpleMessage("Scores"),
         "home_start": MessageLookupByLibrary.simpleMessage("Start"),
         "home_try": MessageLookupByLibrary.simpleMessage("TRY")

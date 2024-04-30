@@ -1,10 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forma_app/generated/l10n.dart';
 import 'package:forma_app/styles/app_colors.dart';
@@ -13,6 +9,7 @@ import 'package:forma_app/styles/text_styles.dart';
 import 'package:forma_app/widget/app_divider.dart';
 
 const _kFormPercentages = [60, 55, 62, 71];
+const _kPremiumClubNotificationSize = 20;
 
 @RoutePage()
 class MainScreen extends StatelessWidget {
@@ -67,17 +64,81 @@ class MainScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                S.of(context).app_name,
-                style: TextStyles.h1BoldLight.sp,
-              ),
-              0.2.sh.verticalSpace,
+              _topSection(context),
+              60.verticalSpace,
               _lastActivities(context),
               16.verticalSpace,
               _tryPremium(context),
             ],
           ),
         ),
+      );
+
+  Widget _topSection(BuildContext context) => Row(
+        children: [
+          Column(
+            children: [
+              Text(
+                S.of(context).app_name,
+                style: TextStyles.h1BoldLight.sp,
+              ),
+              64.verticalSpace,
+              Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4).r,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(32.r),
+                        border: Border.all(
+                          color: AppColors.pureWhite,
+                          width: 2.r,
+                        ),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8).h,
+                      child: Row(
+                        children: [
+                          8.horizontalSpace,
+                          Icon(
+                            Icons.star,
+                            color: AppColors.pureWhite,
+                            size: 20.r,
+                          ),
+                          8.horizontalSpace,
+                          Text(
+                            S.of(context).home_premium_club,
+                            style: TextStyles.h5BoldLight.sp,
+                          ),
+                          24.horizontalSpace,
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                      right: 0,
+                      top: 0,
+                      child: Container(
+                        height: _kPremiumClubNotificationSize.r,
+                        width: _kPremiumClubNotificationSize.r,
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryBlue,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            width: 1.r,
+                            color: AppColors.pureWhite,
+                          ),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "3",
+                          style: TextStyles.h6BoldLight,
+                        ),
+                      )),
+                ],
+              ),
+            ],
+          ),
+        ],
       );
 
   Widget _lastActivities(BuildContext context) => Card(
@@ -207,7 +268,7 @@ class MainScreen extends StatelessWidget {
                     ),
                     2.verticalSpace,
                     Text(
-                      S.of(context).home_premium,
+                      S.of(context).home_premium_club,
                       style: TextStyles.h3BoldDark.sp,
                     ),
                     const Spacer(),

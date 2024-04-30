@@ -121,10 +121,10 @@ class S {
   }
 
   /// `Premium Club`
-  String get home_premium {
+  String get home_premium_club {
     return Intl.message(
       'Premium Club',
-      name: 'home_premium',
+      name: 'home_premium_club',
       desc: '',
       args: [],
     );
