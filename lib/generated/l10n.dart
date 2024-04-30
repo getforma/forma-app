@@ -70,11 +70,11 @@ class S {
     );
   }
 
-  /// `Last 4 days`
-  String get home_last_days {
+  /// `Last 4 runs`
+  String get home_last_runs {
     return Intl.message(
-      'Last 4 days',
-      name: 'home_last_days',
+      'Last 4 runs',
+      name: 'home_last_runs',
       desc: '',
       args: [],
     );
@@ -135,6 +135,16 @@ class S {
     return Intl.message(
       '7 DAYS FREE',
       name: 'home_7_days_free',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Form score`
+  String get home_form_score {
+    return Intl.message(
+      'Form score',
+      name: 'home_form_score',
       desc: '',
       args: [],
     );

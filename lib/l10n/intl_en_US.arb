@@ -2,11 +2,12 @@
   "@@locale": "en_US",
   "app_name": "Forma",
   "home_scores": "Scores",
-  "home_last_days": "Last 4 days",
+  "home_last_runs": "Last 4 runs",
   "home_percent": "%",
   "home_start": "Start",
   "home_card_action_description": "Ready to improve your form?",
   "home_try": "TRY",
   "home_premium_club": "Premium Club",
-  "home_7_days_free": "7 DAYS FREE"
+  "home_7_days_free": "7 DAYS FREE",
+  "home_form_score": "Form score"
 }

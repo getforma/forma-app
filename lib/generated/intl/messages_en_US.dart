@@ -26,7 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_7_days_free": MessageLookupByLibrary.simpleMessage("7 DAYS FREE"),
         "home_card_action_description":
             MessageLookupByLibrary.simpleMessage("Ready to improve your form?"),
-        "home_last_days": MessageLookupByLibrary.simpleMessage("Last 4 days"),
+        "home_form_score": MessageLookupByLibrary.simpleMessage("Form score"),
+        "home_last_runs": MessageLookupByLibrary.simpleMessage("Last 4 runs"),
         "home_percent": MessageLookupByLibrary.simpleMessage("%"),
         "home_premium_club":
             MessageLookupByLibrary.simpleMessage("Premium Club"),

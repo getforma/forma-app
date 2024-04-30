@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:forma_app/feature/main/widget/partial_circle_painter.dart';
 import 'package:forma_app/generated/l10n.dart';
 import 'package:forma_app/styles/app_colors.dart';
 import 'package:forma_app/styles/button_styles.dart';
@@ -10,6 +11,8 @@ import 'package:forma_app/widget/app_divider.dart';
 
 const _kFormPercentages = [60, 55, 62, 71];
 const _kPremiumClubNotificationSize = 20;
+const _kFormScoreSize = 128;
+const _kFormScoreBorderWidth = 6;
 
 @RoutePage()
 class MainScreen extends StatelessWidget {
@@ -65,7 +68,7 @@ class MainScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _topSection(context),
-              60.verticalSpace,
+              50.verticalSpace,
               _lastActivities(context),
               16.verticalSpace,
               _tryPremium(context),
@@ -138,6 +141,44 @@ class MainScreen extends StatelessWidget {
               ),
             ],
           ),
+          const Spacer(),
+          Stack(
+            children: [
+              Container(
+                width: _kFormScoreSize.r,
+                height: _kFormScoreSize.r,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 3.r,
+                    color: AppColors.primaryBlueDark,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "62/100",
+                      style: TextStyles.homeFormScore.sp,
+                    ),
+                    4.verticalSpace,
+                    Text(
+                      S.of(context).home_form_score,
+                      style: TextStyles.h6Light,
+                    ),
+                  ],
+                ),
+              ),
+              CustomPaint(
+                painter: PartialCirclePainter(
+                  degree: 223,
+                  width: _kFormScoreBorderWidth.r,
+                ),
+                size: Size.square(
+                    (_kFormScoreSize - _kFormScoreBorderWidth / 2).r),
+              ),
+            ],
+          ),
         ],
       );
 
@@ -204,7 +245,7 @@ class MainScreen extends StatelessWidget {
           const SizedBox(width: 28, child: AppDivider()),
           4.horizontalSpace,
           Text(
-            S.of(context).home_last_days,
+            S.of(context).home_last_runs,
             style: TextStyles.homeCardSubheading.sp,
           ),
           4.horizontalSpace,

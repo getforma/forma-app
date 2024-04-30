@@ -52,6 +52,7 @@ class TextStyles {
       h5Dark.copyWith(color: AppColors.blueGrey);
   static final homePremiumSupheader =
       h5BoldDark.copyWith(color: AppColors.blueGrey700);
+  static final homeFormScore = h2Light.copyWith(fontSize: 28);
 }
 
 extension TextStyleScaling on TextStyle {
