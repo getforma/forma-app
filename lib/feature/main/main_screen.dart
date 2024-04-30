@@ -21,6 +21,21 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryBlue,
+        leading: const Icon(
+          Icons.menu,
+          color: AppColors.pureWhite,
+        ),
+        actions: [
+          const Icon(
+            Icons.calendar_month_outlined,
+            color: AppColors.pureWhite,
+          ),
+          16.horizontalSpace,
+        ],
+      ),
       body: _body(context),
     );
   }
@@ -98,7 +113,7 @@ class MainScreen extends StatelessWidget {
                           ])
                       .toList(growable: false)),
             ),
-            16.verticalSpace,
+            24.verticalSpace,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32).w,
               child: Text(
@@ -146,19 +161,22 @@ class MainScreen extends StatelessWidget {
           border: Border.all(color: AppColors.pureBlack10),
           color: AppColors.pureWhite,
         ),
-        child: Column(
-          children: [
-            8.verticalSpace,
-            Text(
-              percentage.toString(),
-              style: TextStyles.h4BoldDark.sp,
-            ),
-            Icon(
-              isTrendingUp ? Icons.trending_up : Icons.trending_down,
-              size: 16.r,
-              color: isTrendingUp ? AppColors.green : AppColors.red,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8, bottom: 4).h,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                percentage.toString(),
+                style: TextStyles.h4BoldDark.sp,
+              ),
+              Icon(
+                isTrendingUp ? Icons.trending_up : Icons.trending_down,
+                size: 16.r,
+                color: isTrendingUp ? AppColors.green : AppColors.red,
+              ),
+            ],
+          ),
         ),
       );
 
@@ -171,10 +189,10 @@ class MainScreen extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                right: -30,
-                top: 0,
-                bottom: 0,
-                child: Image.asset("assets/bg_home_premium.png"),
+                right: 20,
+                top: -10,
+                bottom: -20,
+                child: Image.asset("assets/bg_home_premium_2.png"),
               ),
               Container(
                 width: 1.sw,
