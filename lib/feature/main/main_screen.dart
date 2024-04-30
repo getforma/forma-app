@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:forma_app/feature/main/widget/partial_circle_painter.dart';
 import 'package:forma_app/generated/l10n.dart';
 import 'package:forma_app/styles/app_colors.dart';
@@ -216,7 +217,7 @@ class MainScreen extends StatelessWidget {
                   children: _kFormPercentages
                       .expandIndexed((index, percentage) => [
                             if (index != 0) 16.horizontalSpace,
-                            _percentageItem(
+                            _scoreItem(
                               context,
                               percentage,
                               index == 0 ||
@@ -263,8 +264,7 @@ class MainScreen extends StatelessWidget {
         ],
       );
 
-  Widget _percentageItem(
-          BuildContext context, int percentage, bool isTrendingUp) =>
+  Widget _scoreItem(BuildContext context, int score, bool isTrendingUp) =>
       Container(
         width: 48.w,
         height: 56.h,
@@ -279,14 +279,25 @@ class MainScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                percentage.toString(),
+                score.toString(),
                 style: TextStyles.h4BoldDark.sp,
               ),
-              Icon(
-                isTrendingUp ? Icons.trending_up : Icons.trending_down,
-                size: 16.r,
-                color: isTrendingUp ? AppColors.green : AppColors.red,
+              SvgPicture.asset(
+                isTrendingUp
+                    ? "assets/icons/trending_up.svg"
+                    : "assets/icons/trending_down.svg",
+                height: 16.h,
+                fit: BoxFit.fitHeight,
+                colorFilter: ColorFilter.mode(
+                  isTrendingUp ? AppColors.green : AppColors.red,
+                  BlendMode.srcIn,
+                ),
               ),
+              // Icon(
+              //   isTrendingUp ? Icons.trending_up : Icons.trending_down,
+              //   size: 16.r,
+              //   color: isTrendingUp ? AppColors.green : AppColors.red,
+              // ),
             ],
           ),
         ),
