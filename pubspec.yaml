@@ -57,6 +57,9 @@ flutter:
         - asset: fonts/Poppins-Black.ttf
           weight: 900
 
+  assets:
+    - assets/
+
 flutter_intl:
   enabled: true
   arb-dir: lib/l10n

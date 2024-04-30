@@ -109,6 +109,36 @@ class S {
       args: [],
     );
   }
+
+  /// `TRY`
+  String get home_try {
+    return Intl.message(
+      'TRY',
+      name: 'home_try',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Premium Club`
+  String get home_premium {
+    return Intl.message(
+      'Premium Club',
+      name: 'home_premium',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `7 DAYS FREE`
+  String get home_7_days_free {
+    return Intl.message(
+      '7 DAYS FREE',
+      name: 'home_7_days_free',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

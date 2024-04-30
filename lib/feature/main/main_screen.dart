@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:forma_app/generated/l10n.dart';
@@ -56,6 +58,8 @@ class MainScreen extends StatelessWidget {
               ),
               0.2.sh.verticalSpace,
               _lastActivities(context),
+              16.verticalSpace,
+              _tryPremium(context),
             ],
           ),
         ),
@@ -155,6 +159,60 @@ class MainScreen extends StatelessWidget {
               color: isTrendingUp ? AppColors.green : AppColors.red,
             ),
           ],
+        ),
+      );
+
+  Widget _tryPremium(BuildContext context) => Card(
+        elevation: 8,
+        color: AppColors.blueGrey100,
+        surfaceTintColor: AppColors.blueGrey100,
+        child: SizedBox(
+          height: 128.h,
+          child: Stack(
+            children: [
+              Positioned(
+                right: -30,
+                top: 0,
+                bottom: 0,
+                child: Image.asset("assets/bg_home_premium.png"),
+              ),
+              Container(
+                width: 1.sw,
+                padding: const EdgeInsets.symmetric(horizontal: 32).w,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    16.verticalSpace,
+                    Text(
+                      S.of(context).home_try,
+                      style: TextStyles.homePremiumSupheader.sp,
+                    ),
+                    2.verticalSpace,
+                    Text(
+                      S.of(context).home_premium,
+                      style: TextStyles.h3BoldDark.sp,
+                    ),
+                    const Spacer(),
+                    Container(
+                      width: 128.w,
+                      height: 24.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.accentOrange,
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          S.of(context).home_7_days_free,
+                          style: TextStyles.h6BoldLight.sp,
+                        ),
+                      ),
+                    ),
+                    16.verticalSpace,
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       );
 }

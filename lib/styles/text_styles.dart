@@ -6,8 +6,11 @@ class TextStyles {
   static const _poppins = 'Poppins';
   static const _presentation = 'presentation';
 
-  static const baseTextStyle =
-      TextStyle(fontFamily: _poppins, package: _presentation);
+  static const baseTextStyle = TextStyle(
+    fontFamily: _poppins,
+    package: _presentation,
+    height: 1,
+  );
 
   static final light = baseTextStyle.copyWith(color: AppColors.pureWhite);
 
@@ -45,7 +48,10 @@ class TextStyles {
   static final h6BoldDark = boldDark.copyWith(fontSize: 12);
 
   static final homeCardSubheading = h5Dark.copyWith(color: AppColors.blueGrey);
-  static final homeCardActionDescription = h5Dark.copyWith(color: AppColors.blueGrey);
+  static final homeCardActionDescription =
+      h5Dark.copyWith(color: AppColors.blueGrey);
+  static final homePremiumSupheader =
+      h5BoldDark.copyWith(color: AppColors.blueGrey700);
 }
 
 extension TextStyleScaling on TextStyle {
