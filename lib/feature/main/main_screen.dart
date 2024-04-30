@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: AppColors.primaryBlue,
+        backgroundColor: Colors.transparent,
         leading: const Icon(
           Icons.menu,
           color: AppColors.pureWhite,
@@ -40,11 +42,13 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _body(BuildContext context) => Stack(
-        children: [
-          _background(context),
-          _content(context),
-        ],
+  Widget _body(BuildContext context) => Expanded(
+        child: Stack(
+          children: [
+            _background(context),
+            _content(context),
+          ],
+        ),
       );
 
   Widget _background(BuildContext context) => Column(
@@ -52,7 +56,12 @@ class MainScreen extends StatelessWidget {
         children: [
           Container(
             height: 0.5.sh,
-            color: AppColors.primaryBlue,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [AppColors.primaryBlue, AppColors.primaryBlueDark],
+                transform: GradientRotation(math.pi / 8),
+              ),
+            ),
           ),
           Container(
             height: 0.5.sh,
@@ -186,6 +195,7 @@ class MainScreen extends StatelessWidget {
         elevation: 8,
         color: AppColors.pureWhite,
         surfaceTintColor: AppColors.pureWhite,
+        shadowColor: AppColors.blueGrey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -286,6 +296,7 @@ class MainScreen extends StatelessWidget {
         elevation: 8,
         color: AppColors.blueGrey100,
         surfaceTintColor: AppColors.blueGrey100,
+        shadowColor: AppColors.blueGrey,
         child: SizedBox(
           height: 128.h,
           child: Stack(
