@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:pigeon/pigeon.dart';
 
 @ConfigurePigeon(PigeonOptions(
@@ -18,7 +17,7 @@ class SensorData {
 
 @HostApi()
 abstract class SensorApi {
-  void initialize(BuildContext context);
+  void initialize();
 
   void startDiscovery();
 
