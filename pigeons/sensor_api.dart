@@ -15,9 +15,11 @@ abstract class SensorApi {
   void initialize();
 
   void startDiscovery();
+}
 
-  @async
-  SensorData getSensorData();
+@FlutterApi()
+abstract class SensorFlutterApi {
+  void onSensorDataRecorded(SensorData sensorData);
 }
 
 class SensorData {

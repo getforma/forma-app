@@ -10,7 +10,11 @@ class MainActivity : FlutterActivity() {
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
 
-        val api = SensorApiImplementation.getInstance(this)
+        val api = SensorApiImplementation.getInstance(
+            context = this,
+            messenger = flutterEngine.dartExecutor.binaryMessenger,
+            activity = activity,
+        )
         SensorApi.setUp(flutterEngine.dartExecutor.binaryMessenger, api)
     }
 }

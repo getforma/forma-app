@@ -13,7 +13,7 @@ class MainCubit extends Cubit<MainState> {
   MainCubit() : super(const MainState());
 
   Future<void> startDeviceDiscovery() async {
-    await _sensorApi.initialize();
-    await _sensorApi.startDiscovery();
+    _sensorApi.initialize();
+    _sensorApi.startDiscovery();
   }
 }

@@ -2,9 +2,10 @@ package app.getforma.forma
 
 import SensorApi
 import SensorData
+import SensorFlutterApi
 import ThreeAxisMeasurement
+import android.app.Activity
 import android.content.Context
-import android.util.Log
 import com.wit.witsdk.modular.sensor.device.exceptions.OpenDeviceException
 import com.wit.witsdk.modular.sensor.example.ble5.Bwt901ble
 import com.wit.witsdk.modular.sensor.example.ble5.interfaces.IBwt901bleRecordObserver
@@ -14,9 +15,14 @@ import com.wit.witsdk.modular.sensor.modular.connector.modular.bluetooth.WitBlue
 import com.wit.witsdk.modular.sensor.modular.connector.modular.bluetooth.exceptions.BluetoothBLEException
 import com.wit.witsdk.modular.sensor.modular.connector.modular.bluetooth.interfaces.IBluetoothFoundObserver
 import com.wit.witsdk.modular.sensor.modular.processor.constant.WitSensorKey
+import io.flutter.plugin.common.BinaryMessenger
 
 
-class SensorApiImplementation private constructor(private val context: Context) : SensorApi,
+class SensorApiImplementation private constructor(
+    private val context: Context,
+    messenger: BinaryMessenger,
+    activity: Activity,
+) : SensorApi,
     IBluetoothFoundObserver, IBwt901bleRecordObserver {
 
     /**
@@ -24,14 +30,18 @@ class SensorApiImplementation private constructor(private val context: Context) 
      */
     private val bwt901bleList: MutableList<Bwt901ble> = mutableListOf()
 
+    private val flutterApi = FlutterApi(messenger, activity)
+
     companion object {
 
         @Volatile
         private var instance: SensorApi? = null
 
-        fun getInstance(context: Context) =
+        fun getInstance(context: Context, messenger: BinaryMessenger, activity: Activity) =
             instance ?: synchronized(this) {
-                instance ?: SensorApiImplementation(context).also { instance = it }
+                instance ?: SensorApiImplementation(context, messenger, activity).also {
+                    instance = it
+                }
             }
     }
 
@@ -67,36 +77,6 @@ class SensorApiImplementation private constructor(private val context: Context) 
         }
     }
 
-    override fun getSensorData(callback: (Result<SensorData>) -> Unit) {
-        callback(
-            Result.success(
-                SensorData(
-                    name = "WT901",
-                    acceleration = ThreeAxisMeasurement(
-                        x = 0.0,
-                        y = 0.0,
-                        z = 0.0,
-                    ),
-                    angularVelocity = ThreeAxisMeasurement(
-                        x = 0.0,
-                        y = 0.0,
-                        z = 0.0,
-                    ),
-                    magneticField = ThreeAxisMeasurement(
-                        x = 0.0,
-                        y = 0.0,
-                        z = 0.0,
-                    ),
-                    angle = ThreeAxisMeasurement(
-                        x = 0.0,
-                        y = 0.0,
-                        z = 0.0,
-                    ),
-                )
-            )
-        )
-    }
-
     override fun onFoundBle(bluetoothBLE: BluetoothBLE?) {
         // Create a Bluetooth 5.0 sensor connection object
         val bwt901ble = Bwt901ble(bluetoothBLE)
@@ -130,7 +110,8 @@ class SensorApiImplementation private constructor(private val context: Context) 
      * This method will be called back when data needs to be recorded
      */
     override fun onRecord(bwt901ble: Bwt901ble?) {
-        val deviceData = getDeviceData(bwt901ble)
+        val deviceData = getDeviceData(bwt901ble) ?: return
+        flutterApi.onSensorDataRecorded(sensorData = deviceData)
 //        Log.d(
 //            MainActivity::class.java.simpleName,
 //            "device data = $deviceData"
@@ -165,5 +146,16 @@ class SensorApiImplementation private constructor(private val context: Context) 
                 z = bwt901ble.getDeviceData(WitSensorKey.AngleZ)?.toDoubleOrNull(),
             )
         )
+    }
+}
+
+private class FlutterApi(messenger: BinaryMessenger, val activity: Activity) {
+
+    val flutterApi: SensorFlutterApi = SensorFlutterApi(messenger)
+
+    fun onSensorDataRecorded(sensorData: SensorData) {
+        activity.runOnUiThread {
+            flutterApi.onSensorDataRecorded(sensorData) { _ -> }
+        }
     }
 }
