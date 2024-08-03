@@ -14,6 +14,33 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		BC7F99302C5DAB9E005664D5 /* SensorMessages.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F992F2C5DAB9E005664D5 /* SensorMessages.g.swift */; };
+		BC7F99742C5DADCB005664D5 /* SensorApiImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99732C5DADCB005664D5 /* SensorApiImplementation.swift */; };
+		BC7F997E2C5DB24E005664D5 /* WitSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = BC7F997D2C5DB24E005664D5 /* WitSDK.docc */; };
+		BC7F997F2C5DB24E005664D5 /* WitSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BC7F997C2C5DB24E005664D5 /* WitSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC7F99822C5DB24E005664D5 /* WitSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7F997A2C5DB24E005664D5 /* WitSDK.framework */; };
+		BC7F99832C5DB24E005664D5 /* WitSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC7F997A2C5DB24E005664D5 /* WitSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BC7F99AF2C5DB2A3005664D5 /* Bwt901ble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99882C5DB2A3005664D5 /* Bwt901ble.swift */; };
+		BC7F99B02C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99892C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift */; };
+		BC7F99B12C5DB2A3005664D5 /* DeviceModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F998D2C5DB2A3005664D5 /* DeviceModelError.swift */; };
+		BC7F99B22C5DB2A3005664D5 /* BluetoothBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F998F2C5DB2A3005664D5 /* BluetoothBLE.swift */; };
+		BC7F99B32C5DB2A3005664D5 /* IBluetoothEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99902C5DB2A3005664D5 /* IBluetoothEventObserver.swift */; };
+		BC7F99B42C5DB2A3005664D5 /* WitBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99912C5DB2A3005664D5 /* WitBluetoothManager.swift */; };
+		BC7F99B52C5DB2A3005664D5 /* WitCoreConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99932C5DB2A3005664D5 /* WitCoreConnector.swift */; };
+		BC7F99B62C5DB2A3005664D5 /* WitSensorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99962C5DB2A3005664D5 /* WitSensorKey.swift */; };
+		BC7F99B72C5DB2A3005664D5 /* IDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99982C5DB2A3005664D5 /* IDataProcessor.swift */; };
+		BC7F99B82C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F999A2C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift */; };
+		BC7F99B92C5DB2A3005664D5 /* IProtocolResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F999D2C5DB2A3005664D5 /* IProtocolResolver.swift */; };
+		BC7F99BA2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F999F2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift */; };
+		BC7F99BB2C5DB2A3005664D5 /* IKeyUpdateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A32C5DB2A3005664D5 /* IKeyUpdateObserver.swift */; };
+		BC7F99BC2C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A42C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift */; };
+		BC7F99BD2C5DB2A3005664D5 /* CompareObjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A62C5DB2A3005664D5 /* CompareObjectHelper.swift */; };
+		BC7F99BE2C5DB2A3005664D5 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A72C5DB2A3005664D5 /* DataHelper.swift */; };
+		BC7F99BF2C5DB2A3005664D5 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A82C5DB2A3005664D5 /* DateHelper.swift */; };
+		BC7F99C02C5DB2A3005664D5 /* DipSensorMagHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A92C5DB2A3005664D5 /* DipSensorMagHelper.swift */; };
+		BC7F99C12C5DB2A3005664D5 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99AA2C5DB2A3005664D5 /* StringUtils.swift */; };
+		BC7F99C22C5DB2A3005664D5 /* SyncDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99AB2C5DB2A3005664D5 /* SyncDictionary.swift */; };
+		BC7F99C32C5DB2A3005664D5 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99AD2C5DB2A3005664D5 /* DeviceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,6 +51,13 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
+		BC7F99802C5DB24E005664D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC7F99792C5DB24E005664D5;
+			remoteInfo = WitSDK;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				BC7F99832C5DB24E005664D5 /* WitSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,10 +90,44 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC7F992F2C5DAB9E005664D5 /* SensorMessages.g.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMessages.g.swift; sourceTree = "<group>"; };
+		BC7F99732C5DADCB005664D5 /* SensorApiImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorApiImplementation.swift; sourceTree = "<group>"; };
+		BC7F997A2C5DB24E005664D5 /* WitSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WitSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC7F997C2C5DB24E005664D5 /* WitSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WitSDK.h; sourceTree = "<group>"; };
+		BC7F997D2C5DB24E005664D5 /* WitSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WitSDK.docc; sourceTree = "<group>"; };
+		BC7F99882C5DB2A3005664D5 /* Bwt901ble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bwt901ble.swift; sourceTree = "<group>"; };
+		BC7F99892C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBwt901bleRecordObserver.swift; sourceTree = "<group>"; };
+		BC7F998D2C5DB2A3005664D5 /* DeviceModelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceModelError.swift; sourceTree = "<group>"; };
+		BC7F998F2C5DB2A3005664D5 /* BluetoothBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBLE.swift; sourceTree = "<group>"; };
+		BC7F99902C5DB2A3005664D5 /* IBluetoothEventObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBluetoothEventObserver.swift; sourceTree = "<group>"; };
+		BC7F99912C5DB2A3005664D5 /* WitBluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WitBluetoothManager.swift; sourceTree = "<group>"; };
+		BC7F99932C5DB2A3005664D5 /* WitCoreConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WitCoreConnector.swift; sourceTree = "<group>"; };
+		BC7F99962C5DB2A3005664D5 /* WitSensorKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WitSensorKey.swift; sourceTree = "<group>"; };
+		BC7F99982C5DB2A3005664D5 /* IDataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDataProcessor.swift; sourceTree = "<group>"; };
+		BC7F999A2C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWT901BLE5_0DataProcessor.swift; sourceTree = "<group>"; };
+		BC7F999D2C5DB2A3005664D5 /* IProtocolResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IProtocolResolver.swift; sourceTree = "<group>"; };
+		BC7F999F2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWT901BLE5_0ProtocolResolver.swift; sourceTree = "<group>"; };
+		BC7F99A32C5DB2A3005664D5 /* IKeyUpdateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IKeyUpdateObserver.swift; sourceTree = "<group>"; };
+		BC7F99A42C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IListenKeyUpdateObserver.swift; sourceTree = "<group>"; };
+		BC7F99A62C5DB2A3005664D5 /* CompareObjectHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareObjectHelper.swift; sourceTree = "<group>"; };
+		BC7F99A72C5DB2A3005664D5 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		BC7F99A82C5DB2A3005664D5 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		BC7F99A92C5DB2A3005664D5 /* DipSensorMagHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DipSensorMagHelper.swift; sourceTree = "<group>"; };
+		BC7F99AA2C5DB2A3005664D5 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		BC7F99AB2C5DB2A3005664D5 /* SyncDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDictionary.swift; sourceTree = "<group>"; };
+		BC7F99AD2C5DB2A3005664D5 /* DeviceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		97C146EB1CF9000F007C117D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC7F99822C5DB24E005664D5 /* WitSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC7F99772C5DB24E005664D5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -92,6 +161,7 @@
 			children = (
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
+				BC7F997B2C5DB24E005664D5 /* WitSDK */,
 				97C146EF1CF9000F007C117D /* Products */,
 				331C8082294A63A400263BE5 /* RunnerTests */,
 			);
@@ -102,6 +172,7 @@
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
 				331C8081294A63A400263BE5 /* RunnerTests.xctest */,
+				BC7F997A2C5DB24E005664D5 /* WitSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +180,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				BC7F992F2C5DAB9E005664D5 /* SensorMessages.g.swift */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -117,11 +189,197 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				BC7F99732C5DADCB005664D5 /* SensorApiImplementation.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
 		};
+		BC7F997B2C5DB24E005664D5 /* WitSDK */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99AE2C5DB2A3005664D5 /* Sensor */,
+				BC7F998C2C5DB2A3005664D5 /* WitSensorApi */,
+				BC7F997C2C5DB24E005664D5 /* WitSDK.h */,
+				BC7F997D2C5DB24E005664D5 /* WitSDK.docc */,
+			);
+			path = WitSDK;
+			sourceTree = "<group>";
+		};
+		BC7F998A2C5DB2A3005664D5 /* Ble5 */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99882C5DB2A3005664D5 /* Bwt901ble.swift */,
+				BC7F99892C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift */,
+			);
+			path = Ble5;
+			sourceTree = "<group>";
+		};
+		BC7F998B2C5DB2A3005664D5 /* Modular */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F998A2C5DB2A3005664D5 /* Ble5 */,
+			);
+			path = Modular;
+			sourceTree = "<group>";
+		};
+		BC7F998C2C5DB2A3005664D5 /* WitSensorApi */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F998B2C5DB2A3005664D5 /* Modular */,
+			);
+			path = WitSensorApi;
+			sourceTree = "<group>";
+		};
+		BC7F998E2C5DB2A3005664D5 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F998D2C5DB2A3005664D5 /* DeviceModelError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		BC7F99922C5DB2A3005664D5 /* Modular */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F998F2C5DB2A3005664D5 /* BluetoothBLE.swift */,
+				BC7F99902C5DB2A3005664D5 /* IBluetoothEventObserver.swift */,
+				BC7F99912C5DB2A3005664D5 /* WitBluetoothManager.swift */,
+			);
+			path = Modular;
+			sourceTree = "<group>";
+		};
+		BC7F99942C5DB2A3005664D5 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99932C5DB2A3005664D5 /* WitCoreConnector.swift */,
+			);
+			path = Roles;
+			sourceTree = "<group>";
+		};
+		BC7F99952C5DB2A3005664D5 /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99922C5DB2A3005664D5 /* Modular */,
+				BC7F99942C5DB2A3005664D5 /* Roles */,
+			);
+			path = Connector;
+			sourceTree = "<group>";
+		};
+		BC7F99972C5DB2A3005664D5 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99962C5DB2A3005664D5 /* WitSensorKey.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		BC7F99992C5DB2A3005664D5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99982C5DB2A3005664D5 /* IDataProcessor.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		BC7F999B2C5DB2A3005664D5 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F999A2C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift */,
+			);
+			path = Roles;
+			sourceTree = "<group>";
+		};
+		BC7F999C2C5DB2A3005664D5 /* Processor */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99972C5DB2A3005664D5 /* Constants */,
+				BC7F99992C5DB2A3005664D5 /* Protocol */,
+				BC7F999B2C5DB2A3005664D5 /* Roles */,
+			);
+			path = Processor;
+			sourceTree = "<group>";
+		};
+		BC7F999E2C5DB2A3005664D5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F999D2C5DB2A3005664D5 /* IProtocolResolver.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		BC7F99A02C5DB2A3005664D5 /* Roles */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F999F2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift */,
+			);
+			path = Roles;
+			sourceTree = "<group>";
+		};
+		BC7F99A12C5DB2A3005664D5 /* Resolver */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F999E2C5DB2A3005664D5 /* Protocol */,
+				BC7F99A02C5DB2A3005664D5 /* Roles */,
+			);
+			path = Resolver;
+			sourceTree = "<group>";
+		};
+		BC7F99A22C5DB2A3005664D5 /* Modular */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99952C5DB2A3005664D5 /* Connector */,
+				BC7F999C2C5DB2A3005664D5 /* Processor */,
+				BC7F99A12C5DB2A3005664D5 /* Resolver */,
+			);
+			path = Modular;
+			sourceTree = "<group>";
+		};
+		BC7F99A52C5DB2A3005664D5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99A32C5DB2A3005664D5 /* IKeyUpdateObserver.swift */,
+				BC7F99A42C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		BC7F99AC2C5DB2A3005664D5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F99A62C5DB2A3005664D5 /* CompareObjectHelper.swift */,
+				BC7F99A72C5DB2A3005664D5 /* DataHelper.swift */,
+				BC7F99A82C5DB2A3005664D5 /* DateHelper.swift */,
+				BC7F99A92C5DB2A3005664D5 /* DipSensorMagHelper.swift */,
+				BC7F99AA2C5DB2A3005664D5 /* StringUtils.swift */,
+				BC7F99AB2C5DB2A3005664D5 /* SyncDictionary.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BC7F99AE2C5DB2A3005664D5 /* Sensor */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F998E2C5DB2A3005664D5 /* Errors */,
+				BC7F99A22C5DB2A3005664D5 /* Modular */,
+				BC7F99A52C5DB2A3005664D5 /* Protocol */,
+				BC7F99AC2C5DB2A3005664D5 /* Utils */,
+				BC7F99AD2C5DB2A3005664D5 /* DeviceModel.swift */,
+			);
+			path = Sensor;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BC7F99752C5DB24E005664D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC7F997F2C5DB24E005664D5 /* WitSDK.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		331C8080294A63A400263BE5 /* RunnerTests */ = {
@@ -155,11 +413,30 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC7F99812C5DB24E005664D5 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BC7F99792C5DB24E005664D5 /* WitSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC7F99872C5DB24E005664D5 /* Build configuration list for PBXNativeTarget "WitSDK" */;
+			buildPhases = (
+				BC7F99752C5DB24E005664D5 /* Headers */,
+				BC7F99762C5DB24E005664D5 /* Sources */,
+				BC7F99772C5DB24E005664D5 /* Frameworks */,
+				BC7F99782C5DB24E005664D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WitSDK;
+			productName = WitSDK;
+			productReference = BC7F997A2C5DB24E005664D5 /* WitSDK.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -179,6 +456,9 @@
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 1100;
 					};
+					BC7F99792C5DB24E005664D5 = {
+						CreatedOnToolsVersion = 15.4;
+					};
 				};
 			};
 			buildConfigurationList = 97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */;
@@ -196,6 +476,7 @@
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 				331C8080294A63A400263BE5 /* RunnerTests */,
+				BC7F99792C5DB24E005664D5 /* WitSDK */,
 			);
 		};
 /* End PBXProject section */
@@ -216,6 +497,13 @@
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC7F99782C5DB24E005664D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,8 +556,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC7F99742C5DADCB005664D5 /* SensorApiImplementation.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
+				BC7F99302C5DAB9E005664D5 /* SensorMessages.g.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC7F99762C5DB24E005664D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC7F99B42C5DB2A3005664D5 /* WitBluetoothManager.swift in Sources */,
+				BC7F99B52C5DB2A3005664D5 /* WitCoreConnector.swift in Sources */,
+				BC7F99BD2C5DB2A3005664D5 /* CompareObjectHelper.swift in Sources */,
+				BC7F99BA2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift in Sources */,
+				BC7F99B82C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift in Sources */,
+				BC7F99B12C5DB2A3005664D5 /* DeviceModelError.swift in Sources */,
+				BC7F99B32C5DB2A3005664D5 /* IBluetoothEventObserver.swift in Sources */,
+				BC7F99BB2C5DB2A3005664D5 /* IKeyUpdateObserver.swift in Sources */,
+				BC7F99B72C5DB2A3005664D5 /* IDataProcessor.swift in Sources */,
+				BC7F99BC2C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift in Sources */,
+				BC7F99C02C5DB2A3005664D5 /* DipSensorMagHelper.swift in Sources */,
+				BC7F99B62C5DB2A3005664D5 /* WitSensorKey.swift in Sources */,
+				BC7F99AF2C5DB2A3005664D5 /* Bwt901ble.swift in Sources */,
+				BC7F99BE2C5DB2A3005664D5 /* DataHelper.swift in Sources */,
+				BC7F99B22C5DB2A3005664D5 /* BluetoothBLE.swift in Sources */,
+				BC7F997E2C5DB24E005664D5 /* WitSDK.docc in Sources */,
+				BC7F99C12C5DB2A3005664D5 /* StringUtils.swift in Sources */,
+				BC7F99C22C5DB2A3005664D5 /* SyncDictionary.swift in Sources */,
+				BC7F99BF2C5DB2A3005664D5 /* DateHelper.swift in Sources */,
+				BC7F99C32C5DB2A3005664D5 /* DeviceModel.swift in Sources */,
+				BC7F99B02C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift in Sources */,
+				BC7F99B92C5DB2A3005664D5 /* IProtocolResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +599,11 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
+		};
+		BC7F99812C5DB24E005664D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC7F99792C5DB24E005664D5 /* WitSDK */;
+			targetProxy = BC7F99802C5DB24E005664D5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -338,6 +662,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -359,11 +684,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 6X8CQ63GFN;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
+					"$(SRCROOT)/WitSDK.framework",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Forma;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -461,6 +791,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -518,6 +849,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -541,11 +873,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 6X8CQ63GFN;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
+					"$(SRCROOT)/WitSDK.framework",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Forma;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -566,11 +903,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 6X8CQ63GFN;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
+					"$(SRCROOT)/WitSDK.framework",
+				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Forma;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -585,6 +927,147 @@
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
+		};
+		BC7F99842C5DB24E005664D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6X8CQ63GFN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.WitSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BC7F99852C5DB24E005664D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6X8CQ63GFN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.WitSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BC7F99862C5DB24E005664D5 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6X8CQ63GFN;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.WitSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Profile;
 		};
 /* End XCBuildConfiguration section */
 
@@ -615,6 +1098,16 @@
 				97C147061CF9000F007C117D /* Debug */,
 				97C147071CF9000F007C117D /* Release */,
 				249021D4217E4FDB00AE95B9 /* Profile */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC7F99872C5DB24E005664D5 /* Build configuration list for PBXNativeTarget "WitSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC7F99842C5DB24E005664D5 /* Debug */,
+				BC7F99852C5DB24E005664D5 /* Release */,
+				BC7F99862C5DB24E005664D5 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
