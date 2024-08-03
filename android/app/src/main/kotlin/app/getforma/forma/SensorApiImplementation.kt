@@ -2,6 +2,7 @@ package app.getforma.forma
 
 import SensorApi
 import SensorData
+import ThreeAxisMeasurement
 import android.content.Context
 import android.util.Log
 import com.wit.witsdk.modular.sensor.device.exceptions.OpenDeviceException
@@ -67,7 +68,33 @@ class SensorApiImplementation private constructor(private val context: Context) 
     }
 
     override fun getSensorData(callback: (Result<SensorData>) -> Unit) {
-        callback(Result.success(SensorData(temperature = 69.0, humidity = 420.0)))
+        callback(
+            Result.success(
+                SensorData(
+                    name = "WT901",
+                    acceleration = ThreeAxisMeasurement(
+                        x = 0.0,
+                        y = 0.0,
+                        z = 0.0,
+                    ),
+                    angularVelocity = ThreeAxisMeasurement(
+                        x = 0.0,
+                        y = 0.0,
+                        z = 0.0,
+                    ),
+                    magneticField = ThreeAxisMeasurement(
+                        x = 0.0,
+                        y = 0.0,
+                        z = 0.0,
+                    ),
+                    angle = ThreeAxisMeasurement(
+                        x = 0.0,
+                        y = 0.0,
+                        z = 0.0,
+                    ),
+                )
+            )
+        )
     }
 
     override fun onFoundBle(bluetoothBLE: BluetoothBLE?) {
@@ -103,50 +130,40 @@ class SensorApiImplementation private constructor(private val context: Context) 
      * This method will be called back when data needs to be recorded
      */
     override fun onRecord(bwt901ble: Bwt901ble?) {
-        val deviceData: String = getDeviceData(bwt901ble)
-        Log.d(
-            MainActivity::class.java.simpleName,
-            "device data [ " + bwt901ble?.deviceName + "] = " + deviceData
-        )
+        val deviceData = getDeviceData(bwt901ble)
+//        Log.d(
+//            MainActivity::class.java.simpleName,
+//            "device data = $deviceData"
+//        )
     }
 
-    private fun getDeviceData(bwt901ble: Bwt901ble?): String {
+    private fun getDeviceData(bwt901ble: Bwt901ble?): SensorData? {
         if (bwt901ble == null) {
-            return ""
+            return null
         }
 
-        val builder = StringBuilder()
-        builder.append(bwt901ble.deviceName).append("\n")
-        builder.append(context.getString(R.string.accX)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AccX)).append("g \t")
-        builder.append(context.getString(R.string.accY)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AccY)).append("g \t")
-        builder.append(context.getString(R.string.accZ)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AccZ)).append("g \n")
-        builder.append(context.getString(R.string.asX)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AsX)).append("°/s \t")
-        builder.append(context.getString(R.string.asY)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AsY)).append("°/s \t")
-        builder.append(context.getString(R.string.asZ)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AsZ)).append("°/s \n")
-        builder.append(context.getString(R.string.angleX)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AngleX)).append("° \t")
-        builder.append(context.getString(R.string.angleY)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AngleY)).append("° \t")
-        builder.append(context.getString(R.string.angleZ)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.AngleZ)).append("° \n")
-        builder.append(context.getString(R.string.hX)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.HX)).append("\t")
-        builder.append(context.getString(R.string.hY)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.HY)).append("\t")
-        builder.append(context.getString(R.string.hZ)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.HZ)).append("\n")
-        builder.append(context.getString(R.string.t)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.T)).append("\n")
-        builder.append(context.getString(R.string.electricQuantityPercentage)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.ElectricQuantityPercentage)).append("\n")
-        builder.append(context.getString(R.string.versionNumber)).append(":")
-            .append(bwt901ble.getDeviceData(WitSensorKey.VersionNumber)).append("\n")
-        return builder.toString()
+        return SensorData(
+            name = bwt901ble.deviceName,
+            acceleration = ThreeAxisMeasurement(
+                x = bwt901ble.getDeviceData(WitSensorKey.AccX)?.toDoubleOrNull(),
+                y = bwt901ble.getDeviceData(WitSensorKey.AccY)?.toDoubleOrNull(),
+                z = bwt901ble.getDeviceData(WitSensorKey.AccZ)?.toDoubleOrNull(),
+            ),
+            angularVelocity = ThreeAxisMeasurement(
+                x = bwt901ble.getDeviceData(WitSensorKey.AsX)?.toDoubleOrNull(),
+                y = bwt901ble.getDeviceData(WitSensorKey.AsY)?.toDoubleOrNull(),
+                z = bwt901ble.getDeviceData(WitSensorKey.AsZ)?.toDoubleOrNull(),
+            ),
+            magneticField = ThreeAxisMeasurement(
+                x = bwt901ble.getDeviceData(WitSensorKey.HX)?.toDoubleOrNull(),
+                y = bwt901ble.getDeviceData(WitSensorKey.HY)?.toDoubleOrNull(),
+                z = bwt901ble.getDeviceData(WitSensorKey.HZ)?.toDoubleOrNull(),
+            ),
+            angle = ThreeAxisMeasurement(
+                x = bwt901ble.getDeviceData(WitSensorKey.AngleX)?.toDoubleOrNull(),
+                y = bwt901ble.getDeviceData(WitSensorKey.AngleY)?.toDoubleOrNull(),
+                z = bwt901ble.getDeviceData(WitSensorKey.AngleZ)?.toDoubleOrNull(),
+            )
+        )
     }
 }
