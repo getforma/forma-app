@@ -13,10 +13,16 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
     // Get bluetooth manager
     var bluetoothManager:WitBluetoothManager = WitBluetoothManager.instance
     
+    fileprivate var flutterApi: FlutterApi
+    
     // Bluetooth 5.0 sensor object
     @Published
     var deviceList:[Bwt901ble] = [Bwt901ble]()
-        
+    
+    init(binaryMessenger: FlutterBinaryMessenger) {
+        self.flutterApi = FlutterApi(binaryMessenger: binaryMessenger)
+    }
+    
     func initialize() throws {
     }
     
@@ -27,13 +33,9 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
         
         // Registering a Bluetooth event observer
         self.bluetoothManager.registerEventObserver(observer: self)
-    
+        
         // Turn on bluetooth scanning
         self.bluetoothManager.startScan()
-    }
-    
-    func getSensorData(completion: @escaping (Result<SensorData, Error>) -> Void) {
-        
     }
     
     // MARK: This method is called if a Bluetooth Low Energy sensor is found
@@ -81,7 +83,7 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
         
         do {
             try bwt901ble?.openDevice()
-
+            
             // Monitor data
             bwt901ble?.registerListenKeyUpdateObserver(obj: self)
         }
@@ -104,36 +106,45 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
         bwt901ble?.closeDevice()
     }
     
-
+    
     // MARK: You will be notified here when data from the sensor needs to be recorded
     func onRecord(_ bwt901ble: Bwt901ble) {
         // You can get sensor data here
-        let deviceData =  getDeviceDataToString(bwt901ble)
-        
-        // Prints to the console, where you can also log the data to your file
-        print(deviceData)
+        let deviceData = getDeviceData(bwt901ble)
+        flutterApi.onSensorDataRecorded(sensorData: deviceData)
     }
     
     // MARK: Get the data of the device and concatenate it into a string
-    func getDeviceDataToString(_ device:Bwt901ble) -> String {
-        var s = ""
-        s  = "\(s)name:\(device.name ?? "")\r\n"
-        s  = "\(s)mac:\(device.mac ?? "")\r\n"
-        s  = "\(s)version:\(device.getDeviceData(WitSensorKey.VersionNumber) ?? "")\r\n"
-        s  = "\(s)AX:\(device.getDeviceData(WitSensorKey.AccX) ?? "") g\r\n"
-        s  = "\(s)AY:\(device.getDeviceData(WitSensorKey.AccY) ?? "") g\r\n"
-        s  = "\(s)AZ:\(device.getDeviceData(WitSensorKey.AccZ) ?? "") g\r\n"
-        s  = "\(s)GX:\(device.getDeviceData(WitSensorKey.GyroX) ?? "") °/s\r\n"
-        s  = "\(s)GY:\(device.getDeviceData(WitSensorKey.GyroY) ?? "") °/s\r\n"
-        s  = "\(s)GZ:\(device.getDeviceData(WitSensorKey.GyroZ) ?? "") °/s\r\n"
-        s  = "\(s)AngX:\(device.getDeviceData(WitSensorKey.AngleX) ?? "") °\r\n"
-        s  = "\(s)AngY:\(device.getDeviceData(WitSensorKey.AngleY) ?? "") °\r\n"
-        s  = "\(s)AngZ:\(device.getDeviceData(WitSensorKey.AngleZ) ?? "") °\r\n"
-        s  = "\(s)HX:\(device.getDeviceData(WitSensorKey.MagX) ?? "") μt\r\n"
-        s  = "\(s)HY:\(device.getDeviceData(WitSensorKey.MagY) ?? "") μt\r\n"
-        s  = "\(s)HZ:\(device.getDeviceData(WitSensorKey.MagZ) ?? "") μt\r\n"
-        s  = "\(s)Electric:\(device.getDeviceData(WitSensorKey.ElectricQuantityPercentage) ?? "") %\r\n"
-        s  = "\(s)Temp:\(device.getDeviceData(WitSensorKey.Temperature) ?? "") °C\r\n"
-        return s
+    func getDeviceData(_ device:Bwt901ble) -> SensorData {
+        return SensorData(name: device.name ?? "",
+                          acceleration: ThreeAxisMeasurement(
+                            x: Double(device.getDeviceData(WitSensorKey.AccX) ?? ""),
+                            y: Double(device.getDeviceData(WitSensorKey.AccY) ?? ""),
+                            z: Double(device.getDeviceData(WitSensorKey.AccZ) ?? "")),
+                          angularVelocity: ThreeAxisMeasurement(
+                            x: Double(device.getDeviceData(WitSensorKey.GyroX) ?? ""),
+                            y: Double(device.getDeviceData(WitSensorKey.GyroY) ?? ""),
+                            z: Double(device.getDeviceData(WitSensorKey.GyroZ) ?? "")),
+                          magneticField: ThreeAxisMeasurement(
+                            x: Double(device.getDeviceData(WitSensorKey.MagX) ?? ""),
+                            y: Double(device.getDeviceData(WitSensorKey.MagY) ?? ""),
+                            z: Double(device.getDeviceData(WitSensorKey.MagZ) ?? "")),
+                          angle: ThreeAxisMeasurement(
+                            x: Double(device.getDeviceData(WitSensorKey.AngleX) ?? ""),
+                            y: Double(device.getDeviceData(WitSensorKey.AngleY) ?? ""),
+                            z: Double(device.getDeviceData(WitSensorKey.AngleZ) ?? "")))
+    }
+}
+
+private class FlutterApi {
+    var flutterAPI: SensorFlutterApi
+    
+    init(binaryMessenger: FlutterBinaryMessenger) {
+        flutterAPI = SensorFlutterApi(binaryMessenger: binaryMessenger)
+    }
+    
+    func onSensorDataRecorded(sensorData: SensorData) {
+        flutterAPI.onSensorDataRecorded(sensorData: sensorData) {_ in
+        }
     }
 }
