@@ -39,7 +39,7 @@ packages:
     source: hosted
     version: "2.11.0"
   auto_route:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: auto_route
       sha256: a9001a90539ca3effc168f7e1029a5885c7326b9032c09ac895e303c1d137704
@@ -185,14 +185,14 @@ packages:
   core_component_domain:
     dependency: transitive
     description:
-      path: "flutter/component/core/domain"
+      path: "../../component/core/domain"
       relative: true
     source: path
     version: "1.0.0+1"
   core_feature:
     dependency: "direct main"
     description:
-      path: "flutter/feature/core"
+      path: "../core"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -253,7 +253,7 @@ packages:
     source: hosted
     version: "1.1.0"
   fl_chart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: fl_chart
       sha256: d0f0d49112f2f4b192481c16d05b6418bd7820e021e265a3c22db98acf7ed7fb
@@ -287,7 +287,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_screenutil:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: flutter_screenutil
       sha256: "8239210dd68bee6b0577aa4a090890342d04a136ce1c81f98ee513fc0ce891de"
@@ -307,6 +307,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed:
+    dependency: "direct dev"
+    description:
+      name: freezed
+      sha256: "44c19278dd9d89292cf46e97dc0c1e52ce03275f40a97c5a348e802a924bf40e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.7"
   freezed_annotation:
     dependency: transitive
     description:
@@ -324,7 +332,7 @@ packages:
     source: hosted
     version: "4.0.0"
   get_it:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: get_it
       sha256: d85128a5dae4ea777324730dc65edd9c9f43155c109d5cc0a69cab74139fbac1
@@ -347,13 +355,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  home_feature:
-    dependency: "direct main"
-    description:
-      path: "flutter/feature/home"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   http:
     dependency: transitive
     description:
@@ -379,7 +380,7 @@ packages:
     source: hosted
     version: "4.0.2"
   injectable:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: injectable
       sha256: "5e1556ea1d374fe44cbe846414d9bab346285d3d8a1da5877c01ad0774006068"
@@ -587,9 +588,9 @@ packages:
     source: hosted
     version: "4.1.0"
   sensor_component_domain:
-    dependency: transitive
+    dependency: "direct main"
     description:
-      path: "flutter/component/sensor/domain"
+      path: "../../component/sensor/domain"
       relative: true
     source: path
     version: "1.0.0+1"

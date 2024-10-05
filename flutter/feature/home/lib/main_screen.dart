@@ -2,17 +2,18 @@ import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
+import 'package:core_feature/generated/l10n.dart';
+import 'package:core_feature/style/app_colors.dart';
+import 'package:core_feature/style/button_styles.dart';
+import 'package:core_feature/style/text_styles.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:forma_app/feature/main/main_cubit.dart';
-import 'package:forma_app/feature/main/widget/partial_circle_painter.dart';
-import 'package:forma_app/generated/l10n.dart';
-import 'package:forma_app/styles/app_colors.dart';
-import 'package:forma_app/styles/button_styles.dart';
-import 'package:forma_app/styles/text_styles.dart';
-import 'package:forma_app/widget/app_divider.dart';
+import 'package:home_feature/main_cubit.dart';
+import 'package:home_feature/widget/partial_circle_painter.dart';
+import 'widget/app_divider.dart';
 import 'package:get_it/get_it.dart';
 
 const _kFormPercentages = [60, 55, 62, 71];

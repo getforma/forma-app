@@ -1,9 +1,9 @@
-name: forma_app
-description: "Forma app"
+name: home_feature
+description: Home Feature
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.1+1
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -13,15 +13,12 @@ dependencies:
     sdk: flutter
 
   core_feature:
-    path: flutter/feature/core
+    path: ../core
 
-  home_feature:
-    path: flutter/feature/home
+  sensor_component_domain:
+    path: ../../component/sensor/domain
 
-  auto_route: ^8.1.4
-  injectable: ^2.3.2
-  get_it: ^7.6.4
-  flutter_screenutil: ^5.9.0
+  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +28,9 @@ dev_dependencies:
   build_runner:
   injectable_generator:
   auto_route_generator:
+  freezed: ^2.4.1
 
 flutter:
-  uses-material-design: true
+  assets:
+    - asset/
+    - asset/icon/

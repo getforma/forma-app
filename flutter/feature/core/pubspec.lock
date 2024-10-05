@@ -167,7 +167,7 @@ packages:
     source: hosted
     version: "4.10.0"
   collection:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: collection
       sha256: ee67cb0715911d28db6bf4af1026078bd6f0128b07a5f66fb2ed94ec6783c09a
@@ -182,20 +182,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
-  core_component_domain:
-    dependency: transitive
-    description:
-      path: "flutter/component/core/domain"
-      relative: true
-    source: path
-    version: "1.0.0+1"
-  core_feature:
-    dependency: "direct main"
-    description:
-      path: "flutter/feature/core"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   crypto:
     dependency: transitive
     description:
@@ -205,7 +191,7 @@ packages:
     source: hosted
     version: "3.0.5"
   cupertino_icons:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: cupertino_icons
       sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
@@ -253,7 +239,7 @@ packages:
     source: hosted
     version: "1.1.0"
   fl_chart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: fl_chart
       sha256: d0f0d49112f2f4b192481c16d05b6418bd7820e021e265a3c22db98acf7ed7fb
@@ -266,7 +252,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_bloc
       sha256: b594505eac31a0518bdcb4b5b79573b8d9117b193cc80cc12e17d639b10aa27a
@@ -282,7 +268,7 @@ packages:
     source: hosted
     version: "3.0.2"
   flutter_localizations:
-    dependency: transitive
+    dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -295,7 +281,7 @@ packages:
     source: hosted
     version: "5.9.3"
   flutter_svg:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_svg
       sha256: "7b4ca6cf3304575fe9c8ec64813c8d02ee41d2afe60bcfe0678bcb5375d596a2"
@@ -307,8 +293,16 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed:
+    dependency: "direct dev"
+    description:
+      name: freezed
+      sha256: "44c19278dd9d89292cf46e97dc0c1e52ce03275f40a97c5a348e802a924bf40e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.5.7"
   freezed_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: freezed_annotation
       sha256: c2e2d632dd9b8a2b7751117abcfc2b4888ecfe181bd9fca7170d9ef02e595fe2
@@ -347,13 +341,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  home_feature:
-    dependency: "direct main"
-    description:
-      path: "flutter/feature/home"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   http:
     dependency: transitive
     description:
@@ -395,7 +382,7 @@ packages:
     source: hosted
     version: "2.6.2"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
@@ -586,13 +573,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-  sensor_component_domain:
-    dependency: transitive
-    description:
-      path: "flutter/component/sensor/domain"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   shelf:
     dependency: transitive
     description:

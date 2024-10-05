@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:core_feature/generated/l10n.dart';
+import 'package:core_feature/style/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:forma_app/route/app_router.dart';
-import 'package:forma_app/styles/app_themes.dart';
-import 'package:injectable/injectable.dart';
-import 'package:forma_app/generated/l10n.dart';
 
-@injectable
+import 'route/app_router.dart';
+
 class Application extends StatefulWidget {
   final AppRouter _appRouter;
 

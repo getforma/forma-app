@@ -1,7 +1,6 @@
+import 'package:core_feature/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
-import 'package:forma_app/styles/app_colors.dart';
 
 class PartialCirclePainter extends CustomPainter {
   final Color color;

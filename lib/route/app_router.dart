@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:home_feature/route/home_router.dart';
+import 'package:home_feature/route/home_router.gm.dart';
 import 'package:injectable/injectable.dart';
-import 'package:forma_app/feature/main/main_screen.dart';
 
 part 'app_router.gr.dart';
 
 @singleton
-@AutoRouterConfig()
+@AutoRouterConfig(
+    replaceInRouteName: 'Screen|Page,Route', modules: [HomeModule])
 class AppRouter extends _$AppRouter {
   AppRouter() : super();
 

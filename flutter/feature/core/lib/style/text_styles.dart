@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:forma_app/styles/app_colors.dart';
+import 'app_colors.dart';
 
 class TextStyles {
   static const _poppins = 'Poppins';

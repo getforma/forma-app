@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:forma_app/application/application.dart';
+import 'package:forma_app/application.dart';
 import 'package:forma_app/injection/injection.dart';
 import 'package:forma_app/route/app_router.dart';
 import 'package:forma_app/service/sensor_flutter_api.dart';
