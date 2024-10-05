@@ -3,14 +3,17 @@ import 'dart:math' as math;
 import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:forma_app/feature/main/main_cubit.dart';
 import 'package:forma_app/feature/main/widget/partial_circle_painter.dart';
 import 'package:forma_app/generated/l10n.dart';
 import 'package:forma_app/styles/app_colors.dart';
 import 'package:forma_app/styles/button_styles.dart';
 import 'package:forma_app/styles/text_styles.dart';
 import 'package:forma_app/widget/app_divider.dart';
+import 'package:get_it/get_it.dart';
 
 const _kFormPercentages = [60, 55, 62, 71];
 const _kPremiumClubNotificationSize = 20;
@@ -23,23 +26,26 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: const Icon(
-          Icons.menu,
-          color: AppColors.pureWhite,
-        ),
-        actions: [
-          const Icon(
-            Icons.calendar_month_outlined,
+    return BlocProvider(
+      create: (context) => GetIt.I.get<MainCubit>()..startDeviceDiscovery(),
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: const Icon(
+            Icons.menu,
             color: AppColors.pureWhite,
           ),
-          16.horizontalSpace,
-        ],
+          actions: [
+            const Icon(
+              Icons.calendar_month_outlined,
+              color: AppColors.pureWhite,
+            ),
+            16.horizontalSpace,
+          ],
+        ),
+        body: _body(context),
       ),
-      body: _body(context),
     );
   }
 
@@ -71,20 +77,24 @@ class MainScreen extends StatelessWidget {
         ],
       );
 
-  Widget _content(BuildContext context) => SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _topSection(context),
-              50.verticalSpace,
-              _lastActivities(context),
-              16.verticalSpace,
-              _tryPremium(context),
-            ],
-          ),
-        ),
+  Widget _content(BuildContext context) => BlocBuilder<MainCubit, MainState>(
+        builder: (context, state) {
+          return SafeArea(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _topSection(context),
+                  50.verticalSpace,
+                  _lastActivities(context),
+                  16.verticalSpace,
+                  _tryPremium(context),
+                ],
+              ),
+            ),
+          );
+        },
       );
 
   Widget _topSection(BuildContext context) => Row(
@@ -293,11 +303,6 @@ class MainScreen extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              // Icon(
-              //   isTrendingUp ? Icons.trending_up : Icons.trending_down,
-              //   size: 16.r,
-              //   color: isTrendingUp ? AppColors.green : AppColors.red,
-              // ),
             ],
           ),
         ),

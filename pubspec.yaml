@@ -26,6 +26,7 @@ dependencies:
 #  flutter_localization: ^0.2.0
   flutter_localizations:
     sdk: flutter
+  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:
@@ -36,6 +37,7 @@ dev_dependencies:
   injectable_generator:
   auto_route_generator:
   freezed: ^2.4.1
+  pigeon: ^21.1.0
 
 flutter:
   uses-material-design: true

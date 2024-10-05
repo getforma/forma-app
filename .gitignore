@@ -2,6 +2,8 @@
 *.gr.dart
 *.g.dart
 *.config.dart
+*.g.swift
+*.g.kt
 
 # Miscellaneous
 *.class
