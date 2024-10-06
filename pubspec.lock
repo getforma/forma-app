@@ -647,6 +647,20 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  session_component_data:
+    dependency: "direct main"
+    description:
+      path: "flutter/component/session/data"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  session_component_domain:
+    dependency: transitive
+    description:
+      path: "flutter/component/session/domain"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   shelf:
     dependency: transitive
     description:

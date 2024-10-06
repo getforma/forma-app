@@ -602,6 +602,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  session_component_domain:
+    dependency: "direct main"
+    description:
+      path: "../../component/session/domain"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   shelf:
     dependency: transitive
     description:

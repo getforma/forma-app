@@ -6,6 +6,7 @@ part 'session_info.g.dart';
 
 @freezed
 class SessionInfo with _$SessionInfo {
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SessionInfo({
     required DateTime createdAt,
     required String deviceId,
