@@ -1,3 +1,5 @@
 abstract class SensorRepository {
-  String hello();
+  void initialize();
+
+  void startDiscovery();
 }

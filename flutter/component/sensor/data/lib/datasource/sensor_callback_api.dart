@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:forma_app/service/sensor_messages.g.dart';
+import 'package:sensor_component_data/datasource/sensor_messages.g.dart';
 
-class SensorFlutterApiImpl implements SensorFlutterApi {
+class SensorCallbackApiImpl implements SensorCallbackApi {
   @override
   void onSensorDataRecorded(SensorData sensorData) {
     if (kDebugMode) {
