@@ -9,10 +9,12 @@ part 'main_state.dart';
 @injectable
 class MainCubit extends Cubit<MainState> {
   // final SensorApi _sensorApi = SensorApi();
+  final GetSensorDataUseCase _getSensorDataUseCase;
 
-  MainCubit() : super(const MainState());
+  MainCubit(this._getSensorDataUseCase) : super(const MainState());
 
   Future<void> startDeviceDiscovery() async {
+    _getSensorDataUseCase.invoke();
     // _sensorApi.initialize();
     // _sensorApi.startDiscovery();
   }

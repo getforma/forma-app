@@ -18,6 +18,12 @@ dependencies:
   home_feature:
     path: flutter/feature/home
 
+  core_component_data:
+    path: flutter/component/core/data
+
+  sensor_component_data:
+    path: flutter/component/sensor/data
+
   auto_route: ^8.1.4
   injectable: ^2.3.2
   get_it: ^7.6.4

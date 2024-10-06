@@ -6,4 +6,9 @@ class GetSensorDataUseCase {
   final SensorRepository _repository;
 
   GetSensorDataUseCase(this._repository);
+
+  void invoke() {
+    final result = _repository.hello();
+    print(result);
+  }
 }

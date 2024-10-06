@@ -5,6 +5,7 @@
 *.config.dart
 *.g.swift
 *.g.kt
+*.module.dart
 
 # Miscellaneous
 *.class

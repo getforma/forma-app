@@ -19,9 +19,7 @@ dependencies:
 
   dio: ^4.0.4
   retrofit: '>=3.0.0 <4.0.0'
-  jiffy: ^5.0.0
-  flutter_secure_storage: ^5.0.2
-  shared_preferences: ^2.0.13
+  jiffy: ^6.3.1
   json_annotation: ^4.4.0
   json_serializable: ^6.1.5
 

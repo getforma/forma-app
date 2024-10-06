@@ -5,9 +5,9 @@ import 'package:forma_app/route/app_router.dart';
 import 'package:forma_app/service/sensor_flutter_api.dart';
 import 'package:forma_app/service/sensor_messages.g.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
 
   SensorFlutterApi.setUp(SensorFlutterApiImpl());
 
