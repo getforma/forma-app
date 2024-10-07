@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:forma_app/application/application.dart';
+import 'package:forma_app/application.dart';
 import 'package:forma_app/injection/injection.dart';
 import 'package:forma_app/route/app_router.dart';
-import 'package:forma_app/service/sensor_flutter_api.dart';
-import 'package:forma_app/service/sensor_messages.g.dart';
+import 'package:sensor_component_data/datasource/sensor_callback_api.dart';
+import 'package:sensor_component_data/datasource/sensor_messages.g.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
 
-  SensorFlutterApi.setUp(SensorFlutterApiImpl());
+  SensorCallbackApi.setUp(SensorCallbackApiImpl());
 
   runApp(Application(appRouter: getIt.get<AppRouter>()));
 }

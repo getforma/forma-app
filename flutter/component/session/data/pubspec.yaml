@@ -1,0 +1,33 @@
+name: session_component_data
+description: Session Component Data
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  session_component_domain:
+    path: ../domain
+
+  core_component_data:
+    path: ../../core/data
+
+  retrofit: '>=3.0.0 <4.0.0'
+#  device_info_plus: ^10.1.2
+  android_id: ^0.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  build_runner:
+  injectable_generator:
+  retrofit_generator: '>=4.0.0 <5.0.0'
+
+flutter:
