@@ -33,6 +33,7 @@ class MainCubit extends Cubit<MainState> {
     _initializeSensorUseCase.invoke(EmptyParam());
     _startSensorDiscoveryUseCase.invoke(EmptyParam());
 
+    return;
     // TODO: delete after testing
     final sessionResult = await _createSessionUseCase.invoke(const SessionRequest(
       deviceId: "test",
@@ -72,5 +73,13 @@ class MainCubit extends Cubit<MainState> {
         ),
       ],
     ));
+  }
+
+  void updateUserName(String name) {
+    emit(state.copyWith(userName: name));
+  }
+
+  void updateSensorPosition(SensorPosition? position) {
+    emit(state.copyWith(sensorPosition: position));
   }
 }
