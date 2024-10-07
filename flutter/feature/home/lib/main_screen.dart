@@ -2,14 +2,14 @@ import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:core_feature/style/app_colors.dart';
+import 'package:core_feature/style/button_styles.dart';
+import 'package:core_feature/style/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_feature/main_cubit.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
-import 'package:core_feature/style/text_styles.dart';
-import 'package:core_feature/style/button_styles.dart';
 
 @RoutePage()
 class MainScreen extends StatefulWidget {
@@ -66,9 +66,10 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ),
-          Container(
-            height: 0.5.sh,
-            color: AppColors.primaryBlack,
+          Expanded(
+            child: Container(
+              color: AppColors.primaryBlack,
+            ),
           ),
         ],
       );
@@ -126,7 +127,9 @@ class _MainScreenState extends State<MainScreen> {
           child: SizedBox(
             width: 0.7.sw,
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<MainCubit>().trackSessionData();
+                },
                 style: ButtonStyles.fullWidthOrange.sp,
                 child: const Text("Start session")),
           ),

@@ -32,16 +32,23 @@ class MainCubit extends Cubit<MainState> {
   Future<void> startDeviceDiscovery() async {
     _initializeSensorUseCase.invoke(EmptyParam());
     _startSensorDiscoveryUseCase.invoke(EmptyParam());
+  }
 
-    return;
-    // TODO: delete after testing
-    final sessionResult = await _createSessionUseCase.invoke(const SessionRequest(
-      deviceId: "test",
-      devicePosition: SensorPosition.pelvisRight,
-      userName: "Alex",
+  Future<void> trackSessionData() async {
+    final userName = state.userName;
+    if (userName == null) {
+      // TODO: display error
+      return;
+    }
+
+    final sessionResult =
+        await _createSessionUseCase.invoke(CreateSessionUseCaseParam(
+      sensorPosition: state.sensorPosition,
+      userName: userName,
     ));
-    
-    if (sessionResult.isLeft()){
+
+    if (sessionResult.isLeft()) {
+      // TODO: display error
       return;
     }
 
@@ -80,6 +87,9 @@ class MainCubit extends Cubit<MainState> {
   }
 
   void updateSensorPosition(SensorPosition? position) {
+    if (position == null) {
+      return;
+    }
     emit(state.copyWith(sensorPosition: position));
   }
 }

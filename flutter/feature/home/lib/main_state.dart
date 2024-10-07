@@ -4,6 +4,6 @@ part of 'main_cubit.dart';
 class MainState with _$MainState {
   const factory MainState({
     String? userName,
-    SensorPosition? sensorPosition,
+    @Default(SensorPosition.pelvisRight) SensorPosition sensorPosition,
   }) = _MainState;
 }
