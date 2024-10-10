@@ -27,19 +27,20 @@ dependencies:
   session_component_data:
     path: flutter/component/session/data
 
-  auto_route: ^8.1.4
-  injectable: ^2.3.2
-  get_it: ^7.6.4
-  flutter_screenutil: ^5.9.0
+  auto_route: ^9.2.2
+  injectable: ^2.5.0
+  get_it: ^8.0.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^3.0.0
+  flutter_lints: ^5.0.0
   build_runner:
   injectable_generator:
   auto_route_generator:
+  melos: ^6.2.0
 
 flutter:
   uses-material-design: true

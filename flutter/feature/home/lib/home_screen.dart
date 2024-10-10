@@ -8,22 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:home_feature/main_cubit.dart';
+import 'package:home_feature/home_cubit.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 
 @RoutePage()
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<MainCubit>()..startDeviceDiscovery(),
+      create: (context) => GetIt.I.get<HomeCubit>()..startDeviceDiscovery(),
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -74,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       );
 
-  Widget _content(BuildContext context) => BlocBuilder<MainCubit, MainState>(
+  Widget _content(BuildContext context) => BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return SafeArea(
             child: Padding(
@@ -102,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           textCapitalization: TextCapitalization.words,
           onChanged: (value) {
-            context.read<MainCubit>().updateUserName(value);
+            context.read<HomeCubit>().updateUserName(value);
           },
         ),
         32.verticalSpace,
@@ -120,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
                     ))
                 .toList(growable: false),
             onSelected: (value) {
-              context.read<MainCubit>().updateSensorPosition(value);
+              context.read<HomeCubit>().updateSensorPosition(value);
             }),
         143.verticalSpace,
         Center(
@@ -128,7 +128,7 @@ class _MainScreenState extends State<MainScreen> {
             width: 0.7.sw,
             child: TextButton(
                 onPressed: () {
-                  context.read<MainCubit>().trackSessionData();
+                  context.read<HomeCubit>().trackSessionData();
                 },
                 style: ButtonStyles.fullWidthOrange.sp,
                 child: const Text("Start session")),

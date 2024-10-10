@@ -1,4 +1,4 @@
-import 'package:pigeon/pigeon.dart';
+import 'package:pigeon/pigeon.dart' show ConfigurePigeon, DartOptions, FlutterApi, HostApi, KotlinOptions, PigeonOptions, SwiftOptions;
 
 @ConfigurePigeon(PigeonOptions(
   dartOut: 'sensor_messages.g.dart',

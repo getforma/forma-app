@@ -1,21 +1,20 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:home_feature/route/home_router.dart';
-import 'package:home_feature/route/home_router.gm.dart';
+import 'package:home_feature/router/home_router.dart';
 import 'package:injectable/injectable.dart';
+
+export 'package:home_feature/router/home_router.dart';
 
 part 'app_router.gr.dart';
 
 @singleton
-@AutoRouterConfig(
-    replaceInRouteName: 'Screen|Page,Route', modules: [HomeModule])
-class AppRouter extends _$AppRouter {
+@AutoRouterConfig()
+class AppRouter extends RootStackRouter {
   AppRouter() : super();
+
+  final _homeRouter = HomeRouter();
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-          page: MainRoute.page,
-          initial: true,
-        ),
+        ..._homeRouter.routes,
       ];
 }
