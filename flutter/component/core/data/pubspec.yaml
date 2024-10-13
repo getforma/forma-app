@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.4 <4.0.0'
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -21,11 +21,16 @@ dependencies:
   jiffy: ^6.3.1
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
+  drift:
+  drift_dev: ^2.20.3
+  drift_flutter: ^0.2.0
+#  path_provider: ^2.1.4
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints:
   build_runner:
   injectable_generator:
-  retrofit_generator: ^9.1.2
+  retrofit_generator:
+#
+#dependency_overrides:
+#  dart_style: ^2.3.7

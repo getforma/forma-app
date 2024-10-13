@@ -1,5 +1,6 @@
-import UIKit
 import Flutter
+import UIKit
+import WitSDK
 
 @main
 @objc class AppDelegate: FlutterAppDelegate {

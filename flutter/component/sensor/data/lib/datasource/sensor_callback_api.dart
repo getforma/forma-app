@@ -3,14 +3,14 @@ import 'package:sensor_component_data/datasource/sensor_messages.g.dart';
 
 class SensorCallbackApiImpl implements SensorCallbackApi {
   @override
-  void onSensorDataRecorded(SensorData sensorData) {
+  void onSensorDataRecorded(SensorDataModel sensorData) {
     if (kDebugMode) {
       print(sensorData.stringify());
     }
   }
 }
 
-extension SensorDataString on SensorData {
+extension SensorDataString on SensorDataModel {
   String stringify() {
     return """{
 name: $name,

@@ -2,7 +2,7 @@
 //  SensorApiImplementation.swift
 //  Runner
 //
-//  Created by Aleksander Kapera on 8/2/24.
+//  Created by Aleksander Kapera on 10/13/24.
 //
 
 import Foundation
@@ -115,21 +115,21 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
     }
     
     // MARK: Get the data of the device and concatenate it into a string
-    func getDeviceData(_ device:Bwt901ble) -> SensorData {
-        return SensorData(name: device.name ?? "",
-                          acceleration: ThreeAxisMeasurement(
+    func getDeviceData(_ device:Bwt901ble) -> SensorDataModel {
+        return SensorDataModel(name: device.name ?? "",
+                          acceleration: ThreeAxisMeasurementModel(
                             x: Double(device.getDeviceData(WitSensorKey.AccX) ?? ""),
                             y: Double(device.getDeviceData(WitSensorKey.AccY) ?? ""),
                             z: Double(device.getDeviceData(WitSensorKey.AccZ) ?? "")),
-                          angularVelocity: ThreeAxisMeasurement(
+                          angularVelocity: ThreeAxisMeasurementModel(
                             x: Double(device.getDeviceData(WitSensorKey.GyroX) ?? ""),
                             y: Double(device.getDeviceData(WitSensorKey.GyroY) ?? ""),
                             z: Double(device.getDeviceData(WitSensorKey.GyroZ) ?? "")),
-                          magneticField: ThreeAxisMeasurement(
+                          magneticField: ThreeAxisMeasurementModel(
                             x: Double(device.getDeviceData(WitSensorKey.MagX) ?? ""),
                             y: Double(device.getDeviceData(WitSensorKey.MagY) ?? ""),
                             z: Double(device.getDeviceData(WitSensorKey.MagZ) ?? "")),
-                          angle: ThreeAxisMeasurement(
+                          angle: ThreeAxisMeasurementModel(
                             x: Double(device.getDeviceData(WitSensorKey.AngleX) ?? ""),
                             y: Double(device.getDeviceData(WitSensorKey.AngleY) ?? ""),
                             z: Double(device.getDeviceData(WitSensorKey.AngleZ) ?? "")))
@@ -137,13 +137,13 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
 }
 
 private class FlutterApi {
-    var flutterAPI: SensorFlutterApi
+    var flutterAPI: SensorCallbackApi
     
     init(binaryMessenger: FlutterBinaryMessenger) {
-        flutterAPI = SensorFlutterApi(binaryMessenger: binaryMessenger)
+        flutterAPI = SensorCallbackApi(binaryMessenger: binaryMessenger)
     }
     
-    func onSensorDataRecorded(sensorData: SensorData) {
+    func onSensorDataRecorded(sensorData: SensorDataModel) {
         flutterAPI.onSensorDataRecorded(sensorData: sensorData) {_ in
         }
     }

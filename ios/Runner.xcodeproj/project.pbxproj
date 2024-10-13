@@ -10,39 +10,36 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		71F6641B76E303DCCB3C7917 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDCF5D8DEFCDB22FCB62354 /* Pods_Runner.framework */; };
+		5171E854B7B636C5B695EC93 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B6FBD4628ABE8ACC70DB236 /* Pods_RunnerTests.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
-		7ACA6C91ACF0C736316B3FB5 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E19B01DCF8AA79109216AB4 /* Pods_RunnerTests.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		BC7F99302C5DAB9E005664D5 /* SensorMessages.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F992F2C5DAB9E005664D5 /* SensorMessages.g.swift */; };
-		BC7F99742C5DADCB005664D5 /* SensorApiImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99732C5DADCB005664D5 /* SensorApiImplementation.swift */; };
-		BC7F997E2C5DB24E005664D5 /* WitSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = BC7F997D2C5DB24E005664D5 /* WitSDK.docc */; };
-		BC7F997F2C5DB24E005664D5 /* WitSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BC7F997C2C5DB24E005664D5 /* WitSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC7F99822C5DB24E005664D5 /* WitSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7F997A2C5DB24E005664D5 /* WitSDK.framework */; };
-		BC7F99832C5DB24E005664D5 /* WitSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC7F997A2C5DB24E005664D5 /* WitSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BC7F99AF2C5DB2A3005664D5 /* Bwt901ble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99882C5DB2A3005664D5 /* Bwt901ble.swift */; };
-		BC7F99B02C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99892C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift */; };
-		BC7F99B12C5DB2A3005664D5 /* DeviceModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F998D2C5DB2A3005664D5 /* DeviceModelError.swift */; };
-		BC7F99B22C5DB2A3005664D5 /* BluetoothBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F998F2C5DB2A3005664D5 /* BluetoothBLE.swift */; };
-		BC7F99B32C5DB2A3005664D5 /* IBluetoothEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99902C5DB2A3005664D5 /* IBluetoothEventObserver.swift */; };
-		BC7F99B42C5DB2A3005664D5 /* WitBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99912C5DB2A3005664D5 /* WitBluetoothManager.swift */; };
-		BC7F99B52C5DB2A3005664D5 /* WitCoreConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99932C5DB2A3005664D5 /* WitCoreConnector.swift */; };
-		BC7F99B62C5DB2A3005664D5 /* WitSensorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99962C5DB2A3005664D5 /* WitSensorKey.swift */; };
-		BC7F99B72C5DB2A3005664D5 /* IDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99982C5DB2A3005664D5 /* IDataProcessor.swift */; };
-		BC7F99B82C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F999A2C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift */; };
-		BC7F99B92C5DB2A3005664D5 /* IProtocolResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F999D2C5DB2A3005664D5 /* IProtocolResolver.swift */; };
-		BC7F99BA2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F999F2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift */; };
-		BC7F99BB2C5DB2A3005664D5 /* IKeyUpdateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A32C5DB2A3005664D5 /* IKeyUpdateObserver.swift */; };
-		BC7F99BC2C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A42C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift */; };
-		BC7F99BD2C5DB2A3005664D5 /* CompareObjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A62C5DB2A3005664D5 /* CompareObjectHelper.swift */; };
-		BC7F99BE2C5DB2A3005664D5 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A72C5DB2A3005664D5 /* DataHelper.swift */; };
-		BC7F99BF2C5DB2A3005664D5 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A82C5DB2A3005664D5 /* DateHelper.swift */; };
-		BC7F99C02C5DB2A3005664D5 /* DipSensorMagHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99A92C5DB2A3005664D5 /* DipSensorMagHelper.swift */; };
-		BC7F99C12C5DB2A3005664D5 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99AA2C5DB2A3005664D5 /* StringUtils.swift */; };
-		BC7F99C22C5DB2A3005664D5 /* SyncDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99AB2C5DB2A3005664D5 /* SyncDictionary.swift */; };
-		BC7F99C32C5DB2A3005664D5 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7F99AD2C5DB2A3005664D5 /* DeviceModel.swift */; };
+		BCF95F622CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F462CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift */; };
+		BCF95F632CBC534500C4B0F2 /* WitSensorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F422CBC534500C4B0F2 /* WitSensorKey.swift */; };
+		BCF95F642CBC534500C4B0F2 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F562CBC534500C4B0F2 /* StringUtils.swift */; };
+		BCF95F652CBC534500C4B0F2 /* IKeyUpdateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F4F2CBC534500C4B0F2 /* IKeyUpdateObserver.swift */; };
+		BCF95F662CBC534500C4B0F2 /* IBwt901bleRecordObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F5C2CBC534500C4B0F2 /* IBwt901bleRecordObserver.swift */; };
+		BCF95F672CBC534500C4B0F2 /* WitBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F3D2CBC534500C4B0F2 /* WitBluetoothManager.swift */; };
+		BCF95F682CBC534500C4B0F2 /* DeviceModelError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F392CBC534500C4B0F2 /* DeviceModelError.swift */; };
+		BCF95F692CBC534500C4B0F2 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F532CBC534500C4B0F2 /* DataHelper.swift */; };
+		BCF95F6A2CBC534500C4B0F2 /* BluetoothBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F3B2CBC534500C4B0F2 /* BluetoothBLE.swift */; };
+		BCF95F6B2CBC534500C4B0F2 /* BWT901BLE5_0ProtocolResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F4B2CBC534500C4B0F2 /* BWT901BLE5_0ProtocolResolver.swift */; };
+		BCF95F6C2CBC534500C4B0F2 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F592CBC534500C4B0F2 /* DeviceModel.swift */; };
+		BCF95F6D2CBC534500C4B0F2 /* IBluetoothEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F3C2CBC534500C4B0F2 /* IBluetoothEventObserver.swift */; };
+		BCF95F6E2CBC534500C4B0F2 /* DipSensorMagHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F552CBC534500C4B0F2 /* DipSensorMagHelper.swift */; };
+		BCF95F6F2CBC534500C4B0F2 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F542CBC534500C4B0F2 /* DateHelper.swift */; };
+		BCF95F702CBC534500C4B0F2 /* SyncDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F572CBC534500C4B0F2 /* SyncDictionary.swift */; };
+		BCF95F712CBC534500C4B0F2 /* WitSDK.docc in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F602CBC534500C4B0F2 /* WitSDK.docc */; };
+		BCF95F722CBC534500C4B0F2 /* Bwt901ble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F5B2CBC534500C4B0F2 /* Bwt901ble.swift */; };
+		BCF95F732CBC534500C4B0F2 /* IDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F442CBC534500C4B0F2 /* IDataProcessor.swift */; };
+		BCF95F742CBC534500C4B0F2 /* IProtocolResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F492CBC534500C4B0F2 /* IProtocolResolver.swift */; };
+		BCF95F752CBC534500C4B0F2 /* IListenKeyUpdateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F502CBC534500C4B0F2 /* IListenKeyUpdateObserver.swift */; };
+		BCF95F762CBC534500C4B0F2 /* WitCoreConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F3F2CBC534500C4B0F2 /* WitCoreConnector.swift */; };
+		BCF95F772CBC534500C4B0F2 /* CompareObjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F522CBC534500C4B0F2 /* CompareObjectHelper.swift */; };
+		BCF95F792CBC538700C4B0F2 /* SensorApiImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F782CBC538000C4B0F2 /* SensorApiImplementation.swift */; };
+		BCF95F7B2CBC541600C4B0F2 /* SensorMessages.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F7A2CBC541600C4B0F2 /* SensorMessages.g.swift */; };
+		DA230F12D2E0DBA4CBF3153B /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9701F459FBCBA6A405AC7FD8 /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +50,6 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
-		BC7F99802C5DB24E005664D5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BC7F99792C5DB24E005664D5;
-			remoteInfo = WitSDK;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,7 +59,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BC7F99832C5DB24E005664D5 /* WitSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,16 +68,17 @@
 /* Begin PBXFileReference section */
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		2D9256D0B3E46C25D4EABD23 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		1B6FBD4628ABE8ACC70DB236 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DD238E619DF436556298B36 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
+		27B20578AA1BC4229F77A4A4 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		48AA7F386502076EE0B908EA /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		6E19B01DCF8AA79109216AB4 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EC017327975F993B7C48F48 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		6EFF395643A5DD42D451E859 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
+		9701F459FBCBA6A405AC7FD8 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,60 +86,49 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A4991DE6EE6E202FEBD2F9C7 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
-		A8DD5846A8590ADECBEC8E3D /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
-		BC7F992F2C5DAB9E005664D5 /* SensorMessages.g.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorMessages.g.swift; sourceTree = "<group>"; };
-		BC7F99732C5DADCB005664D5 /* SensorApiImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorApiImplementation.swift; sourceTree = "<group>"; };
-		BC7F997A2C5DB24E005664D5 /* WitSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WitSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC7F997C2C5DB24E005664D5 /* WitSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WitSDK.h; sourceTree = "<group>"; };
-		BC7F997D2C5DB24E005664D5 /* WitSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WitSDK.docc; sourceTree = "<group>"; };
-		BC7F99882C5DB2A3005664D5 /* Bwt901ble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bwt901ble.swift; sourceTree = "<group>"; };
-		BC7F99892C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBwt901bleRecordObserver.swift; sourceTree = "<group>"; };
-		BC7F998D2C5DB2A3005664D5 /* DeviceModelError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceModelError.swift; sourceTree = "<group>"; };
-		BC7F998F2C5DB2A3005664D5 /* BluetoothBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothBLE.swift; sourceTree = "<group>"; };
-		BC7F99902C5DB2A3005664D5 /* IBluetoothEventObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBluetoothEventObserver.swift; sourceTree = "<group>"; };
-		BC7F99912C5DB2A3005664D5 /* WitBluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WitBluetoothManager.swift; sourceTree = "<group>"; };
-		BC7F99932C5DB2A3005664D5 /* WitCoreConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WitCoreConnector.swift; sourceTree = "<group>"; };
-		BC7F99962C5DB2A3005664D5 /* WitSensorKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WitSensorKey.swift; sourceTree = "<group>"; };
-		BC7F99982C5DB2A3005664D5 /* IDataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IDataProcessor.swift; sourceTree = "<group>"; };
-		BC7F999A2C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWT901BLE5_0DataProcessor.swift; sourceTree = "<group>"; };
-		BC7F999D2C5DB2A3005664D5 /* IProtocolResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IProtocolResolver.swift; sourceTree = "<group>"; };
-		BC7F999F2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWT901BLE5_0ProtocolResolver.swift; sourceTree = "<group>"; };
-		BC7F99A32C5DB2A3005664D5 /* IKeyUpdateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IKeyUpdateObserver.swift; sourceTree = "<group>"; };
-		BC7F99A42C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IListenKeyUpdateObserver.swift; sourceTree = "<group>"; };
-		BC7F99A62C5DB2A3005664D5 /* CompareObjectHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompareObjectHelper.swift; sourceTree = "<group>"; };
-		BC7F99A72C5DB2A3005664D5 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
-		BC7F99A82C5DB2A3005664D5 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
-		BC7F99A92C5DB2A3005664D5 /* DipSensorMagHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DipSensorMagHelper.swift; sourceTree = "<group>"; };
-		BC7F99AA2C5DB2A3005664D5 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
-		BC7F99AB2C5DB2A3005664D5 /* SyncDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncDictionary.swift; sourceTree = "<group>"; };
-		BC7F99AD2C5DB2A3005664D5 /* DeviceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
-		BE95BB9613AB1777522374CE /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DBDCF5D8DEFCDB22FCB62354 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A127BDCFEA4612AD2811C08E /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B24DC8D5D394C21026A3C527 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		BCF95F392CBC534500C4B0F2 /* DeviceModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModelError.swift; sourceTree = "<group>"; };
+		BCF95F3B2CBC534500C4B0F2 /* BluetoothBLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothBLE.swift; sourceTree = "<group>"; };
+		BCF95F3C2CBC534500C4B0F2 /* IBluetoothEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBluetoothEventObserver.swift; sourceTree = "<group>"; };
+		BCF95F3D2CBC534500C4B0F2 /* WitBluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitBluetoothManager.swift; sourceTree = "<group>"; };
+		BCF95F3F2CBC534500C4B0F2 /* WitCoreConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitCoreConnector.swift; sourceTree = "<group>"; };
+		BCF95F422CBC534500C4B0F2 /* WitSensorKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitSensorKey.swift; sourceTree = "<group>"; };
+		BCF95F442CBC534500C4B0F2 /* IDataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDataProcessor.swift; sourceTree = "<group>"; };
+		BCF95F462CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWT901BLE5_0DataProcessor.swift; sourceTree = "<group>"; };
+		BCF95F492CBC534500C4B0F2 /* IProtocolResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProtocolResolver.swift; sourceTree = "<group>"; };
+		BCF95F4B2CBC534500C4B0F2 /* BWT901BLE5_0ProtocolResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BWT901BLE5_0ProtocolResolver.swift; sourceTree = "<group>"; };
+		BCF95F4F2CBC534500C4B0F2 /* IKeyUpdateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKeyUpdateObserver.swift; sourceTree = "<group>"; };
+		BCF95F502CBC534500C4B0F2 /* IListenKeyUpdateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IListenKeyUpdateObserver.swift; sourceTree = "<group>"; };
+		BCF95F522CBC534500C4B0F2 /* CompareObjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareObjectHelper.swift; sourceTree = "<group>"; };
+		BCF95F532CBC534500C4B0F2 /* DataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		BCF95F542CBC534500C4B0F2 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		BCF95F552CBC534500C4B0F2 /* DipSensorMagHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DipSensorMagHelper.swift; sourceTree = "<group>"; };
+		BCF95F562CBC534500C4B0F2 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		BCF95F572CBC534500C4B0F2 /* SyncDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncDictionary.swift; sourceTree = "<group>"; };
+		BCF95F592CBC534500C4B0F2 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
+		BCF95F5B2CBC534500C4B0F2 /* Bwt901ble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bwt901ble.swift; sourceTree = "<group>"; };
+		BCF95F5C2CBC534500C4B0F2 /* IBwt901bleRecordObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBwt901bleRecordObserver.swift; sourceTree = "<group>"; };
+		BCF95F602CBC534500C4B0F2 /* WitSDK.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = WitSDK.docc; sourceTree = "<group>"; };
+		BCF95F782CBC538000C4B0F2 /* SensorApiImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorApiImplementation.swift; sourceTree = "<group>"; };
+		BCF95F7A2CBC541600C4B0F2 /* SensorMessages.g.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMessages.g.swift; sourceTree = "<group>"; };
+		D3EF238D196641C6AA66D9D3 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		850C296E91DC5AAE770EC9C4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7ACA6C91ACF0C736316B3FB5 /* Pods_RunnerTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		97C146EB1CF9000F007C117D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC7F99822C5DB24E005664D5 /* WitSDK.framework in Frameworks */,
-				71F6641B76E303DCCB3C7917 /* Pods_Runner.framework in Frameworks */,
+				DA230F12D2E0DBA4CBF3153B /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BC7F99772C5DB24E005664D5 /* Frameworks */ = {
+		9BB567195BBA5AC0449DFD8E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5171E854B7B636C5B695EC93 /* Pods_RunnerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,13 +157,13 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
+				BCF95F612CBC534500C4B0F2 /* WitSDK */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
-				BC7F997B2C5DB24E005664D5 /* WitSDK */,
 				97C146EF1CF9000F007C117D /* Products */,
 				331C8082294A63A400263BE5 /* RunnerTests */,
-				A6A6B47C8946B3C0BD680B2C /* Pods */,
-				9C5BB688F925716D88D2808D /* Frameworks */,
+				F93995335E463633A0F4605B /* Pods */,
+				9E1BC5D34BFAE837C889A8EF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,7 +172,6 @@
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
 				331C8081294A63A400263BE5 /* RunnerTests.xctest */,
-				BC7F997A2C5DB24E005664D5 /* WitSDK.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,7 +179,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F992F2C5DAB9E005664D5 /* SensorMessages.g.swift */,
+				BCF95F7A2CBC541600C4B0F2 /* SensorMessages.g.swift */,
+				BCF95F782CBC538000C4B0F2 /* SensorApiImplementation.swift */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -210,230 +189,216 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
-				BC7F99732C5DADCB005664D5 /* SensorApiImplementation.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
 		};
-		9C5BB688F925716D88D2808D /* Frameworks */ = {
+		9E1BC5D34BFAE837C889A8EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DBDCF5D8DEFCDB22FCB62354 /* Pods_Runner.framework */,
-				6E19B01DCF8AA79109216AB4 /* Pods_RunnerTests.framework */,
+				9701F459FBCBA6A405AC7FD8 /* Pods_Runner.framework */,
+				1B6FBD4628ABE8ACC70DB236 /* Pods_RunnerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A6A6B47C8946B3C0BD680B2C /* Pods */ = {
+		BCF95F3A2CBC534500C4B0F2 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				48AA7F386502076EE0B908EA /* Pods-Runner.debug.xcconfig */,
-				6EC017327975F993B7C48F48 /* Pods-Runner.release.xcconfig */,
-				A4991DE6EE6E202FEBD2F9C7 /* Pods-Runner.profile.xcconfig */,
-				BE95BB9613AB1777522374CE /* Pods-RunnerTests.debug.xcconfig */,
-				2D9256D0B3E46C25D4EABD23 /* Pods-RunnerTests.release.xcconfig */,
-				A8DD5846A8590ADECBEC8E3D /* Pods-RunnerTests.profile.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		BC7F997B2C5DB24E005664D5 /* WitSDK */ = {
-			isa = PBXGroup;
-			children = (
-				BC7F99AE2C5DB2A3005664D5 /* Sensor */,
-				BC7F998C2C5DB2A3005664D5 /* WitSensorApi */,
-				BC7F997C2C5DB24E005664D5 /* WitSDK.h */,
-				BC7F997D2C5DB24E005664D5 /* WitSDK.docc */,
-			);
-			path = WitSDK;
-			sourceTree = "<group>";
-		};
-		BC7F998A2C5DB2A3005664D5 /* Ble5 */ = {
-			isa = PBXGroup;
-			children = (
-				BC7F99882C5DB2A3005664D5 /* Bwt901ble.swift */,
-				BC7F99892C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift */,
-			);
-			path = Ble5;
-			sourceTree = "<group>";
-		};
-		BC7F998B2C5DB2A3005664D5 /* Modular */ = {
-			isa = PBXGroup;
-			children = (
-				BC7F998A2C5DB2A3005664D5 /* Ble5 */,
-			);
-			path = Modular;
-			sourceTree = "<group>";
-		};
-		BC7F998C2C5DB2A3005664D5 /* WitSensorApi */ = {
-			isa = PBXGroup;
-			children = (
-				BC7F998B2C5DB2A3005664D5 /* Modular */,
-			);
-			path = WitSensorApi;
-			sourceTree = "<group>";
-		};
-		BC7F998E2C5DB2A3005664D5 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				BC7F998D2C5DB2A3005664D5 /* DeviceModelError.swift */,
+				BCF95F392CBC534500C4B0F2 /* DeviceModelError.swift */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
 		};
-		BC7F99922C5DB2A3005664D5 /* Modular */ = {
+		BCF95F3E2CBC534500C4B0F2 /* Modular */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F998F2C5DB2A3005664D5 /* BluetoothBLE.swift */,
-				BC7F99902C5DB2A3005664D5 /* IBluetoothEventObserver.swift */,
-				BC7F99912C5DB2A3005664D5 /* WitBluetoothManager.swift */,
+				BCF95F3B2CBC534500C4B0F2 /* BluetoothBLE.swift */,
+				BCF95F3C2CBC534500C4B0F2 /* IBluetoothEventObserver.swift */,
+				BCF95F3D2CBC534500C4B0F2 /* WitBluetoothManager.swift */,
 			);
 			path = Modular;
 			sourceTree = "<group>";
 		};
-		BC7F99942C5DB2A3005664D5 /* Roles */ = {
+		BCF95F402CBC534500C4B0F2 /* Roles */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99932C5DB2A3005664D5 /* WitCoreConnector.swift */,
+				BCF95F3F2CBC534500C4B0F2 /* WitCoreConnector.swift */,
 			);
 			path = Roles;
 			sourceTree = "<group>";
 		};
-		BC7F99952C5DB2A3005664D5 /* Connector */ = {
+		BCF95F412CBC534500C4B0F2 /* Connector */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99922C5DB2A3005664D5 /* Modular */,
-				BC7F99942C5DB2A3005664D5 /* Roles */,
+				BCF95F3E2CBC534500C4B0F2 /* Modular */,
+				BCF95F402CBC534500C4B0F2 /* Roles */,
 			);
 			path = Connector;
 			sourceTree = "<group>";
 		};
-		BC7F99972C5DB2A3005664D5 /* Constants */ = {
+		BCF95F432CBC534500C4B0F2 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99962C5DB2A3005664D5 /* WitSensorKey.swift */,
+				BCF95F422CBC534500C4B0F2 /* WitSensorKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		BC7F99992C5DB2A3005664D5 /* Protocol */ = {
+		BCF95F452CBC534500C4B0F2 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99982C5DB2A3005664D5 /* IDataProcessor.swift */,
+				BCF95F442CBC534500C4B0F2 /* IDataProcessor.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		BC7F999B2C5DB2A3005664D5 /* Roles */ = {
+		BCF95F472CBC534500C4B0F2 /* Roles */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F999A2C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift */,
+				BCF95F462CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift */,
 			);
 			path = Roles;
 			sourceTree = "<group>";
 		};
-		BC7F999C2C5DB2A3005664D5 /* Processor */ = {
+		BCF95F482CBC534500C4B0F2 /* Processor */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99972C5DB2A3005664D5 /* Constants */,
-				BC7F99992C5DB2A3005664D5 /* Protocol */,
-				BC7F999B2C5DB2A3005664D5 /* Roles */,
+				BCF95F432CBC534500C4B0F2 /* Constants */,
+				BCF95F452CBC534500C4B0F2 /* Protocol */,
+				BCF95F472CBC534500C4B0F2 /* Roles */,
 			);
 			path = Processor;
 			sourceTree = "<group>";
 		};
-		BC7F999E2C5DB2A3005664D5 /* Protocol */ = {
+		BCF95F4A2CBC534500C4B0F2 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F999D2C5DB2A3005664D5 /* IProtocolResolver.swift */,
+				BCF95F492CBC534500C4B0F2 /* IProtocolResolver.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		BC7F99A02C5DB2A3005664D5 /* Roles */ = {
+		BCF95F4C2CBC534500C4B0F2 /* Roles */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F999F2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift */,
+				BCF95F4B2CBC534500C4B0F2 /* BWT901BLE5_0ProtocolResolver.swift */,
 			);
 			path = Roles;
 			sourceTree = "<group>";
 		};
-		BC7F99A12C5DB2A3005664D5 /* Resolver */ = {
+		BCF95F4D2CBC534500C4B0F2 /* Resolver */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F999E2C5DB2A3005664D5 /* Protocol */,
-				BC7F99A02C5DB2A3005664D5 /* Roles */,
+				BCF95F4A2CBC534500C4B0F2 /* Protocol */,
+				BCF95F4C2CBC534500C4B0F2 /* Roles */,
 			);
 			path = Resolver;
 			sourceTree = "<group>";
 		};
-		BC7F99A22C5DB2A3005664D5 /* Modular */ = {
+		BCF95F4E2CBC534500C4B0F2 /* Modular */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99952C5DB2A3005664D5 /* Connector */,
-				BC7F999C2C5DB2A3005664D5 /* Processor */,
-				BC7F99A12C5DB2A3005664D5 /* Resolver */,
+				BCF95F412CBC534500C4B0F2 /* Connector */,
+				BCF95F482CBC534500C4B0F2 /* Processor */,
+				BCF95F4D2CBC534500C4B0F2 /* Resolver */,
 			);
 			path = Modular;
 			sourceTree = "<group>";
 		};
-		BC7F99A52C5DB2A3005664D5 /* Protocol */ = {
+		BCF95F512CBC534500C4B0F2 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99A32C5DB2A3005664D5 /* IKeyUpdateObserver.swift */,
-				BC7F99A42C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift */,
+				BCF95F4F2CBC534500C4B0F2 /* IKeyUpdateObserver.swift */,
+				BCF95F502CBC534500C4B0F2 /* IListenKeyUpdateObserver.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		BC7F99AC2C5DB2A3005664D5 /* Utils */ = {
+		BCF95F582CBC534500C4B0F2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F99A62C5DB2A3005664D5 /* CompareObjectHelper.swift */,
-				BC7F99A72C5DB2A3005664D5 /* DataHelper.swift */,
-				BC7F99A82C5DB2A3005664D5 /* DateHelper.swift */,
-				BC7F99A92C5DB2A3005664D5 /* DipSensorMagHelper.swift */,
-				BC7F99AA2C5DB2A3005664D5 /* StringUtils.swift */,
-				BC7F99AB2C5DB2A3005664D5 /* SyncDictionary.swift */,
+				BCF95F522CBC534500C4B0F2 /* CompareObjectHelper.swift */,
+				BCF95F532CBC534500C4B0F2 /* DataHelper.swift */,
+				BCF95F542CBC534500C4B0F2 /* DateHelper.swift */,
+				BCF95F552CBC534500C4B0F2 /* DipSensorMagHelper.swift */,
+				BCF95F562CBC534500C4B0F2 /* StringUtils.swift */,
+				BCF95F572CBC534500C4B0F2 /* SyncDictionary.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		BC7F99AE2C5DB2A3005664D5 /* Sensor */ = {
+		BCF95F5A2CBC534500C4B0F2 /* Sensor */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F998E2C5DB2A3005664D5 /* Errors */,
-				BC7F99A22C5DB2A3005664D5 /* Modular */,
-				BC7F99A52C5DB2A3005664D5 /* Protocol */,
-				BC7F99AC2C5DB2A3005664D5 /* Utils */,
-				BC7F99AD2C5DB2A3005664D5 /* DeviceModel.swift */,
+				BCF95F3A2CBC534500C4B0F2 /* Errors */,
+				BCF95F4E2CBC534500C4B0F2 /* Modular */,
+				BCF95F512CBC534500C4B0F2 /* Protocol */,
+				BCF95F582CBC534500C4B0F2 /* Utils */,
+				BCF95F592CBC534500C4B0F2 /* DeviceModel.swift */,
 			);
 			path = Sensor;
 			sourceTree = "<group>";
 		};
-/* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		BC7F99752C5DB24E005664D5 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BC7F997F2C5DB24E005664D5 /* WitSDK.h in Headers */,
+		BCF95F5D2CBC534500C4B0F2 /* Ble5 */ = {
+			isa = PBXGroup;
+			children = (
+				BCF95F5B2CBC534500C4B0F2 /* Bwt901ble.swift */,
+				BCF95F5C2CBC534500C4B0F2 /* IBwt901bleRecordObserver.swift */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			path = Ble5;
+			sourceTree = "<group>";
 		};
-/* End PBXHeadersBuildPhase section */
+		BCF95F5E2CBC534500C4B0F2 /* Modular */ = {
+			isa = PBXGroup;
+			children = (
+				BCF95F5D2CBC534500C4B0F2 /* Ble5 */,
+			);
+			path = Modular;
+			sourceTree = "<group>";
+		};
+		BCF95F5F2CBC534500C4B0F2 /* WitSensorApi */ = {
+			isa = PBXGroup;
+			children = (
+				BCF95F5E2CBC534500C4B0F2 /* Modular */,
+			);
+			path = WitSensorApi;
+			sourceTree = "<group>";
+		};
+		BCF95F612CBC534500C4B0F2 /* WitSDK */ = {
+			isa = PBXGroup;
+			children = (
+				BCF95F5A2CBC534500C4B0F2 /* Sensor */,
+				BCF95F5F2CBC534500C4B0F2 /* WitSensorApi */,
+				BCF95F602CBC534500C4B0F2 /* WitSDK.docc */,
+			);
+			path = WitSDK;
+			sourceTree = "<group>";
+		};
+		F93995335E463633A0F4605B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27B20578AA1BC4229F77A4A4 /* Pods-Runner.debug.xcconfig */,
+				D3EF238D196641C6AA66D9D3 /* Pods-Runner.release.xcconfig */,
+				B24DC8D5D394C21026A3C527 /* Pods-Runner.profile.xcconfig */,
+				A127BDCFEA4612AD2811C08E /* Pods-RunnerTests.debug.xcconfig */,
+				1DD238E619DF436556298B36 /* Pods-RunnerTests.release.xcconfig */,
+				6EFF395643A5DD42D451E859 /* Pods-RunnerTests.profile.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
 		331C8080294A63A400263BE5 /* RunnerTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 331C8087294A63A400263BE5 /* Build configuration list for PBXNativeTarget "RunnerTests" */;
 			buildPhases = (
-				3FCC987790BB32951C260B42 /* [CP] Check Pods Manifest.lock */,
+				4E2F90B051595985FD93D168 /* [CP] Check Pods Manifest.lock */,
 				331C807D294A63A400263BE5 /* Sources */,
 				331C807F294A63A400263BE5 /* Resources */,
-				850C296E91DC5AAE770EC9C4 /* Frameworks */,
+				9BB567195BBA5AC0449DFD8E /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -449,41 +414,23 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
-				0B4210708947467821FB3348 /* [CP] Check Pods Manifest.lock */,
+				AB7A2F78959A2C9176293A16 /* [CP] Check Pods Manifest.lock */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
+				AADCD3A8087C5952AC27D0DF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BC7F99812C5DB24E005664D5 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
-		};
-		BC7F99792C5DB24E005664D5 /* WitSDK */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BC7F99872C5DB24E005664D5 /* Build configuration list for PBXNativeTarget "WitSDK" */;
-			buildPhases = (
-				BC7F99752C5DB24E005664D5 /* Headers */,
-				BC7F99762C5DB24E005664D5 /* Sources */,
-				BC7F99772C5DB24E005664D5 /* Frameworks */,
-				BC7F99782C5DB24E005664D5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WitSDK;
-			productName = WitSDK;
-			productReference = BC7F997A2C5DB24E005664D5 /* WitSDK.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -503,9 +450,6 @@
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 1100;
 					};
-					BC7F99792C5DB24E005664D5 = {
-						CreatedOnToolsVersion = 15.4;
-					};
 				};
 			};
 			buildConfigurationList = 97C146E91CF9000F007C117D /* Build configuration list for PBXProject "Runner" */;
@@ -523,7 +467,6 @@
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
 				331C8080294A63A400263BE5 /* RunnerTests */,
-				BC7F99792C5DB24E005664D5 /* WitSDK */,
 			);
 		};
 /* End PBXProject section */
@@ -547,38 +490,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BC7F99782C5DB24E005664D5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B4210708947467821FB3348 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -595,7 +509,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
 		};
-		3FCC987790BB32951C260B42 /* [CP] Check Pods Manifest.lock */ = {
+		4E2F90B051595985FD93D168 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -632,6 +546,45 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
 		};
+		AADCD3A8087C5952AC27D0DF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB7A2F78959A2C9176293A16 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -647,39 +600,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC7F99742C5DADCB005664D5 /* SensorApiImplementation.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
-				BC7F99302C5DAB9E005664D5 /* SensorMessages.g.swift in Sources */,
+				BCF95F622CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift in Sources */,
+				BCF95F632CBC534500C4B0F2 /* WitSensorKey.swift in Sources */,
+				BCF95F642CBC534500C4B0F2 /* StringUtils.swift in Sources */,
+				BCF95F652CBC534500C4B0F2 /* IKeyUpdateObserver.swift in Sources */,
+				BCF95F662CBC534500C4B0F2 /* IBwt901bleRecordObserver.swift in Sources */,
+				BCF95F672CBC534500C4B0F2 /* WitBluetoothManager.swift in Sources */,
+				BCF95F682CBC534500C4B0F2 /* DeviceModelError.swift in Sources */,
+				BCF95F692CBC534500C4B0F2 /* DataHelper.swift in Sources */,
+				BCF95F6A2CBC534500C4B0F2 /* BluetoothBLE.swift in Sources */,
+				BCF95F6B2CBC534500C4B0F2 /* BWT901BLE5_0ProtocolResolver.swift in Sources */,
+				BCF95F792CBC538700C4B0F2 /* SensorApiImplementation.swift in Sources */,
+				BCF95F7B2CBC541600C4B0F2 /* SensorMessages.g.swift in Sources */,
+				BCF95F6C2CBC534500C4B0F2 /* DeviceModel.swift in Sources */,
+				BCF95F6D2CBC534500C4B0F2 /* IBluetoothEventObserver.swift in Sources */,
+				BCF95F6E2CBC534500C4B0F2 /* DipSensorMagHelper.swift in Sources */,
+				BCF95F6F2CBC534500C4B0F2 /* DateHelper.swift in Sources */,
+				BCF95F702CBC534500C4B0F2 /* SyncDictionary.swift in Sources */,
+				BCF95F712CBC534500C4B0F2 /* WitSDK.docc in Sources */,
+				BCF95F722CBC534500C4B0F2 /* Bwt901ble.swift in Sources */,
+				BCF95F732CBC534500C4B0F2 /* IDataProcessor.swift in Sources */,
+				BCF95F742CBC534500C4B0F2 /* IProtocolResolver.swift in Sources */,
+				BCF95F752CBC534500C4B0F2 /* IListenKeyUpdateObserver.swift in Sources */,
+				BCF95F762CBC534500C4B0F2 /* WitCoreConnector.swift in Sources */,
+				BCF95F772CBC534500C4B0F2 /* CompareObjectHelper.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BC7F99762C5DB24E005664D5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BC7F99B42C5DB2A3005664D5 /* WitBluetoothManager.swift in Sources */,
-				BC7F99B52C5DB2A3005664D5 /* WitCoreConnector.swift in Sources */,
-				BC7F99BD2C5DB2A3005664D5 /* CompareObjectHelper.swift in Sources */,
-				BC7F99BA2C5DB2A3005664D5 /* BWT901BLE5_0ProtocolResolver.swift in Sources */,
-				BC7F99B82C5DB2A3005664D5 /* BWT901BLE5_0DataProcessor.swift in Sources */,
-				BC7F99B12C5DB2A3005664D5 /* DeviceModelError.swift in Sources */,
-				BC7F99B32C5DB2A3005664D5 /* IBluetoothEventObserver.swift in Sources */,
-				BC7F99BB2C5DB2A3005664D5 /* IKeyUpdateObserver.swift in Sources */,
-				BC7F99B72C5DB2A3005664D5 /* IDataProcessor.swift in Sources */,
-				BC7F99BC2C5DB2A3005664D5 /* IListenKeyUpdateObserver.swift in Sources */,
-				BC7F99C02C5DB2A3005664D5 /* DipSensorMagHelper.swift in Sources */,
-				BC7F99B62C5DB2A3005664D5 /* WitSensorKey.swift in Sources */,
-				BC7F99AF2C5DB2A3005664D5 /* Bwt901ble.swift in Sources */,
-				BC7F99BE2C5DB2A3005664D5 /* DataHelper.swift in Sources */,
-				BC7F99B22C5DB2A3005664D5 /* BluetoothBLE.swift in Sources */,
-				BC7F997E2C5DB24E005664D5 /* WitSDK.docc in Sources */,
-				BC7F99C12C5DB2A3005664D5 /* StringUtils.swift in Sources */,
-				BC7F99C22C5DB2A3005664D5 /* SyncDictionary.swift in Sources */,
-				BC7F99BF2C5DB2A3005664D5 /* DateHelper.swift in Sources */,
-				BC7F99C32C5DB2A3005664D5 /* DeviceModel.swift in Sources */,
-				BC7F99B02C5DB2A3005664D5 /* IBwt901bleRecordObserver.swift in Sources */,
-				BC7F99B92C5DB2A3005664D5 /* IProtocolResolver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,11 +636,6 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C8085294A63A400263BE5 /* PBXContainerItemProxy */;
-		};
-		BC7F99812C5DB24E005664D5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BC7F99792C5DB24E005664D5 /* WitSDK */;
-			targetProxy = BC7F99802C5DB24E005664D5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -753,7 +694,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -762,7 +702,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -775,24 +715,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 6X8CQ63GFN;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/**",
-					"$(SRCROOT)/WitSDK.framework",
-				);
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Forma;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.forma;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.formaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -802,14 +736,14 @@
 		};
 		331C8088294A63A400263BE5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE95BB9613AB1777522374CE /* Pods-RunnerTests.debug.xcconfig */;
+			baseConfigurationReference = A127BDCFEA4612AD2811C08E /* Pods-RunnerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.forma.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.formaApp.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -820,14 +754,14 @@
 		};
 		331C8089294A63A400263BE5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D9256D0B3E46C25D4EABD23 /* Pods-RunnerTests.release.xcconfig */;
+			baseConfigurationReference = 1DD238E619DF436556298B36 /* Pods-RunnerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.forma.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.formaApp.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -836,14 +770,14 @@
 		};
 		331C808A294A63A400263BE5 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8DD5846A8590ADECBEC8E3D /* Pods-RunnerTests.profile.xcconfig */;
+			baseConfigurationReference = 6EFF395643A5DD42D451E859 /* Pods-RunnerTests.profile.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.forma.RunnerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.formaApp.RunnerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Runner.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Runner";
@@ -885,7 +819,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -900,7 +833,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -943,7 +876,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -952,7 +884,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -967,24 +899,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9740EEB21CF90195004384FC /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 6X8CQ63GFN;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/**",
-					"$(SRCROOT)/WitSDK.framework",
-				);
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Forma;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.forma;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.formaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -997,171 +923,24 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = 6X8CQ63GFN;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SRCROOT)/**",
-					"$(SRCROOT)/WitSDK.framework",
-				);
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Forma;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.forma;
+				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.formaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
-		};
-		BC7F99842C5DB24E005664D5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 6X8CQ63GFN;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.WitSDK;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		BC7F99852C5DB24E005664D5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 6X8CQ63GFN;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.WitSDK;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BC7F99862C5DB24E005664D5 /* Profile */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 6X8CQ63GFN;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_MODULE_VERIFIER = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = app.getforma.WitSDK;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Profile;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1192,16 +971,6 @@
 				97C147061CF9000F007C117D /* Debug */,
 				97C147071CF9000F007C117D /* Release */,
 				249021D4217E4FDB00AE95B9 /* Profile */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BC7F99872C5DB24E005664D5 /* Build configuration list for PBXNativeTarget "WitSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC7F99842C5DB24E005664D5 /* Debug */,
-				BC7F99852C5DB24E005664D5 /* Release */,
-				BC7F99862C5DB24E005664D5 /* Profile */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
