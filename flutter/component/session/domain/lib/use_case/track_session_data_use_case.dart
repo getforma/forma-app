@@ -11,9 +11,10 @@ class TrackSessionDataUseCase implements UseCase<TrackSessionDataUseCaseParam, v
   TrackSessionDataUseCase(this._sessionRepository);
 
   @override
-  Future<Either<Exception, void>> invoke(TrackSessionDataUseCaseParam param) {
-    return _sessionRepository.trackSessionData(
-        param.sessionId, param.measurements);
+  Future<Either<Exception, void>> invoke(TrackSessionDataUseCaseParam param) async {
+    // return _sessionRepository.syncSessionData(
+    //     param.sessionId, param.measurements);
+    return Right(null);
   }
 }
 

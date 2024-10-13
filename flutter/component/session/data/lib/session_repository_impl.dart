@@ -1,21 +1,21 @@
-import 'dart:io';
-
-import 'package:android_id/android_id.dart';
 import 'package:dartz/dartz.dart';
-// import 'package:device_info_plus/device_info_plus.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sensor_component_data/datasource/local_sensor_datasource.dart';
+import 'package:sensor_component_domain/model/sensor_data.dart';
 import 'package:session_component_data/datasource/session_datasource.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
-import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
 import 'package:session_component_domain/session_repository.dart';
+
+// import 'package:device_info_plus/device_info_plus.dart';
 
 @LazySingleton(as: SessionRepository)
 class SessionRepositoryImpl implements SessionRepository {
   final SessionDataSource _sessionDataSource;
+  final LocalSensorDataSource _localDataSource;
 
-  SessionRepositoryImpl(this._sessionDataSource);
+  SessionRepositoryImpl(this._sessionDataSource, this._localDataSource);
 
   @override
   Future<Either<Exception, SessionInfo>> createSession({
@@ -36,10 +36,10 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   @override
-  Future<Either<Exception, void>> trackSessionData(
-      String sessionId, List<SessionMeasurement> measurements) async {
+  Future<Either<Exception, void>> trackSensorData(SensorData sensorData) async {
     try {
-      await _sessionDataSource.trackSessionData(sessionId, measurements);
+      // TODO: do that only when shared prefs flag is set to recording data
+      await _localDataSource.saveSensorData(sensorData);
       return const Right(null);
     } on Exception catch (e) {
       return Left(e);
@@ -47,6 +47,7 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   Future<String> _getDeviceId() async {
+    // TODO: implment proper device id
     return DateTime.now().toIso8601String();
     // final deviceInfo = DeviceInfoPlugin();
     // String? id;
