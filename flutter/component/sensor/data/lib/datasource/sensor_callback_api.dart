@@ -11,7 +11,8 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
 
   @override
   void onSensorDataRecorded(SensorDataModel sensorData) {
-    _sessionRepository.trackSensorData(domain.SensorData(
+    _sessionRepository.storeMeasurementLocally(
+        data: domain.SensorData(
       name: sensorData.name,
       acceleration: domain.ThreeAxisMeasurement(
         x: sensorData.acceleration.x,

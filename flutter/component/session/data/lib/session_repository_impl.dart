@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sensor_component_data/datasource/local_sensor_datasource.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
+import 'package:session_component_data/datasource/local_measurement_datasource.dart';
 import 'package:session_component_data/datasource/session_datasource.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
@@ -36,10 +36,20 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   @override
-  Future<Either<Exception, void>> trackSensorData(SensorData sensorData) async {
+  Future<Either<Exception, void>> storeMeasurementLocally({
+    required SensorData data,
+    double? longitude,
+    double? latitude,
+    SensorPosition? sensorPosition,
+  }) async {
     try {
       // TODO: do that only when shared prefs flag is set to recording data
-      await _localDataSource.saveSensorData(sensorData);
+      await _localDataSource.saveMeasurement(
+        data: data,
+        longitude: longitude!,
+        latitude: latitude!,
+        sensorPosition: sensorPosition!,
+      );
       return const Right(null);
     } on Exception catch (e) {
       return Left(e);
@@ -47,7 +57,7 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   Future<String> _getDeviceId() async {
-    // TODO: implment proper device id
+    // TODO: implement proper device id
     return DateTime.now().toIso8601String();
     // final deviceInfo = DeviceInfoPlugin();
     // String? id;

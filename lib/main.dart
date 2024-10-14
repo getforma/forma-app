@@ -11,7 +11,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
 
-  final database = GetIt.I.get<AppDatabase>();
+  GetIt.I.get<AppDatabase>();
 
   final sensorCallbackApi = GetIt.I<SensorCallbackApiImpl>();
   SensorCallbackApi.setUp(sensorCallbackApi);

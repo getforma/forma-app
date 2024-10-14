@@ -1,11 +1,15 @@
 import 'package:drift/drift.dart';
 
-class SensorDataTable extends Table {
+class MeasurementTable extends Table {
   IntColumn get id => integer().autoIncrement()();
 
-  TextColumn get sessionId => text()();
+  TextColumn get sessionId => text().nullable()();
 
-  TextColumn get name => text()();
+  RealColumn get longitude => real()();
+
+  RealColumn get latitude => real()();
+
+  TextColumn get sensorPosition => textEnum<MeasurementSensorPosition>()();
 
   RealColumn get accelerationX => real().nullable()();
 
@@ -35,3 +39,11 @@ class SensorDataTable extends Table {
 
   DateTimeColumn get timestamp => dateTime()();
 }
+
+enum MeasurementSensorPosition {
+  pelvisBack,
+  pelvisRight,
+  shinRight,
+  footRight,
+}
+

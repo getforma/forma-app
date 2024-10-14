@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:sensor_component_domain/model/sensor_data.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
-import 'package:sensor_component_domain/model/sensor_data.dart';
 
 abstract class SessionRepository {
   Future<Either<Exception, SessionInfo>> createSession({
@@ -9,5 +9,10 @@ abstract class SessionRepository {
     required SensorPosition sensorPosition,
   });
 
-  Future<Either<Exception, void>> trackSensorData(SensorData sensorData);
+  Future<Either<Exception, void>> storeMeasurementLocally({
+    required SensorData data,
+    double? longitude,
+    double? latitude,
+    SensorPosition? sensorPosition,
+  });
 }
