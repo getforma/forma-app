@@ -4,8 +4,8 @@ import SensorApi
 import SensorDataModel
 import SensorCallbackpi
 import ThreeAxisMeasurementModel
-import android.app.Activity
-import android.content.Context
+import androidx.app.Activity
+import androidx.content.Context
 import com.wit.witsdk.modular.sensor.device.exceptions.OpenDeviceException
 import com.wit.witsdk.modular.sensor.example.ble5.Bwt901ble
 import com.wit.witsdk.modular.sensor.example.ble5.interfaces.IBwt901bleRecordObserver

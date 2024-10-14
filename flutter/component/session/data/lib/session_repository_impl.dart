@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
 import 'package:session_component_data/datasource/local_measurement_datasource.dart';
@@ -15,7 +18,20 @@ class SessionRepositoryImpl implements SessionRepository {
   final SessionDataSource _sessionDataSource;
   final LocalSensorDataSource _localDataSource;
 
-  SessionRepositoryImpl(this._sessionDataSource, this._localDataSource);
+  late final StreamSubscription<Position> positionStream;
+  Position? latestPosition;
+
+  SessionRepositoryImpl(this._sessionDataSource, this._localDataSource) {
+    const LocationSettings locationSettings = LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 5,
+    );
+    positionStream =
+        Geolocator.getPositionStream(locationSettings: locationSettings)
+            .listen((Position? position) {
+      latestPosition = position;
+    });
+  }
 
   @override
   Future<Either<Exception, SessionInfo>> createSession({
@@ -23,6 +39,11 @@ class SessionRepositoryImpl implements SessionRepository {
     required SensorPosition sensorPosition,
   }) async {
     try {
+      final isLocationPermissionGranted = await _requestLocationPermission();
+      if (!isLocationPermissionGranted) {
+        return Left(Exception("Location permission not granted"));
+      }
+
       final deviceId = await _getDeviceId();
       final response = await _sessionDataSource.createSession(SessionRequest(
         deviceId: deviceId,
@@ -44,11 +65,16 @@ class SessionRepositoryImpl implements SessionRepository {
   }) async {
     try {
       // TODO: do that only when shared prefs flag is set to recording data
+      final position = latestPosition;
+      if(position == null) {
+        return Left(Exception("GPS position not established"));
+      }
+
       await _localDataSource.saveMeasurement(
         data: data,
-        longitude: longitude!,
-        latitude: latitude!,
-        sensorPosition: sensorPosition!,
+        longitude: position.longitude,
+        latitude: position.latitude,
+        sensorPosition: SensorPosition.pelvisRight, // TODO
       );
       return const Right(null);
     } on Exception catch (e) {
@@ -69,5 +95,25 @@ class SessionRepositoryImpl implements SessionRepository {
     //   id = androidId;
     // }
     // return id ?? DateTime.now().toIso8601String();
+  }
+
+  Future<bool> _requestLocationPermission() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return false;
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return false;
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return false;
+    }
+    return true;
   }
 }

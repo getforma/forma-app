@@ -47,6 +47,9 @@ command:
       freezed_annotation: ^2.4.4
       flutter_screenutil: ^5.9.3
 
+      geolocator: ^13.0.1
+      pigeon: ^22.4.2
+
     dev_dependencies:
       flutter_lints:
       build_runner:
