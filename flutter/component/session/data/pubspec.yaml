@@ -18,6 +18,9 @@ dependencies:
   sensor_component_domain:
     path: ../../sensor/domain
 
+  core_component_domain:
+    path: ../../core/domain
+
   core_component_data:
     path: ../../core/data
 

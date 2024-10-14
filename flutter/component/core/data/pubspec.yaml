@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  core_component_domain:
+    path: ../domain
+
   injectable: ^2.5.0
   get_it: ^8.0.0
   dartz: ^0.10.1
@@ -24,13 +27,10 @@ dependencies:
   drift:
   drift_dev: ^2.20.3
   drift_flutter: ^0.2.0
-#  path_provider: ^2.1.4
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_lints:
   build_runner:
   injectable_generator:
   retrofit_generator:
-#
-#dependency_overrides:
-#  dart_style: ^2.3.7

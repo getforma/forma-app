@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:core_component_domain/shared_preferences_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
@@ -17,11 +19,16 @@ import 'package:session_component_domain/session_repository.dart';
 class SessionRepositoryImpl implements SessionRepository {
   final SessionDataSource _sessionDataSource;
   final LocalSensorDataSource _localDataSource;
+  final SharedPreferencesRepository _sharedPreferencesRepository;
 
   late final StreamSubscription<Position> positionStream;
   Position? latestPosition;
 
-  SessionRepositoryImpl(this._sessionDataSource, this._localDataSource) {
+  SessionRepositoryImpl(
+    this._sessionDataSource,
+    this._localDataSource,
+    this._sharedPreferencesRepository,
+  ) {
     const LocationSettings locationSettings = LocationSettings(
       accuracy: LocationAccuracy.high,
       distanceFilter: 5,
@@ -50,6 +57,12 @@ class SessionRepositoryImpl implements SessionRepository {
         devicePosition: sensorPosition,
         userName: userName,
       ));
+
+      await _sharedPreferencesRepository.set(
+        SharedPreferencesKey.currentSession.toString(),
+        jsonEncode(response.toJson()),
+      );
+
       return Right(response);
     } on Exception catch (e) {
       return Left(e);
@@ -64,9 +77,14 @@ class SessionRepositoryImpl implements SessionRepository {
     SensorPosition? sensorPosition,
   }) async {
     try {
-      // TODO: do that only when shared prefs flag is set to recording data
+      final SessionInfo? sessionInfo = _sharedPreferencesRepository
+          .get(SharedPreferencesKey.currentSession.toString());
+      if (sessionInfo == null) {
+        return const Right(null);
+      }
+
       final position = latestPosition;
-      if(position == null) {
+      if (position == null) {
         return Left(Exception("GPS position not established"));
       }
 
@@ -74,7 +92,7 @@ class SessionRepositoryImpl implements SessionRepository {
         data: data,
         longitude: position.longitude,
         latitude: position.latitude,
-        sensorPosition: SensorPosition.pelvisRight, // TODO
+        sensorPosition: SensorPosition.pelvisRight,
       );
       return const Right(null);
     } on Exception catch (e) {
