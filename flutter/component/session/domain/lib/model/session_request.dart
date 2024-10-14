@@ -6,7 +6,6 @@ part 'session_request.g.dart';
 
 @freezed
 class SessionRequest with _$SessionRequest {
-  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory SessionRequest({
     required String deviceId,
     required SensorPosition devicePosition,

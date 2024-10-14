@@ -1,9 +1,9 @@
 abstract class SharedPreferencesRepository {
-  dynamic get(String key);
+  T? get<T>(SharedPreferencesKey key);
 
-  Future<bool> set<T>(String key, T value);
+  Future<bool> set<T>(SharedPreferencesKey key, T value);
 
-  Future<bool> remove(String key);
+  Future<bool> remove(SharedPreferencesKey key);
 }
 
 enum SharedPreferencesKey {

@@ -60,91 +60,21 @@ class S {
     );
   }
 
-  /// `Scores`
-  String get home_scores {
+  /// `Start session`
+  String get home_start_session {
     return Intl.message(
-      'Scores',
-      name: 'home_scores',
+      'Start session',
+      name: 'home_start_session',
       desc: '',
       args: [],
     );
   }
 
-  /// `Last 4 runs`
-  String get home_last_runs {
+  /// `Stop session`
+  String get home_stop_session {
     return Intl.message(
-      'Last 4 runs',
-      name: 'home_last_runs',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `%`
-  String get home_percent {
-    return Intl.message(
-      '%',
-      name: 'home_percent',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Start`
-  String get home_start {
-    return Intl.message(
-      'Start',
-      name: 'home_start',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ready to improve your form?`
-  String get home_card_action_description {
-    return Intl.message(
-      'Ready to improve your form?',
-      name: 'home_card_action_description',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `TRY`
-  String get home_try {
-    return Intl.message(
-      'TRY',
-      name: 'home_try',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Premium Club`
-  String get home_premium_club {
-    return Intl.message(
-      'Premium Club',
-      name: 'home_premium_club',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `7 DAYS FREE`
-  String get home_7_days_free {
-    return Intl.message(
-      '7 DAYS FREE',
-      name: 'home_7_days_free',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Form score`
-  String get home_form_score {
-    return Intl.message(
-      'Form score',
-      name: 'home_form_score',
+      'Stop session',
+      name: 'home_stop_session',
       desc: '',
       args: [],
     );

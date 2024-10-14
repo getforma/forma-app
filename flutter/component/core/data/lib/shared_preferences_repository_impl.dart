@@ -13,24 +13,25 @@ class SharedPreferencesRepositoryImpl implements SharedPreferencesRepository {
   }
 
   @override
-  dynamic get(String key) {
-    final value = _sharedPreferences.get(key);
+  T? get<T>(SharedPreferencesKey key) {
+    final value = _sharedPreferences.get(key.toString()) as T?;
     return value;
   }
 
   @override
-  Future<bool> set<T>(String key, T value) async {
+  Future<bool> set<T>(SharedPreferencesKey key, T value) async {
+    final _key = key.toString();
     bool result;
     if (value is String) {
-      result = await _sharedPreferences.setString(key, value);
+      result = await _sharedPreferences.setString(_key, value);
     } else if (value is int) {
-      result = await _sharedPreferences.setInt(key, value);
+      result = await _sharedPreferences.setInt(_key, value);
     } else if (value is double) {
-      result = await _sharedPreferences.setDouble(key, value);
+      result = await _sharedPreferences.setDouble(_key, value);
     } else if (value is bool) {
-      result = await _sharedPreferences.setBool(key, value);
+      result = await _sharedPreferences.setBool(_key, value);
     } else if (value is List<String>) {
-      result = await _sharedPreferences.setStringList(key, value);
+      result = await _sharedPreferences.setStringList(_key, value);
     } else {
       return false;
     }
@@ -38,8 +39,8 @@ class SharedPreferencesRepositoryImpl implements SharedPreferencesRepository {
   }
 
   @override
-  Future<bool> remove(String key) async {
-    final result = await _sharedPreferences.remove(key);
+  Future<bool> remove(SharedPreferencesKey key) async {
+    final result = await _sharedPreferences.remove(key.toString());
     return result;
   }
 }

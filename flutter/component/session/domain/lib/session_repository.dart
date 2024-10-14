@@ -15,4 +15,6 @@ abstract class SessionRepository {
     double? latitude,
     SensorPosition? sensorPosition,
   });
+
+  Future<Either<Exception, bool>> stopSession();
 }

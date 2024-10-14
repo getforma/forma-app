@@ -10,10 +10,13 @@ import 'package:session_component_data/datasource/local_measurement_datasource.d
 import 'package:session_component_data/datasource/session_datasource.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
+import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
 import 'package:session_component_domain/session_repository.dart';
 
 // import 'package:device_info_plus/device_info_plus.dart';
+
+const _kDataSyncDuration = Duration(seconds: 30);
 
 @LazySingleton(as: SessionRepository)
 class SessionRepositoryImpl implements SessionRepository {
@@ -23,6 +26,8 @@ class SessionRepositoryImpl implements SessionRepository {
 
   late final StreamSubscription<Position> positionStream;
   Position? latestPosition;
+
+  Timer? _syncDataTimer;
 
   SessionRepositoryImpl(
     this._sessionDataSource,
@@ -58,8 +63,12 @@ class SessionRepositoryImpl implements SessionRepository {
         userName: userName,
       ));
 
+      _syncDataTimer = Timer.periodic(_kDataSyncDuration, (timer) {
+        _syncData(response.id);
+      });
+
       await _sharedPreferencesRepository.set(
-        SharedPreferencesKey.currentSession.toString(),
+        SharedPreferencesKey.currentSession,
         jsonEncode(response.toJson()),
       );
 
@@ -77,12 +86,13 @@ class SessionRepositoryImpl implements SessionRepository {
     SensorPosition? sensorPosition,
   }) async {
     try {
-      final SessionInfo? sessionInfo = _sharedPreferencesRepository
-          .get(SharedPreferencesKey.currentSession.toString());
-      if (sessionInfo == null) {
+      final sessionInfoString = _sharedPreferencesRepository
+          .get<String>(SharedPreferencesKey.currentSession);
+      if (sessionInfoString == null) {
         return const Right(null);
       }
 
+      final sessionInfo = SessionInfo.fromJson(jsonDecode(sessionInfoString));
       final position = latestPosition;
       if (position == null) {
         return Left(Exception("GPS position not established"));
@@ -93,10 +103,46 @@ class SessionRepositoryImpl implements SessionRepository {
         longitude: position.longitude,
         latitude: position.latitude,
         sensorPosition: SensorPosition.pelvisRight,
+        sessionId: sessionInfo.id,
       );
       return const Right(null);
     } on Exception catch (e) {
       return Left(e);
+    }
+  }
+
+  @override
+  Future<Either<Exception, bool>> stopSession() async {
+    final sessionString = _sharedPreferencesRepository
+        .get<String>(SharedPreferencesKey.currentSession);
+    if (sessionString == null) {
+      return Left(Exception("No session started"));
+    }
+
+    final currentSession = SessionInfo.fromJson(jsonDecode(sessionString));
+
+    await _sharedPreferencesRepository
+        .remove(SharedPreferencesKey.currentSession);
+
+    _syncDataTimer?.cancel();
+    _syncDataTimer = null;
+    return await _syncData(currentSession.id);
+  }
+
+  Future<Either<Exception, bool>> _syncData(String sessionId) async {
+    try {
+      final unsyncedMeasurements =
+          await _localDataSource.getUnsynedMeasurements(sessionId);
+      await _sessionDataSource.trackSessionData(
+          sessionId,
+          unsyncedMeasurements
+              .map((measurement) =>
+                  SessionMeasurement.fromMeasurement(measurement))
+              .toList(growable: false));
+      await _localDataSource.markDataAsSynced(sessionId);
+      return const Right(true);
+    } on Exception catch (e) {
+      return Left(Exception("Couldn't sync data: $e"));
     }
   }
 

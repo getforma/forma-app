@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:auto_route/auto_route.dart';
+import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
 import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ..._form(context),
+                  ..._form(context, state),
                 ],
               ),
             ),
@@ -90,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       );
 
-  List<Widget> _form(BuildContext context) => [
+  List<Widget> _form(BuildContext context, HomeState state) => [
         TextField(
           style: TextStyles.h3Light.sp,
           decoration: InputDecoration(
@@ -128,10 +129,16 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 0.7.sw,
             child: TextButton(
                 onPressed: () {
-                  context.read<HomeCubit>().trackSessionData();
+                  if (state.isSessionRecordingActive) {
+                    context.read<HomeCubit>().stopSession();
+                    return;
+                  }
+                  context.read<HomeCubit>().startSession();
                 },
                 style: ButtonStyles.fullWidthOrange.sp,
-                child: const Text("Start session")),
+                child: Text(state.isSessionRecordingActive
+                    ? S.of(context).home_stop_session
+                    : S.of(context).home_start_session)),
           ),
         ),
       ];

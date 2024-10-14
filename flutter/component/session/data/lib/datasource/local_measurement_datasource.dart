@@ -13,6 +13,7 @@ abstract class LocalSensorDataSource {
     required double longitude,
     required double latitude,
     required SensorPosition sensorPosition,
+    String? sessionId,
   });
 
   Future<List<Measurement>> getUnsynedMeasurements(String sessionId);
@@ -32,6 +33,7 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
     required double longitude,
     required double latitude,
     required SensorPosition sensorPosition,
+    String? sessionId,
   }) async {
     final MeasurementSensorPosition _sensorPosition;
     switch (sensorPosition) {
@@ -52,6 +54,8 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
     await _database
         .into(_database.measurementTable)
         .insert(MeasurementTableCompanion(
+          sessionId: Value(sessionId),
+          timestamp: Value(DateTime.now()),
           longitude: Value(longitude),
           latitude: Value(latitude),
           sensorPosition: Value(_sensorPosition),

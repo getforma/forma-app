@@ -5,6 +5,10 @@ class MeasurementTable extends Table {
 
   TextColumn get sessionId => text().nullable()();
 
+  DateTimeColumn get timestamp => dateTime()();
+
+  BoolColumn get isSynced => boolean().withDefault(const Constant(false))();
+
   RealColumn get longitude => real()();
 
   RealColumn get latitude => real()();
@@ -34,10 +38,6 @@ class MeasurementTable extends Table {
   RealColumn get angleY => real().nullable()();
 
   RealColumn get angleZ => real().nullable()();
-
-  BoolColumn get isSynced => boolean().withDefault(const Constant(false))();
-
-  DateTimeColumn get timestamp => dateTime()();
 }
 
 enum MeasurementSensorPosition {
@@ -46,4 +46,3 @@ enum MeasurementSensorPosition {
   shinRight,
   footRight,
 }
-
