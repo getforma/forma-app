@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import WitSDK
 
 class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObserver, IBwt901bleRecordObserver {
     

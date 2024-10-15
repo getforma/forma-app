@@ -28,9 +28,9 @@
 	<true/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>We use bluetooth to communicate with sensors.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We use location to calculate running metrics.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We use location to calculate running metrics.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We use location to calculate running metrics.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>

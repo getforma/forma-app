@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:android_id/android_id.dart';
 import 'package:core_component_domain/shared_preferences_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
@@ -13,8 +16,6 @@ import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
 import 'package:session_component_domain/session_repository.dart';
-
-// import 'package:device_info_plus/device_info_plus.dart';
 
 const _kDataSyncDuration = Duration(seconds: 30);
 
@@ -147,18 +148,16 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   Future<String> _getDeviceId() async {
-    // TODO: implement proper device id
-    return DateTime.now().toIso8601String();
-    // final deviceInfo = DeviceInfoPlugin();
-    // String? id;
-    // if (Platform.isIOS) {
-    //   final iosDeviceInfo = await deviceInfo.iosInfo;
-    //   id = iosDeviceInfo.identifierForVendor;
-    // } else if (Platform.isAndroid) {
-    //   final androidId = await const AndroidId().getId();
-    //   id = androidId;
-    // }
-    // return id ?? DateTime.now().toIso8601String();
+    final deviceInfo = DeviceInfoPlugin();
+    String? id;
+    if (Platform.isIOS) {
+      final iosDeviceInfo = await deviceInfo.iosInfo;
+      id = iosDeviceInfo.identifierForVendor;
+    } else if (Platform.isAndroid) {
+      final androidId = await const AndroidId().getId();
+      id = androidId;
+    }
+    return id ?? DateTime.now().toIso8601String();
   }
 
   Future<bool> _requestLocationPermission() async {
