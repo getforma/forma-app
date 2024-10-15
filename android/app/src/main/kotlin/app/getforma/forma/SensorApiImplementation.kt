@@ -1,11 +1,11 @@
 package app.getforma.forma
 
 import SensorApi
-import SensorData
-import SensorFlutterApi
-import ThreeAxisMeasurement
-import android.app.Activity
-import android.content.Context
+import SensorDataModel
+import SensorCallbackpi
+import ThreeAxisMeasurementModel
+import androidx.app.Activity
+import androidx.content.Context
 import com.wit.witsdk.modular.sensor.device.exceptions.OpenDeviceException
 import com.wit.witsdk.modular.sensor.example.ble5.Bwt901ble
 import com.wit.witsdk.modular.sensor.example.ble5.interfaces.IBwt901bleRecordObserver
@@ -118,29 +118,29 @@ class SensorApiImplementation private constructor(
 //        )
     }
 
-    private fun getDeviceData(bwt901ble: Bwt901ble?): SensorData? {
+    private fun getDeviceData(bwt901ble: Bwt901ble?): SensorDataModel? {
         if (bwt901ble == null) {
             return null
         }
 
-        return SensorData(
+        return SensorDataModel(
             name = bwt901ble.deviceName,
-            acceleration = ThreeAxisMeasurement(
+            acceleration = ThreeAxisMeasurementModel(
                 x = bwt901ble.getDeviceData(WitSensorKey.AccX)?.toDoubleOrNull(),
                 y = bwt901ble.getDeviceData(WitSensorKey.AccY)?.toDoubleOrNull(),
                 z = bwt901ble.getDeviceData(WitSensorKey.AccZ)?.toDoubleOrNull(),
             ),
-            angularVelocity = ThreeAxisMeasurement(
+            angularVelocity = ThreeAxisMeasurementModel(
                 x = bwt901ble.getDeviceData(WitSensorKey.AsX)?.toDoubleOrNull(),
                 y = bwt901ble.getDeviceData(WitSensorKey.AsY)?.toDoubleOrNull(),
                 z = bwt901ble.getDeviceData(WitSensorKey.AsZ)?.toDoubleOrNull(),
             ),
-            magneticField = ThreeAxisMeasurement(
+            magneticField = ThreeAxisMeasurementModel(
                 x = bwt901ble.getDeviceData(WitSensorKey.HX)?.toDoubleOrNull(),
                 y = bwt901ble.getDeviceData(WitSensorKey.HY)?.toDoubleOrNull(),
                 z = bwt901ble.getDeviceData(WitSensorKey.HZ)?.toDoubleOrNull(),
             ),
-            angle = ThreeAxisMeasurement(
+            angle = ThreeAxisMeasurementModel(
                 x = bwt901ble.getDeviceData(WitSensorKey.AngleX)?.toDoubleOrNull(),
                 y = bwt901ble.getDeviceData(WitSensorKey.AngleY)?.toDoubleOrNull(),
                 z = bwt901ble.getDeviceData(WitSensorKey.AngleZ)?.toDoubleOrNull(),
@@ -151,7 +151,7 @@ class SensorApiImplementation private constructor(
 
 private class FlutterApi(messenger: BinaryMessenger, val activity: Activity) {
 
-    val flutterApi: SensorFlutterApi = SensorFlutterApi(messenger)
+    val flutterApi: SensorCallbackpi = SensorCallbackApi(messenger)
 
     fun onSensorDataRecorded(sensorData: SensorData) {
         activity.runOnUiThread {

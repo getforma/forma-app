@@ -1,6 +1,7 @@
 import 'package:core_feature/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'text_styles.dart';
 
 class ButtonStyles {
@@ -23,35 +24,33 @@ class ButtonStyles {
 extension TextButtonScaling on ButtonStyle {
   ButtonStyle get sp {
     EdgeInsetsGeometry? padding =
-        this.padding?.resolve(MaterialState.values.toSet());
-    Size? minimumSize = this.minimumSize?.resolve(MaterialState.values.toSet());
-    Size? maximumSize = this.maximumSize?.resolve(MaterialState.values.toSet());
-    Size? fixedSize = this.fixedSize?.resolve(MaterialState.values.toSet());
-    TextStyle? textStyle =
-        this.textStyle?.resolve(MaterialState.values.toSet());
+        this.padding?.resolve(WidgetState.values.toSet());
+    Size? minimumSize = this.minimumSize?.resolve(WidgetState.values.toSet());
+    Size? maximumSize = this.maximumSize?.resolve(WidgetState.values.toSet());
+    Size? fixedSize = this.fixedSize?.resolve(WidgetState.values.toSet());
+    TextStyle? textStyle = this.textStyle?.resolve(WidgetState.values.toSet());
 
     return copyWith(
       padding: padding == null
           ? null
-          : MaterialStatePropertyAll(
+          : WidgetStatePropertyAll(
               EdgeInsets.symmetric(
                   horizontal: padding.horizontal.w,
                   vertical: padding.vertical.h),
             ),
       minimumSize: minimumSize == null
           ? null
-          : MaterialStatePropertyAll(
+          : WidgetStatePropertyAll(
               Size(minimumSize.width.w, minimumSize.height.h)),
       maximumSize: maximumSize == null
           ? null
-          : MaterialStatePropertyAll(
+          : WidgetStatePropertyAll(
               Size(maximumSize.width.w, maximumSize.height.h)),
       fixedSize: fixedSize == null
           ? null
-          : MaterialStatePropertyAll(
-              Size(fixedSize.width.w, fixedSize.height.h)),
+          : WidgetStatePropertyAll(Size(fixedSize.width.w, fixedSize.height.h)),
       textStyle:
-          textStyle == null ? null : MaterialStatePropertyAll(textStyle.sp),
+          textStyle == null ? null : WidgetStatePropertyAll(textStyle.sp),
     );
   }
 }
