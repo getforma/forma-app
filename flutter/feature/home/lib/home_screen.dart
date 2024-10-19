@@ -46,13 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _body(BuildContext context) => Expanded(
-        child: Stack(
-          children: [
-            _background(context),
-            _content(context),
-          ],
-        ),
+  Widget _body(BuildContext context) => Stack(
+        children: [
+          _background(context),
+          _content(context),
+        ],
       );
 
   Widget _background(BuildContext context) => Column(

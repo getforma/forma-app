@@ -34,17 +34,7 @@ class SessionRepositoryImpl implements SessionRepository {
     this._sessionDataSource,
     this._localDataSource,
     this._sharedPreferencesRepository,
-  ) {
-    const LocationSettings locationSettings = LocationSettings(
-      accuracy: LocationAccuracy.high,
-      distanceFilter: 5,
-    );
-    positionStream =
-        Geolocator.getPositionStream(locationSettings: locationSettings)
-            .listen((Position? position) {
-      latestPosition = position;
-    });
-  }
+  );
 
   @override
   Future<Either<Exception, SessionInfo>> createSession({
@@ -56,6 +46,16 @@ class SessionRepositoryImpl implements SessionRepository {
       if (!isLocationPermissionGranted) {
         return Left(Exception("Location permission not granted"));
       }
+
+      const LocationSettings locationSettings = LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 5,
+      );
+      positionStream =
+          Geolocator.getPositionStream(locationSettings: locationSettings)
+              .listen((Position? position) {
+        latestPosition = position;
+      });
 
       final deviceId = await _getDeviceId();
       final response = await _sessionDataSource.createSession(SessionRequest(
