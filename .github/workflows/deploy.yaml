@@ -1,0 +1,39 @@
+name: Deploy iOS app to TestFlight
+
+on:
+  push:
+    branches:
+      - 'release/**'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          flutter-version: '3.24.3'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3
+          rubygems: latest
+
+      - name: Run lane
+        run: |
+          dart pub global activate melos
+          cd ios && bundle install
+          cd fastlane && bundle exec fastlane deploy
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+          DEV_APPLE_ID: ${{ secrets.DEV_APPLE_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY_ID }}
+          APP_STORE_CONNECT_API_KEY_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY_KEY }}

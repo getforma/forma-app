@@ -1,0 +1,114 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+
+  desc "Sync certificates"
+  lane :sync_certificates do
+    match(app_identifier: ["app.getForma.formaApp"],
+      type: "appstore",
+      readonly: false,
+      git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]))
+  end
+
+  desc "Deploy a new version to the TestFlight"
+  lane :deploy do
+    setup_ci if ENV['CI']
+
+    if branch.start_with?('release/')
+      temp_part = git_branch.split('release/')[1]
+      version = temp_part.split('-')[0]
+      build_number = temp_part.split('-')[1]
+
+      increment_version_number(version_number: version)
+      increment_build_number(build_number: build_number)
+
+      deploy_dev(version: version)
+    end
+  end
+
+  desc "Push discover demo development build to TestFlight"
+  lane :deploy_dev do |options|
+    app_id = "app.getForma.formaApp"
+    main_path = "lib/main.dart"
+    apple_id = ENV["DEV_APPLE_ID"]
+    distribute_external = false
+    groups = []
+    deploy_flavor(
+      app_id: app_id,
+      main_path: main_path,
+      apple_id: apple_id,
+      version: options[:version],
+      distribute_external: distribute_external,
+      groups: groups)
+  end
+
+  desc "Generic late pushing a build to TestFlight"
+  lane :deploy_flavor do |options|
+    api_key = app_store_connect_api_key(
+      key_id: ENV['APP_STORE_CONNECT_API_KEY_KEY_ID'],
+      issuer_id: ENV['APP_STORE_CONNECT_API_KEY_ISSUER_ID'],
+      key_content: ENV['APP_STORE_CONNECT_API_KEY_KEY']
+    )
+
+    match(app_identifier: [options[:app_id]],
+      type: "appstore",
+      git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]),
+      readonly: true,
+      api_key: api_key,
+    )
+
+    cocoapods(clean_install: is_ci)
+
+    Dir.chdir("../../flutter") do
+      sh "melos bootstrap"
+      sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store"
+    end
+
+    build_app(
+      export_method: "app-store"
+    )
+
+    upload_to_testflight(
+      app_identifier: options[:app_id],
+      notify_external_testers: false,
+      skip_waiting_for_build_processing: false,
+      apple_id: options[:apple_id],
+      distribute_external: options[:distribute_external],
+      groups: options[:groups],
+      changelog: options[:changelog],
+      api_key: api_key,
+    )
+
+    add_git_tag(tag: "v#{options[:version]}")
+  end
+
+  desc "Retrieving changelog from latest git commit"
+  lane :get_changelog do |options|
+    commit_message = last_git_commit[:message]
+    message_list = commit_message.split(/\r?\n/)
+    changelog_index = message_list.find_index("Changelog:")
+
+    if changelog_index == nil
+        puts 'No changelog! Terminating deployment lane.'
+        exit 1
+    end
+
+    changelog = message_list.drop(changelog_index + 1).join("\n")
+    changelog
+  end
+end
