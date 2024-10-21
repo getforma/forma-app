@@ -75,7 +75,7 @@ platform :ios do
       # sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store"
     end
 
-    cocoapods(clean_install: is_ci)
+    # cocoapods(clean_install: is_ci)
 
     build_app(
       export_method: "app-store"
