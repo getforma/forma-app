@@ -11,7 +11,7 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+# update_fastlane 
 
 default_platform(:ios)
 
@@ -29,16 +29,14 @@ platform :ios do
   lane :deploy do
     setup_ci if ENV['CI']
 
-    if branch.start_with?('release/')
-      temp_part = git_branch.split('release/')[1]
-      version = temp_part.split('-')[0]
-      build_number = temp_part.split('-')[1]
+    temp_part = git_branch.split('release/')[1]
+    version = temp_part.split('-')[0]
+    build_number = temp_part.split('-')[1]
 
-      increment_version_number(version_number: version)
-      increment_build_number(build_number: build_number)
+    increment_version_number(version_number: version)
+    increment_build_number(build_number: build_number)
 
-      deploy_dev(version: version)
-    end
+    deploy_dev(version: version, build_number: build_number)
   end
 
   desc "Push discover demo development build to TestFlight"
@@ -53,6 +51,7 @@ platform :ios do
       main_path: main_path,
       apple_id: apple_id,
       version: options[:version],
+      build_number: options[:build_number],
       distribute_external: distribute_external,
       groups: groups)
   end
@@ -67,17 +66,21 @@ platform :ios do
 
     match(app_identifier: [options[:app_id]],
       type: "appstore",
-      git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]),
+      git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+      # git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]),
       readonly: true,
       api_key: api_key,
     )
 
-    cocoapods(clean_install: is_ci)
-
     Dir.chdir("../../flutter") do
       sh "melos bootstrap"
-      sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store"
+      sh "melos run buildRunner"
+      sh "melos run generatePigeon"
+      # sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
+      sh "flutter build ios -t #{options[:main_path]} --release --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
     end
+
+    # cocoapods(clean_install: is_ci)
 
     build_app(
       export_method: "app-store"
@@ -92,6 +95,7 @@ platform :ios do
       groups: options[:groups],
       changelog: options[:changelog],
       api_key: api_key,
+      # ipa: "./build/ios/ipa/Forma.ipa"
     )
 
     add_git_tag(tag: "v#{options[:version]}")
