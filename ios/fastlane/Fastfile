@@ -67,7 +67,6 @@ platform :ios do
     match(app_identifier: [options[:app_id]],
       type: "appstore",
       git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
-      # git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]),
       readonly: true,
       api_key: api_key,
     )
@@ -76,11 +75,8 @@ platform :ios do
       sh "melos bootstrap"
       sh "melos run buildRunner"
       sh "melos run generatePigeon"
-      # sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
       sh "flutter build ios -t #{options[:main_path]} --release --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
     end
-
-    # cocoapods(clean_install: is_ci)
 
     build_app(
       export_method: "app-store"
@@ -95,7 +91,6 @@ platform :ios do
       groups: options[:groups],
       changelog: options[:changelog],
       api_key: api_key,
-      # ipa: "./build/ios/ipa/Forma.ipa"
     )
 
     add_git_tag(tag: "v#{options[:version]}")
