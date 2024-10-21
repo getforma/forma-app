@@ -70,7 +70,7 @@ platform :ios do
       api_key: api_key,
     )
 
-    # cocoapods(clean_install: is_ci)
+    cocoapods(clean_install: is_ci)
 
     Dir.chdir("../../flutter") do
       sh "melos bootstrap"
