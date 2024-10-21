@@ -36,7 +36,7 @@ platform :ios do
     increment_version_number(version_number: version)
     increment_build_number(build_number: build_number)
 
-    deploy_dev(version: version)
+    deploy_dev(version: version, build_number: build_number)
   end
 
   desc "Push discover demo development build to TestFlight"
@@ -51,6 +51,7 @@ platform :ios do
       main_path: main_path,
       apple_id: apple_id,
       version: options[:version],
+      build_number: options[:build_number],
       distribute_external: distribute_external,
       groups: groups)
   end
@@ -73,7 +74,7 @@ platform :ios do
 
     Dir.chdir("../../flutter") do
       sh "melos bootstrap"
-      sh "flutter build ios -t #{options[:main_path]} --release --export-method=app-store"
+      sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
     end
 
     # cocoapods(clean_install: is_ci)
