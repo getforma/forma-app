@@ -78,7 +78,7 @@ platform :ios do
     # cocoapods(clean_install: is_ci)
 
     build_app(
-      export_method: "app-app-store-connect"
+      export_method: "app-store"
     )
 
     upload_to_testflight(
