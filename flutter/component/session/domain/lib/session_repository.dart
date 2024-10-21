@@ -17,4 +17,6 @@ abstract class SessionRepository {
   });
 
   Future<Either<Exception, bool>> stopSession();
+
+  Future<Either<Exception, bool>> syncData(String sessionId);
 }

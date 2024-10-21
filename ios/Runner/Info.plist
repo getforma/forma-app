@@ -34,6 +34,10 @@
 	<string>We use location to calculate running metrics.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>app.getForma.formaApp.syncMeasurements</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

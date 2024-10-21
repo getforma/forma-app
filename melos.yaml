@@ -49,6 +49,7 @@ command:
 
       geolocator: ^13.0.1
       pigeon: ^22.4.2
+      flutter_background_service: ^5.0.10
 
     dev_dependencies:
       flutter_lints:

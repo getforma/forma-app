@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  forma_app:
+    path: ../../forma_app
+
   session_component_domain:
     path: ../domain
 
@@ -40,6 +43,8 @@ dependencies:
   device_info_plus: ^11.0.0
   android_id: ^0.4.0
   geolocator: ^13.0.1
+
+  flutter_background_service: ^5.0.10
 
 dev_dependencies:
   flutter_lints:
