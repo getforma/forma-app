@@ -66,20 +66,21 @@ platform :ios do
     match(app_identifier: [options[:app_id]],
       type: "appstore",
       git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
+      # git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]),
       readonly: true,
       api_key: api_key,
     )
 
     Dir.chdir("../../flutter") do
       sh "melos bootstrap"
-      # sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store"
+      sh "flutter build ios -t #{options[:main_path]} --release --export-method=app-store"
     end
 
     # cocoapods(clean_install: is_ci)
 
-    build_app(
-      export_method: "app-store"
-    )
+    # build_app(
+    #   export_method: "app-store"
+    # )
 
     upload_to_testflight(
       app_identifier: options[:app_id],
