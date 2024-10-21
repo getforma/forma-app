@@ -65,7 +65,7 @@ platform :ios do
 
     match(app_identifier: [options[:app_id]],
       type: "appstore",
-      git_basic_authorization: Base64.strict_encode64(ENV["MATCH_GIT_BASIC_AUTHORIZATION"]),
+      git_basic_authorization: ENV["MATCH_GIT_BASIC_AUTHORIZATION"],
       readonly: true,
       api_key: api_key,
     )
