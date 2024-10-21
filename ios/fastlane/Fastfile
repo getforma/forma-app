@@ -76,14 +76,15 @@ platform :ios do
       sh "melos bootstrap"
       sh "melos run buildRunner"
       sh "melos run generatePigeon"
-      sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
+      # sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
+      sh "flutter build ios -t #{options[:main_path]} --release --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
     end
 
     # cocoapods(clean_install: is_ci)
 
-    # build_app(
-    #   export_method: "app-store"
-    # )
+    build_app(
+      export_method: "app-store"
+    )
 
     upload_to_testflight(
       app_identifier: options[:app_id],
@@ -94,6 +95,7 @@ platform :ios do
       groups: options[:groups],
       changelog: options[:changelog],
       api_key: api_key,
+      # ipa: "./build/ios/ipa/Forma.ipa"
     )
 
     add_git_tag(tag: "v#{options[:version]}")
