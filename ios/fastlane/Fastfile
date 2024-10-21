@@ -74,6 +74,8 @@ platform :ios do
 
     Dir.chdir("../../flutter") do
       sh "melos bootstrap"
+      sh "melos run buildRunner"
+      sh "melos run generatePigeon"
       sh "flutter build ipa -t #{options[:main_path]} --release --export-method=app-store --build-name=#{options[:version]} --build-number=#{options[:build_number]}"
     end
 

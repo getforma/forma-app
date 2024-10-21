@@ -23,6 +23,9 @@ scripts:
     exec:
       orderDependents: true
 
+  generatePigeon:
+    run: cd flutter/component/sensor/data/lib/datasource && dart run pigeon --input sensor_api.dart
+
 command:
   bootstrap:
     dependencies:
@@ -56,7 +59,3 @@ command:
       injectable_generator:
       retrofit_generator:
       auto_route_generator:
-
-    hooks:
-      post: melos run buildRunner
-
