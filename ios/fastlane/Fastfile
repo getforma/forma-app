@@ -29,16 +29,14 @@ platform :ios do
   lane :deploy do
     setup_ci if ENV['CI']
 
-    if branch.start_with?('release/')
-      temp_part = git_branch.split('release/')[1]
-      version = temp_part.split('-')[0]
-      build_number = temp_part.split('-')[1]
+    temp_part = git_branch.split('release/')[1]
+    version = temp_part.split('-')[0]
+    build_number = temp_part.split('-')[1]
 
-      increment_version_number(version_number: version)
-      increment_build_number(build_number: build_number)
+    increment_version_number(version_number: version)
+    increment_build_number(build_number: build_number)
 
-      deploy_dev(version: version)
-    end
+    deploy_dev(version: version)
   end
 
   desc "Push discover demo development build to TestFlight"
