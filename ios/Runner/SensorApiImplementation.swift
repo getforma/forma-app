@@ -85,6 +85,22 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
             
             // Monitor data
             bwt901ble?.registerListenKeyUpdateObserver(obj: self)
+            
+            /**
+             * 0x01：0.1Hz
+             * 0x02：0.5Hz
+             * 0x03：1Hz
+             * 0x04：2Hz
+             * 0x05：5Hz
+             * 0x06：10Hz（default）
+             * 0x07：20Hz
+             * 0x08：50Hz
+             * 0x09：100Hz
+             * 0x0A：200Hz
+             */
+            try bwt901ble?.unlockReg()
+            try bwt901ble?.writeRge([0xff ,0xaa, 0x03, 0x08, 0x00], 10)
+            try bwt901ble?.saveReg()
         }
         catch{
             print("Failed to open device")
