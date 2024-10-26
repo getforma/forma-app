@@ -2,5 +2,13 @@
   "@@locale": "en_US",
   "app_name": "Forma",
   "home_start_session": "Start session",
-  "home_stop_session": "Stop session"
+  "home_stop_session": "Stop session",
+  "home_last_measurement": "Last measurement",
+  "home_cadence": "Cadence",
+  "home_distance": "Distance",
+  "home_ground_contact_time": "Ground contact time",
+  "home_pace": "Pace",
+  "home_speed": "Speed",
+  "home_stride_length": "Stride length",
+  "home_vertical_oscillation": "Vertical oscillation"
 }
