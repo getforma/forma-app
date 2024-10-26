@@ -82,6 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ..._form(context, state),
+                  32.verticalSpace,
+                  ..._measurementAnalysis(context, state),
                 ],
               ),
             ),
@@ -140,4 +142,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ];
+
+  List<Widget> _measurementAnalysis(BuildContext context, HomeState state) {
+    final analysis = state.measurementAnalysis;
+    final translations = S.of(context);
+
+    return [
+      Text(translations.home_last_measurement, style: TextStyles.h3Light.sp),
+      32.verticalSpace,
+      _measurementAnalysisItem(translations.home_cadence, analysis?.cadence),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_distance, analysis?.distance),
+      8.verticalSpace,
+      _measurementAnalysisItem(
+          translations.home_ground_contact_time, analysis?.groundContactTime),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_pace, analysis?.pace),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_speed, analysis?.speed),
+      8.verticalSpace,
+      _measurementAnalysisItem(
+          translations.home_stride_length, analysis?.strideLength),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_vertical_oscillation,
+          analysis?.verticalOscillation),
+    ];
+  }
+
+  Widget _measurementAnalysisItem(String label, double? value) =>
+      Text("$label:\t$value", style: TextStyles.h5Light.sp);
 }

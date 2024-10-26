@@ -1,13 +1,16 @@
+import 'dart:async';
+
 import 'package:core_component_domain/use_case/use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/use_case/initialize_sensor_use_case.dart';
 import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/use_case/create_session_use_case.dart';
 import 'package:session_component_domain/use_case/stop_session_use_case.dart';
-
+import 'package:session_component_domain/use_case/get_measurement_analysis_stream_use_case.dart';
 part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
@@ -17,12 +20,18 @@ class HomeCubit extends Cubit<HomeState> {
   final StartSensorDiscoveryUseCase _startSensorDiscoveryUseCase;
   final CreateSessionUseCase _createSessionUseCase;
   final StopSessionUseCase _stopSessionUseCase;
+  final GetMeasurementAnalysisStreamUseCase
+      _getMeasurementAnalysisStreamUseCase;
+
+  StreamSubscription<MeasurementAnalysis>?
+      _measurementAnalysisStreamSubscription;
 
   HomeCubit(
     this._initializeSensorUseCase,
     this._startSensorDiscoveryUseCase,
     this._createSessionUseCase,
     this._stopSessionUseCase,
+    this._getMeasurementAnalysisStreamUseCase,
   ) : super(const HomeState());
 
   Future<void> startDeviceDiscovery() async {
@@ -48,6 +57,18 @@ class HomeCubit extends Cubit<HomeState> {
       return;
     }
 
+    final sessionResponse = sessionResult.fold(
+      (l) => null,
+      (r) => r,
+    );
+
+    _measurementAnalysisStreamSubscription =
+        _getMeasurementAnalysisStreamUseCase
+            .invoke(sessionResponse!.id)
+            .listen((value) {
+      emit(state.copyWith(measurementAnalysis: value));
+    });
+
     emit(state.copyWith(isSessionRecordingActive: true));
   }
 
@@ -70,5 +91,11 @@ class HomeCubit extends Cubit<HomeState> {
       return;
     }
     emit(state.copyWith(sensorPosition: position));
+  }
+
+  @override
+  Future<void> close() {
+    _measurementAnalysisStreamSubscription?.cancel();
+    return super.close();
   }
 }

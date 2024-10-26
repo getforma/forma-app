@@ -79,6 +79,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Last measurement`
+  String get home_last_measurement {
+    return Intl.message(
+      'Last measurement',
+      name: 'home_last_measurement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadence`
+  String get home_cadence {
+    return Intl.message(
+      'Cadence',
+      name: 'home_cadence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distance`
+  String get home_distance {
+    return Intl.message(
+      'Distance',
+      name: 'home_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ground contact time`
+  String get home_ground_contact_time {
+    return Intl.message(
+      'Ground contact time',
+      name: 'home_ground_contact_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pace`
+  String get home_pace {
+    return Intl.message(
+      'Pace',
+      name: 'home_pace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Speed`
+  String get home_speed {
+    return Intl.message(
+      'Speed',
+      name: 'home_speed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stride length`
+  String get home_stride_length {
+    return Intl.message(
+      'Stride length',
+      name: 'home_stride_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vertical oscillation`
+  String get home_vertical_oscillation {
+    return Intl.message(
+      'Vertical oscillation',
+      name: 'home_vertical_oscillation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

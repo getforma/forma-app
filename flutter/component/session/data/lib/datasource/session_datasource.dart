@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:injectable/injectable.dart';
 import 'package:session_component_data/session_service.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
@@ -9,7 +10,7 @@ import 'package:session_component_domain/model/session_request.dart';
 abstract class SessionDataSource {
   Future<SessionInfo> createSession(SessionRequest body);
 
-  Future<void> trackSessionData(
+  Future<MeasurementAnalysis> trackSessionData(
       String sessionId, List<SessionMeasurement> body);
 }
 
@@ -29,7 +30,7 @@ class SessionDataSourceImpl implements SessionDataSource {
   }
 
   @override
-  Future<void> trackSessionData(
+  Future<MeasurementAnalysis> trackSessionData(
       String sessionId, List<SessionMeasurement> body) async {
     final response = await _sessionService.trackSessionData(sessionId, body);
     if (response.response.statusCode == HttpStatus.created) {

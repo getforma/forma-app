@@ -23,9 +23,21 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("Forma"),
+        "home_cadence": MessageLookupByLibrary.simpleMessage("Cadence"),
+        "home_distance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "home_ground_contact_time":
+            MessageLookupByLibrary.simpleMessage("Ground contact time"),
+        "home_last_measurement":
+            MessageLookupByLibrary.simpleMessage("Last measurement"),
+        "home_pace": MessageLookupByLibrary.simpleMessage("Pace"),
+        "home_speed": MessageLookupByLibrary.simpleMessage("Speed"),
         "home_start_session":
             MessageLookupByLibrary.simpleMessage("Start session"),
         "home_stop_session":
-            MessageLookupByLibrary.simpleMessage("Stop session")
+            MessageLookupByLibrary.simpleMessage("Stop session"),
+        "home_stride_length":
+            MessageLookupByLibrary.simpleMessage("Stride length"),
+        "home_vertical_oscillation":
+            MessageLookupByLibrary.simpleMessage("Vertical oscillation")
       };
 }
