@@ -3,7 +3,6 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
-import 'package:retrofit/error_logger.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
