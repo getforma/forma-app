@@ -3,8 +3,10 @@ import 'package:core_component_data/database/model/measurement_table.dart';
 import 'package:drift/drift.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
+import 'package:session_component_data/model/measurement_analysis_mapper.dart';
 import 'package:session_component_data/model/measurement_mapper.dart';
 import 'package:session_component_domain/model/measurement.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 
 abstract class LocalSensorDataSource {
@@ -19,6 +21,11 @@ abstract class LocalSensorDataSource {
   Future<List<Measurement>> getUnsynedMeasurements(String sessionId);
 
   Future<void> markDataAsSynced(String sessionId);
+
+  Future<void> saveMeasurementAnalysis(
+      MeasurementAnalysis analysis, String sessionId);
+
+  Stream<MeasurementAnalysis> getMeasurementAnalysisStream(String sessionId);
 }
 
 @LazySingleton(as: LocalSensorDataSource)
@@ -91,5 +98,39 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
       sessionId: Value(sessionId),
       isSynced: const Value(true),
     ));
+  }
+
+  @override
+  Future<void> saveMeasurementAnalysis(
+      MeasurementAnalysis analysis, String sessionId) async {
+    await _database
+        .into(_database.measurementAnalysisTable)
+        .insert(MeasurementAnalysisTableCompanion(
+          sessionId: Value(sessionId),
+          cadence: Value(analysis.cadence),
+          distance: Value(analysis.distance),
+          endTime: Value(analysis.endTime),
+          groundContactTime: Value(analysis.groundContactTime),
+          pace: Value(analysis.pace),
+          speed: Value(analysis.speed),
+          startTime: Value(analysis.startTime),
+          strideLength: Value(analysis.strideLength),
+          verticalOscillation: Value(analysis.verticalOscillation),
+        ));
+  }
+
+  @override
+  Stream<MeasurementAnalysis> getMeasurementAnalysisStream(String sessionId) {
+    return (_database.select(_database.measurementAnalysisTable)
+          ..where((t) => t.sessionId.equals(sessionId))
+          ..orderBy([
+            (t) => OrderingTerm(
+                  expression: t.endTime,
+                  mode: OrderingMode.desc,
+                )
+          ])
+          ..limit(1))
+        .watchSingle()
+        .map((data) => data.toDomain());
   }
 }

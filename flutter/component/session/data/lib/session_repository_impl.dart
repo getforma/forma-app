@@ -141,6 +141,8 @@ class SessionRepositoryImpl implements SessionRepository {
               .map((measurement) =>
                   SessionMeasurement.fromMeasurement(measurement))
               .toList(growable: false));
+
+      await _localDataSource.saveMeasurementAnalysis(measurementAnalysis, sessionId);
       await _localDataSource.markDataAsSynced(sessionId);
 
       return Right(measurementAnalysis);
@@ -180,5 +182,11 @@ class SessionRepositoryImpl implements SessionRepository {
       return false;
     }
     return true;
+  }
+  
+  @override
+  Stream<MeasurementAnalysis> getMeasurementAnalysisStream(String sessionId
+  ) {
+    return _localDataSource.getMeasurementAnalysisStream(sessionId);
   }
 }
