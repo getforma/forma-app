@@ -11,6 +11,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
 import 'package:session_component_data/datasource/local_measurement_datasource.dart';
 import 'package:session_component_data/datasource/session_datasource.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
@@ -113,7 +114,7 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   @override
-  Future<Either<Exception, bool>> stopSession() async {
+  Future<Either<Exception, MeasurementAnalysis>> stopSession() async {
     final sessionString = _sharedPreferencesRepository
         .get<String>(SharedPreferencesKey.currentSession);
     if (sessionString == null) {
@@ -130,18 +131,19 @@ class SessionRepositoryImpl implements SessionRepository {
     return await _syncData(currentSession.id);
   }
 
-  Future<Either<Exception, bool>> _syncData(String sessionId) async {
+  Future<Either<Exception, MeasurementAnalysis>> _syncData(String sessionId) async {
     try {
       final unsyncedMeasurements =
           await _localDataSource.getUnsynedMeasurements(sessionId);
-      await _sessionDataSource.trackSessionData(
+      final measurementAnalysis = await _sessionDataSource.trackSessionData(
           sessionId,
           unsyncedMeasurements
               .map((measurement) =>
                   SessionMeasurement.fromMeasurement(measurement))
               .toList(growable: false));
       await _localDataSource.markDataAsSynced(sessionId);
-      return const Right(true);
+
+      return Right(measurementAnalysis);
     } on Exception catch (e) {
       return Left(Exception("Couldn't sync data: $e"));
     }
