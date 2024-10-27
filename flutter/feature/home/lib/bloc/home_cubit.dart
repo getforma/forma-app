@@ -40,7 +40,12 @@ class HomeCubit extends Cubit<HomeState> {
   ) : super(const HomeState());
 
   Future<void> startDeviceDiscovery() async {
-    _initializeSensorUseCase.invoke(EmptyParam());
+    final initializeResult = await _initializeSensorUseCase.invoke(EmptyParam());
+    if (initializeResult.isLeft()) {
+      emit(state.copyWith(status: HomeStatus.sensorInitializationError));
+      return;
+    }
+
     _startSensorDiscoveryUseCase.invoke(EmptyParam());
 
     _isSensorConnectedStreamSubscription =

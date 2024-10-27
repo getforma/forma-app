@@ -1,5 +1,5 @@
 abstract class SensorRepository {
-  void initialize();
+  Future<bool> initialize();
 
   void startDiscovery();
 }

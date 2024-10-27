@@ -15,5 +15,6 @@
   "home_session_started": "Session started",
   "home_session_stopped": "Session stopped",
   "home_sensor_disconnected": "Sensor is not connected!",
+  "home_sensor_initialization_error": "Sensor could not be initialized!",
   "home_generic_error": "Something went wrong"
 }

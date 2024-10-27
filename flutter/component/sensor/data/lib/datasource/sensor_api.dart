@@ -1,4 +1,4 @@
-import 'package:pigeon/pigeon.dart' show ConfigurePigeon, DartOptions, FlutterApi, HostApi, KotlinOptions, PigeonOptions, SwiftOptions;
+import 'package:pigeon/pigeon.dart' show ConfigurePigeon, DartOptions, FlutterApi, HostApi, KotlinOptions, PigeonOptions, SwiftOptions, async;
 
 @ConfigurePigeon(PigeonOptions(
   dartOut: 'sensor_messages.g.dart',
@@ -12,7 +12,8 @@ import 'package:pigeon/pigeon.dart' show ConfigurePigeon, DartOptions, FlutterAp
 ))
 @HostApi()
 abstract class SensorApi {
-  void initialize();
+  @async
+  bool initialize();
 
   void startDiscovery();
 }

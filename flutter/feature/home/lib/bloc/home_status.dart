@@ -8,6 +8,7 @@ enum HomeStatus {
   sessionStarted,
   sessionStopped,
   sensorDisconnected,
+  sensorInitializationError,
   genericError;
 
   String? text(BuildContext context) {
@@ -22,6 +23,8 @@ enum HomeStatus {
         return translations.home_session_stopped;
       case HomeStatus.sensorDisconnected:
         return translations.home_sensor_disconnected;
+      case HomeStatus.sensorInitializationError:
+        return translations.home_sensor_initialization_error;
       case HomeStatus.genericError:
         return translations.home_generic_error;
       default:
