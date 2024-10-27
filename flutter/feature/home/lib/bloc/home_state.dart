@@ -7,5 +7,6 @@ class HomeState with _$HomeState {
     @Default(SensorPosition.pelvisRight) SensorPosition sensorPosition,
     @Default(false) bool isSessionRecordingActive,
     MeasurementAnalysis? measurementAnalysis,
+    @Default(HomeStatus.initial) HomeStatus status,
   }) = _HomeState;
 }

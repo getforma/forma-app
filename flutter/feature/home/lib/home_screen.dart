@@ -5,22 +5,19 @@ import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
 import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
+import 'package:core_feature/widget/loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:home_feature/home_cubit.dart';
+import 'package:home_feature/bloc/home_cubit.dart';
+import 'package:home_feature/bloc/home_status.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -46,18 +43,31 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _body(BuildContext context) => Stack(
-        children: [
-          _background(context),
-          _content(context),
-        ],
+  Widget _body(BuildContext context) => BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {
+          final snackBarText = state.status.text(context);
+          if (snackBarText != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(snackBarText)),
+            );
+            context.read<HomeCubit>().resetStatus();
+          }
+        },
+        builder: (context, state) => Stack(
+          children: [
+            _background(context),
+            _content(context, state),
+            if (state.status == HomeStatus.loading)
+              const Positioned.fill(child: LoaderWidget()),
+          ],
+        ),
       );
 
   Widget _background(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            height: 0.5.sh,
+            height: 0.82.sh,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.primaryBlue, AppColors.primaryBlueDark],
@@ -73,22 +83,21 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
-  Widget _content(BuildContext context) => BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          return SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ..._form(context, state),
-                  32.verticalSpace,
-                  ..._measurementAnalysis(context, state),
-                ],
-              ),
-            ),
-          );
-        },
+  Widget _content(BuildContext context, HomeState state) => SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ..._form(context, state),
+              64.verticalSpace,
+              ..._measurementAnalysis(context, state),
+              Expanded(child: Container()),
+              _startSessionButton(context, state),
+              32.verticalSpace,
+            ],
+          ),
+        ),
       );
 
   List<Widget> _form(BuildContext context, HomeState state) => [
@@ -123,24 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
             onSelected: (value) {
               context.read<HomeCubit>().updateSensorPosition(value);
             }),
-        143.verticalSpace,
-        Center(
-          child: SizedBox(
-            width: 0.7.sw,
-            child: TextButton(
-                onPressed: () {
-                  if (state.isSessionRecordingActive) {
-                    context.read<HomeCubit>().stopSession();
-                    return;
-                  }
-                  context.read<HomeCubit>().startSession();
-                },
-                style: ButtonStyles.fullWidthOrange.sp,
-                child: Text(state.isSessionRecordingActive
-                    ? S.of(context).home_stop_session
-                    : S.of(context).home_start_session)),
-          ),
-        ),
       ];
 
   List<Widget> _measurementAnalysis(BuildContext context, HomeState state) {
@@ -171,4 +162,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _measurementAnalysisItem(String label, double? value) =>
       Text("$label:\t$value", style: TextStyles.h5Light.sp);
+
+  Widget _startSessionButton(BuildContext context, HomeState state) => Center(
+        child: SizedBox(
+          width: 0.7.sw,
+          child: TextButton(
+              onPressed: () {
+                if (state.isSessionRecordingActive) {
+                  context.read<HomeCubit>().stopSession();
+                  return;
+                }
+                context.read<HomeCubit>().startSession();
+              },
+              style: ButtonStyles.fullWidthOrange.sp,
+              child: Text(state.isSessionRecordingActive
+                  ? S.of(context).home_stop_session
+                  : S.of(context).home_start_session)),
+        ),
+      );
 }
