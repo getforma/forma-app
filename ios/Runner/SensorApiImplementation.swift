@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import CoreBluetooth
 
-class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObserver, IBwt901bleRecordObserver {
+class SensorApiImplementation: NSObject, SensorApi, ObservableObject, IBluetoothEventObserver, IBwt901bleRecordObserver, CBCentralManagerDelegate {
     
     // Get bluetooth manager
-    var bluetoothManager:WitBluetoothManager = WitBluetoothManager.instance
+    var bluetoothManager: WitBluetoothManager = WitBluetoothManager.instance
+    private var centralManager: CBCentralManager!
+    private var stateCallback: ((Result<Bool, Error>) -> Void)?
     
     fileprivate var flutterApi: FlutterApi
     
@@ -22,7 +25,20 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
         self.flutterApi = FlutterApi(binaryMessenger: binaryMessenger)
     }
     
-    func initialize() throws {
+    func initialize(completion: @escaping (Result<Bool, Error>) -> Void) {
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.stateCallback = completion
+    }
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+            case .poweredOn:
+                stateCallback?(Result.success(true))
+                break
+            default:
+                stateCallback?(Result.success(false))
+                break
+        }
     }
     
     func startDiscovery() throws {

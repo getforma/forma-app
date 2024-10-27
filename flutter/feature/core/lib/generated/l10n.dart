@@ -200,6 +200,16 @@ class S {
     );
   }
 
+  /// `Sensor could not be initialized!`
+  String get home_sensor_initialization_error {
+    return Intl.message(
+      'Sensor could not be initialized!',
+      name: 'home_sensor_initialization_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong`
   String get home_generic_error {
     return Intl.message(
