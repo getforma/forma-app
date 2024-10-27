@@ -46,6 +46,7 @@ platform :ios do
     apple_id = ENV["APPLE_ID"]
     distribute_external = false
     groups = []
+    changelog = get_changelog
     deploy_flavor(
       app_id: app_id,
       main_path: main_path,
@@ -53,7 +54,8 @@ platform :ios do
       version: options[:version],
       build_number: options[:build_number],
       distribute_external: distribute_external,
-      groups: groups)
+      groups: groups,
+      changelog: changelog)
   end
 
   desc "Generic late pushing a build to TestFlight"
