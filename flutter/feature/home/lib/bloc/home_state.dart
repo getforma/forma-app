@@ -8,5 +8,6 @@ class HomeState with _$HomeState {
     @Default(false) bool isSessionRecordingActive,
     MeasurementAnalysis? measurementAnalysis,
     @Default(HomeStatus.initial) HomeStatus status,
+    @Default(false) bool isSensorConnected,
   }) = _HomeState;
 }

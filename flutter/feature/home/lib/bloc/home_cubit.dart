@@ -12,6 +12,7 @@ import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/use_case/create_session_use_case.dart';
 import 'package:session_component_domain/use_case/stop_session_use_case.dart';
 import 'package:session_component_domain/use_case/get_measurement_analysis_stream_use_case.dart';
+import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 
 part 'home_cubit.freezed.dart';
 part 'home_state.dart';
@@ -24,27 +25,39 @@ class HomeCubit extends Cubit<HomeState> {
   final StopSessionUseCase _stopSessionUseCase;
   final GetMeasurementAnalysisStreamUseCase
       _getMeasurementAnalysisStreamUseCase;
+  final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
 
   StreamSubscription<MeasurementAnalysis>?
       _measurementAnalysisStreamSubscription;
-
+  StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
   HomeCubit(
     this._initializeSensorUseCase,
     this._startSensorDiscoveryUseCase,
     this._createSessionUseCase,
     this._stopSessionUseCase,
     this._getMeasurementAnalysisStreamUseCase,
+    this._getIsSensorConnectedStreamUseCase,
   ) : super(const HomeState());
 
   Future<void> startDeviceDiscovery() async {
     _initializeSensorUseCase.invoke(EmptyParam());
     _startSensorDiscoveryUseCase.invoke(EmptyParam());
+
+    _isSensorConnectedStreamSubscription =
+        _getIsSensorConnectedStreamUseCase.invoke(EmptyParam()).listen((value) {
+      emit(state.copyWith(isSensorConnected: value));
+    });
   }
 
   Future<void> startSession() async {
     final userName = state.userName;
     if (userName == null) {
       emit(state.copyWith(status: HomeStatus.nameError));
+      return;
+    }
+
+    if (!state.isSensorConnected) {
+      emit(state.copyWith(status: HomeStatus.sensorDisconnected));
       return;
     }
 
@@ -110,6 +123,7 @@ class HomeCubit extends Cubit<HomeState> {
   @override
   Future<void> close() {
     _measurementAnalysisStreamSubscription?.cancel();
+    _isSensorConnectedStreamSubscription?.cancel();
     return super.close();
   }
 }

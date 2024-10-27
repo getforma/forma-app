@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_name_error":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "home_pace": MessageLookupByLibrary.simpleMessage("Pace"),
+        "home_sensor_disconnected":
+            MessageLookupByLibrary.simpleMessage("Sensor is not connected!"),
         "home_session_started":
             MessageLookupByLibrary.simpleMessage("Session started"),
         "home_session_stopped":

@@ -190,6 +190,16 @@ class S {
     );
   }
 
+  /// `Sensor is not connected!`
+  String get home_sensor_disconnected {
+    return Intl.message(
+      'Sensor is not connected!',
+      name: 'home_sensor_disconnected',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong`
   String get home_generic_error {
     return Intl.message(

@@ -22,28 +22,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetIt.I.get<HomeCubit>()..startDeviceDiscovery(),
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: const Icon(
-            Icons.menu,
-            color: AppColors.pureWhite,
-          ),
-          actions: [
-            const Icon(
-              Icons.calendar_month_outlined,
-              color: AppColors.pureWhite,
-            ),
-            16.horizontalSpace,
-          ],
-        ),
-        body: _body(context),
-      ),
-    );
-  }
-
-  Widget _body(BuildContext context) => BlocConsumer<HomeCubit, HomeState>(
+      child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           final snackBarText = state.status.text(context);
           if (snackBarText != null) {
@@ -53,14 +32,37 @@ class HomeScreen extends StatelessWidget {
             context.read<HomeCubit>().resetStatus();
           }
         },
-        builder: (context, state) => Stack(
-          children: [
-            _background(context),
-            _content(context, state),
-            if (state.status == HomeStatus.loading)
-              const Positioned.fill(child: LoaderWidget()),
-          ],
+        builder: (context, state) => Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: const Icon(
+              Icons.menu,
+              color: AppColors.pureWhite,
+            ),
+            actions: [
+              Icon(
+                state.isSensorConnected
+                    ? Icons.bluetooth_connected
+                    : Icons.bluetooth_disabled,
+                color: AppColors.pureWhite,
+              ),
+              16.horizontalSpace,
+            ],
+          ),
+          body: _body(context, state),
         ),
+      ),
+    );
+  }
+
+  Widget _body(BuildContext context, HomeState state) => Stack(
+        children: [
+          _background(context),
+          _content(context, state),
+          if (state.status == HomeStatus.loading)
+            const Positioned.fill(child: LoaderWidget()),
+        ],
       );
 
   Widget _background(BuildContext context) => Column(

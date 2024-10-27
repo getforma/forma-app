@@ -20,6 +20,8 @@ abstract class SensorApi {
 @FlutterApi()
 abstract class SensorCallbackApi {
   void onSensorDataRecorded(SensorDataModel sensorData);
+
+  void onSensorConnected(bool isConnected);
 }
 
 class SensorDataModel {

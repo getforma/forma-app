@@ -2,12 +2,17 @@ import 'package:injectable/injectable.dart';
 import 'package:sensor_component_data/datasource/sensor_messages.g.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart' as domain;
 import 'package:session_component_domain/session_repository.dart';
+import 'package:sensor_component_domain/use_case/set_is_sensor_connected_use_case.dart';
 
 @injectable
 class SensorCallbackApiImpl implements SensorCallbackApi {
   final SessionRepository _sessionRepository;
+  final SetIsSensorConnectedUseCase _setIsSensorConnectedUseCase;
 
-  SensorCallbackApiImpl(this._sessionRepository);
+  SensorCallbackApiImpl(
+    this._sessionRepository,
+    this._setIsSensorConnectedUseCase,
+  );
 
   @override
   void onSensorDataRecorded(SensorDataModel sensorData) {
@@ -35,6 +40,11 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
         z: sensorData.angle.z,
       ),
     ));
+  }
+
+  @override
+  Future<void> onSensorConnected(bool isConnected) async {
+    await _setIsSensorConnectedUseCase.invoke(isConnected);
   }
 }
 
