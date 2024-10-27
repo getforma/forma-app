@@ -26,7 +26,7 @@ class SessionRepositoryImpl implements SessionRepository {
   final LocalSensorDataSource _localDataSource;
   final SharedPreferencesRepository _sharedPreferencesRepository;
 
-  late final StreamSubscription<Position> positionStream;
+  StreamSubscription<Position>? positionStream;
   Position? latestPosition;
 
   Timer? _syncDataTimer;
@@ -128,10 +128,14 @@ class SessionRepositoryImpl implements SessionRepository {
 
     _syncDataTimer?.cancel();
     _syncDataTimer = null;
+    positionStream?.cancel();
+    positionStream = null;
+
     return await _syncData(currentSession.id);
   }
 
-  Future<Either<Exception, MeasurementAnalysis>> _syncData(String sessionId) async {
+  Future<Either<Exception, MeasurementAnalysis>> _syncData(
+      String sessionId) async {
     try {
       final unsyncedMeasurements =
           await _localDataSource.getUnsynedMeasurements(sessionId);
@@ -142,7 +146,8 @@ class SessionRepositoryImpl implements SessionRepository {
                   SessionMeasurement.fromMeasurement(measurement))
               .toList(growable: false));
 
-      await _localDataSource.saveMeasurementAnalysis(measurementAnalysis, sessionId);
+      await _localDataSource.saveMeasurementAnalysis(
+          measurementAnalysis, sessionId);
       await _localDataSource.markDataAsSynced(sessionId);
 
       return Right(measurementAnalysis);
@@ -183,10 +188,9 @@ class SessionRepositoryImpl implements SessionRepository {
     }
     return true;
   }
-  
+
   @override
-  Stream<MeasurementAnalysis> getMeasurementAnalysisStream(String sessionId
-  ) {
+  Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId) {
     return _localDataSource.getMeasurementAnalysisStream(sessionId);
   }
 }

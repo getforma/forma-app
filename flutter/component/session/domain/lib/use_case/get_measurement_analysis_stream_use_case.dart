@@ -5,13 +5,13 @@ import 'package:session_component_domain/session_repository.dart';
 
 @injectable
 class GetMeasurementAnalysisStreamUseCase
-    implements SynchronousUseCase<String, Stream<MeasurementAnalysis>> {
+    implements SynchronousUseCase<String, Stream<MeasurementAnalysis?>> {
   final SessionRepository _sessionRepository;
 
   GetMeasurementAnalysisStreamUseCase(this._sessionRepository);
 
   @override
-  Stream<MeasurementAnalysis> invoke(String param) {
+  Stream<MeasurementAnalysis?> invoke(String param) {
     return _sessionRepository.getMeasurementAnalysisStream(param);
   }
 }

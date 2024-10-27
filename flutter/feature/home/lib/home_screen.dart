@@ -34,6 +34,7 @@ class HomeScreen extends StatelessWidget {
         },
         builder: (context, state) => Scaffold(
           extendBodyBehindAppBar: true,
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             leading: const Icon(

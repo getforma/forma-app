@@ -25,7 +25,7 @@ abstract class LocalSensorDataSource {
   Future<void> saveMeasurementAnalysis(
       MeasurementAnalysis analysis, String sessionId);
 
-  Stream<MeasurementAnalysis> getMeasurementAnalysisStream(String sessionId);
+  Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId);
 }
 
 @LazySingleton(as: LocalSensorDataSource)
@@ -120,7 +120,7 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
   }
 
   @override
-  Stream<MeasurementAnalysis> getMeasurementAnalysisStream(String sessionId) {
+  Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId) {
     return (_database.select(_database.measurementAnalysisTable)
           ..where((t) => t.sessionId.equals(sessionId))
           ..orderBy([
@@ -130,7 +130,7 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
                 )
           ])
           ..limit(1))
-        .watchSingle()
-        .map((data) => data.toDomain());
+        .watchSingleOrNull()
+        .map((data) => data?.toDomain());
   }
 }
