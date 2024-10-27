@@ -25,11 +25,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_name": MessageLookupByLibrary.simpleMessage("Forma"),
         "home_cadence": MessageLookupByLibrary.simpleMessage("Cadence"),
         "home_distance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "home_generic_error":
+            MessageLookupByLibrary.simpleMessage("Something went wrong"),
         "home_ground_contact_time":
             MessageLookupByLibrary.simpleMessage("Ground contact time"),
         "home_last_measurement":
             MessageLookupByLibrary.simpleMessage("Last measurement"),
+        "home_name_error":
+            MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "home_pace": MessageLookupByLibrary.simpleMessage("Pace"),
+        "home_sensor_disconnected":
+            MessageLookupByLibrary.simpleMessage("Sensor is not connected!"),
+        "home_session_started":
+            MessageLookupByLibrary.simpleMessage("Session started"),
+        "home_session_stopped":
+            MessageLookupByLibrary.simpleMessage("Session stopped"),
         "home_speed": MessageLookupByLibrary.simpleMessage("Speed"),
         "home_start_session":
             MessageLookupByLibrary.simpleMessage("Start session"),

@@ -59,16 +59,19 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
     // MARK: You will be notified here when the connection is successful
     func onConnected(bluetoothBLE: BluetoothBLE?) {
         print("\(String(describing: bluetoothBLE?.peripheral.name)) connected")
+        flutterApi.onSensorConnected(isConnected: true)
     }
     
     // MARK: Notifies you here when the connection fails
     func onConnectionFailed(bluetoothBLE: BluetoothBLE?) {
         print("\(String(describing: bluetoothBLE?.peripheral.name)) failed to connect")
+        flutterApi.onSensorConnected(isConnected: false)
     }
     
     // MARK: You will be notified here when the connection is lost
     func onDisconnected(bluetoothBLE: BluetoothBLE?) {
         print("\(String(describing: bluetoothBLE?.peripheral.name)) disconnected")
+        flutterApi.onSensorConnected(isConnected: false)
     }
     
     // MARK: Stop scanning for devices
@@ -119,6 +122,7 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
     func closeDevice(bwt901ble: Bwt901ble?){
         print("Turn off the device")
         bwt901ble?.closeDevice()
+        flutterApi.onSensorConnected(isConnected: false)
     }
     
     
@@ -160,6 +164,11 @@ private class FlutterApi {
     
     func onSensorDataRecorded(sensorData: SensorDataModel) {
         flutterAPI.onSensorDataRecorded(sensorData: sensorData) {_ in
+        }
+    }
+    
+    func onSensorConnected(isConnected: Bool){
+        flutterAPI.onSensorConnected(isConnected: isConnected) {_ in
         }
     }
 }

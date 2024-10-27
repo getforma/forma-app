@@ -1,12 +1,12 @@
 name: core_feature
 description: Core feature
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -58,6 +58,7 @@ flutter:
 
 flutter_intl:
   enabled: true
-  arb-dir: lib/l10n
+  arb-dir: flutter/feature/core/lib/l10n
+  output-dir: flutter/feature/core/lib/generated
   template-arb-file: intl_en_US.arb
   main_locale: en_US

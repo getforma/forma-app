@@ -159,6 +159,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter your name`
+  String get home_name_error {
+    return Intl.message(
+      'Please enter your name',
+      name: 'home_name_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session started`
+  String get home_session_started {
+    return Intl.message(
+      'Session started',
+      name: 'home_session_started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session stopped`
+  String get home_session_stopped {
+    return Intl.message(
+      'Session stopped',
+      name: 'home_session_stopped',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sensor is not connected!`
+  String get home_sensor_disconnected {
+    return Intl.message(
+      'Sensor is not connected!',
+      name: 'home_sensor_disconnected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get home_generic_error {
+    return Intl.message(
+      'Something went wrong',
+      name: 'home_generic_error',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

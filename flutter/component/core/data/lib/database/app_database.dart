@@ -1,3 +1,4 @@
+import 'package:core_component_data/database/model/app_configuration_table.dart';
 import 'package:core_component_data/database/model/measurement_analysis_table.dart';
 import 'package:core_component_data/database/model/measurement_table.dart';
 import 'package:drift/drift.dart';
@@ -8,7 +9,8 @@ import 'package:injectable/injectable.dart';
 part 'app_database.g.dart';
 
 @LazySingleton()
-@DriftDatabase(tables: [MeasurementTable, MeasurementAnalysisTable])
+@DriftDatabase(
+    tables: [MeasurementTable, MeasurementAnalysisTable, AppConfigurationTable])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
