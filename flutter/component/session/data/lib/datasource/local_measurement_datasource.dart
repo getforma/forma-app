@@ -62,7 +62,7 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
         .into(_database.measurementTable)
         .insert(MeasurementTableCompanion(
           sessionId: Value(sessionId),
-          timestamp: Value(DateTime.now()),
+          timestamp: Value(DateTime.timestamp()),
           longitude: Value(longitude),
           latitude: Value(latitude),
           sensorPosition: Value(_sensorPosition),
