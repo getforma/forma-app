@@ -6,6 +6,7 @@ import 'package:android_id/android_id.dart';
 import 'package:core_component_domain/shared_preferences_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
@@ -48,10 +49,20 @@ class SessionRepositoryImpl implements SessionRepository {
         return Left(Exception("Location permission not granted"));
       }
 
-      const LocationSettings locationSettings = LocationSettings(
-        accuracy: LocationAccuracy.high,
-        distanceFilter: 5,
+      LocationSettings locationSettings = const LocationSettings(
+        accuracy: LocationAccuracy.best,
+        distanceFilter: 2,
       );
+      if (defaultTargetPlatform == TargetPlatform.iOS) {
+        locationSettings = AppleSettings(
+          accuracy: LocationAccuracy.best,
+          activityType: ActivityType.fitness,
+          distanceFilter: 2,
+          pauseLocationUpdatesAutomatically: false,
+          showBackgroundLocationIndicator: true,
+          allowBackgroundLocationUpdates: true,
+        );
+      }
       positionStream =
           Geolocator.getPositionStream(locationSettings: locationSettings)
               .listen((Position? position) {
