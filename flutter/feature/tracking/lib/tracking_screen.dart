@@ -83,17 +83,56 @@ class TrackingScreen extends StatelessWidget {
             mainAxisSpacing: 25.h,
             crossAxisSpacing: 21.w,
             childAspectRatio: 170.w / 110.h,
-            children: const [
-              Placeholder(),
-              Placeholder(),
-              Placeholder(),
-              Placeholder(),
+            children: [
+              _metricCard(S.of(context).tracking_distance, '3.5km'),
+              _metricCard(S.of(context).tracking_average_pace, "6'23''"),
+              _metricCard(S.of(context).tracking_vertical_oscillation, '24cm'),
+              _metricCard(S.of(context).tracking_cadence, '178 spm'),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Widget _metricCard(String title, String value) {
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 16.w),
+    decoration: BoxDecoration(
+      color: const Color(0xFFE8EDF2),
+      borderRadius: BorderRadius.circular(12).r,
+      boxShadow: [
+        BoxShadow(
+          color: const Color(0x140A0D12),
+          blurRadius: 16.r,
+          offset: Offset(0, 12.h),
+          spreadRadius: -4.r,
+        ),
+        BoxShadow(
+          color: const Color(0x070A0D12),
+          blurRadius: 6.r,
+          offset: Offset(0, 4.h),
+          spreadRadius: -2.r,
+        ),
+      ],
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          title,
+          style: _Typography.metricTitle.sp,
+        ),
+        SizedBox(height: 14.h),
+        Text(
+          value,
+          style: _Typography.metricValue.sp,
+        ),
+      ],
+    ),
+  );
 }
 
 class _Typography {
@@ -103,6 +142,16 @@ class _Typography {
   );
 
   static final TextStyle scoreTitle = TextStyles.dark.copyWith(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle metricTitle = TextStyles.dark.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+  static final TextStyle metricValue = TextStyles.dark.copyWith(
     fontSize: 24,
     fontWeight: FontWeight.w700,
   );
