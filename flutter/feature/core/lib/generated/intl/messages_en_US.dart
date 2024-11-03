@@ -51,6 +51,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "home_stride_length":
             MessageLookupByLibrary.simpleMessage("Stride length"),
         "home_vertical_oscillation":
+            MessageLookupByLibrary.simpleMessage("Vertical oscillation"),
+        "tracking_average_pace":
+            MessageLookupByLibrary.simpleMessage("Avg pace"),
+        "tracking_average_speed":
+            MessageLookupByLibrary.simpleMessage("Avg speed"),
+        "tracking_cadence": MessageLookupByLibrary.simpleMessage("Cadence"),
+        "tracking_distance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "tracking_ground_contact_time":
+            MessageLookupByLibrary.simpleMessage("Ground contact time"),
+        "tracking_score": MessageLookupByLibrary.simpleMessage("Score"),
+        "tracking_stride_length":
+            MessageLookupByLibrary.simpleMessage("Stride length"),
+        "tracking_total_time":
+            MessageLookupByLibrary.simpleMessage("Total time"),
+        "tracking_vertical_oscillation":
             MessageLookupByLibrary.simpleMessage("Vertical oscillation")
       };
 }
