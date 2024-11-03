@@ -13,6 +13,7 @@ import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
+import 'package:forma_app/route/app_router.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -171,11 +172,12 @@ class HomeScreen extends StatelessWidget {
           width: 0.7.sw,
           child: TextButton(
               onPressed: () {
-                if (state.isSessionRecordingActive) {
-                  context.read<HomeCubit>().stopSession();
-                  return;
-                }
-                context.read<HomeCubit>().startSession();
+                AutoRouter.of(context).push(const TrackingRoute());
+                // if (state.isSessionRecordingActive) {
+                //   context.read<HomeCubit>().stopSession();
+                //   return;
+                // }
+                // context.read<HomeCubit>().startSession();
               },
               style: ButtonStyles.fullWidthOrange.sp,
               child: Text(state.isSessionRecordingActive
