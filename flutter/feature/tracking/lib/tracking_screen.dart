@@ -29,58 +29,22 @@ class TrackingScreen extends StatelessWidget {
   }
 
   Widget _body(BuildContext context, TrackingState state) {
-    return SafeArea(
-      child: Column(
-        children: [
-          48.verticalSpace,
-
-          _scoreCircle(context, state),
-          14.verticalSpace,
-          Text(
-            S.of(context).tracking_score,
-            style: _Typography.scoreTitle.sp,
-          ),
-
-          42.verticalSpace,
-
-          // Metrics grid section
-          Expanded(
-            flex: 3,
-            child: GridView.count(
-              crossAxisCount: 2,
-              mainAxisSpacing: 16.0,
-              crossAxisSpacing: 16.0,
-              physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                Placeholder(), // Distance
-                Placeholder(), // Avg Pace
-                Placeholder(), // Vertical oscillation
-                Placeholder(), // Cadence
-              ],
+    return Container(
+      color: AppColors.background,
+      child: SafeArea(
+        child: Column(
+          children: [
+            48.verticalSpace,
+            _scoreCircle(context, state),
+            14.verticalSpace,
+            Text(
+              S.of(context).tracking_score,
+              style: _Typography.scoreTitle.sp,
             ),
-          ),
-
-          // Tips section
-          const Expanded(
-            flex: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Tips'),
-                SizedBox(height: 8),
-                Placeholder(), // Will be replaced with tips content
-              ],
-            ),
-          ),
-
-          // Stop button
-          const SizedBox(height: 16),
-          const SizedBox(
-            width: double.infinity,
-            child: Placeholder(
-                fallbackHeight: 48), // Will be replaced with stop button
-          ),
-        ],
+            42.verticalSpace,
+            _metricsGrid(context, state),
+          ],
+        ),
       ),
     );
   }
@@ -105,16 +69,41 @@ class TrackingScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _metricsGrid(BuildContext context, TrackingState state) {
+    return Flexible(
+      child: PageView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16).w,
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            mainAxisSpacing: 25.h,
+            crossAxisSpacing: 21.w,
+            childAspectRatio: 170.w / 110.h,
+            children: const [
+              Placeholder(),
+              Placeholder(),
+              Placeholder(),
+              Placeholder(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _Typography {
   static final TextStyle score = TextStyles.dark.copyWith(
     fontSize: 55,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   );
 
   static final TextStyle scoreTitle = TextStyles.dark.copyWith(
     fontSize: 24,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w700,
   );
 }
