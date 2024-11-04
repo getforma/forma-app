@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tracking_ground_contact_time":
             MessageLookupByLibrary.simpleMessage("Ground contact time"),
         "tracking_score": MessageLookupByLibrary.simpleMessage("Score"),
+        "tracking_stop_session":
+            MessageLookupByLibrary.simpleMessage("Stop session"),
         "tracking_stride_length":
             MessageLookupByLibrary.simpleMessage("Stride length"),
         "tracking_tips": MessageLookupByLibrary.simpleMessage("Tips"),

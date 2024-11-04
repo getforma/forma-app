@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
+import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +33,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
         builder: (context, state) => Scaffold(
           extendBodyBehindAppBar: true,
           resizeToAvoidBottomInset: false,
+          backgroundColor: AppColors.background,
           body: _body(context, state),
         ),
       ),
@@ -39,12 +41,12 @@ class _TrackingScreenState extends State<TrackingScreen> {
   }
 
   Widget _body(BuildContext context, TrackingState state) {
-    return Container(
-      color: AppColors.background,
-      child: SafeArea(
+    return SafeArea(
+      child: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            48.verticalSpace,
+            32.verticalSpace,
             _scoreCircle(context, state),
             14.verticalSpace,
             Text(
@@ -71,7 +73,20 @@ class _TrackingScreenState extends State<TrackingScreen> {
                 "Keep your body straight, don't lean too much forward or backward.",
                 style: _Typography.tip.sp,
               ),
-            )
+            ),
+            42.verticalSpace,
+            Container(
+              width: 1.sw,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: TextButton(
+                onPressed: () {},
+                style: ButtonStyles.fullWidthPrimary.sp,
+                child: Text(
+                  S.of(context).tracking_stop_session.toUpperCase(),
+                  style: _Typography.stopSessionButton.sp,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -242,5 +257,10 @@ class _Typography {
     fontSize: 16,
     fontWeight: FontWeight.w400,
     height: 24.0 / 16.0,
+  );
+
+  static final TextStyle stopSessionButton = TextStyles.light.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
   );
 }

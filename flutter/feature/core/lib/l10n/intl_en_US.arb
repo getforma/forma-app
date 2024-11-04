@@ -26,5 +26,6 @@
   "tracking_stride_length": "Stride length",
   "tracking_average_speed": "Avg speed",
   "tracking_total_time": "Total time",
-  "tracking_tips": "Tips"
+  "tracking_tips": "Tips",
+  "tracking_stop_session": "Stop session"
 }

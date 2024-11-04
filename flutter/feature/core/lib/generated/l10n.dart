@@ -319,6 +319,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Stop session`
+  String get tracking_stop_session {
+    return Intl.message(
+      'Stop session',
+      name: 'tracking_stop_session',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
