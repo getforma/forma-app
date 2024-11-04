@@ -9,9 +9,19 @@ import 'package:get_it/get_it.dart';
 import 'package:tracking_feature/bloc/tracking_cubit.dart';
 import 'package:tracking_feature/widget/partial_circle_painter.dart';
 
+const _animationDuration = Duration(milliseconds: 200);
+
 @RoutePage()
-class TrackingScreen extends StatelessWidget {
+class TrackingScreen extends StatefulWidget {
   const TrackingScreen({super.key});
+
+  @override
+  State<TrackingScreen> createState() => _TrackingScreenState();
+}
+
+class _TrackingScreenState extends State<TrackingScreen> {
+  final PageController _pageController = PageController();
+  int _page = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +53,7 @@ class TrackingScreen extends StatelessWidget {
             ),
             42.verticalSpace,
             _metricsGrid(context, state),
+            _metricPageIndicator(),
           ],
         ),
       ),
@@ -71,9 +82,16 @@ class TrackingScreen extends StatelessWidget {
   }
 
   Widget _metricsGrid(BuildContext context, TrackingState state) {
-    return Flexible(
+    return SizedBox(
+      height: 268.h,
       child: PageView.builder(
+        controller: _pageController,
         itemCount: 2,
+        onPageChanged: (index) {
+          setState(() {
+            _page = index;
+          });
+        },
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16).w,
           child: GridView.count(
@@ -94,45 +112,82 @@ class TrackingScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget _metricCard(String title, String value) {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 16.w),
-    decoration: BoxDecoration(
-      color: const Color(0xFFE8EDF2),
-      borderRadius: BorderRadius.circular(12).r,
-      boxShadow: [
-        BoxShadow(
-          color: const Color(0x140A0D12),
-          blurRadius: 16.r,
-          offset: Offset(0, 12.h),
-          spreadRadius: -4.r,
-        ),
-        BoxShadow(
-          color: const Color(0x070A0D12),
-          blurRadius: 6.r,
-          offset: Offset(0, 4.h),
-          spreadRadius: -2.r,
-        ),
-      ],
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _metricCard(String title, String value) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      decoration: BoxDecoration(
+        color: const Color(0xFFE8EDF2),
+        borderRadius: BorderRadius.circular(12).r,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0x140A0D12),
+            blurRadius: 16.r,
+            offset: Offset(0, 12.h),
+            spreadRadius: -4.r,
+          ),
+          BoxShadow(
+            color: const Color(0x070A0D12),
+            blurRadius: 6.r,
+            offset: Offset(0, 4.h),
+            spreadRadius: -2.r,
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: _Typography.metricTitle.sp,
+          ),
+          SizedBox(height: 14.h),
+          Text(
+            value,
+            style: _Typography.metricValue.sp,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _metricPageIndicator() {
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          title,
-          style: _Typography.metricTitle.sp,
+        AnimatedContainer(
+          duration: _animationDuration,
+          width: 8.r,
+          height: 8.r,
+          decoration: BoxDecoration(
+            color: _page == 0
+                ? AppColors.primaryBlue
+                : AppColors.primaryBlue.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8).r,
+          ),
         ),
-        SizedBox(height: 14.h),
-        Text(
-          value,
-          style: _Typography.metricValue.sp,
+        12.horizontalSpace,
+        AnimatedContainer(
+          duration: _animationDuration,
+          width: 8.r,
+          height: 8.r,
+          decoration: BoxDecoration(
+            color: _page == 1
+                ? AppColors.primaryBlue
+                : AppColors.primaryBlue.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(8).r,
+          ),
         ),
       ],
-    ),
-  );
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 }
 
 class _Typography {
