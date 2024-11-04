@@ -8,13 +8,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tracking_feature/bloc/tracking_cubit.dart';
+import 'package:tracking_feature/bloc/tracking_screen_status.dart';
 import 'package:tracking_feature/widget/partial_circle_painter.dart';
+import 'package:core_feature/widget/loader_widget.dart';
 
 const _animationDuration = Duration(milliseconds: 200);
 
 @RoutePage()
 class TrackingScreen extends StatefulWidget {
-  const TrackingScreen({super.key});
+  final String sessionId;
+
+  const TrackingScreen({super.key, required this.sessionId});
 
   @override
   State<TrackingScreen> createState() => _TrackingScreenState();
@@ -27,14 +31,24 @@ class _TrackingScreenState extends State<TrackingScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<TrackingCubit>(),
+      create: (context) => GetIt.I.get<TrackingCubit>(param1: widget.sessionId),
       child: BlocConsumer<TrackingCubit, TrackingState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.status == TrackingScreenStatus.stopped) {
+            context.router.maybePop(state.measurementAnalysis);
+          }
+        },
         builder: (context, state) => Scaffold(
           extendBodyBehindAppBar: true,
           resizeToAvoidBottomInset: false,
           backgroundColor: AppColors.background,
-          body: _body(context, state),
+          body: Stack(
+            children: [
+              _body(context, state),
+              if (state.status == TrackingScreenStatus.loading)
+                const Positioned.fill(child: LoaderWidget()),
+            ],
+          ),
         ),
       ),
     );
@@ -79,7 +93,9 @@ class _TrackingScreenState extends State<TrackingScreen> {
               width: 1.sw,
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<TrackingCubit>().stopSession();
+                },
                 style: ButtonStyles.fullWidthPrimary.sp,
                 child: Text(
                   S.of(context).tracking_stop_session.toUpperCase(),

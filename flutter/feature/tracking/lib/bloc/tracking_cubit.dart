@@ -24,21 +24,22 @@ class TrackingCubit extends Cubit<TrackingState> {
   TrackingCubit(
     this._stopSessionUseCase,
     this._getMeasurementAnalysisStreamUseCase,
-  ) : super(const TrackingState()) {
-    // _measurementAnalysisStreamSubscription =
-    //     _getMeasurementAnalysisStreamUseCase
-    //         .invoke(sessionResponse!.id)
-    //         .listen((value) {
-    //   emit(state.copyWith(measurementAnalysis: value));
-    // });
+    @factoryParam String sessionId,
+  ) : super(TrackingState(sessionId: sessionId)) {
+    _measurementAnalysisStreamSubscription =
+        _getMeasurementAnalysisStreamUseCase.invoke(sessionId).listen((value) {
+      emit(state.copyWith(measurementAnalysis: value));
+    });
   }
 
   Future<void> stopSession() async {
     emit(state.copyWith(status: TrackingScreenStatus.loading));
     final stopSessionResult = await _stopSessionUseCase.invoke(EmptyParam());
     if (stopSessionResult.isRight()) {
+      final measurementAnalysis = stopSessionResult.fold((e) => null, (r) => r);
       emit(state.copyWith(
         status: TrackingScreenStatus.stopped,
+        measurementAnalysis: measurementAnalysis,
       ));
       return;
     }
