@@ -10,8 +10,6 @@ import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/use_case/create_session_use_case.dart';
-import 'package:session_component_domain/use_case/stop_session_use_case.dart';
-import 'package:session_component_domain/use_case/get_measurement_analysis_stream_use_case.dart';
 import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 
 part 'home_cubit.freezed.dart';
@@ -22,20 +20,13 @@ class HomeCubit extends Cubit<HomeState> {
   final InitializeSensorUseCase _initializeSensorUseCase;
   final StartSensorDiscoveryUseCase _startSensorDiscoveryUseCase;
   final CreateSessionUseCase _createSessionUseCase;
-  final StopSessionUseCase _stopSessionUseCase;
-  final GetMeasurementAnalysisStreamUseCase
-      _getMeasurementAnalysisStreamUseCase;
   final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
 
-  StreamSubscription<MeasurementAnalysis?>?
-      _measurementAnalysisStreamSubscription;
   StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
   HomeCubit(
     this._initializeSensorUseCase,
     this._startSensorDiscoveryUseCase,
     this._createSessionUseCase,
-    this._stopSessionUseCase,
-    this._getMeasurementAnalysisStreamUseCase,
     this._getIsSensorConnectedStreamUseCase,
   ) : super(const HomeState());
 
@@ -59,16 +50,16 @@ class HomeCubit extends Cubit<HomeState> {
     });
   }
 
-  Future<void> startSession() async {
+  Future<String?> startSession() async {
     final userName = state.userName;
     if (userName == null) {
       emit(state.copyWith(status: HomeStatus.nameError));
-      return;
+      return null;
     }
 
     if (!state.isSensorConnected) {
       emit(state.copyWith(status: HomeStatus.sensorDisconnected));
-      return;
+      return null;
     }
 
     emit(state.copyWith(status: HomeStatus.loading));
@@ -81,7 +72,7 @@ class HomeCubit extends Cubit<HomeState> {
 
     if (sessionResult.isLeft()) {
       emit(state.copyWith(status: HomeStatus.genericError));
-      return;
+      return null;
     }
 
     final sessionResponse = sessionResult.fold(
@@ -89,30 +80,19 @@ class HomeCubit extends Cubit<HomeState> {
       (r) => r,
     );
 
-    _measurementAnalysisStreamSubscription =
-        _getMeasurementAnalysisStreamUseCase
-            .invoke(sessionResponse!.id)
-            .listen((value) {
-      emit(state.copyWith(measurementAnalysis: value));
-    });
-
     emit(state.copyWith(
       isSessionRecordingActive: true,
       status: HomeStatus.sessionStarted,
     ));
+    return sessionResponse?.id;
   }
 
-  Future<void> stopSession() async {
-    emit(state.copyWith(status: HomeStatus.loading));
-    final stopSessionResult = await _stopSessionUseCase.invoke(EmptyParam());
-    if (stopSessionResult.isRight()) {
-      emit(state.copyWith(
-        isSessionRecordingActive: false,
-        status: HomeStatus.sessionStopped,
-      ));
-      return;
-    }
-    emit(state.copyWith(status: HomeStatus.genericError));
+  void onSessionStopped(MeasurementAnalysis? measurementAnalysis) {
+    emit(state.copyWith(
+      measurementAnalysis: measurementAnalysis,
+      isSessionRecordingActive: false,
+      status: HomeStatus.sessionStopped,
+    ));
   }
 
   void updateUserName(String name) {
@@ -132,7 +112,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   @override
   Future<void> close() {
-    _measurementAnalysisStreamSubscription?.cancel();
     _isSensorConnectedStreamSubscription?.cancel();
     return super.close();
   }

@@ -1,5 +1,5 @@
-name: home_feature
-description: Home Feature
+name: tracking_feature
+description: Tracking Feature
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -11,9 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  forma_app:
-    path: ../../../
 
   core_feature:
     path: ../core

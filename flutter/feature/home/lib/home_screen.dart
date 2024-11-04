@@ -12,7 +12,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
+import 'package:forma_app/route/app_router.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -170,12 +172,17 @@ class HomeScreen extends StatelessWidget {
         child: SizedBox(
           width: 0.7.sw,
           child: TextButton(
-              onPressed: () {
-                if (state.isSessionRecordingActive) {
-                  context.read<HomeCubit>().stopSession();
-                  return;
+              onPressed: () async {
+                final sessionId =
+                    await context.read<HomeCubit>().startSession();
+                if (sessionId != null) {
+                  final measurementAnalysis = (await AutoRouter.of(context)
+                          .push(TrackingRoute(sessionId: sessionId)))
+                      as MeasurementAnalysis?;
+                  context
+                      .read<HomeCubit>()
+                      .onSessionStopped(measurementAnalysis);
                 }
-                context.read<HomeCubit>().startSession();
               },
               style: ButtonStyles.fullWidthOrange.sp,
               child: Text(state.isSessionRecordingActive

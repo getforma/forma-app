@@ -19,6 +19,14 @@ class ButtonStyles {
     minimumSize: const Size(100, 53),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
   );
+
+  static final fullWidthPrimary = TextButton.styleFrom(
+    backgroundColor: AppColors.primaryBlue,
+    foregroundColor: AppColors.pureWhite,
+    alignment: Alignment.center,
+    minimumSize: const Size(100, 53),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+  );
 }
 
 extension TextButtonScaling on ButtonStyle {

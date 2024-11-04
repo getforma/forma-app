@@ -219,6 +219,186 @@ class S {
       args: [],
     );
   }
+
+  /// `Score`
+  String get tracking_score {
+    return Intl.message(
+      'Score',
+      name: 'tracking_score',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distance`
+  String get tracking_distance {
+    return Intl.message(
+      'Distance',
+      name: 'tracking_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km`
+  String get tracking_distance_suffix {
+    return Intl.message(
+      'km',
+      name: 'tracking_distance_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avg pace`
+  String get tracking_average_pace {
+    return Intl.message(
+      'Avg pace',
+      name: 'tracking_average_pace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vertical oscillation`
+  String get tracking_vertical_oscillation {
+    return Intl.message(
+      'Vertical oscillation',
+      name: 'tracking_vertical_oscillation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cm`
+  String get tracking_vertical_oscillation_suffix {
+    return Intl.message(
+      'cm',
+      name: 'tracking_vertical_oscillation_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadence`
+  String get tracking_cadence {
+    return Intl.message(
+      'Cadence',
+      name: 'tracking_cadence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `spm`
+  String get tracking_cadence_suffix {
+    return Intl.message(
+      'spm',
+      name: 'tracking_cadence_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ground contact time`
+  String get tracking_ground_contact_time {
+    return Intl.message(
+      'Ground contact time',
+      name: 'tracking_ground_contact_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ms`
+  String get tracking_ground_contact_time_suffix {
+    return Intl.message(
+      'ms',
+      name: 'tracking_ground_contact_time_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stride length`
+  String get tracking_stride_length {
+    return Intl.message(
+      'Stride length',
+      name: 'tracking_stride_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `m`
+  String get tracking_stride_length_suffix {
+    return Intl.message(
+      'm',
+      name: 'tracking_stride_length_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avg speed`
+  String get tracking_average_speed {
+    return Intl.message(
+      'Avg speed',
+      name: 'tracking_average_speed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km/h`
+  String get tracking_average_speed_suffix {
+    return Intl.message(
+      'km/h',
+      name: 'tracking_average_speed_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total time`
+  String get tracking_total_time {
+    return Intl.message(
+      'Total time',
+      name: 'tracking_total_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min`
+  String get tracking_total_time_suffix {
+    return Intl.message(
+      'min',
+      name: 'tracking_total_time_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tips`
+  String get tracking_tips {
+    return Intl.message(
+      'Tips',
+      name: 'tracking_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stop session`
+  String get tracking_stop_session {
+    return Intl.message(
+      'Stop session',
+      name: 'tracking_stop_session',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

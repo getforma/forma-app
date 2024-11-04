@@ -18,6 +18,9 @@ dependencies:
   home_feature:
     path: flutter/feature/home
 
+  tracking_feature:
+    path: flutter/feature/tracking
+
   core_component_data:
     path: flutter/component/core/data
 
