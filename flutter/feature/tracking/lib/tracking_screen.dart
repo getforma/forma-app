@@ -101,12 +101,21 @@ class _TrackingScreenState extends State<TrackingScreen> {
             mainAxisSpacing: 25.h,
             crossAxisSpacing: 21.w,
             childAspectRatio: 170.w / 110.h,
-            children: [
-              _metricCard(S.of(context).tracking_distance, '3.5km'),
-              _metricCard(S.of(context).tracking_average_pace, "6'23''"),
-              _metricCard(S.of(context).tracking_vertical_oscillation, '24cm'),
-              _metricCard(S.of(context).tracking_cadence, '178 spm'),
-            ],
+            children: index == 0
+                ? [
+                    _metricCard(S.of(context).tracking_distance, '3.5km'),
+                    _metricCard(S.of(context).tracking_average_pace, "6'23''"),
+                    _metricCard(
+                        S.of(context).tracking_vertical_oscillation, '24cm'),
+                    _metricCard(S.of(context).tracking_cadence, '178 spm'),
+                  ]
+                : [
+                    _metricCard(S.of(context).tracking_average_speed, '9 km/h'),
+                    _metricCard(S.of(context).tracking_total_time, '24 m'),
+                    _metricCard(
+                        S.of(context).tracking_ground_contact_time, '231 ms'),
+                    _metricCard(S.of(context).tracking_stride_length, '1.09 m'),
+                  ],
           ),
         ),
       ),
