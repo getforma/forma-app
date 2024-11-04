@@ -240,6 +240,16 @@ class S {
     );
   }
 
+  /// `km`
+  String get tracking_distance_suffix {
+    return Intl.message(
+      'km',
+      name: 'tracking_distance_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Avg pace`
   String get tracking_average_pace {
     return Intl.message(
@@ -260,11 +270,31 @@ class S {
     );
   }
 
+  /// `cm`
+  String get tracking_vertical_oscillation_suffix {
+    return Intl.message(
+      'cm',
+      name: 'tracking_vertical_oscillation_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cadence`
   String get tracking_cadence {
     return Intl.message(
       'Cadence',
       name: 'tracking_cadence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `spm`
+  String get tracking_cadence_suffix {
+    return Intl.message(
+      'spm',
+      name: 'tracking_cadence_suffix',
       desc: '',
       args: [],
     );
@@ -280,11 +310,31 @@ class S {
     );
   }
 
+  /// `ms`
+  String get tracking_ground_contact_time_suffix {
+    return Intl.message(
+      'ms',
+      name: 'tracking_ground_contact_time_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Stride length`
   String get tracking_stride_length {
     return Intl.message(
       'Stride length',
       name: 'tracking_stride_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `m`
+  String get tracking_stride_length_suffix {
+    return Intl.message(
+      'm',
+      name: 'tracking_stride_length_suffix',
       desc: '',
       args: [],
     );
@@ -300,11 +350,31 @@ class S {
     );
   }
 
+  /// `km/h`
+  String get tracking_average_speed_suffix {
+    return Intl.message(
+      'km/h',
+      name: 'tracking_average_speed_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Total time`
   String get tracking_total_time {
     return Intl.message(
       'Total time',
       name: 'tracking_total_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min`
+  String get tracking_total_time_suffix {
+    return Intl.message(
+      'min',
+      name: 'tracking_total_time_suffix',
       desc: '',
       args: [],
     );

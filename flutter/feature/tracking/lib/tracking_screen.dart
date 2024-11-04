@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tracking_feature/bloc/tracking_cubit.dart';
 import 'package:tracking_feature/bloc/tracking_screen_status.dart';
+import 'package:tracking_feature/model/measurement_card_item.dart';
 import 'package:tracking_feature/widget/partial_circle_painter.dart';
 import 'package:core_feature/widget/loader_widget.dart';
 
@@ -150,21 +151,15 @@ class _TrackingScreenState extends State<TrackingScreen> {
             mainAxisSpacing: 25.h,
             crossAxisSpacing: 21.w,
             childAspectRatio: 170.w / 110.h,
-            children: index == 0
-                ? [
-                    _metricCard(S.of(context).tracking_distance, '3.5km'),
-                    _metricCard(S.of(context).tracking_average_pace, "6'23''"),
-                    _metricCard(
-                        S.of(context).tracking_vertical_oscillation, '24cm'),
-                    _metricCard(S.of(context).tracking_cadence, '178 spm'),
-                  ]
-                : [
-                    _metricCard(S.of(context).tracking_average_speed, '9 km/h'),
-                    _metricCard(S.of(context).tracking_total_time, '24 m'),
-                    _metricCard(
-                        S.of(context).tracking_ground_contact_time, '231 ms'),
-                    _metricCard(S.of(context).tracking_stride_length, '1.09 m'),
-                  ],
+            children: MeasurementCardItem.values
+                .sublist(index * 4, (index + 1) * 4)
+                .map(
+                  (cardItem) => _metricCard(
+                    cardItem.title(context),
+                    cardItem.value(context, state.measurementAnalysis),
+                  ),
+                )
+                .toList(growable: false),
           ),
         ),
       ),
