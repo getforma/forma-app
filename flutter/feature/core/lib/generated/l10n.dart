@@ -309,6 +309,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Tips`
+  String get tracking_tips {
+    return Intl.message(
+      'Tips',
+      name: 'tracking_tips',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

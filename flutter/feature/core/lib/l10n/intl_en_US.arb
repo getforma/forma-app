@@ -25,5 +25,6 @@
   "tracking_ground_contact_time": "Ground contact time",
   "tracking_stride_length": "Stride length",
   "tracking_average_speed": "Avg speed",
-  "tracking_total_time": "Total time"
+  "tracking_total_time": "Total time",
+  "tracking_tips": "Tips"
 }

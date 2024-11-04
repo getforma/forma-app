@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "tracking_score": MessageLookupByLibrary.simpleMessage("Score"),
         "tracking_stride_length":
             MessageLookupByLibrary.simpleMessage("Stride length"),
+        "tracking_tips": MessageLookupByLibrary.simpleMessage("Tips"),
         "tracking_total_time":
             MessageLookupByLibrary.simpleMessage("Total time"),
         "tracking_vertical_oscillation":

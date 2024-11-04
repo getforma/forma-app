@@ -54,6 +54,24 @@ class _TrackingScreenState extends State<TrackingScreen> {
             42.verticalSpace,
             _metricsGrid(context, state),
             _metricPageIndicator(),
+            16.verticalSpace,
+            Container(
+              padding: EdgeInsets.only(left: 16.w),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                S.of(context).tracking_tips,
+                style: TextStyles.h2BoldDark.sp,
+              ),
+            ),
+            36.verticalSpace,
+            Container(
+              padding: EdgeInsets.only(left: 16.w),
+              alignment: Alignment.centerLeft,
+              child: Text(
+                "Keep your body straight, don't lean too much forward or backward.",
+                style: _Typography.tip.sp,
+              ),
+            )
           ],
         ),
       ),
@@ -218,5 +236,11 @@ class _Typography {
   static final TextStyle metricValue = TextStyles.dark.copyWith(
     fontSize: 24,
     fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle tip = TextStyles.dark.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    height: 24.0 / 16.0,
   );
 }
