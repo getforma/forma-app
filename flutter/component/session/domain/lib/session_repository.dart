@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:sensor_component_domain/model/sensor_data.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
 
@@ -16,7 +17,9 @@ abstract class SessionRepository {
     SensorPosition? sensorPosition,
   });
 
-  Future<Either<Exception, bool>> stopSession();
+  Future<Either<Exception, MeasurementAnalysis>> stopSession();
 
-  Future<Either<Exception, bool>> syncData(String sessionId);
+  Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId);
+
+  Future<Either<Exception, MeasurementAnalysis>> syncData(String sessionId);
 }

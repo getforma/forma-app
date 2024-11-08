@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import CoreBluetooth
 
-class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObserver, IBwt901bleRecordObserver {
+class SensorApiImplementation: NSObject, SensorApi, ObservableObject, IBluetoothEventObserver, IBwt901bleRecordObserver, CBCentralManagerDelegate {
     
     // Get bluetooth manager
-    var bluetoothManager:WitBluetoothManager = WitBluetoothManager.instance
+    var bluetoothManager: WitBluetoothManager = WitBluetoothManager.instance
+    private var centralManager: CBCentralManager!
+    private var stateCallback: ((Result<Bool, Error>) -> Void)?
     
     fileprivate var flutterApi: FlutterApi
     
@@ -22,7 +25,20 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
         self.flutterApi = FlutterApi(binaryMessenger: binaryMessenger)
     }
     
-    func initialize() throws {
+    func initialize(completion: @escaping (Result<Bool, Error>) -> Void) {
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        self.stateCallback = completion
+    }
+    
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+            case .poweredOn:
+                stateCallback?(Result.success(true))
+                break
+            default:
+                stateCallback?(Result.success(false))
+                break
+        }
     }
     
     func startDiscovery() throws {
@@ -59,16 +75,19 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
     // MARK: You will be notified here when the connection is successful
     func onConnected(bluetoothBLE: BluetoothBLE?) {
         print("\(String(describing: bluetoothBLE?.peripheral.name)) connected")
+        flutterApi.onSensorConnected(isConnected: true)
     }
     
     // MARK: Notifies you here when the connection fails
     func onConnectionFailed(bluetoothBLE: BluetoothBLE?) {
         print("\(String(describing: bluetoothBLE?.peripheral.name)) failed to connect")
+        flutterApi.onSensorConnected(isConnected: false)
     }
     
     // MARK: You will be notified here when the connection is lost
     func onDisconnected(bluetoothBLE: BluetoothBLE?) {
         print("\(String(describing: bluetoothBLE?.peripheral.name)) disconnected")
+        flutterApi.onSensorConnected(isConnected: false)
     }
     
     // MARK: Stop scanning for devices
@@ -85,6 +104,22 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
             
             // Monitor data
             bwt901ble?.registerListenKeyUpdateObserver(obj: self)
+            
+            /**
+             * 0x01：0.1Hz
+             * 0x02：0.5Hz
+             * 0x03：1Hz
+             * 0x04：2Hz
+             * 0x05：5Hz
+             * 0x06：10Hz（default）
+             * 0x07：20Hz
+             * 0x08：50Hz
+             * 0x09：100Hz
+             * 0x0A：200Hz
+             */
+            try bwt901ble?.unlockReg()
+            try bwt901ble?.writeRge([0xff ,0xaa, 0x03, 0x08, 0x00], 10)
+            try bwt901ble?.saveReg()
         }
         catch{
             print("Failed to open device")
@@ -103,6 +138,7 @@ class SensorApiImplementation: SensorApi, ObservableObject, IBluetoothEventObser
     func closeDevice(bwt901ble: Bwt901ble?){
         print("Turn off the device")
         bwt901ble?.closeDevice()
+        flutterApi.onSensorConnected(isConnected: false)
     }
     
     
@@ -144,6 +180,11 @@ private class FlutterApi {
     
     func onSensorDataRecorded(sensorData: SensorDataModel) {
         flutterAPI.onSensorDataRecorded(sensorData: sensorData) {_ in
+        }
+    }
+    
+    func onSensorConnected(isConnected: Bool){
+        flutterAPI.onSensorConnected(isConnected: isConnected) {_ in
         }
     }
 }

@@ -79,6 +79,326 @@ class S {
       args: [],
     );
   }
+
+  /// `Last measurement`
+  String get home_last_measurement {
+    return Intl.message(
+      'Last measurement',
+      name: 'home_last_measurement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadence`
+  String get home_cadence {
+    return Intl.message(
+      'Cadence',
+      name: 'home_cadence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distance`
+  String get home_distance {
+    return Intl.message(
+      'Distance',
+      name: 'home_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ground contact time`
+  String get home_ground_contact_time {
+    return Intl.message(
+      'Ground contact time',
+      name: 'home_ground_contact_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pace`
+  String get home_pace {
+    return Intl.message(
+      'Pace',
+      name: 'home_pace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Speed`
+  String get home_speed {
+    return Intl.message(
+      'Speed',
+      name: 'home_speed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stride length`
+  String get home_stride_length {
+    return Intl.message(
+      'Stride length',
+      name: 'home_stride_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vertical oscillation`
+  String get home_vertical_oscillation {
+    return Intl.message(
+      'Vertical oscillation',
+      name: 'home_vertical_oscillation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your name`
+  String get home_name_error {
+    return Intl.message(
+      'Please enter your name',
+      name: 'home_name_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session started`
+  String get home_session_started {
+    return Intl.message(
+      'Session started',
+      name: 'home_session_started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Session stopped`
+  String get home_session_stopped {
+    return Intl.message(
+      'Session stopped',
+      name: 'home_session_stopped',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sensor is not connected!`
+  String get home_sensor_disconnected {
+    return Intl.message(
+      'Sensor is not connected!',
+      name: 'home_sensor_disconnected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sensor could not be initialized!`
+  String get home_sensor_initialization_error {
+    return Intl.message(
+      'Sensor could not be initialized!',
+      name: 'home_sensor_initialization_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get home_generic_error {
+    return Intl.message(
+      'Something went wrong',
+      name: 'home_generic_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Score`
+  String get tracking_score {
+    return Intl.message(
+      'Score',
+      name: 'tracking_score',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Distance`
+  String get tracking_distance {
+    return Intl.message(
+      'Distance',
+      name: 'tracking_distance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km`
+  String get tracking_distance_suffix {
+    return Intl.message(
+      'km',
+      name: 'tracking_distance_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avg pace`
+  String get tracking_average_pace {
+    return Intl.message(
+      'Avg pace',
+      name: 'tracking_average_pace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vertical oscillation`
+  String get tracking_vertical_oscillation {
+    return Intl.message(
+      'Vertical oscillation',
+      name: 'tracking_vertical_oscillation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cm`
+  String get tracking_vertical_oscillation_suffix {
+    return Intl.message(
+      'cm',
+      name: 'tracking_vertical_oscillation_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cadence`
+  String get tracking_cadence {
+    return Intl.message(
+      'Cadence',
+      name: 'tracking_cadence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `spm`
+  String get tracking_cadence_suffix {
+    return Intl.message(
+      'spm',
+      name: 'tracking_cadence_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ground contact time`
+  String get tracking_ground_contact_time {
+    return Intl.message(
+      'Ground contact time',
+      name: 'tracking_ground_contact_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ms`
+  String get tracking_ground_contact_time_suffix {
+    return Intl.message(
+      'ms',
+      name: 'tracking_ground_contact_time_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stride length`
+  String get tracking_stride_length {
+    return Intl.message(
+      'Stride length',
+      name: 'tracking_stride_length',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `m`
+  String get tracking_stride_length_suffix {
+    return Intl.message(
+      'm',
+      name: 'tracking_stride_length_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avg speed`
+  String get tracking_average_speed {
+    return Intl.message(
+      'Avg speed',
+      name: 'tracking_average_speed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `km/h`
+  String get tracking_average_speed_suffix {
+    return Intl.message(
+      'km/h',
+      name: 'tracking_average_speed_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total time`
+  String get tracking_total_time {
+    return Intl.message(
+      'Total time',
+      name: 'tracking_total_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `min`
+  String get tracking_total_time_suffix {
+    return Intl.message(
+      'min',
+      name: 'tracking_total_time_suffix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tips`
+  String get tracking_tips {
+    return Intl.message(
+      'Tips',
+      name: 'tracking_tips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stop session`
+  String get tracking_stop_session {
+    return Intl.message(
+      'Stop session',
+      name: 'tracking_stop_session',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  forma_app:
+    path: ../../../
+
   core_feature:
     path: ../core
 

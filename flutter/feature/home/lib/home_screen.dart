@@ -5,51 +5,66 @@ import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
 import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
+import 'package:core_feature/widget/loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:home_feature/home_cubit.dart';
+import 'package:home_feature/bloc/home_cubit.dart';
+import 'package:home_feature/bloc/home_status.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
+import 'package:forma_app/route/app_router.dart';
 
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetIt.I.get<HomeCubit>()..startDeviceDiscovery(),
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: const Icon(
-            Icons.menu,
-            color: AppColors.pureWhite,
-          ),
-          actions: [
-            const Icon(
-              Icons.calendar_month_outlined,
+      child: BlocConsumer<HomeCubit, HomeState>(
+        listener: (context, state) {
+          final snackBarText = state.status.text(context);
+          if (snackBarText != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(snackBarText)),
+            );
+            context.read<HomeCubit>().resetStatus();
+          }
+        },
+        builder: (context, state) => Scaffold(
+          extendBodyBehindAppBar: true,
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            leading: const Icon(
+              Icons.menu,
               color: AppColors.pureWhite,
             ),
-            16.horizontalSpace,
-          ],
+            actions: [
+              Icon(
+                state.isSensorConnected
+                    ? Icons.bluetooth_connected
+                    : Icons.bluetooth_disabled,
+                color: AppColors.pureWhite,
+              ),
+              16.horizontalSpace,
+            ],
+          ),
+          body: _body(context, state),
         ),
-        body: _body(context),
       ),
     );
   }
 
-  Widget _body(BuildContext context) => Stack(
+  Widget _body(BuildContext context, HomeState state) => Stack(
         children: [
           _background(context),
-          _content(context),
+          _content(context, state),
+          if (state.status == HomeStatus.loading)
+            const Positioned.fill(child: LoaderWidget()),
         ],
       );
 
@@ -57,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            height: 0.5.sh,
+            height: 0.82.sh,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.primaryBlue, AppColors.primaryBlueDark],
@@ -73,20 +88,21 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       );
 
-  Widget _content(BuildContext context) => BlocBuilder<HomeCubit, HomeState>(
-        builder: (context, state) {
-          return SafeArea(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ..._form(context, state),
-                ],
-              ),
-            ),
-          );
-        },
+  Widget _content(BuildContext context, HomeState state) => SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ..._form(context, state),
+              64.verticalSpace,
+              ..._measurementAnalysis(context, state),
+              Expanded(child: Container()),
+              _startSessionButton(context, state),
+              32.verticalSpace,
+            ],
+          ),
+        ),
       );
 
   List<Widget> _form(BuildContext context, HomeState state) => [
@@ -121,23 +137,57 @@ class _HomeScreenState extends State<HomeScreen> {
             onSelected: (value) {
               context.read<HomeCubit>().updateSensorPosition(value);
             }),
-        143.verticalSpace,
-        Center(
-          child: SizedBox(
-            width: 0.7.sw,
-            child: TextButton(
-                onPressed: () {
-                  if (state.isSessionRecordingActive) {
-                    context.read<HomeCubit>().stopSession();
-                    return;
-                  }
-                  context.read<HomeCubit>().startSession();
-                },
-                style: ButtonStyles.fullWidthOrange.sp,
-                child: Text(state.isSessionRecordingActive
-                    ? S.of(context).home_stop_session
-                    : S.of(context).home_start_session)),
-          ),
-        ),
       ];
+
+  List<Widget> _measurementAnalysis(BuildContext context, HomeState state) {
+    final analysis = state.measurementAnalysis;
+    final translations = S.of(context);
+
+    return [
+      Text(translations.home_last_measurement, style: TextStyles.h3Light.sp),
+      32.verticalSpace,
+      _measurementAnalysisItem(translations.home_cadence, analysis?.cadence),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_distance, analysis?.distance),
+      8.verticalSpace,
+      _measurementAnalysisItem(
+          translations.home_ground_contact_time, analysis?.groundContactTime),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_pace, analysis?.pace),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_speed, analysis?.speed),
+      8.verticalSpace,
+      _measurementAnalysisItem(
+          translations.home_stride_length, analysis?.strideLength),
+      8.verticalSpace,
+      _measurementAnalysisItem(translations.home_vertical_oscillation,
+          analysis?.verticalOscillation),
+    ];
+  }
+
+  Widget _measurementAnalysisItem(String label, double? value) =>
+      Text("$label:\t$value", style: TextStyles.h5Light.sp);
+
+  Widget _startSessionButton(BuildContext context, HomeState state) => Center(
+        child: SizedBox(
+          width: 0.7.sw,
+          child: TextButton(
+              onPressed: () async {
+                final sessionId =
+                    await context.read<HomeCubit>().startSession();
+                if (sessionId != null) {
+                  final measurementAnalysis = (await AutoRouter.of(context)
+                          .push(TrackingRoute(sessionId: sessionId)))
+                      as MeasurementAnalysis?;
+                  context
+                      .read<HomeCubit>()
+                      .onSessionStopped(measurementAnalysis);
+                }
+              },
+              style: ButtonStyles.fullWidthOrange.sp,
+              child: Text(state.isSessionRecordingActive
+                  ? S.of(context).home_stop_session
+                  : S.of(context).home_start_session)),
+        ),
+      );
 }

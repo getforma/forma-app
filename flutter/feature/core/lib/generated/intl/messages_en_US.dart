@@ -23,9 +23,64 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("Forma"),
+        "home_cadence": MessageLookupByLibrary.simpleMessage("Cadence"),
+        "home_distance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "home_generic_error":
+            MessageLookupByLibrary.simpleMessage("Something went wrong"),
+        "home_ground_contact_time":
+            MessageLookupByLibrary.simpleMessage("Ground contact time"),
+        "home_last_measurement":
+            MessageLookupByLibrary.simpleMessage("Last measurement"),
+        "home_name_error":
+            MessageLookupByLibrary.simpleMessage("Please enter your name"),
+        "home_pace": MessageLookupByLibrary.simpleMessage("Pace"),
+        "home_sensor_disconnected":
+            MessageLookupByLibrary.simpleMessage("Sensor is not connected!"),
+        "home_sensor_initialization_error":
+            MessageLookupByLibrary.simpleMessage(
+                "Sensor could not be initialized!"),
+        "home_session_started":
+            MessageLookupByLibrary.simpleMessage("Session started"),
+        "home_session_stopped":
+            MessageLookupByLibrary.simpleMessage("Session stopped"),
+        "home_speed": MessageLookupByLibrary.simpleMessage("Speed"),
         "home_start_session":
             MessageLookupByLibrary.simpleMessage("Start session"),
         "home_stop_session":
-            MessageLookupByLibrary.simpleMessage("Stop session")
+            MessageLookupByLibrary.simpleMessage("Stop session"),
+        "home_stride_length":
+            MessageLookupByLibrary.simpleMessage("Stride length"),
+        "home_vertical_oscillation":
+            MessageLookupByLibrary.simpleMessage("Vertical oscillation"),
+        "tracking_average_pace":
+            MessageLookupByLibrary.simpleMessage("Avg pace"),
+        "tracking_average_speed":
+            MessageLookupByLibrary.simpleMessage("Avg speed"),
+        "tracking_average_speed_suffix":
+            MessageLookupByLibrary.simpleMessage("km/h"),
+        "tracking_cadence": MessageLookupByLibrary.simpleMessage("Cadence"),
+        "tracking_cadence_suffix": MessageLookupByLibrary.simpleMessage("spm"),
+        "tracking_distance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "tracking_distance_suffix": MessageLookupByLibrary.simpleMessage("km"),
+        "tracking_ground_contact_time":
+            MessageLookupByLibrary.simpleMessage("Ground contact time"),
+        "tracking_ground_contact_time_suffix":
+            MessageLookupByLibrary.simpleMessage("ms"),
+        "tracking_score": MessageLookupByLibrary.simpleMessage("Score"),
+        "tracking_stop_session":
+            MessageLookupByLibrary.simpleMessage("Stop session"),
+        "tracking_stride_length":
+            MessageLookupByLibrary.simpleMessage("Stride length"),
+        "tracking_stride_length_suffix":
+            MessageLookupByLibrary.simpleMessage("m"),
+        "tracking_tips": MessageLookupByLibrary.simpleMessage("Tips"),
+        "tracking_total_time":
+            MessageLookupByLibrary.simpleMessage("Total time"),
+        "tracking_total_time_suffix":
+            MessageLookupByLibrary.simpleMessage("min"),
+        "tracking_vertical_oscillation":
+            MessageLookupByLibrary.simpleMessage("Vertical oscillation"),
+        "tracking_vertical_oscillation_suffix":
+            MessageLookupByLibrary.simpleMessage("cm")
       };
 }

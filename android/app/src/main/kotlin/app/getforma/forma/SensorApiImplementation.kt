@@ -96,6 +96,7 @@ class SensorApiImplementation private constructor(
         // Turn on the device
         try {
             bwt901ble.open()
+            setSensorFrequency(bwt901ble)
         } catch (e: OpenDeviceException) {
             // Failed to open device
             e.printStackTrace()
@@ -146,6 +147,22 @@ class SensorApiImplementation private constructor(
                 z = bwt901ble.getDeviceData(WitSensorKey.AngleZ)?.toDoubleOrNull(),
             )
         )
+    }
+
+    private fun setSensorFrequency(bwt901ble: Bwt901ble) {
+        /**
+         * 0x01：0.1Hz
+         * 0x02：0.5Hz
+         * 0x03：1Hz
+         * 0x04：2Hz
+         * 0x05：5Hz
+         * 0x06：10Hz（default）
+         * 0x07：20Hz
+         * 0x08：50Hz
+         * 0x09：100Hz
+         * 0x0A：200Hz
+         */
+        bwt901ble.setReturnRate(0x08)
     }
 }
 

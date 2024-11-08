@@ -7,8 +7,8 @@ class SensorRepositoryImpl implements SensorRepository {
   final SensorApi _sensorApi = SensorApi();
 
   @override
-  Future<void> initialize() async {
-    await _sensorApi.initialize();
+  Future<bool> initialize() async {
+    return _sensorApi.initialize();
   }
 
   @override

@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
-import 'package:retrofit/error_logger.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
@@ -20,6 +20,6 @@ abstract class SessionService {
   Future<HttpResponse<SessionInfo>> createSession(@Body() SessionRequest body);
 
   @POST("/sessions/{id}/track")
-  Future<HttpResponse> trackSessionData(
+  Future<HttpResponse<MeasurementAnalysis>> trackSessionData(
       @Path("id") String id, @Body() List<SessionMeasurement> body);
 }
