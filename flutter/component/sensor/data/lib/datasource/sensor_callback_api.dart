@@ -19,11 +19,9 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
 
   @PostConstruct()
   Future<void> init() async {
-    // await _sensorStoreWorker.initialize();
-
-    // _appConfigurationRepository.getCurrentSessionIdStream().listen((sessionId) {
-    //   _currentSessionId = sessionId;
-    // });
+    _appConfigurationRepository.getCurrentSessionIdStream().listen((sessionId) {
+      _currentSessionId = sessionId;
+    });
   }
 
   @override
@@ -31,7 +29,7 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
     if (_currentSessionId == null) {
       return;
     }
-    // _sensorStoreWorker.storeData(sensorData, _currentSessionId!);
+    _sensorStoreWorker.storeData(sensorData, _currentSessionId!);
   }
 
   @override

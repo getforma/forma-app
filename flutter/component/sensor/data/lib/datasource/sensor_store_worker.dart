@@ -131,20 +131,18 @@ class SensorStoreWorker {
   Isolate? _isolate;
   final Completer<void> _isolateReady = Completer.sync();
 
+  SessionRepository? _sessionRepository;
+
   Future<void> initialize() async {
     try {
       final receivePort = ReceivePort();
       receivePort.listen(_handleResponsesFromIsolate);
 
-      final rootToken = RootIsolateToken.instance;
-      if (rootToken == null) {
-        return;
-      }
+      _sessionRepository = GetIt.I.get<SessionRepository>();
 
       _isolate = await Isolate.spawn(
         _startRemoteIsolate,
-        // receivePort.sendPort,
-        _IsolateSpawnMessage(receivePort.sendPort, rootToken),
+        receivePort.sendPort,
         debugName: 'WorkerIsolate',
       );
 
@@ -160,58 +158,46 @@ class SensorStoreWorker {
       _sendPort = message;
       _isolateReady.complete();
     } else if (message is _StoreDataMessage) {
-      print('Received from isolate: ${message.toString()}');
+      final _StoreDataMessage storeDataMessage = message;
+      final sensorData = storeDataMessage.data;
+      final sessionId = storeDataMessage.sessionId;
+      _sessionRepository?.storeMeasurementLocally(
+        sessionId: sessionId,
+        data: SensorData(
+          name: sensorData.name,
+          acceleration: ThreeAxisMeasurement(
+            x: sensorData.acceleration.x,
+            y: sensorData.acceleration.y,
+            z: sensorData.acceleration.z,
+          ),
+          angularVelocity: ThreeAxisMeasurement(
+            x: sensorData.angularVelocity.x,
+            y: sensorData.angularVelocity.y,
+            z: sensorData.angularVelocity.z,
+          ),
+          magneticField: ThreeAxisMeasurement(
+            x: sensorData.magneticField.x,
+            y: sensorData.magneticField.y,
+            z: sensorData.magneticField.z,
+          ),
+          angle: ThreeAxisMeasurement(
+            x: sensorData.angle.x,
+            y: sensorData.angle.y,
+            z: sensorData.angle.z,
+          ),
+        ),
+      );
     }
   }
 
-  static Future<void> _startRemoteIsolate(
-      _IsolateSpawnMessage spawnMessage) async {
+  static void _startRemoteIsolate(SendPort port) {
     final receivePort = ReceivePort();
-    spawnMessage.sendPort.send(receivePort.sendPort);
-
-    DartPluginRegistrant.ensureInitialized();
-    BackgroundIsolateBinaryMessenger.ensureInitialized(spawnMessage.rootToken);
-    await configureDependencies();
-    final sessionRepository = GetIt.I.get<SessionRepository>();
+    port.send(receivePort.sendPort);
 
     receivePort.listen((dynamic message) async {
       if (message is _StoreDataMessage) {
         try {
-          print('Received from main: ${message.toString()}');
-
-          final _StoreDataMessage storeDataMessage = message;
-          final sensorData = storeDataMessage.data;
-          final sessionId = storeDataMessage.sessionId;
-
-          sessionRepository.storeMeasurementLocally(
-            sessionId: sessionId,
-            data: SensorData(
-              name: sensorData.name,
-              acceleration: ThreeAxisMeasurement(
-                x: sensorData.acceleration.x,
-                y: sensorData.acceleration.y,
-                z: sensorData.acceleration.z,
-              ),
-              angularVelocity: ThreeAxisMeasurement(
-                x: sensorData.angularVelocity.x,
-                y: sensorData.angularVelocity.y,
-                z: sensorData.angularVelocity.z,
-              ),
-              magneticField: ThreeAxisMeasurement(
-                x: sensorData.magneticField.x,
-                y: sensorData.magneticField.y,
-                z: sensorData.magneticField.z,
-              ),
-              angle: ThreeAxisMeasurement(
-                x: sensorData.angle.x,
-                y: sensorData.angle.y,
-                z: sensorData.angle.z,
-              ),
-            ),
-          );
-          print("stored data");
-
-          spawnMessage.sendPort.send(message);
+          port.send(message);
         } catch (e) {
           print('Error in isolate: $e');
         }

@@ -91,8 +91,19 @@ class SessionRepositoryImpl implements SessionRepository {
             await _localDataSource.getUnsynedMeasurements(response.id);
         print("unsyncedMeasurementsLocalCount: ${unsyncedMeasurements.length}");
         print("fromSensorCount: $fromSensorCount");
-        fromSensorCount = 0;
+
+        final measurementAnalysis = await _sessionDataSource.trackSessionData(
+            response.id,
+            unsyncedMeasurements
+                .map((measurement) =>
+                    SessionMeasurement.fromMeasurement(measurement))
+                .toList(growable: false));
+
+        await _localDataSource.saveMeasurementAnalysis(
+            measurementAnalysis, response.id);
+
         await _localDataSource.markDataAsSynced(response.id);
+        fromSensorCount = 0;
       });
 
       await _appConfigurationRepository.setCurrentSessionId(response.id);
