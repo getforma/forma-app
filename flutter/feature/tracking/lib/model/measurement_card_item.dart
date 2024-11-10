@@ -63,9 +63,11 @@ enum MeasurementCardItem {
 
     switch (this) {
       case MeasurementCardItem.distance:
-        return "${measurementAnalysis.distance.toStringAsFixed(2)} ${_suffix(context)}";
+        return "${(measurementAnalysis.distance / 100.0).toStringAsFixed(2)} ${_suffix(context)}";
       case MeasurementCardItem.averagePace:
-        return "${measurementAnalysis.pace.toInt()}";
+        final minutes = measurementAnalysis.pace.toInt();
+        final seconds = ((measurementAnalysis.pace % 1) * 60).toInt();
+        return "$minutes' $seconds''";
       case MeasurementCardItem.verticalOscillation:
         return "${(measurementAnalysis.verticalOscillation * 100).toInt()} ${_suffix(context)}";
       case MeasurementCardItem.cadence:
@@ -75,7 +77,8 @@ enum MeasurementCardItem {
       case MeasurementCardItem.strideLength:
         return "${measurementAnalysis.strideLength.toStringAsFixed(2)} ${_suffix(context)}";
       case MeasurementCardItem.averageSpeed:
-        return "${measurementAnalysis.speed.toStringAsFixed(2)} ${_suffix(context)}";
+        final speedInKm = measurementAnalysis.speed * (60 * 60 / 1000);
+        return "${speedInKm.toStringAsFixed(2)} ${_suffix(context)}";
       case MeasurementCardItem.totalTime:
         return "${measurementAnalysis.endTime.difference(measurementAnalysis.startTime).inMinutes} ${_suffix(context)}";
     }
