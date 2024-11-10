@@ -5,5 +5,6 @@ abstract class AppConfigurationRepository {
   Stream<String?> getCurrentSessionIdStream();
   Future<String?> getCurrentSessionId();
   Future<void> removeCurrentSessionId();
+  void dispose();
 }
 

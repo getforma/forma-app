@@ -10,6 +10,7 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
   final SensorStoreWorker _sensorStoreWorker;
   final AppConfigurationRepository _appConfigurationRepository;
 
+  StreamSubscription<String?>? _currentSessionIdSubscription;
   String? _currentSessionId;
 
   SensorCallbackApiImpl(
@@ -17,9 +18,11 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
     this._sensorStoreWorker,
   );
 
-  @PostConstruct()
+  @PostConstruct(preResolve: true)
   Future<void> init() async {
-    _appConfigurationRepository.getCurrentSessionIdStream().listen((sessionId) {
+    _currentSessionIdSubscription = _appConfigurationRepository
+        .getCurrentSessionIdStream()
+        .listen((sessionId) {
       _currentSessionId = sessionId;
     });
   }
@@ -35,6 +38,11 @@ class SensorCallbackApiImpl implements SensorCallbackApi {
   @override
   Future<void> onSensorConnected(bool isConnected) async {
     await _appConfigurationRepository.setIsSensorConnected(isConnected);
+  }
+
+  @disposeMethod
+  void dispose() {
+    _currentSessionIdSubscription?.cancel();
   }
 }
 

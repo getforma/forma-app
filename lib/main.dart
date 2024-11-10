@@ -16,11 +16,11 @@ Future<void> main() async {
 
   GetIt.I.get<AppDatabase>();
 
-  final sensorCallbackApi = GetIt.I<SensorCallbackApiImpl>();
-  SensorCallbackApi.setUp(sensorCallbackApi);
-
   final worker = GetIt.I.get<SensorStoreWorker>();
   await worker.initialize();
+
+  final sensorCallbackApi = GetIt.I<SensorCallbackApiImpl>();
+  SensorCallbackApi.setUp(sensorCallbackApi);
 
   runApp(Application(appRouter: getIt.get<AppRouter>()));
 }

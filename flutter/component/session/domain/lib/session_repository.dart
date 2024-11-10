@@ -21,4 +21,6 @@ abstract class SessionRepository {
   Future<Either<Exception, MeasurementAnalysis>> stopSession();
 
   Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId);
+
+  void dispose();
 }

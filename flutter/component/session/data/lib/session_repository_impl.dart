@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:android_id/android_id.dart';
@@ -30,6 +29,9 @@ class SessionRepositoryImpl implements SessionRepository {
   StreamSubscription<Position>? positionStream;
   Position? latestPosition;
 
+  StreamSubscription<String?>? _currentSessionIdSubscription;
+  String? _currentSessionId;
+
   Timer? _syncDataTimer;
 
   SessionRepositoryImpl(
@@ -37,6 +39,15 @@ class SessionRepositoryImpl implements SessionRepository {
     this._localDataSource,
     this._appConfigurationRepository,
   );
+
+  @PostConstruct(preResolve: true)
+  Future<void> init() async {
+    _currentSessionIdSubscription = _appConfigurationRepository
+        .getCurrentSessionIdStream()
+        .listen((sessionId) {
+      _currentSessionId = sessionId;
+    });
+  }
 
   @override
   Future<Either<Exception, SessionInfo>> createSession({
@@ -117,13 +128,9 @@ class SessionRepositoryImpl implements SessionRepository {
 
   @override
   Future<Either<Exception, MeasurementAnalysis>> stopSession() async {
-    final sessionString =
-        await _appConfigurationRepository.getCurrentSessionId();
-    if (sessionString == null) {
+    if (_currentSessionId == null) {
       return Left(Exception("No session started"));
     }
-
-    final currentSession = SessionInfo.fromJson(jsonDecode(sessionString));
 
     await _appConfigurationRepository.removeCurrentSessionId();
 
@@ -132,7 +139,7 @@ class SessionRepositoryImpl implements SessionRepository {
     positionStream?.cancel();
     positionStream = null;
 
-    return await _syncData(currentSession.id);
+    return await _syncData(_currentSessionId!);
   }
 
   Future<Either<Exception, MeasurementAnalysis>> _syncData(
@@ -193,5 +200,11 @@ class SessionRepositoryImpl implements SessionRepository {
   @override
   Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId) {
     return _localDataSource.getMeasurementAnalysisStream(sessionId);
+  }
+
+  @disposeMethod
+  @override
+  void dispose() {
+    _currentSessionIdSubscription?.cancel();
   }
 }
