@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  forma_app:
+    path: ../../../../
+
   sensor_component_domain:
     path: ../domain
 

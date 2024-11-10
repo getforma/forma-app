@@ -3,7 +3,6 @@ import 'package:core_component_data/database/model/measurement_analysis_table.da
 import 'package:core_component_data/database/model/measurement_table.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'app_database.g.dart';
@@ -20,12 +19,11 @@ class AppDatabase extends _$AppDatabase {
   @override
   MigrationStrategy get migration =>
       MigrationStrategy(beforeOpen: (openingDetails) async {
-        if (kDebugMode) {
-          final m = Migrator(this);
-          for (final table in allTables) {
-            await m.deleteTable(table.actualTableName);
-            await m.createTable(table);
-          }
+        // TODO: add migration strategy, for now it's easier to delete the database
+        final m = Migrator(this);
+        for (final table in allTables) {
+          await m.deleteTable(table.actualTableName);
+          await m.createTable(table);
         }
       });
 

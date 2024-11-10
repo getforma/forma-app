@@ -1,9 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:android_id/android_id.dart';
-import 'package:core_component_domain/shared_preferences_repository.dart';
+import 'package:core_component_domain/app_configuration_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -25,18 +24,30 @@ const _kDataSyncDuration = Duration(seconds: 30);
 class SessionRepositoryImpl implements SessionRepository {
   final SessionDataSource _sessionDataSource;
   final LocalSensorDataSource _localDataSource;
-  final SharedPreferencesRepository _sharedPreferencesRepository;
+  final AppConfigurationRepository _appConfigurationRepository;
 
   StreamSubscription<Position>? positionStream;
   Position? latestPosition;
+
+  StreamSubscription<String?>? _currentSessionIdSubscription;
+  String? _currentSessionId;
 
   Timer? _syncDataTimer;
 
   SessionRepositoryImpl(
     this._sessionDataSource,
     this._localDataSource,
-    this._sharedPreferencesRepository,
+    this._appConfigurationRepository,
   );
+
+  @PostConstruct(preResolve: true)
+  Future<void> init() async {
+    _currentSessionIdSubscription = _appConfigurationRepository
+        .getCurrentSessionIdStream()
+        .listen((sessionId) {
+      _currentSessionId = sessionId;
+    });
+  }
 
   @override
   Future<Either<Exception, SessionInfo>> createSession({
@@ -80,10 +91,7 @@ class SessionRepositoryImpl implements SessionRepository {
         _syncData(response.id);
       });
 
-      await _sharedPreferencesRepository.set(
-        SharedPreferencesKey.currentSession,
-        jsonEncode(response.toJson()),
-      );
+      await _appConfigurationRepository.setCurrentSessionId(response.id);
 
       return Right(response);
     } on Exception catch (e) {
@@ -97,15 +105,9 @@ class SessionRepositoryImpl implements SessionRepository {
     double? longitude,
     double? latitude,
     SensorPosition? sensorPosition,
+    required String sessionId,
   }) async {
     try {
-      final sessionInfoString = _sharedPreferencesRepository
-          .get<String>(SharedPreferencesKey.currentSession);
-      if (sessionInfoString == null) {
-        return const Right(null);
-      }
-
-      final sessionInfo = SessionInfo.fromJson(jsonDecode(sessionInfoString));
       final position = latestPosition;
       if (position == null) {
         return Left(Exception("GPS position not established"));
@@ -116,7 +118,7 @@ class SessionRepositoryImpl implements SessionRepository {
         longitude: position.longitude,
         latitude: position.latitude,
         sensorPosition: SensorPosition.pelvisRight,
-        sessionId: sessionInfo.id,
+        sessionId: sessionId,
       );
       return const Right(null);
     } on Exception catch (e) {
@@ -126,23 +128,18 @@ class SessionRepositoryImpl implements SessionRepository {
 
   @override
   Future<Either<Exception, MeasurementAnalysis>> stopSession() async {
-    final sessionString = _sharedPreferencesRepository
-        .get<String>(SharedPreferencesKey.currentSession);
-    if (sessionString == null) {
+    if (_currentSessionId == null) {
       return Left(Exception("No session started"));
     }
 
-    final currentSession = SessionInfo.fromJson(jsonDecode(sessionString));
-
-    await _sharedPreferencesRepository
-        .remove(SharedPreferencesKey.currentSession);
+    await _appConfigurationRepository.removeCurrentSessionId();
 
     _syncDataTimer?.cancel();
     _syncDataTimer = null;
     positionStream?.cancel();
     positionStream = null;
 
-    return await _syncData(currentSession.id);
+    return await _syncData(_currentSessionId!);
   }
 
   Future<Either<Exception, MeasurementAnalysis>> _syncData(
@@ -159,7 +156,7 @@ class SessionRepositoryImpl implements SessionRepository {
 
       await _localDataSource.saveMeasurementAnalysis(
           measurementAnalysis, sessionId);
-      await _localDataSource.markDataAsSynced(sessionId);
+      await _localDataSource.markDataAsSynced(unsyncedMeasurements);
 
       return Right(measurementAnalysis);
     } on Exception catch (e) {
@@ -203,5 +200,11 @@ class SessionRepositoryImpl implements SessionRepository {
   @override
   Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId) {
     return _localDataSource.getMeasurementAnalysisStream(sessionId);
+  }
+
+  @disposeMethod
+  @override
+  void dispose() {
+    _currentSessionIdSubscription?.cancel();
   }
 }

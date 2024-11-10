@@ -7,5 +7,5 @@ abstract class SharedPreferencesRepository {
 }
 
 enum SharedPreferencesKey {
-  currentSession,
+  first,
 }

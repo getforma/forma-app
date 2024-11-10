@@ -1,50 +1,48 @@
+import 'dart:async';
+
+import 'package:core_component_domain/app_configuration_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_data/datasource/sensor_messages.g.dart';
-import 'package:sensor_component_domain/model/sensor_data.dart' as domain;
-import 'package:session_component_domain/session_repository.dart';
-import 'package:sensor_component_domain/use_case/set_is_sensor_connected_use_case.dart';
+import 'package:sensor_component_data/datasource/sensor_store_worker.dart';
 
-@injectable
+@singleton
 class SensorCallbackApiImpl implements SensorCallbackApi {
-  final SessionRepository _sessionRepository;
-  final SetIsSensorConnectedUseCase _setIsSensorConnectedUseCase;
+  final SensorStoreWorker _sensorStoreWorker;
+  final AppConfigurationRepository _appConfigurationRepository;
+
+  StreamSubscription<String?>? _currentSessionIdSubscription;
+  String? _currentSessionId;
 
   SensorCallbackApiImpl(
-    this._sessionRepository,
-    this._setIsSensorConnectedUseCase,
+    this._appConfigurationRepository,
+    this._sensorStoreWorker,
   );
+
+  @PostConstruct(preResolve: true)
+  Future<void> init() async {
+    _currentSessionIdSubscription = _appConfigurationRepository
+        .getCurrentSessionIdStream()
+        .listen((sessionId) {
+      _currentSessionId = sessionId;
+    });
+  }
 
   @override
   void onSensorDataRecorded(SensorDataModel sensorData) {
-    _sessionRepository.storeMeasurementLocally(
-        data: domain.SensorData(
-      name: sensorData.name,
-      acceleration: domain.ThreeAxisMeasurement(
-        x: sensorData.acceleration.x,
-        y: sensorData.acceleration.y,
-        z: sensorData.acceleration.z,
-      ),
-      angularVelocity: domain.ThreeAxisMeasurement(
-        x: sensorData.angularVelocity.x,
-        y: sensorData.angularVelocity.y,
-        z: sensorData.angularVelocity.z,
-      ),
-      magneticField: domain.ThreeAxisMeasurement(
-        x: sensorData.magneticField.x,
-        y: sensorData.magneticField.y,
-        z: sensorData.magneticField.z,
-      ),
-      angle: domain.ThreeAxisMeasurement(
-        x: sensorData.angle.x,
-        y: sensorData.angle.y,
-        z: sensorData.angle.z,
-      ),
-    ));
+    if (_currentSessionId == null) {
+      return;
+    }
+    _sensorStoreWorker.storeData(sensorData, _currentSessionId!);
   }
 
   @override
   Future<void> onSensorConnected(bool isConnected) async {
-    await _setIsSensorConnectedUseCase.invoke(isConnected);
+    await _appConfigurationRepository.setIsSensorConnected(isConnected);
+  }
+
+  @disposeMethod
+  void dispose() {
+    _currentSessionIdSubscription?.cancel();
   }
 }
 

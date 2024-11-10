@@ -210,7 +210,7 @@ packages:
     source: hosted
     version: "3.1.1"
   core_component_data:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../component/core/data"
       relative: true
@@ -789,7 +789,7 @@ packages:
     source: hosted
     version: "4.4.1"
   sensor_component_data:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../component/sensor/data"
       relative: true
@@ -803,7 +803,7 @@ packages:
     source: path
     version: "1.0.0+1"
   session_component_data:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../../component/session/data"
       relative: true
@@ -1006,7 +1006,7 @@ packages:
     source: hosted
     version: "1.0.1"
   tracking_feature:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: "../tracking"
       relative: true
