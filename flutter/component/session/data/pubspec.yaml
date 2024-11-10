@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   forma_app:
-    path: ../../forma_app
+    path: ../../../../
 
   session_component_domain:
     path: ../domain

@@ -11,6 +11,7 @@ import 'package:forma_app/route/app_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sensor_component_data/datasource/sensor_callback_api.dart';
 import 'package:sensor_component_data/datasource/sensor_messages.g.dart';
+import 'package:sensor_component_data/datasource/sensor_store_worker.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,12 +22,27 @@ Future<void> main() async {
   final sensorCallbackApi = GetIt.I<SensorCallbackApiImpl>();
   SensorCallbackApi.setUp(sensorCallbackApi);
 
-  final worker = Worker();
+  final worker = GetIt.I.get<SensorStoreWorker>();
   await worker.initialize();
-
   Timer(const Duration(seconds: 5), () {
-    worker.parseJson('{"key":"value"}');
+    worker.storeData(
+      SensorDataModel(
+        name: 'test',
+        acceleration: ThreeAxisMeasurementModel(x: 1, y: 2, z: 3),
+        angularVelocity: ThreeAxisMeasurementModel(x: 4, y: 5, z: 6),
+        magneticField: ThreeAxisMeasurementModel(x: 7, y: 8, z: 9),
+        angle: ThreeAxisMeasurementModel(x: 10, y: 11, z: 12),
+      ),
+      '123',
+    );
   });
+
+  // final worker = Worker();
+  // await worker.initialize();
+
+  // Timer(const Duration(seconds: 5), () {
+  //   worker.parseJson('{"key":"value"}');
+  // });
 
   runApp(Application(appRouter: getIt.get<AppRouter>()));
 }
@@ -40,7 +56,7 @@ class Worker {
     try {
       final receivePort = ReceivePort();
       receivePort.listen(_handleResponsesFromIsolate);
-      
+
       _isolate = await Isolate.spawn(
         _startRemoteIsolate,
         receivePort.sendPort,
@@ -92,4 +108,3 @@ class Worker {
     _sendPort = null;
   }
 }
- 

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:android_id/android_id.dart';
+import 'package:core_component_domain/app_configuration_repository.dart';
 import 'package:core_component_domain/shared_preferences_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -25,20 +26,24 @@ import 'package:session_component_domain/session_repository.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:forma_app/injection/injection.dart';
 
-const _kDataSyncDuration = Duration(seconds: 30);
+const _kDataSyncDuration = Duration(seconds: 5);
 
 @LazySingleton(as: SessionRepository)
 class SessionRepositoryImpl implements SessionRepository {
   final SessionDataSource _sessionDataSource;
   final LocalSensorDataSource _localDataSource;
-  final SharedPreferencesRepository _sharedPreferencesRepository;
+  final AppConfigurationRepository _appConfigurationRepository;
 
   StreamSubscription<Position>? positionStream;
   Position? latestPosition;
 
-  SessionRepositoryImpl(this._sessionDataSource,
-      this._localDataSource,
-      this._sharedPreferencesRepository,);
+  int fromSensorCount = 0;
+
+  SessionRepositoryImpl(
+    this._sessionDataSource,
+    this._localDataSource,
+    this._appConfigurationRepository,
+  );
 
   @override
   Future<Either<Exception, SessionInfo>> createSession({
@@ -68,8 +73,8 @@ class SessionRepositoryImpl implements SessionRepository {
       positionStream =
           Geolocator.getPositionStream(locationSettings: locationSettings)
               .listen((Position? position) {
-            latestPosition = position;
-          });
+        latestPosition = position;
+      });
 
       final deviceId = await _getDeviceId();
       final response = await _sessionDataSource.createSession(SessionRequest(
@@ -79,12 +84,18 @@ class SessionRepositoryImpl implements SessionRepository {
       ));
 
       // Start the background service instead of using a Timer
-      await _startBackgroundService(response.id);
+      // await _startBackgroundService(response.id);
 
-      await _sharedPreferencesRepository.set(
-        SharedPreferencesKey.currentSession,
-        jsonEncode(response.toJson()),
-      );
+      Timer.periodic(_kDataSyncDuration, (timer) async {
+        final unsyncedMeasurements =
+            await _localDataSource.getUnsynedMeasurements(response.id);
+        print("unsyncedMeasurementsLocalCount: ${unsyncedMeasurements.length}");
+        print("fromSensorCount: $fromSensorCount");
+        fromSensorCount = 0;
+        await _localDataSource.markDataAsSynced(response.id);
+      });
+
+      await _appConfigurationRepository.setCurrentSessionId(response.id);
 
       return Right(response);
     } on Exception catch (e) {
@@ -93,22 +104,22 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   Future<void> _startBackgroundService(String sessionId) async {
-    final service = FlutterBackgroundService();
-    await service.configure(
-      androidConfiguration: AndroidConfiguration(
-        onStart: onStart,
-        autoStart: true,
-        isForegroundMode: false,
-      ),
-      iosConfiguration: IosConfiguration(
-        autoStart: true,
-        onForeground: onStart,
-        onBackground: onIosBackground,
-      ),
-    );
-    await service.startService();
+    // final service = FlutterBackgroundService();
+    // await service.configure(
+    //   androidConfiguration: AndroidConfiguration(
+    //     onStart: onStart,
+    //     autoStart: true,
+    //     isForegroundMode: false,
+    //   ),
+    //   iosConfiguration: IosConfiguration(
+    //     autoStart: true,
+    //     onForeground: onStart,
+    //     onBackground: onIosBackground,
+    //   ),
+    // );
+    // await service.startService();
     // Pass the sessionId to the background service
-    service.invoke('setSessionId', {'sessionId': sessionId});
+    // service.invoke('setSessionId', {'sessionId': sessionId});
   }
 
   @override
@@ -117,16 +128,12 @@ class SessionRepositoryImpl implements SessionRepository {
     double? longitude,
     double? latitude,
     SensorPosition? sensorPosition,
+    required String sessionId,
   }) async {
     try {
-      final sessionInfoString = _sharedPreferencesRepository
-          .get<String>(SharedPreferencesKey.currentSession);
-      if (sessionInfoString == null) {
-        return const Right(null);
-      }
+      fromSensorCount++;
 
-      final sessionInfo = SessionInfo.fromJson(jsonDecode(sessionInfoString));
-      final position = latestPosition;
+      final position = await Geolocator.getLastKnownPosition();
       if (position == null) {
         return Left(Exception("GPS position not established"));
       }
@@ -136,7 +143,7 @@ class SessionRepositoryImpl implements SessionRepository {
         longitude: position.longitude,
         latitude: position.latitude,
         sensorPosition: SensorPosition.pelvisRight,
-        sessionId: sessionInfo.id,
+        sessionId: sessionId,
       );
       return const Right(null);
     } on Exception catch (e) {
@@ -146,16 +153,15 @@ class SessionRepositoryImpl implements SessionRepository {
 
   @override
   Future<Either<Exception, MeasurementAnalysis>> stopSession() async {
-    final sessionString = _sharedPreferencesRepository
-        .get<String>(SharedPreferencesKey.currentSession);
+    final sessionString =
+        await _appConfigurationRepository.getCurrentSessionId();
     if (sessionString == null) {
       return Left(Exception("No session started"));
     }
 
     final currentSession = SessionInfo.fromJson(jsonDecode(sessionString));
 
-    await _sharedPreferencesRepository
-        .remove(SharedPreferencesKey.currentSession);
+    await _appConfigurationRepository.removeCurrentSessionId();
 
     final service = FlutterBackgroundService();
     service.invoke('stopService');
@@ -169,19 +175,22 @@ class SessionRepositoryImpl implements SessionRepository {
       String sessionId) async {
     try {
       final unsyncedMeasurements =
-      await _localDataSource.getUnsynedMeasurements(sessionId);
-      final measurementAnalysis = await _sessionDataSource.trackSessionData(
-          sessionId,
-          unsyncedMeasurements
-              .map((measurement) =>
-              SessionMeasurement.fromMeasurement(measurement))
-              .toList(growable: false));
+          await _localDataSource.getUnsynedMeasurements(sessionId);
+      print("unsyncedMeasurementsCount: ${unsyncedMeasurements.length}");
+      fromSensorCount = 0;
+      // final measurementAnalysis = await _sessionDataSource.trackSessionData(
+      //     sessionId,
+      //     unsyncedMeasurements
+      //         .map((measurement) =>
+      //             SessionMeasurement.fromMeasurement(measurement))
+      //         .toList(growable: false));
 
-      await _localDataSource.saveMeasurementAnalysis(
-          measurementAnalysis, sessionId);
-      await _localDataSource.markDataAsSynced(sessionId);
+      // await _localDataSource.saveMeasurementAnalysis(
+      //     measurementAnalysis, sessionId);
+      // await _localDataSource.markDataAsSynced(sessionId);
 
-      return Right(measurementAnalysis);
+      // return Right(measurementAnalysis);
+      return Left(Exception("test"));
     } on Exception catch (e) {
       return Left(Exception("Couldn't sync data: $e"));
     }
@@ -227,36 +236,36 @@ class SessionRepositoryImpl implements SessionRepository {
 }
 
 // This function will be called when the background service is started
-@pragma('vm:entry-point')
-void onStart(ServiceInstance service) async {
-  DartPluginRegistrant.ensureInitialized();
+// @pragma('vm:entry-point')
+// void onStart(ServiceInstance service) async {
+//   DartPluginRegistrant.ensureInitialized();
 
-  String? sessionId;
+//   String? sessionId;
 
-  service.on('setSessionId').listen((event) {
-    sessionId = event?['sessionId'] as String?;
-  });
+//   service.on('setSessionId').listen((event) {
+//     sessionId = event?['sessionId'] as String?;
+//   });
 
-  service.on('stopService').listen((event) async {
-    await service.stopSelf();
-  });
+//   service.on('stopService').listen((event) async {
+//     await service.stopSelf();
+//   });
 
-  await configureDependencies();
-  final sessionRepository = GetIt.I.get<SessionRepository>();
+//   await configureDependencies();
+//   final sessionRepository = GetIt.I.get<SessionRepository>();
 
-  // This timer replaces the one in the main app
-  Timer.periodic(_kDataSyncDuration, (timer) async {
-    final _sessionId = sessionId;
-    if (_sessionId != null) {
-      await sessionRepository.syncData(_sessionId);
-    }
-  });
-}
+//   // This timer replaces the one in the main app
+//   Timer.periodic(_kDataSyncDuration, (timer) async {
+//     final _sessionId = sessionId;
+//     if (_sessionId != null) {
+//       await sessionRepository.syncData(_sessionId);
+//     }
+//   });
+// }
 
-// iOS-specific background handler
-@pragma('vm:entry-point')
-Future<bool> onIosBackground(ServiceInstance service) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  DartPluginRegistrant.ensureInitialized();
-  return true;
-}
+// // iOS-specific background handler
+// @pragma('vm:entry-point')
+// Future<bool> onIosBackground(ServiceInstance service) async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   DartPluginRegistrant.ensureInitialized();
+//   return true;
+// }

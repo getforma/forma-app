@@ -15,6 +15,7 @@ abstract class SessionRepository {
     double? longitude,
     double? latitude,
     SensorPosition? sensorPosition,
+    required String sessionId,
   });
 
   Future<Either<Exception, MeasurementAnalysis>> stopSession();

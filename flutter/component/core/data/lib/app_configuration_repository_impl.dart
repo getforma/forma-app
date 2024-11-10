@@ -30,4 +30,38 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
               isConnected.toString(),
             )));
   }
+
+  @override
+  Future<void> setCurrentSessionId(String sessionId) async {
+    await _database
+        .into(_database.appConfigurationTable)
+        .insertOnConflictUpdate(AppConfigurationTableCompanion(
+            key: const Value(AppConfigurationKey.currentSessionId),
+            value: Value(sessionId)));
+  }
+
+  @override
+  Stream<String?> getCurrentSessionIdStream() {
+    return (_database.select(_database.appConfigurationTable)
+          ..where(
+              (t) => t.key.equals(AppConfigurationKey.currentSessionId.name)))
+        .watchSingleOrNull()
+        .map((configuration) => configuration?.value);
+  }
+
+  @override
+  Future<String?> getCurrentSessionId() async {
+    return (await _database
+            .select(_database.appConfigurationTable)
+            .getSingleOrNull())
+        ?.value;
+  }
+
+  @override
+  Future<void> removeCurrentSessionId() async {
+    await (_database.delete(_database.appConfigurationTable)
+          ..where(
+              (t) => t.key.equals(AppConfigurationKey.currentSessionId.name)))
+        .go();
+  }
 }
