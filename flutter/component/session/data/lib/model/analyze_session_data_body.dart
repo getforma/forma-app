@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'analyze_session_data_body.freezed.dart';
+part 'analyze_session_data_body.g.dart';
 
 @freezed
 class AnalyzeSessionDataBody with _$AnalyzeSessionDataBody {
