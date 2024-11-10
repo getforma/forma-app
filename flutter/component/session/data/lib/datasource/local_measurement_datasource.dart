@@ -20,7 +20,7 @@ abstract class LocalSensorDataSource {
 
   Future<List<Measurement>> getUnsynedMeasurements(String sessionId);
 
-  Future<void> markDataAsSynced(String sessionId);
+  Future<void> markDataAsSynced(List<Measurement> measurements);
 
   Future<void> saveMeasurementAnalysis(
       MeasurementAnalysis analysis, String sessionId);
@@ -91,12 +91,11 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
   }
 
   @override
-  Future<void> markDataAsSynced(String sessionId) async {
+  Future<void> markDataAsSynced(List<Measurement> measurements) async {
     await (_database.update(_database.measurementTable)
-          ..where((tbl) => tbl.isSynced.equals(false)))
-        .write(MeasurementTableCompanion(
-      sessionId: Value(sessionId),
-      isSynced: const Value(true),
+          ..where((tbl) => tbl.timestamp.isIn(measurements.map((m) => m.time))))
+        .write(const MeasurementTableCompanion(
+      isSynced: Value(true),
     ));
   }
 
