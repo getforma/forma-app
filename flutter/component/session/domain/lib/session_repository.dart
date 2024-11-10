@@ -22,5 +22,11 @@ abstract class SessionRepository {
 
   Stream<MeasurementAnalysis?> getMeasurementAnalysisStream(String sessionId);
 
+  Future<Either<Exception, MeasurementAnalysis>> analyzeSessionData(
+    String sessionId,
+    DateTime startTime,
+    DateTime endTime,
+  );
+
   void dispose();
 }

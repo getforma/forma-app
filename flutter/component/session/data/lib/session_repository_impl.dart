@@ -202,9 +202,30 @@ class SessionRepositoryImpl implements SessionRepository {
     return _localDataSource.getMeasurementAnalysisStream(sessionId);
   }
 
+  @override
+  Future<Either<Exception, MeasurementAnalysis>> analyzeSessionData(
+    String sessionId,
+    DateTime startTime,
+    DateTime endTime,
+  ) async {
+    try {
+      return Right(await _sessionDataSource.analyzeSessionData(
+        sessionId,
+        startTime,
+        endTime,
+      ));
+    } on Exception catch (e) {
+      return Left(e);
+    }
+  }
+
   @disposeMethod
   @override
   void dispose() {
     _currentSessionIdSubscription?.cancel();
+    _syncDataTimer?.cancel();
+    _syncDataTimer = null;
+    positionStream?.cancel();
+    positionStream = null;
   }
 }
