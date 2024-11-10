@@ -223,5 +223,9 @@ class SessionRepositoryImpl implements SessionRepository {
   @override
   void dispose() {
     _currentSessionIdSubscription?.cancel();
+    _syncDataTimer?.cancel();
+    _syncDataTimer = null;
+    positionStream?.cancel();
+    positionStream = null;
   }
 }
