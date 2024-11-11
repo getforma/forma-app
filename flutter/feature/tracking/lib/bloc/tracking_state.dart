@@ -8,6 +8,6 @@ class TrackingState with _$TrackingState {
     @Default(TrackingScreenStatus.initial) TrackingScreenStatus status,
     required DateTime analyzeIntervalStartTime,
     required DateTime analyzeIntervalEndTime,
-    MeasurementAnalysis? lastSplitAnalysis,
+    SplitAnalysis? lastSplitAnalysis,
   }) = _TrackingState;
 }

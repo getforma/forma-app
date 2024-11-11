@@ -85,7 +85,7 @@ class _TrackingScreenState extends State<TrackingScreen> {
               padding: EdgeInsets.only(left: 16.w),
               alignment: Alignment.centerLeft,
               child: Text(
-                "Keep your body straight, don't lean too much forward or backward.",
+                state.lastSplitAnalysis?.feedback ?? "",
                 style: _Typography.tip.sp,
               ),
             ),

@@ -8,6 +8,7 @@ import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
+import 'package:session_component_domain/model/split_analysis.dart';
 
 part 'session_service.g.dart';
 
@@ -25,6 +26,6 @@ abstract class SessionService {
       @Path("id") String id, @Body() List<SessionMeasurement> body);
 
   @POST("/sessions/{id}/analyze")
-  Future<HttpResponse<MeasurementAnalysis>> analyzeSessionData(
+  Future<HttpResponse<SplitAnalysis>> analyzeSessionData(
       @Path("id") String id, @Body() AnalyzeSessionDataBody body);
 }

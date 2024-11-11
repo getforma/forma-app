@@ -16,6 +16,7 @@ import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
+import 'package:session_component_domain/model/split_analysis.dart';
 import 'package:session_component_domain/session_repository.dart';
 
 const _kDataSyncDuration = Duration(seconds: 30);
@@ -203,7 +204,7 @@ class SessionRepositoryImpl implements SessionRepository {
   }
 
   @override
-  Future<Either<Exception, MeasurementAnalysis>> analyzeSessionData(
+  Future<Either<Exception, SplitAnalysis>> analyzeSessionData(
     String sessionId,
     DateTime startTime,
     DateTime endTime,

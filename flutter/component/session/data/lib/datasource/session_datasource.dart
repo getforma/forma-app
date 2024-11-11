@@ -7,6 +7,7 @@ import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/session_info.dart';
 import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
+import 'package:session_component_domain/model/split_analysis.dart';
 
 abstract class SessionDataSource {
   Future<SessionInfo> createSession(SessionRequest body);
@@ -14,7 +15,7 @@ abstract class SessionDataSource {
   Future<MeasurementAnalysis> trackSessionData(
       String sessionId, List<SessionMeasurement> body);
 
-  Future<MeasurementAnalysis> analyzeSessionData(
+  Future<SplitAnalysis> analyzeSessionData(
     String sessionId,
     DateTime startTime,
     DateTime endTime,
@@ -47,7 +48,7 @@ class SessionDataSourceImpl implements SessionDataSource {
   }
 
   @override
-  Future<MeasurementAnalysis> analyzeSessionData(
+  Future<SplitAnalysis> analyzeSessionData(
       String sessionId, DateTime startTime, DateTime endTime) async {
     final response = await _sessionService.analyzeSessionData(
       sessionId,
