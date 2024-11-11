@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
+import 'package:session_component_domain/model/split_analysis.dart';
 import 'package:session_component_domain/use_case/stop_session_use_case.dart';
 import 'package:session_component_domain/use_case/get_measurement_analysis_stream_use_case.dart';
 import 'package:session_component_domain/use_case/get_split_analysis_use_case.dart';
@@ -72,6 +73,9 @@ class TrackingCubit extends Cubit<TrackingState> {
 
     final splitAnalysisResult = await _getSplitAnalysisUseCase.invoke(
       GetSplitAnalysisBody(
+        // sessionId: "8aa30a78-cbcf-4e41-9e42-06e6dda1dc53",
+        // startTime: DateTime.parse("2024-11-04T12:09:03.129918"),
+        // endTime: DateTime.parse("2024-11-04T12:09:33.129918"),
         sessionId: state.sessionId,
         startTime: analyzeIntervalStartTime,
         endTime: analyzeIntervalEndTime,

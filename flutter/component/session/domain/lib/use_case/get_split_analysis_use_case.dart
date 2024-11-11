@@ -1,18 +1,18 @@
 import 'package:core_component_domain/use_case/use_case.dart';
-import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
-import 'package:session_component_domain/model/measurement_analysis.dart';
+import 'package:injectable/injectable.dart';
+import 'package:session_component_domain/model/split_analysis.dart';
 import 'package:session_component_domain/session_repository.dart';
 
 @injectable
 class GetSplitAnalysisUseCase
-    implements UseCase<GetSplitAnalysisBody, MeasurementAnalysis> {
+    implements UseCase<GetSplitAnalysisBody, SplitAnalysis> {
   final SessionRepository _sessionRepository;
 
   GetSplitAnalysisUseCase(this._sessionRepository);
 
   @override
-  Future<Either<Exception, MeasurementAnalysis>> invoke(
+  Future<Either<Exception, SplitAnalysis>> invoke(
     GetSplitAnalysisBody body,
   ) async {
     return _sessionRepository.analyzeSessionData(
