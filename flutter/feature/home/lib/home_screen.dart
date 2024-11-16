@@ -6,6 +6,7 @@ import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
 import 'package:core_feature/widget/loader_widget.dart';
 import 'package:core_feature/widget/partial_circle_painter.dart';
+import 'package:core_feature/widget/bottom_navigation_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -37,6 +38,7 @@ class HomeScreen extends StatelessWidget {
         },
         builder: (context, state) => Scaffold(
           resizeToAvoidBottomInset: false,
+          bottomNavigationBar: const BottomNavigationBarWidget(),
           body: Stack(
             children: [
               _body(context, state),
@@ -71,6 +73,7 @@ class HomeScreen extends StatelessWidget {
                 _insightsWidget(context, state),
                 48.verticalSpace,
                 _buttonsWidget(context),
+                32.verticalSpace,
               ],
             ),
           ),

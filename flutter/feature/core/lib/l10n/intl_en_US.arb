@@ -1,6 +1,10 @@
 {
   "@@locale": "en_US",
   "app_name": "Forma",
+  "bottom_navigation_item_home": "Home",
+  "bottom_navigation_item_plans": "Plans",
+  "bottom_navigation_item_stats": "Stats",
+  "bottom_navigation_item_profile": "Profile",
   "home_start_session": "Start new session",
   "home_stop_session": "Stop session",
   "home_button_feeling": "How do you feel?",

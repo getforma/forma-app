@@ -12,6 +12,7 @@ class TextStyles {
   static final light = baseTextStyle.copyWith(color: AppColors.pureWhite);
 
   static final dark = baseTextStyle.copyWith(color: AppColors.appBlack);
+  static final neutral = baseTextStyle.copyWith(color: AppColors.appGrey);
 
   static final boldLight = light.copyWith(fontWeight: FontWeight.bold);
   static final boldDark = dark.copyWith(fontWeight: FontWeight.bold);
@@ -55,6 +56,8 @@ class TextStyles {
   static final lightMedium10 = light.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
   static final lightSemiBold16 = light.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
   static final lightBold16 = light.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
+
+  static final neutralRegular10 = neutral.copyWith(fontSize: 10);
 }
 
 extension TextStyleScaling on TextStyle {

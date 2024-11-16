@@ -60,6 +60,46 @@ class S {
     );
   }
 
+  /// `Home`
+  String get bottom_navigation_item_home {
+    return Intl.message(
+      'Home',
+      name: 'bottom_navigation_item_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plans`
+  String get bottom_navigation_item_plans {
+    return Intl.message(
+      'Plans',
+      name: 'bottom_navigation_item_plans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stats`
+  String get bottom_navigation_item_stats {
+    return Intl.message(
+      'Stats',
+      name: 'bottom_navigation_item_stats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get bottom_navigation_item_profile {
+    return Intl.message(
+      'Profile',
+      name: 'bottom_navigation_item_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start new session`
   String get home_start_session {
     return Intl.message(
