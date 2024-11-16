@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
 import 'package:core_feature/style/app_shadows.dart';
+import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
 import 'package:core_feature/widget/loader_widget.dart';
 import 'package:core_feature/widget/partial_circle_painter.dart';
@@ -54,20 +55,24 @@ class HomeScreen extends StatelessWidget {
         child: SafeArea(
           left: false,
           right: false,
-          child: Column(
-            children: [
-              39.verticalSpace,
-              _scoreCircle(context, state),
-              15.verticalSpace,
-              Text(
-                S.of(context).home_score_title,
-                style: TextStyles.darkBold20.sp,
-              ),
-              32.verticalSpace,
-              _recommendationWidget(context, state),
-              32.verticalSpace,
-              _insightsWidget(context, state),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                39.verticalSpace,
+                _scoreCircle(context, state),
+                15.verticalSpace,
+                Text(
+                  S.of(context).home_score_title,
+                  style: TextStyles.darkBold20.sp,
+                ),
+                32.verticalSpace,
+                _recommendationWidget(context, state),
+                32.verticalSpace,
+                _insightsWidget(context, state),
+                48.verticalSpace,
+                _buttonsWidget(context),
+              ],
+            ),
           ),
         ),
       );
@@ -248,6 +253,31 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      );
+
+  Widget _buttonsWidget(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextButton(
+            onPressed: () {
+              context.read<HomeCubit>().startSession();
+            },
+            style: ButtonStyles.fullWidthPrimary.sp,
+            child: Text(
+              S.of(context).home_start_session.toUpperCase(),
+              style: TextStyles.lightBold16.sp,
+            ),
+          ),
+          16.verticalSpace,
+          TextButton(
+            onPressed: () {},
+            style: ButtonStyles.fullWidthWhite.sp,
+            child: Text(
+              S.of(context).home_button_feeling,
+              style: TextStyles.darkBold16.sp,
+            ),
+          ),
+        ],
       );
 }
 

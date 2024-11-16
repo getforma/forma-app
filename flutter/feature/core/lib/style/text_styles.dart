@@ -54,6 +54,7 @@ class TextStyles {
 
   static final lightMedium10 = light.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
   static final lightSemiBold16 = light.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
+  static final lightBold16 = light.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
 }
 
 extension TextStyleScaling on TextStyle {

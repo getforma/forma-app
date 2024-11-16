@@ -24,8 +24,19 @@ class ButtonStyles {
     backgroundColor: AppColors.primaryBlue,
     foregroundColor: AppColors.pureWhite,
     alignment: Alignment.center,
-    minimumSize: const Size(100, 53),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+    minimumSize: const Size(100, 52),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+  );
+
+  static final fullWidthWhite = TextButton.styleFrom(
+    backgroundColor: AppColors.pureWhite,
+    foregroundColor: AppColors.appBlack,
+    alignment: Alignment.center,
+    minimumSize: const Size(100, 52),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24),
+      side: const BorderSide(color: AppColors.border),
+    ),
   );
 }
 
