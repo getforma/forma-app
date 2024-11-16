@@ -178,6 +178,8 @@ class HomeScreen extends StatelessWidget {
               "Lean forward",
               "Leaning forward will help you with forefoot striking and will improve your running economics",
               false),
+          16.verticalSpace,
+          _upgradeToProWidget(context),
         ],
       );
 
@@ -194,24 +196,59 @@ class HomeScreen extends StatelessWidget {
                 width: 1.r,
               ),
       ),
-      padding: EdgeInsets.only(left: 24.w),
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(title,
-              style: isOdd
-                  ? TextStyles.lightSemiBold16.sp
-                  : TextStyles.darkSemiBold16.sp),
+          Text(
+            title,
+            style: isOdd
+                ? TextStyles.lightSemiBold16.sp
+                : TextStyles.darkSemiBold16.sp,
+          ),
           4.verticalSpace,
-          Text(description,
-              style: isOdd
-                  ? TextStyles.lightMedium10.sp
-                  : TextStyles.darkMedium10.sp),
+          Text(
+            description,
+            style: isOdd
+                ? TextStyles.lightMedium10.sp
+                : TextStyles.darkMedium10.sp,
+          ),
         ],
       ),
     );
   }
+
+  Widget _upgradeToProWidget(BuildContext context) => Container(
+        height: 84.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.r),
+          gradient: LinearGradient(
+            colors: [
+              AppColors.pureWhite,
+              Colors.grey.shade500,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              S.of(context).home_insights_upgrade_pro_title,
+              style: TextStyles.darkSemiBold16.sp,
+            ),
+            4.verticalSpace,
+            Text(
+              S.of(context).home_insights_upgrade_pro_description,
+              style: TextStyles.darkMedium10.sp,
+            ),
+          ],
+        ),
+      );
 }
 
 class _Typography {
