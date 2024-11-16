@@ -10,7 +10,6 @@ import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/use_case/create_session_use_case.dart';
-import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 
 part 'home_cubit.freezed.dart';
 part 'home_state.dart';
@@ -43,12 +42,6 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   Future<String?> startSession() async {
-    final userName = state.userName;
-    if (userName == null) {
-      emit(state.copyWith(status: HomeStatus.nameError));
-      return null;
-    }
-
     if (!state.isSensorConnected) {
       emit(state.copyWith(status: HomeStatus.sensorDisconnected));
       return null;
@@ -58,8 +51,8 @@ class HomeCubit extends Cubit<HomeState> {
 
     final sessionResult =
         await _createSessionUseCase.invoke(CreateSessionUseCaseParam(
-      sensorPosition: state.sensorPosition,
-      userName: userName,
+      sensorPosition: SensorPosition.pelvisBack,
+      userName: "",
     ));
 
     if (sessionResult.isLeft()) {
@@ -85,17 +78,6 @@ class HomeCubit extends Cubit<HomeState> {
       isSessionRecordingActive: false,
       status: HomeStatus.sessionStopped,
     ));
-  }
-
-  void updateUserName(String name) {
-    emit(state.copyWith(userName: name));
-  }
-
-  void updateSensorPosition(SensorPosition? position) {
-    if (position == null) {
-      return;
-    }
-    emit(state.copyWith(sensorPosition: position));
   }
 
   void resetStatus() {

@@ -10,7 +10,7 @@ import 'package:get_it/get_it.dart';
 import 'package:tracking_feature/bloc/tracking_cubit.dart';
 import 'package:tracking_feature/bloc/tracking_screen_status.dart';
 import 'package:tracking_feature/model/measurement_card_item.dart';
-import 'package:tracking_feature/widget/partial_circle_painter.dart';
+import 'package:core_feature/widget/partial_circle_painter.dart';
 import 'package:core_feature/widget/loader_widget.dart';
 
 const _animationDuration = Duration(milliseconds: 200);

@@ -1,20 +1,16 @@
-import 'dart:math' as math;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
-import 'package:core_feature/style/button_styles.dart';
+import 'package:core_feature/style/app_shadows.dart';
 import 'package:core_feature/style/text_styles.dart';
 import 'package:core_feature/widget/loader_widget.dart';
+import 'package:core_feature/widget/partial_circle_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
-import 'package:session_component_domain/model/measurement_analysis.dart';
-import 'package:session_component_domain/model/sensor_position.dart';
-import 'package:forma_app/route/app_router.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -36,141 +32,83 @@ class HomeScreen extends StatelessWidget {
         },
         builder: (context, state) => Scaffold(
           resizeToAvoidBottomInset: false,
-          body: _body(context, state),
+          body: Stack(
+            children: [
+              _body(context, state),
+              if (state.status == HomeStatus.loading)
+                const Positioned.fill(child: LoaderWidget()),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Widget _body(BuildContext context, HomeState state) => Stack(
-        children: [
-          _background(context),
-          _content(context, state),
-          if (state.status == HomeStatus.loading)
-            const Positioned.fill(child: LoaderWidget()),
-        ],
-      );
-
-  Widget _background(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: 0.82.sh,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppColors.primaryBlue, AppColors.primaryBlueDark],
-                transform: GradientRotation(math.pi / 8),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Container(
-              color: AppColors.primaryBlack,
-            ),
-          ),
-        ],
-      );
-
-  Widget _content(BuildContext context, HomeState state) => SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
+  Widget _body(BuildContext context, HomeState state) => Container(
+        color: AppColors.background,
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: SafeArea(
+          left: false,
+          right: false,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ..._form(context, state),
-              64.verticalSpace,
-              ..._measurementAnalysis(context, state),
-              Expanded(child: Container()),
-              _startSessionButton(context, state),
+              39.verticalSpace,
+              _scoreCircle(context, state),
+              15.verticalSpace,
+              Text(
+                S.of(context).home_score_title,
+                style: TextStyles.darkBold20.sp,
+              ),
               32.verticalSpace,
+              _recommendationWidget(context, state),
             ],
           ),
         ),
       );
 
-  List<Widget> _form(BuildContext context, HomeState state) => [
-        TextField(
-          style: TextStyles.h3Light.sp,
-          decoration: InputDecoration(
-            focusColor: AppColors.accentOrange,
-            label: Text(
-              "Name",
-              style: TextStyles.h4Light.sp,
-            ),
-          ),
-          textCapitalization: TextCapitalization.words,
-          onChanged: (value) {
-            context.read<HomeCubit>().updateUserName(value);
-          },
+  Widget _scoreCircle(BuildContext context, HomeState state) {
+    return SizedBox(
+      width: 124.r,
+      height: 124.r,
+      child: CustomPaint(
+        painter: PartialCirclePainter(
+          color: AppColors.primaryBlue,
+          colorInactive: AppColors.primaryBlue.withOpacity(0.1),
+          degree: 0.89 * 360,
+          width: 10.r,
         ),
-        32.verticalSpace,
-        DropdownMenu<SensorPosition>(
-            initialSelection: SensorPosition.pelvisRight,
-            label: Text(
-              'Sensor position',
-              style: TextStyles.h4Light.sp,
-            ),
-            textStyle: TextStyles.h4Light.sp,
-            dropdownMenuEntries: SensorPosition.values
-                .map((position) => DropdownMenuEntry(
-                      value: position,
-                      label: position.name,
-                    ))
-                .toList(growable: false),
-            onSelected: (value) {
-              context.read<HomeCubit>().updateSensorPosition(value);
-            }),
-      ];
-
-  List<Widget> _measurementAnalysis(BuildContext context, HomeState state) {
-    final analysis = state.measurementAnalysis;
-    final translations = S.of(context);
-
-    return [
-      Text(translations.home_last_measurement, style: TextStyles.h3Light.sp),
-      32.verticalSpace,
-      _measurementAnalysisItem(translations.home_cadence, analysis?.cadence),
-      8.verticalSpace,
-      _measurementAnalysisItem(translations.home_distance, analysis?.distance),
-      8.verticalSpace,
-      _measurementAnalysisItem(
-          translations.home_ground_contact_time, analysis?.groundContactTime),
-      8.verticalSpace,
-      _measurementAnalysisItem(translations.home_pace, analysis?.pace),
-      8.verticalSpace,
-      _measurementAnalysisItem(translations.home_speed, analysis?.speed),
-      8.verticalSpace,
-      _measurementAnalysisItem(
-          translations.home_stride_length, analysis?.strideLength),
-      8.verticalSpace,
-      _measurementAnalysisItem(translations.home_vertical_oscillation,
-          analysis?.verticalOscillation),
-    ];
+        child: Center(
+          child: Text(
+            '89',
+            style: _Typography.scoreNumber.sp,
+          ),
+        ),
+      ),
+    );
   }
 
-  Widget _measurementAnalysisItem(String label, double? value) =>
-      Text("$label:\t$value", style: TextStyles.h5Light.sp);
+  Widget _recommendationWidget(BuildContext context, HomeState state) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.pureWhite,
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: AppColors.border),
+        boxShadow: AppShadows.primary,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text('Recommendation'),
+          128.verticalSpace,
+        ],
+      ),
+    );
+  }
+}
 
-  Widget _startSessionButton(BuildContext context, HomeState state) => Center(
-        child: SizedBox(
-          width: 0.7.sw,
-          child: TextButton(
-              onPressed: () async {
-                final sessionId =
-                    await context.read<HomeCubit>().startSession();
-                if (sessionId != null) {
-                  final measurementAnalysis = (await AutoRouter.of(context)
-                          .push(TrackingRoute(sessionId: sessionId)))
-                      as MeasurementAnalysis?;
-                  context
-                      .read<HomeCubit>()
-                      .onSessionStopped(measurementAnalysis);
-                }
-              },
-              style: ButtonStyles.fullWidthOrange.sp,
-              child: Text(state.isSessionRecordingActive
-                  ? S.of(context).home_stop_session
-                  : S.of(context).home_start_session)),
-        ),
-      );
+class _Typography {
+  static final TextStyle scoreNumber = TextStyles.dark.copyWith(
+    fontSize: 44,
+    fontWeight: FontWeight.w600,
+  );
 }

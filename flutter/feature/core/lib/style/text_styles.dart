@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class TextStyles {
-  static const _poppins = 'Poppins';
-  static const _presentation = 'presentation';
-
-  static const baseTextStyle = TextStyle(
-    fontFamily: _poppins,
-    package: _presentation,
+  static final baseTextStyle = GoogleFonts.dmSans(
     height: 1,
   );
 
@@ -47,12 +43,11 @@ class TextStyles {
   static final h5BoldDark = boldDark.copyWith(fontSize: 14);
   static final h6BoldDark = boldDark.copyWith(fontSize: 12);
 
-  static final homeCardSubheading = h5Dark.copyWith(color: AppColors.blueGrey);
-  static final homeCardActionDescription =
-      h5Dark.copyWith(color: AppColors.blueGrey);
-  static final homePremiumSupheader =
-      h5BoldDark.copyWith(color: AppColors.blueGrey700);
-  static final homeFormScore = h2Light.copyWith(fontSize: 28);
+  static final darkBold12 = boldDark.copyWith(fontSize: 12);
+  static final darkBold16 = boldDark.copyWith(fontSize: 16);
+  static final darkBold20 = boldDark.copyWith(fontSize: 20);
+
+  static final darkRegular12 = dark.copyWith(fontSize: 12);
 }
 
 extension TextStyleScaling on TextStyle {
