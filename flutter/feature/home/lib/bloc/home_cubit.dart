@@ -4,6 +4,7 @@ import 'package:core_component_domain/use_case/use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:home_feature/bloc/home_status.dart';
+import 'package:home_feature/model/recommended_training.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/use_case/initialize_sensor_use_case.dart';
 import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case.dart';
@@ -77,6 +78,34 @@ class HomeCubit extends Cubit<HomeState> {
       measurementAnalysis: measurementAnalysis,
       isSessionRecordingActive: false,
       status: HomeStatus.sessionStopped,
+    ));
+  }
+
+  void loadRecommendedTrainings() {
+    final now = DateTime.now();
+    emit(state.copyWith(
+      recommendedTrainings: [
+        RecommendedTraining(
+          date: now,
+          type: RecommendedTrainingType.rest,
+        ),
+        RecommendedTraining(
+          date: now.add(const Duration(days: 1)),
+          type: RecommendedTrainingType.easy,
+        ),
+        RecommendedTraining(
+          date: now.add(const Duration(days: 2)),
+          type: RecommendedTrainingType.intervals,
+        ),
+        RecommendedTraining(
+          date: now.add(const Duration(days: 3)),
+          type: RecommendedTrainingType.rest,
+        ),
+        RecommendedTraining(
+          date: now.add(const Duration(days: 4)),
+          type: RecommendedTrainingType.long,
+        ),
+      ],
     ));
   }
 

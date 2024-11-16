@@ -8,9 +8,11 @@ import 'package:core_feature/widget/partial_circle_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
+import 'package:home_feature/model/recommended_training.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -19,7 +21,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<HomeCubit>()..startDeviceDiscovery(),
+      create: (context) => GetIt.I.get<HomeCubit>()
+        ..startDeviceDiscovery()
+        ..loadRecommendedTrainings(),
       child: BlocConsumer<HomeCubit, HomeState>(
         listener: (context, state) {
           final snackBarText = state.status.text(context);
@@ -95,11 +99,63 @@ class HomeScreen extends StatelessWidget {
         border: Border.all(color: AppColors.border),
         boxShadow: AppShadows.primary,
       ),
+      padding: EdgeInsets.all(16.r),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Recommendation'),
-          128.verticalSpace,
+          Text(
+            S.of(context).home_training_recommendation_title,
+            style: TextStyles.darkBold16.sp,
+          ),
+          22.verticalSpace,
+          Row(
+            children: [
+              ...state.recommendedTrainings
+                  .expand((e) => [
+                        _recommendationItem(context, e),
+                        5.horizontalSpace,
+                      ])
+                  .toList(growable: false),
+              const Expanded(child: SizedBox()),
+              SvgPicture.asset(
+                "asset/icon/chevron_right.svg",
+                package: 'core_feature',
+                width: 24.r,
+                height: 24.r,
+              ),
+            ],
+          ),
+          5.verticalSpace,
+        ],
+      ),
+    );
+  }
+
+  Widget _recommendationItem(
+      BuildContext context, RecommendedTraining training) {
+    return SizedBox(
+      width: 52.w,
+      height: 76.h,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(training.day, style: TextStyles.darkBold12.sp),
+          const Expanded(child: SizedBox()),
+          SvgPicture.asset(
+            training.type.icon,
+            package: 'home_feature',
+            width: 24.r,
+            height: 24.r,
+            colorFilter: const ColorFilter.mode(
+              AppColors.appBlack,
+              BlendMode.srcIn,
+            ),
+          ),
+          4.verticalSpace,
+          Text(
+            training.type.text(context),
+            style: TextStyles.darkRegular12.sp,
+          ),
         ],
       ),
     );
