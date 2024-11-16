@@ -65,6 +65,8 @@ class HomeScreen extends StatelessWidget {
               ),
               32.verticalSpace,
               _recommendationWidget(context, state),
+              32.verticalSpace,
+              _insightsWidget(context, state),
             ],
           ),
         ),
@@ -96,7 +98,7 @@ class HomeScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.pureWhite,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: AppColors.border, width: 1.r),
         boxShadow: AppShadows.primary,
       ),
       padding: EdgeInsets.all(16.r),
@@ -156,6 +158,56 @@ class HomeScreen extends StatelessWidget {
             training.type.text(context),
             style: TextStyles.darkRegular12.sp,
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _insightsWidget(BuildContext context, HomeState state) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            S.of(context).home_insights_title,
+            style: TextStyles.darkBold20.sp,
+          ),
+          16.verticalSpace,
+          _insightsItem("You are heel striking",
+              "Next time focus on striking with your forefoot", true),
+          16.verticalSpace,
+          _insightsItem(
+              "Lean forward",
+              "Leaning forward will help you with forefoot striking and will improve your running economics",
+              false),
+        ],
+      );
+
+  Widget _insightsItem(String title, String description, bool isOdd) {
+    return Container(
+      height: 84.h,
+      decoration: BoxDecoration(
+        color: isOdd ? AppColors.appBlack : AppColors.pureWhite,
+        borderRadius: BorderRadius.circular(16.r),
+        border: isOdd
+            ? null
+            : Border.all(
+                color: AppColors.border,
+                width: 1.r,
+              ),
+      ),
+      padding: EdgeInsets.only(left: 24.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(title,
+              style: isOdd
+                  ? TextStyles.lightSemiBold16.sp
+                  : TextStyles.darkSemiBold16.sp),
+          4.verticalSpace,
+          Text(description,
+              style: isOdd
+                  ? TextStyles.lightMedium10.sp
+                  : TextStyles.darkMedium10.sp),
         ],
       ),
     );
