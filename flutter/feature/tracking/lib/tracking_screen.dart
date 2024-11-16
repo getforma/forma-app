@@ -46,6 +46,20 @@ class _TrackingScreenState extends State<TrackingScreen> {
           body: Stack(
             children: [
               _body(context, state),
+              Positioned(
+                top: 0,
+                right: 24.w,
+                child: SafeArea(
+                  child: Icon(
+                    state.isSensorConnected
+                        ? Icons.bluetooth_connected
+                        : Icons.bluetooth_disabled,
+                    color: state.isSensorConnected
+                        ? AppColors.appBlack
+                        : AppColors.appBlack.withOpacity(0.6),
+                  ),
+                ),
+              ),
               if (state.status == TrackingScreenStatus.loading)
                 const Positioned.fill(child: LoaderWidget()),
             ],

@@ -14,7 +14,7 @@ class TextStyles {
 
   static final light = baseTextStyle.copyWith(color: AppColors.pureWhite);
 
-  static final dark = baseTextStyle.copyWith(color: AppColors.pureBlack);
+  static final dark = baseTextStyle.copyWith(color: AppColors.appBlack);
 
   static final boldLight = light.copyWith(fontWeight: FontWeight.bold);
   static final boldDark = dark.copyWith(fontWeight: FontWeight.bold);

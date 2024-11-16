@@ -35,24 +35,7 @@ class HomeScreen extends StatelessWidget {
           }
         },
         builder: (context, state) => Scaffold(
-          extendBodyBehindAppBar: true,
           resizeToAvoidBottomInset: false,
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            leading: const Icon(
-              Icons.menu,
-              color: AppColors.pureWhite,
-            ),
-            actions: [
-              Icon(
-                state.isSensorConnected
-                    ? Icons.bluetooth_connected
-                    : Icons.bluetooth_disabled,
-                color: AppColors.pureWhite,
-              ),
-              16.horizontalSpace,
-            ],
-          ),
           body: _body(context, state),
         ),
       ),

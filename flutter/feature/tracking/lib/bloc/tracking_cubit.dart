@@ -4,6 +4,7 @@ import 'package:core_component_domain/use_case/use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/split_analysis.dart';
 import 'package:session_component_domain/use_case/stop_session_use_case.dart';
@@ -22,9 +23,11 @@ class TrackingCubit extends Cubit<TrackingState> {
   final GetMeasurementAnalysisStreamUseCase
       _getMeasurementAnalysisStreamUseCase;
   final GetSplitAnalysisUseCase _getSplitAnalysisUseCase;
+  final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
 
   StreamSubscription<MeasurementAnalysis?>?
       _measurementAnalysisStreamSubscription;
+  StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
 
   Timer? _analyzeSessionDataTimer;
 
@@ -32,6 +35,7 @@ class TrackingCubit extends Cubit<TrackingState> {
     this._stopSessionUseCase,
     this._getMeasurementAnalysisStreamUseCase,
     this._getSplitAnalysisUseCase,
+    this._getIsSensorConnectedStreamUseCase,
     @factoryParam String sessionId,
   ) : super(TrackingState(
           sessionId: sessionId,
@@ -46,6 +50,11 @@ class TrackingCubit extends Cubit<TrackingState> {
     _analyzeSessionDataTimer =
         Timer.periodic(_analyzeSessionDataInterval, (timer) {
       _analyzeSessionData();
+    });
+
+    _isSensorConnectedStreamSubscription =
+        _getIsSensorConnectedStreamUseCase.invoke(EmptyParam()).listen((value) {
+      emit(state.copyWith(isSensorConnected: value));
     });
   }
 
@@ -96,6 +105,9 @@ class TrackingCubit extends Cubit<TrackingState> {
     _measurementAnalysisStreamSubscription?.cancel();
     _analyzeSessionDataTimer?.cancel();
     _analyzeSessionDataTimer = null;
+
+    _isSensorConnectedStreamSubscription?.cancel();
+    _isSensorConnectedStreamSubscription = null;
     return super.close();
   }
 }

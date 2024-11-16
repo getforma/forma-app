@@ -20,14 +20,11 @@ class HomeCubit extends Cubit<HomeState> {
   final InitializeSensorUseCase _initializeSensorUseCase;
   final StartSensorDiscoveryUseCase _startSensorDiscoveryUseCase;
   final CreateSessionUseCase _createSessionUseCase;
-  final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
 
-  StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
   HomeCubit(
     this._initializeSensorUseCase,
     this._startSensorDiscoveryUseCase,
     this._createSessionUseCase,
-    this._getIsSensorConnectedStreamUseCase,
   ) : super(const HomeState());
 
   Future<void> startDeviceDiscovery() async {
@@ -43,11 +40,6 @@ class HomeCubit extends Cubit<HomeState> {
     }
 
     _startSensorDiscoveryUseCase.invoke(EmptyParam());
-
-    _isSensorConnectedStreamSubscription =
-        _getIsSensorConnectedStreamUseCase.invoke(EmptyParam()).listen((value) {
-      emit(state.copyWith(isSensorConnected: value));
-    });
   }
 
   Future<String?> startSession() async {
@@ -108,11 +100,5 @@ class HomeCubit extends Cubit<HomeState> {
 
   void resetStatus() {
     emit(state.copyWith(status: HomeStatus.initial));
-  }
-
-  @override
-  Future<void> close() {
-    _isSensorConnectedStreamSubscription?.cancel();
-    return super.close();
   }
 }
