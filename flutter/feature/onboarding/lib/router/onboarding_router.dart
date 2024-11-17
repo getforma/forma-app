@@ -5,9 +5,9 @@ import 'package:onboarding_feature/router/onboarding_router.gr.dart';
 class OnboardingRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(
-      page: OnboardingRoute.page,
-      initial: true,
-    ),
-  ];
+        AutoRoute(
+          page: OnboardingRoute.page,
+          initial: true,
+        ),
+      ];
 }

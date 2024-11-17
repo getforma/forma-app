@@ -18,6 +18,9 @@ dependencies:
   core_feature:
     path: ../core
 
+  core_component_domain:
+    path: ../../component/core/domain
+
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.10+1
   collection: ^1.18.0

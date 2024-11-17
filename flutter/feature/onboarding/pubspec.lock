@@ -233,7 +233,7 @@ packages:
     source: path
     version: "1.0.0+1"
   core_component_domain:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "../../component/core/domain"
       relative: true

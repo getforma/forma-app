@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:onboarding_feature/bloc/onboarding_cubit.dart';
-import 'package:onboarding_feature/bloc/onboarding_state.dart';
 
 @RoutePage()
 class OnboardingScreen extends StatelessWidget {
@@ -21,6 +20,7 @@ class OnboardingScreen extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: Stack(
             children: [
+              _background(context),
               _body(context, state),
             ],
           ),
@@ -28,6 +28,37 @@ class OnboardingScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _background(BuildContext context) => Expanded(
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'asset/onboarding_background.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 174.h,
+              bottom: -66.h,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.appBlack.withOpacity(0),
+                      AppColors.appBlack,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
 
   Widget _body(BuildContext context, OnboardingState state) => Container(
         color: AppColors.background,

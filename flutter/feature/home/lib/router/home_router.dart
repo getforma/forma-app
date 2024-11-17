@@ -5,9 +5,8 @@ import 'package:home_feature/router/home_router.gr.dart';
 class HomeRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(
-      page: HomeRoute.page,
-      initial: true,
-    ),
-  ];
+        AutoRoute(
+          page: HomeRoute.page,
+        ),
+      ];
 }
