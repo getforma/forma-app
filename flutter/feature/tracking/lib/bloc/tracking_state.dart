@@ -9,5 +9,6 @@ class TrackingState with _$TrackingState {
     required DateTime analyzeIntervalStartTime,
     required DateTime analyzeIntervalEndTime,
     SplitAnalysis? lastSplitAnalysis,
+    @Default(false) bool isSensorConnected,
   }) = _TrackingState;
 }

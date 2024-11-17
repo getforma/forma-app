@@ -23,17 +23,25 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "app_name": MessageLookupByLibrary.simpleMessage("Forma"),
-        "home_cadence": MessageLookupByLibrary.simpleMessage("Cadence"),
-        "home_distance": MessageLookupByLibrary.simpleMessage("Distance"),
+        "bottom_navigation_item_home":
+            MessageLookupByLibrary.simpleMessage("Home"),
+        "bottom_navigation_item_plans":
+            MessageLookupByLibrary.simpleMessage("Plans"),
+        "bottom_navigation_item_profile":
+            MessageLookupByLibrary.simpleMessage("Profile"),
+        "bottom_navigation_item_stats":
+            MessageLookupByLibrary.simpleMessage("Stats"),
+        "home_button_feeling":
+            MessageLookupByLibrary.simpleMessage("How do you feel?"),
         "home_generic_error":
             MessageLookupByLibrary.simpleMessage("Something went wrong"),
-        "home_ground_contact_time":
-            MessageLookupByLibrary.simpleMessage("Ground contact time"),
-        "home_last_measurement":
-            MessageLookupByLibrary.simpleMessage("Last measurement"),
-        "home_name_error":
-            MessageLookupByLibrary.simpleMessage("Please enter your name"),
-        "home_pace": MessageLookupByLibrary.simpleMessage("Pace"),
+        "home_insights_title": MessageLookupByLibrary.simpleMessage("Insights"),
+        "home_insights_upgrade_pro_description":
+            MessageLookupByLibrary.simpleMessage(
+                "Get more insights while you are running"),
+        "home_insights_upgrade_pro_title":
+            MessageLookupByLibrary.simpleMessage("Upgrade to Pro"),
+        "home_score_title": MessageLookupByLibrary.simpleMessage("Score"),
         "home_sensor_disconnected":
             MessageLookupByLibrary.simpleMessage("Sensor is not connected!"),
         "home_sensor_initialization_error":
@@ -43,15 +51,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Session started"),
         "home_session_stopped":
             MessageLookupByLibrary.simpleMessage("Session stopped"),
-        "home_speed": MessageLookupByLibrary.simpleMessage("Speed"),
         "home_start_session":
-            MessageLookupByLibrary.simpleMessage("Start session"),
+            MessageLookupByLibrary.simpleMessage("Start new session"),
         "home_stop_session":
             MessageLookupByLibrary.simpleMessage("Stop session"),
-        "home_stride_length":
-            MessageLookupByLibrary.simpleMessage("Stride length"),
-        "home_vertical_oscillation":
-            MessageLookupByLibrary.simpleMessage("Vertical oscillation"),
+        "home_training_recommendation_easy":
+            MessageLookupByLibrary.simpleMessage("Easy"),
+        "home_training_recommendation_intervals":
+            MessageLookupByLibrary.simpleMessage("Intervals"),
+        "home_training_recommendation_long":
+            MessageLookupByLibrary.simpleMessage("Long"),
+        "home_training_recommendation_rest":
+            MessageLookupByLibrary.simpleMessage("Rest"),
+        "home_training_recommendation_title":
+            MessageLookupByLibrary.simpleMessage("Training recommendation"),
+        "home_training_recommendation_today":
+            MessageLookupByLibrary.simpleMessage("Today"),
+        "home_training_recommendation_tomorrow":
+            MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "tracking_average_pace":
             MessageLookupByLibrary.simpleMessage("Avg pace"),
         "tracking_average_speed":

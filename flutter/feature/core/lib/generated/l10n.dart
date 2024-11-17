@@ -60,10 +60,50 @@ class S {
     );
   }
 
-  /// `Start session`
+  /// `Home`
+  String get bottom_navigation_item_home {
+    return Intl.message(
+      'Home',
+      name: 'bottom_navigation_item_home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plans`
+  String get bottom_navigation_item_plans {
+    return Intl.message(
+      'Plans',
+      name: 'bottom_navigation_item_plans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stats`
+  String get bottom_navigation_item_stats {
+    return Intl.message(
+      'Stats',
+      name: 'bottom_navigation_item_stats',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get bottom_navigation_item_profile {
+    return Intl.message(
+      'Profile',
+      name: 'bottom_navigation_item_profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start new session`
   String get home_start_session {
     return Intl.message(
-      'Start session',
+      'Start new session',
       name: 'home_start_session',
       desc: '',
       args: [],
@@ -80,91 +120,11 @@ class S {
     );
   }
 
-  /// `Last measurement`
-  String get home_last_measurement {
+  /// `How do you feel?`
+  String get home_button_feeling {
     return Intl.message(
-      'Last measurement',
-      name: 'home_last_measurement',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Cadence`
-  String get home_cadence {
-    return Intl.message(
-      'Cadence',
-      name: 'home_cadence',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Distance`
-  String get home_distance {
-    return Intl.message(
-      'Distance',
-      name: 'home_distance',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ground contact time`
-  String get home_ground_contact_time {
-    return Intl.message(
-      'Ground contact time',
-      name: 'home_ground_contact_time',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Pace`
-  String get home_pace {
-    return Intl.message(
-      'Pace',
-      name: 'home_pace',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Speed`
-  String get home_speed {
-    return Intl.message(
-      'Speed',
-      name: 'home_speed',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Stride length`
-  String get home_stride_length {
-    return Intl.message(
-      'Stride length',
-      name: 'home_stride_length',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Vertical oscillation`
-  String get home_vertical_oscillation {
-    return Intl.message(
-      'Vertical oscillation',
-      name: 'home_vertical_oscillation',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter your name`
-  String get home_name_error {
-    return Intl.message(
-      'Please enter your name',
-      name: 'home_name_error',
+      'How do you feel?',
+      name: 'home_button_feeling',
       desc: '',
       args: [],
     );
@@ -215,6 +175,116 @@ class S {
     return Intl.message(
       'Something went wrong',
       name: 'home_generic_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Score`
+  String get home_score_title {
+    return Intl.message(
+      'Score',
+      name: 'home_score_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Training recommendation`
+  String get home_training_recommendation_title {
+    return Intl.message(
+      'Training recommendation',
+      name: 'home_training_recommendation_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get home_training_recommendation_today {
+    return Intl.message(
+      'Today',
+      name: 'home_training_recommendation_today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tomorrow`
+  String get home_training_recommendation_tomorrow {
+    return Intl.message(
+      'Tomorrow',
+      name: 'home_training_recommendation_tomorrow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rest`
+  String get home_training_recommendation_rest {
+    return Intl.message(
+      'Rest',
+      name: 'home_training_recommendation_rest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Intervals`
+  String get home_training_recommendation_intervals {
+    return Intl.message(
+      'Intervals',
+      name: 'home_training_recommendation_intervals',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easy`
+  String get home_training_recommendation_easy {
+    return Intl.message(
+      'Easy',
+      name: 'home_training_recommendation_easy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Long`
+  String get home_training_recommendation_long {
+    return Intl.message(
+      'Long',
+      name: 'home_training_recommendation_long',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Insights`
+  String get home_insights_title {
+    return Intl.message(
+      'Insights',
+      name: 'home_insights_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upgrade to Pro`
+  String get home_insights_upgrade_pro_title {
+    return Intl.message(
+      'Upgrade to Pro',
+      name: 'home_insights_upgrade_pro_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get more insights while you are running`
+  String get home_insights_upgrade_pro_description {
+    return Intl.message(
+      'Get more insights while you are running',
+      name: 'home_insights_upgrade_pro_description',
       desc: '',
       args: [],
     );
