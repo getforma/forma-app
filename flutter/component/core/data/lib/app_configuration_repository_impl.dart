@@ -65,8 +65,9 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
 
   @override
   Future<String?> getCurrentSessionId() async {
-    return (await _database
-            .select(_database.appConfigurationTable)
+    return (await (_database.select(_database.appConfigurationTable)
+              ..where((t) =>
+                  t.key.equals(AppConfigurationKey.currentSessionId.name)))
             .getSingleOrNull())
         ?.value;
   }
@@ -77,6 +78,25 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
           ..where(
               (t) => t.key.equals(AppConfigurationKey.currentSessionId.name)))
         .go();
+  }
+
+  @override
+  Future<void> setOnboardingCompleted() async {
+    await _database
+        .into(_database.appConfigurationTable)
+        .insertOnConflictUpdate(const AppConfigurationTableCompanion(
+            key: Value(AppConfigurationKey.onboardingCompleted),
+            value: Value("true")));
+  }
+
+  @override
+  Future<bool> getOnboardingCompleted() async {
+    return (await (_database.select(_database.appConfigurationTable)
+                  ..where((t) => t.key
+                      .equals(AppConfigurationKey.onboardingCompleted.name)))
+                .getSingleOrNull())
+            ?.value ==
+        "true";
   }
 
   @disposeMethod

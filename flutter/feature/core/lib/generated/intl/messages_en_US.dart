@@ -69,6 +69,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Today"),
         "home_training_recommendation_tomorrow":
             MessageLookupByLibrary.simpleMessage("Tomorrow"),
+        "onboarding_description": MessageLookupByLibrary.simpleMessage(
+            "Enhance your running form, minimize injury risks, and cut down medical expenses."),
+        "onboarding_get_started":
+            MessageLookupByLibrary.simpleMessage("Get Started"),
+        "onboarding_log_in": MessageLookupByLibrary.simpleMessage(
+            "Already have an account? Log in"),
+        "onboarding_title":
+            MessageLookupByLibrary.simpleMessage("Every step, perfected"),
         "tracking_average_pace":
             MessageLookupByLibrary.simpleMessage("Avg pace"),
         "tracking_average_speed":

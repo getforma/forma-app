@@ -11,4 +11,5 @@ class AppConfigurationTable extends Table {
 enum AppConfigurationKey {
   isSensorConnected,
   currentSessionId,
+  onboardingCompleted,
 }

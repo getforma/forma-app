@@ -45,17 +45,31 @@ class TextStyles {
   static final h5BoldDark = boldDark.copyWith(fontSize: 14);
   static final h6BoldDark = boldDark.copyWith(fontSize: 12);
 
-  static final darkBold10 = dark.copyWith(fontSize: 10, fontWeight: FontWeight.bold);
-  static final darkMedium10 = dark.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
+  static final darkBold10 =
+      dark.copyWith(fontSize: 10, fontWeight: FontWeight.bold);
+  static final darkMedium10 =
+      dark.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
   static final darkRegular12 = dark.copyWith(fontSize: 12);
-  static final darkBold12 = dark.copyWith(fontSize: 12, fontWeight: FontWeight.bold);
-  static final darkBold16 = dark.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
-  static final darkSemiBold16 = darkBold16.copyWith(fontWeight: FontWeight.w600);
-  static final darkBold20 = dark.copyWith(fontSize: 20, fontWeight: FontWeight.bold);
+  static final darkBold12 =
+      dark.copyWith(fontSize: 12, fontWeight: FontWeight.bold);
+  static final darkBold16 =
+      dark.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
+  static final darkSemiBold16 =
+      darkBold16.copyWith(fontWeight: FontWeight.w600);
+  static final darkBold20 =
+      dark.copyWith(fontSize: 20, fontWeight: FontWeight.bold);
 
-  static final lightMedium10 = light.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
-  static final lightSemiBold16 = light.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
-  static final lightBold16 = light.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
+  static final lightMedium10 =
+      light.copyWith(fontSize: 10, fontWeight: FontWeight.w500);
+  static final lightRegular16 = light.copyWith(fontSize: 16);
+  static final lightSemiBold14 =
+      light.copyWith(fontSize: 14, fontWeight: FontWeight.w600);
+  static final lightSemiBold16 =
+      light.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
+  static final lightBold16 =
+      light.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
+  static final lightExtraBold48 =
+      light.copyWith(fontSize: 48, fontWeight: FontWeight.w800);
 
   static final neutralRegular10 = neutral.copyWith(fontSize: 10);
 }

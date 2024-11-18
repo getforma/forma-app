@@ -100,6 +100,46 @@ class S {
     );
   }
 
+  /// `Every step, perfected`
+  String get onboarding_title {
+    return Intl.message(
+      'Every step, perfected',
+      name: 'onboarding_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enhance your running form, minimize injury risks, and cut down medical expenses.`
+  String get onboarding_description {
+    return Intl.message(
+      'Enhance your running form, minimize injury risks, and cut down medical expenses.',
+      name: 'onboarding_description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get onboarding_get_started {
+    return Intl.message(
+      'Get Started',
+      name: 'onboarding_get_started',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account? Log in`
+  String get onboarding_log_in {
+    return Intl.message(
+      'Already have an account? Log in',
+      name: 'onboarding_log_in',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start new session`
   String get home_start_session {
     return Intl.message(

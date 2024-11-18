@@ -15,6 +15,9 @@ dependencies:
   core_feature:
     path: flutter/feature/core
 
+  onboarding_feature:
+    path: flutter/feature/onboarding
+
   home_feature:
     path: flutter/feature/home
 

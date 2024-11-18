@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:home_feature/bloc/home_status.dart';
 import 'package:home_feature/model/recommended_training.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 import 'package:sensor_component_domain/use_case/initialize_sensor_use_case.dart';
 import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
@@ -20,12 +21,21 @@ class HomeCubit extends Cubit<HomeState> {
   final InitializeSensorUseCase _initializeSensorUseCase;
   final StartSensorDiscoveryUseCase _startSensorDiscoveryUseCase;
   final CreateSessionUseCase _createSessionUseCase;
+  final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
+
+  StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
 
   HomeCubit(
     this._initializeSensorUseCase,
     this._startSensorDiscoveryUseCase,
     this._createSessionUseCase,
-  ) : super(const HomeState());
+    this._getIsSensorConnectedStreamUseCase,
+  ) : super(const HomeState()) {
+    _isSensorConnectedStreamSubscription =
+        _getIsSensorConnectedStreamUseCase.invoke(EmptyParam()).listen((value) {
+      emit(state.copyWith(isSensorConnected: value));
+    });
+  }
 
   Future<void> startDeviceDiscovery() async {
     final initializeResult =
@@ -111,5 +121,12 @@ class HomeCubit extends Cubit<HomeState> {
 
   void resetStatus() {
     emit(state.copyWith(status: HomeStatus.initial));
+  }
+
+  @override
+  Future<void> close() {
+    _isSensorConnectedStreamSubscription?.cancel();
+    _isSensorConnectedStreamSubscription = null;
+    return super.close();
   }
 }

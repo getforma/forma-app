@@ -1,5 +1,5 @@
 flutter_native_splash:
-  color: "#2B2024"
+  color: "#000000"
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.
