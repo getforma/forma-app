@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:forma_app/route/app_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:onboarding_feature/bloc/onboarding_cubit.dart';
 
@@ -90,7 +91,9 @@ class OnboardingScreen extends StatelessWidget {
               ),
               16.verticalSpace,
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  AutoRouter.of(context).push(const HomeRoute());
+                },
                 style: ButtonStyles.fullWidthWhite.sp,
                 child: Text(
                   S.of(context).onboarding_get_started,
@@ -98,12 +101,17 @@ class OnboardingScreen extends StatelessWidget {
                 ),
               ),
               21.verticalSpace,
-              Text(
-                S.of(context).onboarding_log_in,
-                style: TextStyles.lightSemiBold14
-                    .copyWith(color: const Color(0xFF4181FE))
-                    .sp,
-                textAlign: TextAlign.center,
+              InkWell(
+                onTap: () {
+                  AutoRouter.of(context).push(const HomeRoute());
+                },
+                child: Text(
+                  S.of(context).onboarding_log_in,
+                  style: TextStyles.lightSemiBold14
+                      .copyWith(color: const Color(0xFF4181FE))
+                      .sp,
+                  textAlign: TextAlign.center,
+                ),
               ),
               16.verticalSpace,
             ],

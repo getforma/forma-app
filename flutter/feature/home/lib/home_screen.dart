@@ -11,10 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:forma_app/route/app_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
 import 'package:home_feature/model/recommended_training.dart';
+import 'package:session_component_domain/model/measurement_analysis.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -262,8 +264,14 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TextButton(
-            onPressed: () {
-              context.read<HomeCubit>().startSession();
+            onPressed: () async {
+              final sessionId = await context.read<HomeCubit>().startSession();
+              if (sessionId != null) {
+                final measurementAnalysis = (await AutoRouter.of(context)
+                        .push(TrackingRoute(sessionId: sessionId)))
+                    as MeasurementAnalysis?;
+                context.read<HomeCubit>().onSessionStopped(measurementAnalysis);
+              }
             },
             style: ButtonStyles.fullWidthPrimary.sp,
             child: Text(
