@@ -18,8 +18,14 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetIt.I.get<OnboardingCubit>(),
-      child: BlocBuilder<OnboardingCubit, OnboardingState>(
+      create: (context) =>
+          GetIt.I.get<OnboardingCubit>()..loadOnboardingCompleted(),
+      child: BlocConsumer<OnboardingCubit, OnboardingState>(
+        listener: (context, state) {
+          if (state.onboardingCompleted) {
+            AutoRouter.of(context).push(const HomeRoute());
+          }
+        },
         builder: (context, state) => Scaffold(
           resizeToAvoidBottomInset: false,
           body: Stack(

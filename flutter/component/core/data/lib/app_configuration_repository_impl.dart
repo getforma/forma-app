@@ -79,6 +79,24 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
         .go();
   }
 
+  @override
+  Future<void> setOnboardingCompleted() async {
+    await _database
+        .into(_database.appConfigurationTable)
+        .insertOnConflictUpdate(const AppConfigurationTableCompanion(
+            key: Value(AppConfigurationKey.onboardingCompleted),
+            value: Value("true")));
+  }
+
+  @override
+  Future<bool> getOnboardingCompleted() async {
+    return (await _database
+                .select(_database.appConfigurationTable)
+                .getSingleOrNull())
+            ?.value ==
+        "true";
+  }
+
   @disposeMethod
   @override
   void dispose() {

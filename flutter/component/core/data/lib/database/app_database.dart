@@ -21,10 +21,10 @@ class AppDatabase extends _$AppDatabase {
       MigrationStrategy(beforeOpen: (openingDetails) async {
         // TODO: add migration strategy, for now it's easier to delete the database
         final m = Migrator(this);
-        for (final table in allTables) {
-          await m.deleteTable(table.actualTableName);
-          await m.createTable(table);
-        }
+        // for (final table in allTables) {
+        //   await m.deleteTable(table.actualTableName);
+        //   await m.createTable(table);
+        // }
       });
 
   static QueryExecutor _openConnection() {
