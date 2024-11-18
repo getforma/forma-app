@@ -23,7 +23,7 @@ class OnboardingScreen extends StatelessWidget {
       child: BlocConsumer<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
           if (state.onboardingCompleted) {
-            AutoRouter.of(context).push(const HomeRoute());
+            AutoRouter.of(context).replaceAll([const HomeRoute()]);
           }
         },
         builder: (context, state) => Scaffold(
@@ -109,7 +109,7 @@ class OnboardingScreen extends StatelessWidget {
               21.verticalSpace,
               InkWell(
                 onTap: () {
-                  AutoRouter.of(context).push(const HomeRoute());
+                  AutoRouter.of(context).replaceAll([const HomeRoute()]);
                 },
                 child: Text(
                   S.of(context).onboarding_log_in,
