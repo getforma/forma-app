@@ -65,8 +65,9 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
 
   @override
   Future<String?> getCurrentSessionId() async {
-    return (await _database
-            .select(_database.appConfigurationTable)
+    return (await (_database.select(_database.appConfigurationTable)
+              ..where((t) =>
+                  t.key.equals(AppConfigurationKey.currentSessionId.name)))
             .getSingleOrNull())
         ?.value;
   }
@@ -90,8 +91,9 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
 
   @override
   Future<bool> getOnboardingCompleted() async {
-    return (await _database
-                .select(_database.appConfigurationTable)
+    return (await (_database.select(_database.appConfigurationTable)
+                  ..where((t) => t.key
+                      .equals(AppConfigurationKey.onboardingCompleted.name)))
                 .getSingleOrNull())
             ?.value ==
         "true";
