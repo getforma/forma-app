@@ -22,5 +22,5 @@ class AppColors {
   static const Color shadow = Color(0x140A0D12);
   static const Color appBlack = Color(0xFF2B2024);
   static const Color appGrey = Color(0xFF9E9E9E);
-
+  static const Color appGreyLight = Color(0xFFE9EAEB);
 }

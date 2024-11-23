@@ -170,6 +170,16 @@ class S {
     );
   }
 
+  /// `Search by country name or dial code`
+  String get login_search_hint {
+    return Intl.message(
+      'Search by country name or dial code',
+      name: 'login_search_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start new session`
   String get home_start_session {
     return Intl.message(

@@ -12,6 +12,7 @@
   "login_title": "Log in with phone number",
   "login_submit_button": "Submit",
   "login_alternative_login": "Or log in with",
+  "login_search_hint": "Search by country name or dial code",
   "home_start_session": "Start new session",
   "home_stop_session": "Stop session",
   "home_button_feeling": "How do you feel?",

@@ -71,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "login_alternative_login":
             MessageLookupByLibrary.simpleMessage("Or log in with"),
+        "login_search_hint": MessageLookupByLibrary.simpleMessage(
+            "Search by country name or dial code"),
         "login_submit_button": MessageLookupByLibrary.simpleMessage("Submit"),
         "login_title":
             MessageLookupByLibrary.simpleMessage("Log in with phone number"),

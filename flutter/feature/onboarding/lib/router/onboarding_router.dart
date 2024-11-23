@@ -8,6 +8,10 @@ class OnboardingRouter extends RootStackRouter {
         AutoRoute(
           page: OnboardingRoute.page,
           initial: true,
+          children: [
+            AutoRoute(page: WelcomeRoute.page, initial: true),
+            AutoRoute(page: LoginRoute.page),
+          ],
         ),
       ];
 }

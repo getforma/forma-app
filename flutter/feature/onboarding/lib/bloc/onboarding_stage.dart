@@ -1,0 +1,4 @@
+enum OnboardingStage {
+  welcome,
+  login,
+}
