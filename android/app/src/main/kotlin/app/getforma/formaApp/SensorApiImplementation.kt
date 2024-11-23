@@ -1,4 +1,4 @@
-package app.getforma.forma
+package app.getforma.formaApp
 
 import SensorApi
 import SensorDataModel

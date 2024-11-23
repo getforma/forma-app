@@ -16,6 +16,7 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		BC07A6662CF212270044F592 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC07A6652CF212270044F592 /* GoogleService-Info.plist */; };
 		BCF95F622CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F462CBC534500C4B0F2 /* BWT901BLE5_0DataProcessor.swift */; };
 		BCF95F632CBC534500C4B0F2 /* WitSensorKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F422CBC534500C4B0F2 /* WitSensorKey.swift */; };
 		BCF95F642CBC534500C4B0F2 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF95F562CBC534500C4B0F2 /* StringUtils.swift */; };
@@ -85,6 +86,7 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC07A6652CF212270044F592 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCF95F392CBC534500C4B0F2 /* DeviceModelError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModelError.swift; sourceTree = "<group>"; };
 		BCF95F3B2CBC534500C4B0F2 /* BluetoothBLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothBLE.swift; sourceTree = "<group>"; };
 		BCF95F3C2CBC534500C4B0F2 /* IBluetoothEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBluetoothEventObserver.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				331C8082294A63A400263BE5 /* RunnerTests */,
 				F93995335E463633A0F4605B /* Pods */,
 				32EA42B471ECE649145ECAFA /* Frameworks */,
+				BC07A6652CF212270044F592 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -485,6 +488,7 @@
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				BC07A6662CF212270044F592 /* GoogleService-Info.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 			);
