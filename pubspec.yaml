@@ -33,6 +33,12 @@ dependencies:
   session_component_data:
     path: flutter/component/session/data
 
+  authentication_component_data:
+    path: flutter/component/authentication/data
+
+  authentication_component_domain:
+    path: flutter/component/authentication/domain
+
   auto_route: ^9.2.2
   injectable: ^2.5.0
   get_it: ^8.0.0
@@ -42,6 +48,7 @@ dependencies:
   drift_flutter: ^0.2.0
 
   flutter_native_splash: ^2.4.3
+  firebase_core: ^3.8.0
 
 dev_dependencies:
   flutter_lints: null
