@@ -140,6 +140,36 @@ class S {
     );
   }
 
+  /// `Log in with phone number`
+  String get login_title {
+    return Intl.message(
+      'Log in with phone number',
+      name: 'login_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get login_submit_button {
+    return Intl.message(
+      'Submit',
+      name: 'login_submit_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or log in with`
+  String get login_alternative_login {
+    return Intl.message(
+      'Or log in with',
+      name: 'login_alternative_login',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start new session`
   String get home_start_session {
     return Intl.message(

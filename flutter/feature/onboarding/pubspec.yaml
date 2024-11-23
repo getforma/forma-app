@@ -1,12 +1,12 @@
 name: onboarding_feature
 description: Onboarding Feature
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -31,6 +31,9 @@ dependencies:
   freezed_annotation: ^2.4.4
   flutter_screenutil: ^5.9.3
 
+  modal_bottom_sheet: ^3.0.0
+  intl_phone_number_input_v2: ^0.0.8
+
 dev_dependencies:
   flutter_lints:
   build_runner:
@@ -43,3 +46,4 @@ flutter:
 
   assets:
     - asset/
+    - asset/icon/

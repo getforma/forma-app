@@ -38,6 +38,16 @@ class ButtonStyles {
       side: const BorderSide(color: AppColors.border),
     ),
   );
+
+  static final fullWidthBlack = TextButton.styleFrom(
+    backgroundColor: AppColors.appBlack,
+    foregroundColor: AppColors.pureWhite,
+    alignment: Alignment.center,
+    minimumSize: const Size(100, 52),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(24),
+    ),
+  );
 }
 
 extension TextButtonScaling on ButtonStyle {

@@ -9,7 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:forma_app/route/app_router.dart';
 import 'package:get_it/get_it.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:onboarding_feature/bloc/onboarding_cubit.dart';
+import 'package:onboarding_feature/widget/login_bottom_sheet.dart';
 
 @RoutePage()
 class OnboardingScreen extends StatelessWidget {
@@ -23,7 +25,7 @@ class OnboardingScreen extends StatelessWidget {
       child: BlocConsumer<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
           if (state.onboardingCompleted) {
-            AutoRouter.of(context).replaceAll([const HomeRoute()]);
+            // AutoRouter.of(context).replaceAll([const HomeRoute()]);
           }
         },
         builder: (context, state) => Scaffold(
@@ -98,25 +100,18 @@ class OnboardingScreen extends StatelessWidget {
               16.verticalSpace,
               TextButton(
                 onPressed: () {
-                  AutoRouter.of(context).push(const HomeRoute());
+                  // AutoRouter.of(context).push(const HomeRoute());
+                  showCupertinoModalBottomSheet(
+                    context: context,
+                    builder: (context) => const LoginBottomSheet(),
+                    backgroundColor: AppColors.background,
+                    expand: false,
+                  );
                 },
                 style: ButtonStyles.fullWidthWhite.sp,
                 child: Text(
                   S.of(context).onboarding_get_started,
                   style: TextStyles.darkBold16.sp,
-                ),
-              ),
-              21.verticalSpace,
-              InkWell(
-                onTap: () {
-                  AutoRouter.of(context).replaceAll([const HomeRoute()]);
-                },
-                child: Text(
-                  S.of(context).onboarding_log_in,
-                  style: TextStyles.lightSemiBold14
-                      .copyWith(color: const Color(0xFF4181FE))
-                      .sp,
-                  textAlign: TextAlign.center,
                 ),
               ),
               16.verticalSpace,
