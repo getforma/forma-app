@@ -140,10 +140,10 @@ class S {
     );
   }
 
-  /// `Log in with phone number`
+  /// `Enter your phone number`
   String get login_title {
     return Intl.message(
-      'Log in with phone number',
+      'Enter your phone number',
       name: 'login_title',
       desc: '',
       args: [],
@@ -175,6 +175,36 @@ class S {
     return Intl.message(
       'Search by country name or dial code',
       name: 'login_search_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number!`
+  String get login_error_invalid_phone_number {
+    return Intl.message(
+      'Invalid phone number!',
+      name: 'login_error_invalid_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid SMS code!`
+  String get login_error_invalid_sms_code {
+    return Intl.message(
+      'Invalid SMS code!',
+      name: 'login_error_invalid_sms_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong!`
+  String get login_error_unknown {
+    return Intl.message(
+      'Something went wrong!',
+      name: 'login_error_unknown',
       desc: '',
       args: [],
     );

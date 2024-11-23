@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             Expanded(child: Container()),
             32.verticalSpace,
             Padding(
-              padding: EdgeInsets.only(left: 32.w, right: 32.w),
+              padding: EdgeInsets.only(left: 32.w, right: 64.w),
               child: Text(
                 S.of(context).login_title,
                 style: TextStyles.lightBold32.copyWith(fontSize: 30).sp,
@@ -44,7 +44,6 @@ class LoginScreen extends StatelessWidget {
                 child: InternationalPhoneNumberInput(
                   textStyle: TextStyles.darkRegular16.sp,
                   selectorTextStyle: TextStyles.darkRegular16.sp,
-                  autoValidateMode: AutovalidateMode.always,
                   inputDecoration: const InputDecoration(
                     filled: false,
                     alignLabelWithHint: true,
@@ -66,7 +65,12 @@ class LoginScreen extends StatelessWidget {
                     trailingSpace: false,
                     useBottomSheetSafeArea: true,
                   ),
-                  onInputChanged: (value) {},
+                  onInputChanged: (value) {
+                    print(value);
+                  },
+                  onFieldSubmitted: (value) {
+                    print(value);
+                  },
                 ),
               ),
             ),

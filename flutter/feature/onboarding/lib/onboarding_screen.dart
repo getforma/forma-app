@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:core_feature/style/app_colors.dart';
+import 'package:core_feature/widget/loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,6 +22,14 @@ class OnboardingScreen extends StatelessWidget {
           if (state.onboardingCompleted) {
             // AutoRouter.of(context).replaceAll([const HomeRoute()]);
           }
+
+          final errorText = state.error?.text(context);
+          if (errorText != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(errorText)),
+            );
+            context.read<OnboardingCubit>().resetError();
+          }
         },
         builder: (context, state) => Scaffold(
           resizeToAvoidBottomInset: false,
@@ -29,6 +38,8 @@ class OnboardingScreen extends StatelessWidget {
             children: [
               Positioned.fill(child: _background(context)),
               const Positioned.fill(child: AutoRouter()),
+              if (state.status == OnboardingStatus.loading)
+                const Positioned.fill(child: LoaderWidget()),
             ],
           ),
         ),

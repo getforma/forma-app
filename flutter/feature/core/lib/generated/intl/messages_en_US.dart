@@ -71,11 +71,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "login_alternative_login":
             MessageLookupByLibrary.simpleMessage("Or log in with"),
+        "login_error_invalid_phone_number":
+            MessageLookupByLibrary.simpleMessage("Invalid phone number!"),
+        "login_error_invalid_sms_code":
+            MessageLookupByLibrary.simpleMessage("Invalid SMS code!"),
+        "login_error_unknown":
+            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "login_search_hint": MessageLookupByLibrary.simpleMessage(
             "Search by country name or dial code"),
         "login_submit_button": MessageLookupByLibrary.simpleMessage("Submit"),
         "login_title":
-            MessageLookupByLibrary.simpleMessage("Log in with phone number"),
+            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "onboarding_description": MessageLookupByLibrary.simpleMessage(
             "Enhance your running form, minimize injury risks, and cut down medical expenses."),
         "onboarding_get_started":
