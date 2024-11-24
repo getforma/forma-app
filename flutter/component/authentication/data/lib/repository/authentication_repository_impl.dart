@@ -49,6 +49,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     return _signInWithCredential(credential);
   }
 
+  @override
+  Future<bool> isUserSignedIn() async {
+    final auth = FirebaseAuth.instance;
+    return auth.currentUser != null;
+  }
+
   Future<Either<FirebaseAuthenticationError, Unit>> _signInWithCredential(
       PhoneAuthCredential credential) async {
     try {

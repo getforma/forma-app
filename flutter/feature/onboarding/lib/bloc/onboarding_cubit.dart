@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
 import 'package:authentication_component_domain/use_case/sign_in_with_sms_code_use_case.dart';
 import 'package:authentication_component_domain/use_case/verify_phone_number_use_case.dart';
+import 'package:authentication_component_domain/use_case/is_user_signed_id_use_case.dart';
 import 'package:core_component_domain/app_configuration_repository.dart';
+import 'package:core_component_domain/use_case/use_case.dart';
 import 'package:core_feature/generated/l10n.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +22,23 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   final AppConfigurationRepository _appConfigurationRepository;
   final VerifyPhoneNumberUseCase _verifyPhoneNumberUseCase;
   final SignInWithSmsCodeUseCase _signInWithSmsCode;
+  final IsUserSignedInUseCase _isUserSignedInUseCase;
 
   OnboardingCubit(
     this._appConfigurationRepository,
     this._verifyPhoneNumberUseCase,
     this._signInWithSmsCode,
+    this._isUserSignedInUseCase,
   ) : super(const OnboardingState());
 
-  Future<void> loadOnboardingCompleted() async {
+  Future<void> initialLoad() async {
     final onboardingCompleted =
         await _appConfigurationRepository.getOnboardingCompleted();
-    emit(state.copyWith(onboardingCompleted: onboardingCompleted));
+    final isUserSignedIn = await _isUserSignedInUseCase.invoke(EmptyParam());
+    emit(state.copyWith(
+      onboardingCompleted: onboardingCompleted,
+      isUserSignedIn: isUserSignedIn,
+    ));
     await _appConfigurationRepository.setOnboardingCompleted();
   }
 

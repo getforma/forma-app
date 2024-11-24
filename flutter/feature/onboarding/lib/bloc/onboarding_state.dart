@@ -4,6 +4,7 @@ part of 'onboarding_cubit.dart';
 class OnboardingState with _$OnboardingState {
   const factory OnboardingState({
     @Default(false) bool onboardingCompleted,
+    @Default(false) bool isUserSignedIn,
     @Default(OnboardingStage.welcome) OnboardingStage stage,
     @Default(OnboardingStatus.initial) OnboardingStatus status,
     OnboardingError? error,

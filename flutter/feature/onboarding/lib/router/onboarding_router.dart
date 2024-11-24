@@ -11,16 +11,16 @@ class OnboardingRouter extends RootStackRouter {
           children: [
             CustomRoute(
               page: WelcomeRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRightWithFade,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
               initial: true,
             ),
             CustomRoute(
               page: LoginRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRightWithFade,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
             CustomRoute(
               page: VerificationCodeRoute.page,
-              transitionsBuilder: TransitionsBuilders.slideRightWithFade,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
           ],
         ),

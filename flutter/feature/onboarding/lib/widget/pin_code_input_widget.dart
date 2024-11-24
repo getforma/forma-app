@@ -51,7 +51,6 @@ class PinCodeInputWidgetState extends State<PinCodeInputWidget> {
                 //short delay for better UX
                 await Future.delayed(const Duration(milliseconds: 100));
                 await widget.onFill(_controller.text);
-                _controller.clear();
               }
             },
             autofocus: true,

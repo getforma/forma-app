@@ -13,4 +13,6 @@ abstract class AuthenticationRepository {
 
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithSMSCode(
       String verificationId, String smsCode);
+
+  Future<bool> isUserSignedIn();
 }

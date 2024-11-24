@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:forma_app/route/app_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:onboarding_feature/bloc/onboarding_cubit.dart';
 import 'package:onboarding_feature/bloc/onboarding_stage.dart';
-import 'package:onboarding_feature/router/onboarding_router.gr.dart';
 
 @RoutePage()
 class OnboardingScreen extends StatelessWidget {
@@ -17,8 +17,7 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          GetIt.I.get<OnboardingCubit>()..loadOnboardingCompleted(),
+      create: (context) => GetIt.I.get<OnboardingCubit>()..initialLoad(),
       child: MultiBlocListener(
         listeners: [
           BlocListener<OnboardingCubit, OnboardingState>(
@@ -31,8 +30,10 @@ class OnboardingScreen extends StatelessWidget {
           ),
           BlocListener<OnboardingCubit, OnboardingState>(
             listener: (context, state) {
-              if (state.onboardingCompleted) {
-                // AutoRouter.of(context).replaceAll([const HomeRoute()]);
+              if (state.onboardingCompleted &&
+                  (state.isUserSignedIn ||
+                      state.status == OnboardingStatus.logInSuccess)) {
+                AutoRouter.of(context).replaceAll([const HomeRoute()]);
               }
 
               final errorText = state.error?.text(context);
