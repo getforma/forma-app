@@ -33,9 +33,8 @@ class OnboardingScreen extends StatelessWidget {
             ),
             BlocListener<OnboardingCubit, OnboardingState>(
               listener: (context, state) {
-                if (state.onboardingCompleted &&
-                    (state.isUserSignedIn ||
-                        state.status == OnboardingStatus.logInSuccess)) {
+                if (state.status == OnboardingStatus.logInSuccess ||
+                    (state.onboardingCompleted && state.isUserSignedIn)) {
                   AutoRouter.of(context).replaceAll([const HomeRoute()]);
                 }
 
