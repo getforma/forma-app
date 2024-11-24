@@ -35,7 +35,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     final onboardingCompleted =
         await _appConfigurationRepository.getOnboardingCompleted();
     final isUserSignedIn = await _isUserSignedInUseCase.invoke(EmptyParam());
-    emit(state.copyWith(
+      emit(state.copyWith(
       onboardingCompleted: onboardingCompleted,
       isUserSignedIn: isUserSignedIn,
     ));

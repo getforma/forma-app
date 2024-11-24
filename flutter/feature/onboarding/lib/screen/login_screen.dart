@@ -57,7 +57,9 @@ class LoginScreen extends StatelessWidget {
                       child: InternationalPhoneNumberInput(
                         textStyle: TextStyles.darkRegular16.sp,
                         selectorTextStyle: TextStyles.darkRegular16.sp,
-                        locale: Platform.localeName,
+                        initialValue: PhoneNumber(
+                          isoCode: Platform.localeName.split('_').last,
+                        ),
                         inputDecoration: const InputDecoration(
                           filled: false,
                           alignLabelWithHint: true,
