@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `Enter the verification code`
+  String get login_verification_code_title {
+    return Intl.message(
+      'Enter the verification code',
+      name: 'login_verification_code_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Invalid phone number!`
   String get login_error_invalid_phone_number {
     return Intl.message(

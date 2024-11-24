@@ -8,6 +8,7 @@ class OnboardingState with _$OnboardingState {
     @Default(OnboardingStatus.initial) OnboardingStatus status,
     OnboardingError? error,
     String? phoneNumber,
+    String? verificationId,
   }) = _OnboardingState;
 }
 

@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                     padding: EdgeInsets.only(left: 32.w, right: 64.w),
                     child: Text(
                       S.of(context).login_title,
-                      style: TextStyles.lightBold32.copyWith(fontSize: 30).sp,
+                      style: TextStyles.lightBold32.sp,
                     ),
                   ),
                   86.verticalSpace,

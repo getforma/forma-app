@@ -82,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_submit_button": MessageLookupByLibrary.simpleMessage("Submit"),
         "login_title":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
+        "login_verification_code_title":
+            MessageLookupByLibrary.simpleMessage("Enter the verification code"),
         "onboarding_description": MessageLookupByLibrary.simpleMessage(
             "Enhance your running form, minimize injury risks, and cut down medical expenses."),
         "onboarding_get_started":

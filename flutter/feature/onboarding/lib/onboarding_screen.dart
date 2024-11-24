@@ -7,6 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:onboarding_feature/bloc/onboarding_cubit.dart';
+import 'package:onboarding_feature/bloc/onboarding_stage.dart';
+import 'package:onboarding_feature/router/onboarding_router.gr.dart';
 
 @RoutePage()
 class OnboardingScreen extends StatelessWidget {
@@ -17,30 +19,44 @@ class OnboardingScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           GetIt.I.get<OnboardingCubit>()..loadOnboardingCompleted(),
-      child: BlocConsumer<OnboardingCubit, OnboardingState>(
-        listener: (context, state) {
-          if (state.onboardingCompleted) {
-            // AutoRouter.of(context).replaceAll([const HomeRoute()]);
-          }
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<OnboardingCubit, OnboardingState>(
+            listenWhen: (previous, current) => previous.stage != current.stage,
+            listener: (context, state) {
+              if (state.stage == OnboardingStage.enterSmsCode) {
+                AutoRouter.of(context).push(const VerificationCodeRoute());
+              }
+            },
+          ),
+          BlocListener<OnboardingCubit, OnboardingState>(
+            listener: (context, state) {
+              if (state.onboardingCompleted) {
+                // AutoRouter.of(context).replaceAll([const HomeRoute()]);
+              }
 
-          final errorText = state.error?.text(context);
-          if (errorText != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(errorText)),
-            );
-            context.read<OnboardingCubit>().resetError();
-          }
-        },
-        builder: (context, state) => Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned.fill(child: _background(context)),
-              const Positioned.fill(child: AutoRouter()),
-              if (state.status == OnboardingStatus.loading)
-                const Positioned.fill(child: LoaderWidget()),
-            ],
+              final errorText = state.error?.text(context);
+              if (errorText != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(errorText)),
+                );
+                context.read<OnboardingCubit>().resetError();
+              }
+            },
+          ),
+        ],
+        child: BlocBuilder<OnboardingCubit, OnboardingState>(
+          builder: (context, state) => Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Stack(
+              fit: StackFit.expand,
+              children: [
+                Positioned.fill(child: _background(context)),
+                const Positioned.fill(child: AutoRouter()),
+                if (state.status == OnboardingStatus.loading)
+                  const Positioned.fill(child: LoaderWidget()),
+              ],
+            ),
           ),
         ),
       ),

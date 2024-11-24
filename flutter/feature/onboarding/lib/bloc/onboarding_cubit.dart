@@ -45,14 +45,17 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       return;
     }
 
-    // emit(state.copyWith(status: OnboardingStatus.loading));
+    emit(state.copyWith(status: OnboardingStatus.loading));
 
     await _verifyPhoneNumberUseCase.invoke(VerifyPhoneNumberUseCaseParams(
       phoneNumber: phoneNumber,
       verificationCompleted:
           (Either<FirebaseAuthenticationError, Unit> result) {
         if (result.isRight()) {
-          emit(state.copyWith(status: OnboardingStatus.initial));
+          emit(state.copyWith(
+            status: OnboardingStatus.initial,
+            stage: OnboardingStage.enterSmsCode,
+          ));
         } else {
           final error = result.fold((l) => l, (r) => null);
 
@@ -72,14 +75,53 @@ class OnboardingCubit extends Cubit<OnboardingState> {
         emit(state.copyWith(
           stage: OnboardingStage.enterSmsCode,
           status: OnboardingStatus.initial,
+          verificationId: verificationId,
         ));
       },
       codeAutoRetrievalTimeout: (String verificationId) {
         emit(state.copyWith(
           stage: OnboardingStage.enterSmsCode,
           status: OnboardingStatus.initial,
+          verificationId: verificationId,
         ));
       },
+    ));
+  }
+
+  Future<void> verifySmsCode(String smsCode) async {
+    final verificationId = state.verificationId;
+    if (verificationId == null) {
+      emit(state.copyWith(
+        error: OnboardingError.invalidSmsCode,
+        stage: OnboardingStage.login,
+        status: OnboardingStatus.initial,
+      ));
+      return;
+    }
+
+    emit(state.copyWith(status: OnboardingStatus.loading));
+
+    final result =
+        await _signInWithSmsCode.invoke(SignInWithSmsCodeUseCaseParams(
+      verificationId: verificationId,
+      smsCode: smsCode,
+    ));
+
+    if (result.isRight()) {
+      emit(state.copyWith(status: OnboardingStatus.logInSuccess));
+      return;
+    }
+
+    final error =
+        result.fold((l) => l as FirebaseAuthenticationError, (r) => null);
+    if (error == null) {
+      return;
+    }
+
+    emit(state.copyWith(
+      error: OnboardingError.fromFirebaseAuthenticationError(error),
+      stage: OnboardingStage.login,
+      status: OnboardingStatus.initial,
     ));
   }
 

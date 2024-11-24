@@ -13,6 +13,7 @@
   "login_submit_button": "Submit",
   "login_alternative_login": "Or log in with",
   "login_search_hint": "Search by country name or dial code",
+  "login_verification_code_title": "Enter the verification code",
   "login_error_invalid_phone_number": "Invalid phone number!",
   "login_error_invalid_sms_code": "Invalid SMS code!",
   "login_error_unknown": "Something went wrong!",
