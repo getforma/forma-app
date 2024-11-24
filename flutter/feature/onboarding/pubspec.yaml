@@ -21,6 +21,9 @@ dependencies:
   core_component_domain:
     path: ../../component/core/domain
 
+  authentication_component_domain:
+    path: ../../component/authentication/domain
+
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.10+1
   collection: ^1.18.0
@@ -30,6 +33,7 @@ dependencies:
   get_it: ^8.0.0
   freezed_annotation: ^2.4.4
   flutter_screenutil: ^5.9.3
+  dartz: ^0.10.1
 
   intl_phone_number_input_v2: ^0.0.8
 

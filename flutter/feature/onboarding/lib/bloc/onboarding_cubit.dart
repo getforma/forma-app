@@ -38,8 +38,14 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     emit(state.copyWith(stage: OnboardingStage.login));
   }
 
-  Future<void> verifyPhoneNumber(String phoneNumber) async {
-    emit(state.copyWith(status: OnboardingStatus.loading));
+  Future<void> verifyPhoneNumber() async {
+    final phoneNumber = state.phoneNumber;
+    if (phoneNumber == null) {
+      emit(state.copyWith(error: OnboardingError.invalidPhoneNumber));
+      return;
+    }
+
+    // emit(state.copyWith(status: OnboardingStatus.loading));
 
     await _verifyPhoneNumberUseCase.invoke(VerifyPhoneNumberUseCaseParams(
       phoneNumber: phoneNumber,
@@ -75,6 +81,10 @@ class OnboardingCubit extends Cubit<OnboardingState> {
         ));
       },
     ));
+  }
+
+  void setPhoneNumber(String? phoneNumber) {
+    emit(state.copyWith(phoneNumber: phoneNumber));
   }
 
   void resetError() {

@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
 import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_number_input_v2/intl_phone_number_input.dart';
+import 'package:onboarding_feature/bloc/onboarding_cubit.dart';
 
 @RoutePage()
 class LoginScreen extends StatelessWidget {
@@ -16,83 +20,98 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: SafeArea(
-        top: false,
-        left: false,
-        right: false,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(child: Container()),
-            32.verticalSpace,
-            Padding(
-              padding: EdgeInsets.only(left: 32.w, right: 64.w),
-              child: Text(
-                S.of(context).login_title,
-                style: TextStyles.lightBold32.copyWith(fontSize: 30).sp,
-              ),
-            ),
-            86.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.pureWhite,
-                  borderRadius: BorderRadius.all(Radius.circular(16.r)),
-                ),
-                child: InternationalPhoneNumberInput(
-                  textStyle: TextStyles.darkRegular16.sp,
-                  selectorTextStyle: TextStyles.darkRegular16.sp,
-                  inputDecoration: const InputDecoration(
-                    filled: false,
-                    alignLabelWithHint: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
+      body: BlocBuilder<OnboardingCubit, OnboardingState>(
+        builder: (context, state) {
+          return SafeArea(
+            top: false,
+            left: false,
+            right: false,
+            child: InkWell(
+              enableFeedback: false,
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () {
+                FocusScope.of(context).unfocus();
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(child: Container()),
+                  32.verticalSpace,
+                  Padding(
+                    padding: EdgeInsets.only(left: 32.w, right: 64.w),
+                    child: Text(
+                      S.of(context).login_title,
+                      style: TextStyles.lightBold32.copyWith(fontSize: 30).sp,
                     ),
                   ),
-                  searchBoxDecoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                    hintStyle: TextStyles.darkRegular16
-                        .copyWith(color: AppColors.appGrey)
-                        .sp,
-                    labelStyle: TextStyles.darkRegular16.sp,
-                    hintText: S.of(context).login_search_hint,
+                  86.verticalSpace,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.pureWhite,
+                        borderRadius: BorderRadius.all(Radius.circular(16.r)),
+                      ),
+                      child: InternationalPhoneNumberInput(
+                        textStyle: TextStyles.darkRegular16.sp,
+                        selectorTextStyle: TextStyles.darkRegular16.sp,
+                        locale: Platform.localeName,
+                        inputDecoration: const InputDecoration(
+                          filled: false,
+                          alignLabelWithHint: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        searchBoxDecoration: InputDecoration(
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 16.w),
+                          hintStyle: TextStyles.darkRegular16
+                              .copyWith(color: AppColors.appGrey)
+                              .sp,
+                          labelStyle: TextStyles.darkRegular16.sp,
+                          hintText: S.of(context).login_search_hint,
+                        ),
+                        selectorConfig: const SelectorConfig(
+                          selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                          showFlags: false,
+                          trailingSpace: false,
+                          useBottomSheetSafeArea: true,
+                        ),
+                        onInputChanged: (value) {
+                          context
+                              .read<OnboardingCubit>()
+                              .setPhoneNumber(value.phoneNumber);
+                        },
+                      ),
+                    ),
                   ),
-                  selectorConfig: const SelectorConfig(
-                    selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                    showFlags: false,
-                    trailingSpace: false,
-                    useBottomSheetSafeArea: true,
+                  86.verticalSpace,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: TextButton(
+                      onPressed: () {
+                        context.read<OnboardingCubit>().verifyPhoneNumber();
+                      },
+                      style: ButtonStyles.fullWidthWhite.sp,
+                      child: Text(
+                        S.of(context).login_submit_button,
+                        style: TextStyles.darkBold16.sp,
+                      ),
+                    ),
                   ),
-                  onInputChanged: (value) {
-                    print(value);
-                  },
-                  onFieldSubmitted: (value) {
-                    print(value);
-                  },
-                ),
+                  40.verticalSpace,
+                  _alternativeLoginText(context),
+                  32.verticalSpace,
+                  _alternativeLoginButtons(context),
+                  32.verticalSpace,
+                ],
               ),
             ),
-            86.verticalSpace,
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: TextButton(
-                onPressed: () {},
-                style: ButtonStyles.fullWidthWhite.sp,
-                child: Text(
-                  S.of(context).login_submit_button,
-                  style: TextStyles.darkBold16.sp,
-                ),
-              ),
-            ),
-            40.verticalSpace,
-            _alternativeLoginText(context),
-            32.verticalSpace,
-            _alternativeLoginButtons(context),
-            32.verticalSpace,
-          ],
-        ),
+          );
+        },
       ),
     );
   }

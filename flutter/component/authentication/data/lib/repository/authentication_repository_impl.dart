@@ -15,23 +15,27 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     required Function(String, int?) codeSent,
     required Function(String) codeAutoRetrievalTimeout,
   }) async {
-    final auth = FirebaseAuth.instance;
-    await auth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (PhoneAuthCredential credential) async {
-        // Android only
-        // Sign the user in (or link) with the auto-generated credential
-        verificationCompleted(await _signInWithCredential(credential));
-      },
-      verificationFailed: (FirebaseAuthException e) {
-        if (e.code == 'invalid-phone-number') {
-          verificationFailed(true);
-        }
-        verificationFailed(false);
-      },
-      codeSent: codeSent,
-      codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
-    );
+    try {
+      final auth = FirebaseAuth.instance;
+      await auth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // Android only
+          // Sign the user in (or link) with the auto-generated credential
+          verificationCompleted(await _signInWithCredential(credential));
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          if (e.code == 'invalid-phone-number') {
+            verificationFailed(true);
+          }
+          verificationFailed(false);
+        },
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+      );
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
