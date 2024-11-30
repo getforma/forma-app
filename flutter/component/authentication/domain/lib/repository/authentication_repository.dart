@@ -15,4 +15,6 @@ abstract class AuthenticationRepository {
       String verificationId, String smsCode);
 
   Future<bool> isUserSignedIn();
+
+  Future<Either<FirebaseAuthenticationError, Unit>> triggerGoogleSignIn();
 }

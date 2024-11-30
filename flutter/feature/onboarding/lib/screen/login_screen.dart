@@ -150,11 +150,16 @@ class LoginScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SvgPicture.asset(
-              "asset/icon/google.svg",
-              package: "onboarding_feature",
-              width: 32.r,
-              height: 32.r,
+            InkWell(
+              onTap: () {
+                context.read<OnboardingCubit>().signInWithGoogle();
+              },
+              child: SvgPicture.asset(
+                "asset/icon/google.svg",
+                package: "onboarding_feature",
+                width: 32.r,
+                height: 32.r,
+              ),
             ),
             SvgPicture.asset(
               "asset/icon/apple.svg",

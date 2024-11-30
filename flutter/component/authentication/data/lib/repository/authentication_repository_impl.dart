@@ -2,6 +2,8 @@ import 'package:authentication_component_domain/repository/authentication_reposi
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthenticationRepository)
@@ -55,8 +57,35 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     return auth.currentUser != null;
   }
 
+  @override
+  Future<Either<FirebaseAuthenticationError, Unit>>
+      triggerGoogleSignIn() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return _signInWithCredential(credential);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return left(UnknownFirebaseAuthenticationError());
+    }
+  }
+
   Future<Either<FirebaseAuthenticationError, Unit>> _signInWithCredential(
-      PhoneAuthCredential credential) async {
+      AuthCredential credential) async {
     try {
       final auth = FirebaseAuth.instance;
       await auth.signInWithCredential(credential);

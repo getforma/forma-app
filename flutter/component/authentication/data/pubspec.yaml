@@ -37,6 +37,7 @@ dependencies:
   freezed_annotation: ^2.4.4
 
   firebase_auth: ^5.3.3
+  google_sign_in: ^6.2.2
 
 dev_dependencies:
   flutter_lints:
