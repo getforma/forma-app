@@ -58,8 +58,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<FirebaseAuthenticationError, Unit>>
-      triggerGoogleSignIn() async {
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -76,6 +75,20 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
 
       // Once signed in, return the UserCredential
       return _signInWithCredential(credential);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      return left(UnknownFirebaseAuthenticationError());
+    }
+  }
+
+  @override
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple() async {
+    try {
+      final appleProvider = AppleAuthProvider();
+      await FirebaseAuth.instance.signInWithProvider(appleProvider);
+      return right(unit);
     } catch (e) {
       if (kDebugMode) {
         print(e);

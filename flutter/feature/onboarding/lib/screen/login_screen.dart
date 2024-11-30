@@ -161,11 +161,16 @@ class LoginScreen extends StatelessWidget {
                 height: 32.r,
               ),
             ),
-            SvgPicture.asset(
-              "asset/icon/apple.svg",
-              package: "onboarding_feature",
-              width: 32.r,
-              height: 32.r,
+            InkWell(
+              onTap: () {
+                context.read<OnboardingCubit>().signInWithApple();
+              },
+              child: SvgPicture.asset(
+                "asset/icon/apple.svg",
+                package: "onboarding_feature",
+                width: 32.r,
+                height: 32.r,
+              ),
             ),
             SvgPicture.asset(
               "asset/icon/facebook.svg",

@@ -16,5 +16,7 @@ abstract class AuthenticationRepository {
 
   Future<bool> isUserSignedIn();
 
-  Future<Either<FirebaseAuthenticationError, Unit>> triggerGoogleSignIn();
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithGoogle();
+
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple();
 }
