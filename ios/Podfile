@@ -31,6 +31,9 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
+    # This is just a temporary solution to fix the iOS build issue. We need to remove this line after the author fixes this [issue](https://github.com/natintosh/plugin_libphonenumber/issues/35)
+  pod 'PhoneNumberKit', '~> 3.8.0'
+
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
     inherit! :search_paths

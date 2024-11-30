@@ -1,6 +1,7 @@
 {
-    "cSpell.words": [
-        "Geolocator"
-    ],
-    "editor.hover.enabled": false
+  "cSpell.words": [
+    "Geolocator"
+  ],
+  "editor.hover.enabled": false,
+  "dart.flutterSdkPath": ".fvm/versions/3.22.3"
 }

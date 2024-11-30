@@ -140,6 +140,86 @@ class S {
     );
   }
 
+  /// `Enter your phone number`
+  String get login_title {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'login_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get login_submit_button {
+    return Intl.message(
+      'Submit',
+      name: 'login_submit_button',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Or log in with`
+  String get login_alternative_login {
+    return Intl.message(
+      'Or log in with',
+      name: 'login_alternative_login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search by country name or dial code`
+  String get login_search_hint {
+    return Intl.message(
+      'Search by country name or dial code',
+      name: 'login_search_hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the verification code`
+  String get login_verification_code_title {
+    return Intl.message(
+      'Enter the verification code',
+      name: 'login_verification_code_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid phone number!`
+  String get login_error_invalid_phone_number {
+    return Intl.message(
+      'Invalid phone number!',
+      name: 'login_error_invalid_phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid SMS code!`
+  String get login_error_invalid_sms_code {
+    return Intl.message(
+      'Invalid SMS code!',
+      name: 'login_error_invalid_sms_code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong!`
+  String get login_error_unknown {
+    return Intl.message(
+      'Something went wrong!',
+      name: 'login_error_unknown',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start new session`
   String get home_start_session {
     return Intl.message(
