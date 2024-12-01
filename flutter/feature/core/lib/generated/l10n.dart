@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `This email was already associated with different signing method! Try logging in with a different provider.`
+  String get login_error_account_exists_with_different_credential {
+    return Intl.message(
+      'This email was already associated with different signing method! Try logging in with a different provider.',
+      name: 'login_error_account_exists_with_different_credential',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong!`
   String get login_error_unknown {
     return Intl.message(

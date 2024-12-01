@@ -22,6 +22,7 @@ enum OnboardingStatus {
 enum OnboardingError {
   invalidPhoneNumber,
   invalidSmsCode,
+  accountExistsWithDifferentCredential,
   unknown;
 
   static fromFirebaseAuthenticationError(FirebaseAuthenticationError error) {
@@ -30,6 +31,8 @@ enum OnboardingError {
         return OnboardingError.invalidPhoneNumber;
       case InvalidSMSCodeError:
         return OnboardingError.invalidSmsCode;
+      case AccountExistsWithDifferentCredentialError:
+        return OnboardingError.accountExistsWithDifferentCredential;
       default:
         return OnboardingError.unknown;
     }
@@ -42,6 +45,8 @@ enum OnboardingError {
         return translations.login_error_invalid_phone_number;
       case OnboardingError.invalidSmsCode:
         return translations.login_error_invalid_sms_code;
+      case OnboardingError.accountExistsWithDifferentCredential:
+        return translations.login_error_account_exists_with_different_credential;
       case OnboardingError.unknown:
         return translations.login_error_unknown;
     }

@@ -19,4 +19,6 @@ abstract class AuthenticationRepository {
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithGoogle();
 
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple();
+
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithFacebook();
 }

@@ -172,11 +172,16 @@ class LoginScreen extends StatelessWidget {
                 height: 32.r,
               ),
             ),
-            SvgPicture.asset(
-              "asset/icon/facebook.svg",
-              package: "onboarding_feature",
-              width: 32.r,
-              height: 32.r,
+            InkWell(
+              onTap: () {
+                context.read<OnboardingCubit>().signInWithFacebook();
+              },
+              child: SvgPicture.asset(
+                "asset/icon/facebook.svg",
+                package: "onboarding_feature",
+                width: 32.r,
+                height: 32.r,
+              ),
             ),
           ],
         ),

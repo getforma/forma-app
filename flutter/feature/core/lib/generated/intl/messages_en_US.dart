@@ -71,6 +71,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "login_alternative_login":
             MessageLookupByLibrary.simpleMessage("Or log in with"),
+        "login_error_account_exists_with_different_credential":
+            MessageLookupByLibrary.simpleMessage(
+                "This email was already associated with different signing method! Try logging in with a different provider."),
         "login_error_invalid_phone_number":
             MessageLookupByLibrary.simpleMessage("Invalid phone number!"),
         "login_error_invalid_sms_code":
