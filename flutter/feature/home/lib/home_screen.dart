@@ -281,7 +281,11 @@ class HomeScreen extends StatelessWidget {
           ),
           16.verticalSpace,
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              AutoRouter.of(context).push(
+                QuestionnaireRoute(type: QuestionnaireType.checkup),
+              );
+            },
             style: ButtonStyles.fullWidthWhite.sp,
             child: Text(
               S.of(context).home_button_feeling,
