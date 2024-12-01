@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:core_component_domain/secure_storage_repository.dart';
 import 'package:crypto/crypto.dart';
 
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
@@ -13,6 +14,10 @@ import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
+  final SecureStorageRepository _secureStorageRepository;
+
+  AuthenticationRepositoryImpl(this._secureStorageRepository);
+
   @override
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
@@ -144,7 +149,14 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       AuthCredential credential) async {
     try {
       final auth = FirebaseAuth.instance;
-      final userCredential = await auth.signInWithCredential(credential);
+      await auth.signInWithCredential(credential);
+
+      final accessToken = await auth.currentUser?.getIdToken();
+      if (accessToken == null) {
+        return left(UnknownFirebaseAuthenticationError());
+      }
+
+      await _secureStorageRepository.setAccessToken(accessToken);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-verification-code') {
