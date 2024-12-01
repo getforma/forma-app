@@ -24,6 +24,9 @@ dependencies:
   tracking_feature:
     path: flutter/feature/tracking
 
+  questionnaire_feature:
+    path: flutter/feature/questionnaire
+
   core_component_data:
     path: flutter/component/core/data
 
