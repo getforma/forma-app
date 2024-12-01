@@ -296,10 +296,10 @@ packages:
     dependency: transitive
     description:
       name: crypto
-      sha256: ec30d999af904f33454ba22ed9a86162b35e52b44ac4807d1d93c288041d7d27
+      sha256: "1e445881f28f22d6140f181e07737b22f1e099a5e1ff94b0af2f9e4a463f4855"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.5"
+    version: "3.0.6"
   csslib:
     dependency: transitive
     description:
@@ -1438,6 +1438,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  user_component_data:
+    dependency: "direct main"
+    description:
+      path: "flutter/component/user/data"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  user_component_domain:
+    dependency: "direct overridden"
+    description:
+      path: "flutter/component/user/domain"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   uuid:
     dependency: transitive
     description:

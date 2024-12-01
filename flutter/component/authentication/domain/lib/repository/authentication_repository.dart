@@ -1,4 +1,5 @@
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
+import 'package:core_component_domain/model/auth_token.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class AuthenticationRepository {
@@ -21,4 +22,6 @@ abstract class AuthenticationRepository {
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple();
 
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithFacebook();
+
+  Future<AuthToken?> getAccessToken();
 }

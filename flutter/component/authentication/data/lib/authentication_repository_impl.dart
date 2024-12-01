@@ -1,18 +1,30 @@
 import 'dart:convert';
 import 'dart:math';
-import 'package:crypto/crypto.dart';
 
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
 import 'package:authentication_component_domain/repository/authentication_repository.dart';
+import 'package:core_component_domain/model/auth_token.dart';
+import 'package:core_component_domain/secure_storage_repository.dart';
+import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:user_component_domain/model/user.dart' as UserDomain;
+import 'package:user_component_domain/user_repository.dart';
 
 @Injectable(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
+  final SecureStorageRepository _secureStorageRepository;
+  final UserRepository _userRepository;
+
+  AuthenticationRepositoryImpl(
+    this._secureStorageRepository,
+    this._userRepository,
+  );
+
   @override
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
@@ -92,7 +104,32 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple() async {
     try {
       final appleProvider = AppleAuthProvider();
-      await FirebaseAuth.instance.signInWithProvider(appleProvider);
+      final signedCredential =
+          await FirebaseAuth.instance.signInWithProvider(appleProvider);
+
+      final accessToken =
+          await FirebaseAuth.instance.currentUser?.getIdTokenResult();
+      final tokenString = accessToken?.token;
+      if (accessToken == null || tokenString == null) {
+        return left(UnknownFirebaseAuthenticationError());
+      }
+
+      await _secureStorageRepository.setAccessToken(AuthToken(
+        token: tokenString,
+        expirationTime: accessToken.expirationTime,
+      ));
+
+      final isNewUser = signedCredential.additionalUserInfo?.isNewUser ?? true;
+      if (isNewUser) {
+        final userResponse = await _userRepository.saveUser(UserDomain.User(
+          email: signedCredential.user?.email ?? '',
+          name: signedCredential.user?.displayName ?? '',
+        ));
+        if (userResponse.isLeft()) {
+          return left(UnknownFirebaseAuthenticationError());
+        }
+      }
+
       return right(unit);
     } catch (e) {
       if (kDebugMode) {
@@ -144,7 +181,31 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       AuthCredential credential) async {
     try {
       final auth = FirebaseAuth.instance;
-      final userCredential = await auth.signInWithCredential(credential);
+      final signedCredential = await auth.signInWithCredential(credential);
+
+      final accessToken =
+          await FirebaseAuth.instance.currentUser?.getIdTokenResult();
+      final tokenString = accessToken?.token;
+      if (accessToken == null || tokenString == null) {
+        return left(UnknownFirebaseAuthenticationError());
+      }
+
+      await _secureStorageRepository.setAccessToken(AuthToken(
+        token: tokenString,
+        expirationTime: accessToken.expirationTime,
+      ));
+
+      final isNewUser = signedCredential.additionalUserInfo?.isNewUser ?? true;
+      if (isNewUser) {
+        final userResponse = await _userRepository.saveUser(UserDomain.User(
+          email: auth.currentUser?.email ?? '',
+          name: auth.currentUser?.displayName ?? '',
+        ));
+        if (userResponse.isLeft()) {
+          return left(UnknownFirebaseAuthenticationError());
+        }
+      }
+
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-verification-code') {
@@ -155,6 +216,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       }
       return left(UnknownFirebaseAuthenticationError());
     }
+  }
+
+  @override
+  Future<AuthToken?> getAccessToken() async {
+    return _secureStorageRepository.getAccessToken();
   }
 
   /// Generates a cryptographically secure random nonce, to be included in a

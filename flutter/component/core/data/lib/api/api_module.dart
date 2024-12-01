@@ -1,3 +1,4 @@
+import 'package:core_component_data/api/authorization_interceptor.dart';
 import 'package:core_component_data/api/urls.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -10,6 +11,7 @@ abstract class ApiModule {
     @Named(namedApiUrl) String baseUrl,
   ) {
     Dio dio = Dio(BaseOptions(baseUrl: baseUrl));
+    dio.interceptors.add(AuthenticationInterceptor(dio));
 
     if (kDebugMode) {
       dio.interceptors.add(LogInterceptor(
@@ -21,12 +23,6 @@ abstract class ApiModule {
         error: true,
       ));
     }
-
-    dio.interceptors.add(InterceptorsWrapper(onRequest:
-        (RequestOptions options, RequestInterceptorHandler handler) async {
-      options.headers["Authorization"] = "Basic YWRtaW46cGFzc3dvcmQ=";
-      handler.next(options);
-    }));
 
     return dio;
   }
