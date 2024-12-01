@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
+import 'package:authentication_component_domain/use_case/sign_in_with_google_use_case.dart';
 import 'package:authentication_component_domain/use_case/sign_in_with_sms_code_use_case.dart';
+import 'package:authentication_component_domain/use_case/sign_in_with_apple_use_case.dart';
+import 'package:authentication_component_domain/use_case/sign_in_with_facebook_use_case.dart';
 import 'package:authentication_component_domain/use_case/verify_phone_number_use_case.dart';
 import 'package:authentication_component_domain/use_case/is_user_signed_id_use_case.dart';
 import 'package:core_component_domain/app_configuration_repository.dart';
@@ -23,19 +26,25 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   final VerifyPhoneNumberUseCase _verifyPhoneNumberUseCase;
   final SignInWithSmsCodeUseCase _signInWithSmsCode;
   final IsUserSignedInUseCase _isUserSignedInUseCase;
+  final SignInWithGoogleUseCase _signInWithGoogleUseCase;
+  final SignInWithAppleUseCase _signInWithAppleUseCase;
+  final SignInWithFacebookUseCase _signInWithFacebookUseCase;
 
   OnboardingCubit(
     this._appConfigurationRepository,
     this._verifyPhoneNumberUseCase,
     this._signInWithSmsCode,
     this._isUserSignedInUseCase,
+    this._signInWithGoogleUseCase,
+    this._signInWithAppleUseCase,
+    this._signInWithFacebookUseCase,
   ) : super(const OnboardingState());
 
   Future<void> initialLoad() async {
     final onboardingCompleted =
         await _appConfigurationRepository.getOnboardingCompleted();
     final isUserSignedIn = await _isUserSignedInUseCase.invoke(EmptyParam());
-      emit(state.copyWith(
+    emit(state.copyWith(
       onboardingCompleted: onboardingCompleted,
       isUserSignedIn: isUserSignedIn,
     ));
@@ -115,6 +124,69 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       smsCode: smsCode,
     ));
 
+    if (result.isRight()) {
+      emit(state.copyWith(status: OnboardingStatus.logInSuccess));
+      return;
+    }
+
+    final error =
+        result.fold((l) => l as FirebaseAuthenticationError, (r) => null);
+    if (error == null) {
+      return;
+    }
+
+    emit(state.copyWith(
+      error: OnboardingError.fromFirebaseAuthenticationError(error),
+      stage: OnboardingStage.login,
+      status: OnboardingStatus.initial,
+    ));
+  }
+
+  Future<void> signInWithGoogle() async {
+    emit(state.copyWith(status: OnboardingStatus.loading));
+    final result = await _signInWithGoogleUseCase.invoke(EmptyParam());
+    if (result.isRight()) {
+      emit(state.copyWith(status: OnboardingStatus.logInSuccess));
+      return;
+    }
+
+    final error =
+        result.fold((l) => l as FirebaseAuthenticationError, (r) => null);
+    if (error == null) {
+      return;
+    }
+
+    emit(state.copyWith(
+      error: OnboardingError.fromFirebaseAuthenticationError(error),
+      stage: OnboardingStage.login,
+      status: OnboardingStatus.initial,
+    ));
+  }
+
+  Future<void> signInWithApple() async {
+    emit(state.copyWith(status: OnboardingStatus.loading));
+    final result = await _signInWithAppleUseCase.invoke(EmptyParam());
+    if (result.isRight()) {
+      emit(state.copyWith(status: OnboardingStatus.logInSuccess));
+      return;
+    }
+
+    final error =
+        result.fold((l) => l as FirebaseAuthenticationError, (r) => null);
+    if (error == null) {
+      return;
+    }
+
+    emit(state.copyWith(
+      error: OnboardingError.fromFirebaseAuthenticationError(error),
+      stage: OnboardingStage.login,
+      status: OnboardingStatus.initial,
+    ));
+  }
+
+  Future<void> signInWithFacebook() async {
+    emit(state.copyWith(status: OnboardingStatus.loading));
+    final result = await _signInWithFacebookUseCase.invoke(EmptyParam());
     if (result.isRight()) {
       emit(state.copyWith(status: OnboardingStatus.logInSuccess));
       return;

@@ -15,4 +15,10 @@ abstract class AuthenticationRepository {
       String verificationId, String smsCode);
 
   Future<bool> isUserSignedIn();
+
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithGoogle();
+
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple();
+
+  Future<Either<FirebaseAuthenticationError, Unit>> signInWithFacebook();
 }

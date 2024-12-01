@@ -74,5 +74,42 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	<!-- Google Sign-in Section -->
+	<key>GIDClientID</key>
+	<string>445996582557-0m9cmsnnqgesaasq06v6mt6adbg2v49k.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+				<array>
+					<string>fb1394406774869955</string> <!-- Facebook App ID -->
+					<string>com.googleusercontent.apps.445996582557-0m9cmsnnqgesaasq06v6mt6adbg2v49k</string>
+				</array>
+		</dict>
+	</array>
+	<!-- End of the Google Sign-in Section -->
+	
+	<!-- Facebook Sign-in Section -->
+	<key>FacebookAppID</key>
+	<string>1394406774869955</string>
+	<key>FacebookClientToken</key>
+	<string>4952fcbbe2546af1c52fdb0141599260</string>
+	<key>FacebookDisplayName</key>
+	<string>Forma</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<!-- End of the Facebook Sign-in Section -->
 </dict>
 </plist>
