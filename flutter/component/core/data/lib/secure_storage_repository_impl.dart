@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:core_component_domain/model/auth_token.dart';
 import 'package:core_component_domain/secure_storage_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -17,12 +20,14 @@ class SecureStorageRepositoryImpl implements SecureStorageRepository {
   }
 
   @override
-  Future<void> setAccessToken(String accessToken) async {
-    await _storage.write(key: _accessTokenKey, value: accessToken);
+  Future<void> setAccessToken(AuthToken accessToken) async {
+    await _storage.write(
+        key: _accessTokenKey, value: jsonEncode(accessToken.toJson()));
   }
 
   @override
-  Future<String?> getAccessToken() async {
-    return await _storage.read(key: _accessTokenKey);
+  Future<AuthToken?> getAccessToken() async {
+    final json = await _storage.read(key: _accessTokenKey);
+    return json != null ? AuthToken.fromJson(jsonDecode(json)) : null;
   }
 }

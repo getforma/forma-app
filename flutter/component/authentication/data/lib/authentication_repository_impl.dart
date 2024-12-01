@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:authentication_component_domain/model/firebase_authentication_error.dart';
 import 'package:authentication_component_domain/repository/authentication_repository.dart';
+import 'package:core_component_domain/model/auth_token.dart';
 import 'package:core_component_domain/secure_storage_repository.dart';
 import 'package:crypto/crypto.dart';
 import 'package:dartz/dartz.dart';
@@ -106,11 +107,17 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final signedCredential =
           await FirebaseAuth.instance.signInWithProvider(appleProvider);
 
-      final accessToken = await FirebaseAuth.instance.currentUser?.getIdToken();
-      if (accessToken == null) {
+      final accessToken =
+          await FirebaseAuth.instance.currentUser?.getIdTokenResult();
+      final tokenString = accessToken?.token;
+      if (accessToken == null || tokenString == null) {
         return left(UnknownFirebaseAuthenticationError());
       }
-      await _secureStorageRepository.setAccessToken(accessToken);
+
+      await _secureStorageRepository.setAccessToken(AuthToken(
+        token: tokenString,
+        expirationTime: accessToken.expirationTime,
+      ));
 
       final isNewUser = signedCredential.additionalUserInfo?.isNewUser ?? true;
       if (isNewUser) {
@@ -176,12 +183,17 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final auth = FirebaseAuth.instance;
       final signedCredential = await auth.signInWithCredential(credential);
 
-      final accessToken = await auth.currentUser?.getIdToken();
-      if (accessToken == null) {
+      final accessToken =
+          await FirebaseAuth.instance.currentUser?.getIdTokenResult();
+      final tokenString = accessToken?.token;
+      if (accessToken == null || tokenString == null) {
         return left(UnknownFirebaseAuthenticationError());
       }
 
-      await _secureStorageRepository.setAccessToken(accessToken);
+      await _secureStorageRepository.setAccessToken(AuthToken(
+        token: tokenString,
+        expirationTime: accessToken.expirationTime,
+      ));
 
       final isNewUser = signedCredential.additionalUserInfo?.isNewUser ?? true;
       if (isNewUser) {
@@ -204,6 +216,11 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       }
       return left(UnknownFirebaseAuthenticationError());
     }
+  }
+
+  @override
+  Future<AuthToken?> getAccessToken() async {
+    return _secureStorageRepository.getAccessToken();
   }
 
   /// Generates a cryptographically secure random nonce, to be included in a
