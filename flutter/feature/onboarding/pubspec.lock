@@ -1358,6 +1358,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
+  user_component_data:
+    dependency: "direct overridden"
+    description:
+      path: "../../component/user/data"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  user_component_domain:
+    dependency: "direct overridden"
+    description:
+      path: "../../component/user/domain"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   uuid:
     dependency: transitive
     description:

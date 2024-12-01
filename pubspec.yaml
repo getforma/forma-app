@@ -39,6 +39,9 @@ dependencies:
   authentication_component_domain:
     path: flutter/component/authentication/domain
 
+  user_component_data:
+    path: flutter/component/user/data
+
   auto_route: ^9.2.2
   injectable: ^2.5.0
   get_it: ^8.0.0
