@@ -98,6 +98,13 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       final appleProvider = AppleAuthProvider();
       await FirebaseAuth.instance.signInWithProvider(appleProvider);
+
+      final accessToken = await FirebaseAuth.instance.currentUser?.getIdToken();
+      if (accessToken == null) {
+        return left(UnknownFirebaseAuthenticationError());
+      }
+      await _secureStorageRepository.setAccessToken(accessToken);
+
       return right(unit);
     } catch (e) {
       if (kDebugMode) {
