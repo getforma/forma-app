@@ -1,12 +1,12 @@
 name: authentication_component_data
 description: Authentication Component Data
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -24,6 +24,8 @@ dependencies:
   core_component_data:
     path: ../../core/data
 
+  user_component_domain:
+    path: ../../user/domain
 
   injectable: ^2.5.0
   get_it: ^8.0.0

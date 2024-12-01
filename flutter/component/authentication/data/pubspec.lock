@@ -1382,7 +1382,7 @@ packages:
     source: path
     version: "1.0.0+1"
   user_component_domain:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       path: "../../user/domain"
       relative: true
