@@ -9,7 +9,6 @@ export 'package:home_feature/router/home_router.gr.dart';
 export 'package:tracking_feature/router/tracking_router.gr.dart';
 export 'package:onboarding_feature/router/onboarding_router.gr.dart';
 export 'package:questionnaire_feature/router/questionnaire_router.gr.dart';
-export 'package:questionnaire_feature/router/questionnaire_type.dart';
 
 part 'app_router.gr.dart';
 

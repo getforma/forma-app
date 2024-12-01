@@ -95,6 +95,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Already have an account? Log in"),
         "onboarding_title":
             MessageLookupByLibrary.simpleMessage("Every step, perfected"),
+        "questionnaire_next": MessageLookupByLibrary.simpleMessage("Next"),
+        "questionnaire_title_checkup":
+            MessageLookupByLibrary.simpleMessage("How are you feeling?"),
+        "questionnaire_title_onboarding":
+            MessageLookupByLibrary.simpleMessage("Tell us about yourself"),
+        "questionnaire_title_post_run":
+            MessageLookupByLibrary.simpleMessage("How was your run?"),
         "tracking_average_pace":
             MessageLookupByLibrary.simpleMessage("Avg pace"),
         "tracking_average_speed":
