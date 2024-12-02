@@ -40,9 +40,33 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     ));
   }
 
-  void onAnswerClicked(String questionId, int answerId) {
+  void onAnswerClicked(String questionId, String answerId) {
+    final question =
+        state.questionnaire?.questions.firstWhere((q) => q.id == questionId);
+    if (question == null) {
+      return;
+    }
+
     final answers = Map.of(state.answers);
-    answers[questionId] = answerId;
+    Set<String> currentAnswers = Set.of(answers[questionId] ?? {});
+
+    if (question.questionType == QuestionType.single_choice) {
+      currentAnswers = {answerId};
+      answers[questionId] = currentAnswers;
+      emit(state.copyWith(answers: answers));
+      return;
+    }
+
+    if (currentAnswers.contains(answerId) == true) {
+      currentAnswers.remove(answerId);
+    } else {
+      if (currentAnswers.length >= 2) {
+        currentAnswers.remove(currentAnswers.first);
+      }
+      currentAnswers.add(answerId);
+    }
+
+    answers[questionId] = currentAnswers;
     emit(state.copyWith(answers: answers));
   }
 

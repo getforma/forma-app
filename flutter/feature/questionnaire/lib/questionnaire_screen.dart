@@ -76,9 +76,8 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
           Expanded(
             child: _questionnaire(context, state),
           ),
-          32.verticalSpace,
           _pagerIndicator(context, state),
-          32.verticalSpace,
+          24.verticalSpace,
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: TextButton(
@@ -134,7 +133,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
           return const SizedBox();
         }
 
-        final selectedAnswer = state.answers[question.id];
+        final selectedAnswers = state.answers[question.id];
 
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w),
@@ -142,20 +141,22 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(question.label, style: TextStyles.darkMedium18.sp),
+              16.verticalSpace,
               const Expanded(child: SizedBox()),
               ...question.options.expandIndexed((index, option) => [
                     if (index != 0) 16.verticalSpace,
                     _option(
                       option,
-                      option.value == selectedAnswer,
-                      (value) {
+                      selectedAnswers?.contains(option.id) == true,
+                      (answerId) {
                         context.read<QuestionnaireCubit>().onAnswerClicked(
                               question.id,
-                              value,
+                              answerId,
                             );
                       },
                     ),
                   ]),
+              16.verticalSpace,
               const Expanded(child: SizedBox()),
             ],
           ),
@@ -167,11 +168,11 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
   Widget _option(
     QuestionnaireOption option,
     bool isSelected,
-    Function(int value) onAnswerChosen,
+    Function(String answerId) onAnswerChosen,
   ) =>
       InkWell(
         borderRadius: BorderRadius.circular(24.r),
-        onTap: () => onAnswerChosen(option.value),
+        onTap: () => onAnswerChosen(option.id),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           height: 50.r,
