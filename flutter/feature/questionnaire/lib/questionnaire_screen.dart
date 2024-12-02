@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:questionnaire_component_domain/model/questionnaire.dart';
 import 'package:questionnaire_feature/bloc/questionnaire_cubit.dart';
 import 'package:forma_app/route/questionnaire_type.dart';
 
@@ -22,7 +23,8 @@ class QuestionnaireScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: BlocProvider(
-        create: (context) => GetIt.I.get<QuestionnaireCubit>(),
+        create: (context) =>
+            GetIt.I.get<QuestionnaireCubit>()..loadQuestionnaire(),
         child: BlocBuilder<QuestionnaireCubit, QuestionnaireState>(
           builder: (context, state) => Stack(
             fit: StackFit.expand,
@@ -54,10 +56,7 @@ class QuestionnaireScreen extends StatelessWidget {
           ),
           48.verticalSpace,
           Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.w),
-              child: SizedBox(),
-            ),
+            child: _questionnaire(context, state),
           ),
           32.verticalSpace,
           _pagerIndicator(context, state),
@@ -102,4 +101,48 @@ class QuestionnaireScreen extends StatelessWidget {
           .toList(growable: false),
     );
   }
+
+  Widget _questionnaire(BuildContext context, QuestionnaireState state) {
+    return PageView.builder(
+      itemCount: state.questionnaire?.questions.length ?? 0,
+      itemBuilder: (context, index) {
+        final question = state.questionnaire?.questions[index];
+        if (question == null) {
+          return const SizedBox();
+        }
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(question.label, style: TextStyles.darkMedium18.sp),
+              const Expanded(child: SizedBox()),
+              ...question.options.expandIndexed((index, option) => [
+                    if (index != 0) 16.verticalSpace,
+                    _option(context, option, false),
+                  ]),
+              const Expanded(child: SizedBox()),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _option(
+          BuildContext context, QuestionnaireOption option, bool isSelected) =>
+      Container(
+        height: 50.r,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(24.r),
+          border: Border.all(
+            color: isSelected ? AppColors.appBlack : AppColors.border,
+            width: 1.r,
+          ),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 32.w),
+        child: Text(option.label, style: TextStyles.darkRegular16.sp),
+      );
 }
