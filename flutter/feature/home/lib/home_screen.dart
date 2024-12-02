@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:forma_app/route/app_router.dart';
-import 'package:forma_app/route/questionnaire_type.dart';
+import 'package:forma_app/route/questionnaire_screen_type.dart';
 import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
@@ -123,12 +123,10 @@ class HomeScreen extends StatelessWidget {
           22.verticalSpace,
           Row(
             children: [
-              ...state.recommendedTrainings
-                  .expand((e) => [
-                        _recommendationItem(context, e),
-                        5.horizontalSpace,
-                      ])
-                  .toList(growable: false),
+              ...state.recommendedTrainings.expand((e) => [
+                    _recommendationItem(context, e),
+                    5.horizontalSpace,
+                  ]),
               const Expanded(child: SizedBox()),
               SvgPicture.asset(
                 "asset/icon/chevron_right.svg",
@@ -284,7 +282,7 @@ class HomeScreen extends StatelessWidget {
           TextButton(
             onPressed: () {
               AutoRouter.of(context).push(
-                QuestionnaireRoute(type: QuestionnaireType.checkup),
+                QuestionnaireRoute(type: QuestionnaireScreenType.checkup),
               );
             },
             style: ButtonStyles.fullWidthWhite.sp,

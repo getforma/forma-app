@@ -8,14 +8,15 @@ import 'package:core_feature/widget/loader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:forma_app/route/questionnaire_screen_type.dart';
 import 'package:get_it/get_it.dart';
 import 'package:questionnaire_component_domain/model/questionnaire.dart';
 import 'package:questionnaire_feature/bloc/questionnaire_cubit.dart';
-import 'package:forma_app/route/questionnaire_type.dart';
 
 @RoutePage()
 class QuestionnaireScreen extends StatelessWidget {
-  final QuestionnaireType type;
+  final QuestionnaireScreenType type;
+
   const QuestionnaireScreen({super.key, required this.type});
 
   @override
@@ -25,7 +26,16 @@ class QuestionnaireScreen extends StatelessWidget {
       body: BlocProvider(
         create: (context) =>
             GetIt.I.get<QuestionnaireCubit>()..loadQuestionnaire(),
-        child: BlocBuilder<QuestionnaireCubit, QuestionnaireState>(
+        child: BlocConsumer<QuestionnaireCubit, QuestionnaireState>(
+          listener: (context, state) {
+            final snackBarText = state.error?.text(context);
+            if (snackBarText != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(snackBarText)),
+              );
+              context.read<QuestionnaireCubit>().resetError();
+            }
+          },
           builder: (context, state) => Stack(
             fit: StackFit.expand,
             children: [

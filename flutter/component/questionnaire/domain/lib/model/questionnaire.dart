@@ -9,7 +9,7 @@ class Questionnaire with _$Questionnaire {
 
   const factory Questionnaire({
     required String id,
-    required String key,
+    required QuestionnaireType key,
     required String name,
     required List<QuestionnaireQuestion> questions,
   }) = _Questionnaire;
@@ -49,6 +49,13 @@ class QuestionnaireOption with _$QuestionnaireOption {
 }
 
 enum QuestionType {
-  singleChoice,
-  multipleChoice,
+  single_choice,
+  multiple_choice, 
+}
+
+enum QuestionnaireType {
+  // ignore: constant_identifier_names
+  post_run,
+  onboarding,
+  checkup;
 }

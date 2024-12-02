@@ -45,6 +45,9 @@ dependencies:
   user_component_data:
     path: flutter/component/user/data
 
+  questionnaire_component_data:
+    path: flutter/component/questionnaire/data
+
   auto_route: ^9.2.2
   injectable: ^2.5.0
   get_it: ^8.0.0

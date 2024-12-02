@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile"),
         "bottom_navigation_item_stats":
             MessageLookupByLibrary.simpleMessage("Stats"),
+        "error_unknown":
+            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "home_button_feeling":
             MessageLookupByLibrary.simpleMessage("How do you feel?"),
         "home_generic_error":
