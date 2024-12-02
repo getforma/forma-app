@@ -14,10 +14,18 @@ import 'package:questionnaire_component_domain/model/questionnaire.dart';
 import 'package:questionnaire_feature/bloc/questionnaire_cubit.dart';
 
 @RoutePage()
-class QuestionnaireScreen extends StatelessWidget {
+class QuestionnaireScreen extends StatefulWidget {
   final QuestionnaireScreenType type;
 
   const QuestionnaireScreen({super.key, required this.type});
+
+  @override
+  State<QuestionnaireScreen> createState() => _QuestionnaireScreenState();
+}
+
+class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
+  final _controller = PageController();
+  int _currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +68,7 @@ class QuestionnaireScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 32.w),
             child: Text(
-              type.title(context),
+              widget.type.title(context),
               style: TextStyles.darkBold28.sp,
             ),
           ),
@@ -91,29 +99,34 @@ class QuestionnaireScreen extends StatelessWidget {
   Widget _pagerIndicator(BuildContext context, QuestionnaireState state) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [0, 1, 2, 3, 4]
-          .expandIndexed((index, item) => [
-                if (index != 0) 8.horizontalSpace,
-                Container(
-                  width: 8.r,
-                  height: 8.r,
-                  decoration: BoxDecoration(
-                    color:
-                        index == 0 ? AppColors.appBlack : AppColors.pureWhite,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.grey.shade500,
-                      width: 0.5.r,
+      children: state.questionnaire?.questions
+              .expandIndexed((index, question) => [
+                    if (index != 0) 8.horizontalSpace,
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      width: 8.r,
+                      height: 8.r,
+                      decoration: BoxDecoration(
+                        color: index == _currentPage
+                            ? AppColors.appBlack
+                            : AppColors.pureWhite,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.grey.shade500,
+                          width: 0.5.r,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ])
-          .toList(growable: false),
+                  ])
+              .toList(growable: false) ??
+          [],
     );
   }
 
   Widget _questionnaire(BuildContext context, QuestionnaireState state) {
     return PageView.builder(
+      controller: _controller,
+      onPageChanged: (index) => setState(() => _currentPage = index),
       itemCount: state.questionnaire?.questions.length ?? 0,
       itemBuilder: (context, index) {
         final question = state.questionnaire?.questions[index];
