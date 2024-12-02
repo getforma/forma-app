@@ -40,6 +40,12 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     ));
   }
 
+  void onAnswerClicked(String questionId, int answerId) {
+    final answers = Map.of(state.answers);
+    answers[questionId] = answerId;
+    emit(state.copyWith(answers: answers));
+  }
+
   void resetError() {
     emit(state.copyWith(error: null));
   }

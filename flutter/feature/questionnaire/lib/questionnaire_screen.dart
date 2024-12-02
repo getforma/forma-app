@@ -121,6 +121,8 @@ class QuestionnaireScreen extends StatelessWidget {
           return const SizedBox();
         }
 
+        final selectedAnswer = state.answers[question.id];
+
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 32.w),
           child: Column(
@@ -130,7 +132,16 @@ class QuestionnaireScreen extends StatelessWidget {
               const Expanded(child: SizedBox()),
               ...question.options.expandIndexed((index, option) => [
                     if (index != 0) 16.verticalSpace,
-                    _option(context, option, false),
+                    _option(
+                      option,
+                      option.value == selectedAnswer,
+                      (value) {
+                        context.read<QuestionnaireCubit>().onAnswerClicked(
+                              question.id,
+                              value,
+                            );
+                      },
+                    ),
                   ]),
               const Expanded(child: SizedBox()),
             ],
@@ -141,18 +152,26 @@ class QuestionnaireScreen extends StatelessWidget {
   }
 
   Widget _option(
-          BuildContext context, QuestionnaireOption option, bool isSelected) =>
-      Container(
-        height: 50.r,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(
-            color: isSelected ? AppColors.appBlack : AppColors.border,
-            width: 1.r,
+    QuestionnaireOption option,
+    bool isSelected,
+    Function(int value) onAnswerChosen,
+  ) =>
+      InkWell(
+        borderRadius: BorderRadius.circular(24.r),
+        onTap: () => onAnswerChosen(option.value),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          height: 50.r,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24.r),
+            border: Border.all(
+              color: isSelected ? AppColors.appBlack : AppColors.border,
+              width: 1.r,
+            ),
           ),
+          padding: EdgeInsets.symmetric(horizontal: 32.w),
+          child: Text(option.label, style: TextStyles.darkRegular16.sp),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 32.w),
-        child: Text(option.label, style: TextStyles.darkRegular16.sp),
       );
 }

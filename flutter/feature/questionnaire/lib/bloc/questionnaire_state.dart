@@ -6,6 +6,7 @@ class QuestionnaireState with _$QuestionnaireState {
     @Default(QuestionnaireStatus.initial) QuestionnaireStatus status,
     QuestionnaireError? error,
     Questionnaire? questionnaire,
+    @Default({}) Map<String, int> answers,
   }) = _QuestionnaireState;
 }
 
