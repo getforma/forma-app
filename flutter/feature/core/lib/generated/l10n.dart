@@ -599,6 +599,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Tell us about yourself`
+  String get questionnaire_title_onboarding {
+    return Intl.message(
+      'Tell us about yourself',
+      name: 'questionnaire_title_onboarding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How was your run?`
+  String get questionnaire_title_post_run {
+    return Intl.message(
+      'How was your run?',
+      name: 'questionnaire_title_post_run',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How are you feeling?`
+  String get questionnaire_title_checkup {
+    return Intl.message(
+      'How are you feeling?',
+      name: 'questionnaire_title_checkup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get questionnaire_next {
+    return Intl.message(
+      'Next',
+      name: 'questionnaire_next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get questionnaire_submit {
+    return Intl.message(
+      'Submit',
+      name: 'questionnaire_submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong!`
+  String get error_unknown {
+    return Intl.message(
+      'Something went wrong!',
+      name: 'error_unknown',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

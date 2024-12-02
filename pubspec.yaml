@@ -24,6 +24,9 @@ dependencies:
   tracking_feature:
     path: flutter/feature/tracking
 
+  questionnaire_feature:
+    path: flutter/feature/questionnaire
+
   core_component_data:
     path: flutter/component/core/data
 
@@ -41,6 +44,9 @@ dependencies:
 
   user_component_data:
     path: flutter/component/user/data
+
+  questionnaire_component_data:
+    path: flutter/component/questionnaire/data
 
   auto_route: ^9.2.2
   injectable: ^2.5.0

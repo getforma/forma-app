@@ -57,8 +57,11 @@ class TextStyles {
   static final darkSemiBold16 =
       darkBold16.copyWith(fontWeight: FontWeight.w600);
   static final darkRegular16 = dark.copyWith(fontSize: 16);
+  static final darkMedium18 = dark.copyWith(fontSize: 18, fontWeight: FontWeight.w500);
   static final darkBold20 =
       dark.copyWith(fontSize: 20, fontWeight: FontWeight.bold);
+  static final darkBold28 =
+      dark.copyWith(fontSize: 28, fontWeight: FontWeight.bold);
   static final darkBold32 =
       dark.copyWith(fontSize: 32, fontWeight: FontWeight.bold);
 

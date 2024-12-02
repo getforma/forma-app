@@ -54,5 +54,11 @@
   "tracking_total_time": "Total time",
   "tracking_total_time_suffix": "min",
   "tracking_tips": "Tips",
-  "tracking_stop_session": "Stop session"
+  "tracking_stop_session": "Stop session",
+  "questionnaire_title_onboarding": "Tell us about yourself",
+  "questionnaire_title_post_run": "How was your run?",
+  "questionnaire_title_checkup": "How are you feeling?",
+  "questionnaire_next": "Next",
+  "questionnaire_submit": "Submit",
+  "error_unknown": "Something went wrong!"
 }

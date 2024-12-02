@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Profile"),
         "bottom_navigation_item_stats":
             MessageLookupByLibrary.simpleMessage("Stats"),
+        "error_unknown":
+            MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "home_button_feeling":
             MessageLookupByLibrary.simpleMessage("How do you feel?"),
         "home_generic_error":
@@ -95,6 +97,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Already have an account? Log in"),
         "onboarding_title":
             MessageLookupByLibrary.simpleMessage("Every step, perfected"),
+        "questionnaire_next": MessageLookupByLibrary.simpleMessage("Next"),
+        "questionnaire_submit": MessageLookupByLibrary.simpleMessage("Submit"),
+        "questionnaire_title_checkup":
+            MessageLookupByLibrary.simpleMessage("How are you feeling?"),
+        "questionnaire_title_onboarding":
+            MessageLookupByLibrary.simpleMessage("Tell us about yourself"),
+        "questionnaire_title_post_run":
+            MessageLookupByLibrary.simpleMessage("How was your run?"),
         "tracking_average_pace":
             MessageLookupByLibrary.simpleMessage("Avg pace"),
         "tracking_average_speed":
