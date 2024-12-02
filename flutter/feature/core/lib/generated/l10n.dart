@@ -640,6 +640,16 @@ class S {
     );
   }
 
+  /// `Submit`
+  String get questionnaire_submit {
+    return Intl.message(
+      'Submit',
+      name: 'questionnaire_submit',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong!`
   String get error_unknown {
     return Intl.message(

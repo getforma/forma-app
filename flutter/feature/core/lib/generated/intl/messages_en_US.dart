@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_title":
             MessageLookupByLibrary.simpleMessage("Every step, perfected"),
         "questionnaire_next": MessageLookupByLibrary.simpleMessage("Next"),
+        "questionnaire_submit": MessageLookupByLibrary.simpleMessage("Submit"),
         "questionnaire_title_checkup":
             MessageLookupByLibrary.simpleMessage("How are you feeling?"),
         "questionnaire_title_onboarding":

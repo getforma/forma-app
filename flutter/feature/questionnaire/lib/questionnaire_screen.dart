@@ -43,6 +43,9 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
               );
               context.read<QuestionnaireCubit>().resetError();
             }
+            if (state.status == QuestionnaireStatus.saved) {
+              context.router.maybePop();
+            }
           },
           builder: (context, state) => Stack(
             fit: StackFit.expand,
@@ -67,6 +70,9 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
             state.answers[question?.id]?.length == 2)) {
       showNextButton = true;
     }
+
+    final isLastPage =
+        _currentPage == (state.questionnaire?.questions.length ?? 1) - 1;
 
     return SafeArea(
       left: false,
@@ -95,14 +101,22 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: TextButton(
                 onPressed: () {
-                  _controller.nextPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
+                  if (isLastPage) {
+                    context
+                        .read<QuestionnaireCubit>()
+                        .saveQuestionnaireAnswers();
+                  } else {
+                    _controller.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                  }
                 },
                 style: ButtonStyles.fullWidthBlack.sp,
                 child: Text(
-                  S.of(context).questionnaire_next,
+                  isLastPage
+                      ? S.of(context).questionnaire_submit
+                      : S.of(context).questionnaire_next,
                   style: TextStyles.lightBold16.sp,
                 ),
               ),

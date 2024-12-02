@@ -59,5 +59,6 @@
   "questionnaire_title_post_run": "How was your run?",
   "questionnaire_title_checkup": "How are you feeling?",
   "questionnaire_next": "Next",
+  "questionnaire_submit": "Submit",
   "error_unknown": "Something went wrong!"
 }
