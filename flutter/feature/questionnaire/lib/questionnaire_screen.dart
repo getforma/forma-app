@@ -58,6 +58,16 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
   }
 
   Widget _body(BuildContext context, QuestionnaireState state) {
+    final question = state.questionnaire?.questions[_currentPage];
+    final questionType = question?.questionType;
+    bool showNextButton = false;
+    if ((questionType == QuestionType.single_choice &&
+            state.answers[question?.id]?.isNotEmpty == true) ||
+        (questionType == QuestionType.multiple_choice &&
+            state.answers[question?.id]?.length == 2)) {
+      showNextButton = true;
+    }
+
     return SafeArea(
       left: false,
       right: false,
@@ -78,14 +88,23 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
           ),
           _pagerIndicator(context, state),
           24.verticalSpace,
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: TextButton(
-              onPressed: () {},
-              style: ButtonStyles.fullWidthBlack.sp,
-              child: Text(
-                S.of(context).questionnaire_next,
-                style: TextStyles.lightBold16.sp,
+          AnimatedOpacity(
+            opacity: showNextButton ? 1 : 0,
+            duration: const Duration(milliseconds: 200),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: TextButton(
+                onPressed: () {
+                  _controller.nextPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                style: ButtonStyles.fullWidthBlack.sp,
+                child: Text(
+                  S.of(context).questionnaire_next,
+                  style: TextStyles.lightBold16.sp,
+                ),
               ),
             ),
           ),
