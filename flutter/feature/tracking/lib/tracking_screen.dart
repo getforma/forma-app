@@ -3,15 +3,17 @@ import 'package:core_feature/generated/l10n.dart';
 import 'package:core_feature/style/app_colors.dart';
 import 'package:core_feature/style/button_styles.dart';
 import 'package:core_feature/style/text_styles.dart';
+import 'package:core_feature/widget/loader_widget.dart';
+import 'package:core_feature/widget/partial_circle_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:forma_app/route/app_router.dart';
+import 'package:forma_app/route/questionnaire_screen_type.dart';
 import 'package:get_it/get_it.dart';
 import 'package:tracking_feature/bloc/tracking_cubit.dart';
 import 'package:tracking_feature/bloc/tracking_screen_status.dart';
 import 'package:tracking_feature/model/measurement_card_item.dart';
-import 'package:core_feature/widget/partial_circle_painter.dart';
-import 'package:core_feature/widget/loader_widget.dart';
 
 const _animationDuration = Duration(milliseconds: 200);
 
@@ -34,8 +36,11 @@ class _TrackingScreenState extends State<TrackingScreen> {
     return BlocProvider(
       create: (context) => GetIt.I.get<TrackingCubit>(param1: widget.sessionId),
       child: BlocConsumer<TrackingCubit, TrackingState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state.status == TrackingScreenStatus.stopped) {
+            await AutoRouter.of(context).push(
+              QuestionnaireRoute(type: QuestionnaireScreenType.postRun),
+            );
             context.router.maybePop(state.measurementAnalysis);
           }
         },
