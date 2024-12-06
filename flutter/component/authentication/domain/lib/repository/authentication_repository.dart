@@ -5,23 +5,23 @@ import 'package:dartz/dartz.dart';
 abstract class AuthenticationRepository {
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
-    required Function(Either<FirebaseAuthenticationError, Unit>)
+    required Function(Either<FirebaseAuthenticationError, bool>)
         verificationCompleted,
     required Function(bool) verificationFailed,
     required Function(String, int?) codeSent,
     required Function(String) codeAutoRetrievalTimeout,
   });
 
-  Future<Either<FirebaseAuthenticationError, Unit>> signInWithSMSCode(
+  Future<Either<FirebaseAuthenticationError, bool>> signInWithSMSCode(
       String verificationId, String smsCode);
 
   Future<bool> isUserSignedIn();
 
-  Future<Either<FirebaseAuthenticationError, Unit>> signInWithGoogle();
+  Future<Either<FirebaseAuthenticationError, bool>> signInWithGoogle();
 
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple();
 
-  Future<Either<FirebaseAuthenticationError, Unit>> signInWithFacebook();
+  Future<Either<FirebaseAuthenticationError, bool>> signInWithFacebook();
 
   Future<AuthToken?> getAccessToken();
 }

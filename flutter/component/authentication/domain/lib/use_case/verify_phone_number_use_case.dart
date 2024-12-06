@@ -26,7 +26,7 @@ class VerifyPhoneNumberUseCase
 
 class VerifyPhoneNumberUseCaseParams {
   final String phoneNumber;
-  final Function(Either<FirebaseAuthenticationError, Unit>)
+  final Function(Either<FirebaseAuthenticationError, bool>)
       verificationCompleted;
   final Function(bool) verificationFailed;
   final Function(String, int?) codeSent;

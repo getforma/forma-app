@@ -15,7 +15,7 @@ import 'package:tracking_feature/bloc/tracking_screen_status.dart';
 part 'tracking_cubit.freezed.dart';
 part 'tracking_state.dart';
 
-const _analyzeSessionDataInterval = Duration(minutes: 5);
+const _analyzeSessionDataInterval = Duration(minutes: 2);
 
 @injectable
 class TrackingCubit extends Cubit<TrackingState> {

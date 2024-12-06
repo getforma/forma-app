@@ -28,6 +28,8 @@ class OnboardingScreen extends StatelessWidget {
               listener: (context, state) {
                 if (state.stage == OnboardingStage.enterSmsCode) {
                   AutoRouter.of(context).push(const VerificationCodeRoute());
+                } else if (state.stage == OnboardingStage.enterUserDetails) {
+                  AutoRouter.of(context).push(const EnterUserDetailsRoute());
                 }
               },
             ),
@@ -44,6 +46,7 @@ class OnboardingScreen extends StatelessWidget {
                     SnackBar(content: Text(errorText)),
                   );
                   context.read<OnboardingCubit>().resetError();
+                  FocusScope.of(context).unfocus();
                 }
               },
             ),

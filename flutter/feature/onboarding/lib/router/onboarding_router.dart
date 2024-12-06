@@ -22,6 +22,10 @@ class OnboardingRouter extends RootStackRouter {
               page: VerificationCodeRoute.page,
               transitionsBuilder: TransitionsBuilders.slideLeft,
             ),
+            CustomRoute(
+              page: EnterUserDetailsRoute.page,
+              transitionsBuilder: TransitionsBuilders.slideLeft,
+            ),
           ],
         ),
       ];

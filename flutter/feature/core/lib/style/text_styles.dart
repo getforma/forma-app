@@ -74,6 +74,7 @@ class TextStyles {
       light.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
   static final lightBold16 =
       light.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
+  static final lightRegular20 = light.copyWith(fontSize: 20);
   static final lightBold32 =
       light.copyWith(fontSize: 32, fontWeight: FontWeight.bold);
   static final lightExtraBold48 =

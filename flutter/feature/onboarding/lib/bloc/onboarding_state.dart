@@ -10,6 +10,7 @@ class OnboardingState with _$OnboardingState {
     OnboardingError? error,
     String? phoneNumber,
     String? verificationId,
+    bool? isNewUser,
   }) = _OnboardingState;
 }
 
