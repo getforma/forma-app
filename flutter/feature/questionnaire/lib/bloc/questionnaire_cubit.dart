@@ -45,12 +45,16 @@ class QuestionnaireCubit extends Cubit<QuestionnaireState> {
     ));
   }
 
+  void setRunningSessionId(String? runningSessionId) {
+    emit(state.copyWith(runningSessionId: runningSessionId));
+  }
+
   Future<void> saveQuestionnaireAnswers() async {
     emit(state.copyWith(status: QuestionnaireStatus.loading));
 
     final result = await _saveQuestionnaireAnswersUseCase
         .invoke(SaveQuestionnaireAnswersUseCaseParams(
-      runningSessionId: "27784feb-ab95-4c69-97b5-fa4ae271a138", // TODO
+      runningSessionId: state.runningSessionId ?? "27784feb-ab95-4c69-97b5-fa4ae271a138", // TODO
       answers: state.answers,
     ));
 

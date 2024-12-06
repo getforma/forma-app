@@ -7,6 +7,7 @@ class QuestionnaireState with _$QuestionnaireState {
     QuestionnaireError? error,
     Questionnaire? questionnaire,
     @Default({}) Map<String, Set<String>> answers,
+    String? runningSessionId,
   }) = _QuestionnaireState;
 }
 

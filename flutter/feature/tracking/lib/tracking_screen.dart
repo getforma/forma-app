@@ -39,7 +39,10 @@ class _TrackingScreenState extends State<TrackingScreen> {
         listener: (context, state) async {
           if (state.status == TrackingScreenStatus.stopped) {
             await AutoRouter.of(context).push(
-              QuestionnaireRoute(type: QuestionnaireScreenType.postRun),
+              QuestionnaireRoute(
+                type: QuestionnaireScreenType.postRun,
+                runningSessionId: widget.sessionId,
+              ),
             );
             context.router.maybePop(state.measurementAnalysis);
           }

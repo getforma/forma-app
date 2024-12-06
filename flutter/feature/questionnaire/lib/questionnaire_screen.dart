@@ -16,8 +16,13 @@ import 'package:questionnaire_feature/bloc/questionnaire_cubit.dart';
 @RoutePage()
 class QuestionnaireScreen extends StatefulWidget {
   final QuestionnaireScreenType type;
+  final String? runningSessionId;
 
-  const QuestionnaireScreen({super.key, required this.type});
+  const QuestionnaireScreen({
+    super.key,
+    required this.type,
+    this.runningSessionId,
+  });
 
   @override
   State<QuestionnaireScreen> createState() => _QuestionnaireScreenState();
