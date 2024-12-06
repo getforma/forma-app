@@ -5,7 +5,7 @@ abstract class QuestionnaireRepository {
   Future<Either<Exception, Questionnaire>> getQuestionnaire(
       QuestionnaireType type);
 
-  Future<Either<Exception, void>> saveQuestionnaireAnswers(
+  Future<Either<Exception, int>> saveQuestionnaireAnswers(
       {required String runningSessionId,
       required Map<String, Set<String>> answers});
 }

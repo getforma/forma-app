@@ -99,6 +99,23 @@ class AppConfigurationRepositoryImpl implements AppConfigurationRepository {
         "true";
   }
 
+  @override
+  Future<void> setScore(int score) async {
+    await _database
+        .into(_database.appConfigurationTable)
+        .insertOnConflictUpdate(AppConfigurationTableCompanion(
+            key: const Value(AppConfigurationKey.score),
+            value: Value(score.toString())));
+  }
+
+  @override
+  Stream<int?> getScoreStream() {
+    return (_database.select(_database.appConfigurationTable)
+          ..where((t) => t.key.equals(AppConfigurationKey.score.name)))
+        .watchSingleOrNull()
+        .map((configuration) => int.tryParse(configuration?.value ?? ""));
+  }
+
   @disposeMethod
   @override
   void dispose() {

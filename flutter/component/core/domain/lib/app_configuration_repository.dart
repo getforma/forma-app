@@ -7,6 +7,8 @@ abstract class AppConfigurationRepository {
   Future<void> removeCurrentSessionId();
   Future<void> setOnboardingCompleted();
   Future<bool> getOnboardingCompleted();
+  Future<void> setScore(int score);
+  Stream<int?> getScoreStream();
   void dispose();
 }
 

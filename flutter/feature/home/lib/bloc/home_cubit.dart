@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:home_feature/bloc/home_status.dart';
 import 'package:home_feature/model/recommended_training.dart';
 import 'package:injectable/injectable.dart';
+import 'package:questionnaire_component_domain/use_case/get_score_use_case.dart';
 import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 import 'package:sensor_component_domain/use_case/initialize_sensor_use_case.dart';
 import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case.dart';
@@ -22,18 +23,26 @@ class HomeCubit extends Cubit<HomeState> {
   final StartSensorDiscoveryUseCase _startSensorDiscoveryUseCase;
   final CreateSessionUseCase _createSessionUseCase;
   final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
+  final GetScoreStreamUseCase _getScoreStreamUseCase;
 
   StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
+  StreamSubscription<int?>? _scoreStreamSubscription;
 
   HomeCubit(
     this._initializeSensorUseCase,
     this._startSensorDiscoveryUseCase,
     this._createSessionUseCase,
     this._getIsSensorConnectedStreamUseCase,
+    this._getScoreStreamUseCase,
   ) : super(const HomeState()) {
     _isSensorConnectedStreamSubscription =
         _getIsSensorConnectedStreamUseCase.invoke(EmptyParam()).listen((value) {
       emit(state.copyWith(isSensorConnected: value));
+    });
+
+    _scoreStreamSubscription =
+        _getScoreStreamUseCase.invoke(EmptyParam()).listen((value) {
+      emit(state.copyWith(score: value ?? 0));
     });
   }
 
@@ -127,6 +136,8 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> close() {
     _isSensorConnectedStreamSubscription?.cancel();
     _isSensorConnectedStreamSubscription = null;
+    _scoreStreamSubscription?.cancel();
+    _scoreStreamSubscription = null;
     return super.close();
   }
 }
