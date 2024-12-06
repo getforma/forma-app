@@ -4,13 +4,13 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SignInWithFacebookUseCase implements UseCase<EmptyParam, Unit> {
+class SignInWithFacebookUseCase implements UseCase<EmptyParam, bool> {
   final AuthenticationRepository authenticationRepository;
 
   SignInWithFacebookUseCase({required this.authenticationRepository});
 
   @override
-  Future<Either<Exception, Unit>> invoke(EmptyParam params) async {
+  Future<Either<Exception, bool>> invoke(EmptyParam params) async {
     return authenticationRepository.signInWithFacebook();
   }
 }

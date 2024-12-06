@@ -5,13 +5,13 @@ import 'package:injectable/injectable.dart';
 
 @injectable
 class SignInWithSmsCodeUseCase
-    implements UseCase<SignInWithSmsCodeUseCaseParams, Unit> {
+    implements UseCase<SignInWithSmsCodeUseCaseParams, bool> {
   final AuthenticationRepository authenticationRepository;
 
   SignInWithSmsCodeUseCase({required this.authenticationRepository});
 
   @override
-  Future<Either<Exception, Unit>> invoke(
+  Future<Either<Exception, bool>> invoke(
       SignInWithSmsCodeUseCaseParams params) async {
     return authenticationRepository.signInWithSMSCode(
         params.verificationId, params.smsCode);

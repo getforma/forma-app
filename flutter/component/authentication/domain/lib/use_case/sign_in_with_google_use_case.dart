@@ -4,13 +4,13 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SignInWithGoogleUseCase implements UseCase<EmptyParam, Unit> {
+class SignInWithGoogleUseCase implements UseCase<EmptyParam, bool> {
   final AuthenticationRepository authenticationRepository;
 
   SignInWithGoogleUseCase({required this.authenticationRepository});
 
   @override
-  Future<Either<Exception, Unit>> invoke(EmptyParam params) async {
+  Future<Either<Exception, bool>> invoke(EmptyParam params) async {
     return authenticationRepository.signInWithGoogle();
   }
 }

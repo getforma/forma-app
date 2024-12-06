@@ -28,7 +28,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
   Future<void> verifyPhoneNumber({
     required String phoneNumber,
-    required Function(Either<FirebaseAuthenticationError, Unit>)
+    required Function(Either<FirebaseAuthenticationError, bool>)
         verificationCompleted,
     required Function(bool isPhoneNumberInvalid) verificationFailed,
     required Function(String, int?) codeSent,
@@ -41,7 +41,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         verificationCompleted: (PhoneAuthCredential credential) async {
           // Android only
           // Sign the user in (or link) with the auto-generated credential
-          verificationCompleted(await _signInWithCredential(credential));
+          verificationCompleted(await _signInWithCredential(
+            credential: credential,
+            handleUserDetailsManually: true,
+          ));
         },
         verificationFailed: (FirebaseAuthException e) {
           if (e.code == 'invalid-phone-number') {
@@ -58,14 +61,17 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<FirebaseAuthenticationError, Unit>> signInWithSMSCode(
+  Future<Either<FirebaseAuthenticationError, bool>> signInWithSMSCode(
       String verificationId, String smsCode) async {
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
       verificationId: verificationId,
       smsCode: smsCode,
     );
 
-    return _signInWithCredential(credential);
+    return _signInWithCredential(
+      credential: credential,
+      handleUserDetailsManually: true,
+    );
   }
 
   @override
@@ -75,7 +81,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<FirebaseAuthenticationError, Unit>> signInWithGoogle() async {
+  Future<Either<FirebaseAuthenticationError, bool>> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -91,7 +97,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       );
 
       // Once signed in, return the UserCredential
-      return _signInWithCredential(credential);
+      return _signInWithCredential(credential: credential);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -140,7 +146,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<Either<FirebaseAuthenticationError, Unit>> signInWithFacebook() async {
+  Future<Either<FirebaseAuthenticationError, bool>> signInWithFacebook() async {
     try {
       final rawNonce = _generateNonce();
       final nonce = _sha256ofString(rawNonce);
@@ -162,13 +168,13 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
           idToken: accessToken.tokenString,
           rawNonce: rawNonce,
         );
-        return _signInWithCredential(facebookAuthCredential);
+        return _signInWithCredential(credential: facebookAuthCredential);
       }
 
       // Create a credential from the access token
       final OAuthCredential facebookAuthCredential =
           FacebookAuthProvider.credential(accessToken.tokenString);
-      return _signInWithCredential(facebookAuthCredential);
+      return _signInWithCredential(credential: facebookAuthCredential);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -177,8 +183,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
-  Future<Either<FirebaseAuthenticationError, Unit>> _signInWithCredential(
-      AuthCredential credential) async {
+  Future<Either<FirebaseAuthenticationError, bool>> _signInWithCredential({
+    required AuthCredential credential,
+    bool handleUserDetailsManually = false,
+  }) async {
     try {
       final auth = FirebaseAuth.instance;
       final signedCredential = await auth.signInWithCredential(credential);
@@ -195,6 +203,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         expirationTime: accessToken.expirationTime,
       ));
 
+      if (handleUserDetailsManually) {
+        return right(signedCredential.additionalUserInfo?.isNewUser ?? true);
+      }
+
       final isNewUser = signedCredential.additionalUserInfo?.isNewUser ?? true;
       if (isNewUser) {
         final userResponse = await _userRepository.saveUser(UserDomain.User(
@@ -206,7 +218,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         }
       }
 
-      return right(unit);
+      return right(isNewUser);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'invalid-verification-code') {
         return left(InvalidSMSCodeError());

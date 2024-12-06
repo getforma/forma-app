@@ -73,6 +73,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "login_alternative_login":
             MessageLookupByLibrary.simpleMessage("Or log in with"),
+        "login_enter_email": MessageLookupByLibrary.simpleMessage("Email"),
+        "login_enter_name": MessageLookupByLibrary.simpleMessage("Name"),
+        "login_enter_user_details_title":
+            MessageLookupByLibrary.simpleMessage("Enter your details"),
         "login_error_account_exists_with_different_credential":
             MessageLookupByLibrary.simpleMessage(
                 "This email was already associated with different signing method! Try logging in with a different provider."),

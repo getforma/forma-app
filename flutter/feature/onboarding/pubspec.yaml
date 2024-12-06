@@ -24,6 +24,9 @@ dependencies:
   authentication_component_domain:
     path: ../../component/authentication/domain
 
+  user_component_domain:
+    path: ../../component/user/domain
+
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.10+1
   collection: ^1.18.0

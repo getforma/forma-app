@@ -190,6 +190,36 @@ class S {
     );
   }
 
+  /// `Enter your details`
+  String get login_enter_user_details_title {
+    return Intl.message(
+      'Enter your details',
+      name: 'login_enter_user_details_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get login_enter_email {
+    return Intl.message(
+      'Email',
+      name: 'login_enter_email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get login_enter_name {
+    return Intl.message(
+      'Name',
+      name: 'login_enter_name',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Invalid phone number!`
   String get login_error_invalid_phone_number {
     return Intl.message(

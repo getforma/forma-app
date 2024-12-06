@@ -16,6 +16,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:onboarding_feature/bloc/onboarding_stage.dart';
+import 'package:user_component_domain/model/user.dart';
+import 'package:user_component_domain/usecase/save_user_use_case.dart';
 
 part 'onboarding_cubit.freezed.dart';
 part 'onboarding_state.dart';
@@ -29,6 +31,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   final SignInWithGoogleUseCase _signInWithGoogleUseCase;
   final SignInWithAppleUseCase _signInWithAppleUseCase;
   final SignInWithFacebookUseCase _signInWithFacebookUseCase;
+  final SaveUserUseCase _saveUserUseCase;
 
   OnboardingCubit(
     this._appConfigurationRepository,
@@ -38,6 +41,7 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     this._signInWithGoogleUseCase,
     this._signInWithAppleUseCase,
     this._signInWithFacebookUseCase,
+    this._saveUserUseCase,
   ) : super(const OnboardingState());
 
   Future<void> initialLoad() async {
@@ -67,11 +71,12 @@ class OnboardingCubit extends Cubit<OnboardingState> {
     await _verifyPhoneNumberUseCase.invoke(VerifyPhoneNumberUseCaseParams(
       phoneNumber: phoneNumber,
       verificationCompleted:
-          (Either<FirebaseAuthenticationError, Unit> result) {
+          (Either<FirebaseAuthenticationError, bool> result) {
         if (result.isRight()) {
           emit(state.copyWith(
             status: OnboardingStatus.initial,
             stage: OnboardingStage.enterSmsCode,
+            isNewUser: result.fold((l) => true, (r) => r),
           ));
         } else {
           final error = result.fold((l) => l, (r) => null);
@@ -123,9 +128,18 @@ class OnboardingCubit extends Cubit<OnboardingState> {
       verificationId: verificationId,
       smsCode: smsCode,
     ));
+    final isNewUser = result.fold((l) => true, (r) => r);
 
     if (result.isRight()) {
-      emit(state.copyWith(status: OnboardingStatus.logInSuccess));
+      emit(state.copyWith(
+        stage: isNewUser
+            ? OnboardingStage.enterUserDetails
+            : OnboardingStage.enterSmsCode,
+        status: isNewUser
+            ? OnboardingStatus.initial
+            : OnboardingStatus.logInSuccess,
+        isNewUser: isNewUser,
+      ));
       return;
     }
 
@@ -137,6 +151,31 @@ class OnboardingCubit extends Cubit<OnboardingState> {
 
     emit(state.copyWith(
       error: OnboardingError.fromFirebaseAuthenticationError(error),
+      stage: OnboardingStage.login,
+      status: OnboardingStatus.initial,
+    ));
+  }
+
+  Future<void> saveUserDetails(String email, String name) async {
+    emit(state.copyWith(status: OnboardingStatus.loading));
+    final result = await _saveUserUseCase.invoke(User(
+      email: email,
+      name: name,
+    ));
+
+    if (result.isRight()) {
+      emit(state.copyWith(status: OnboardingStatus.logInSuccess));
+      return;
+    }
+
+    final error = result.fold((l) => l, (r) => null);
+    if (error == null) {
+      emit(state.copyWith(status: OnboardingStatus.initial));
+      return;
+    }
+
+    emit(state.copyWith(
+      error: OnboardingError.unknown,
       stage: OnboardingStage.login,
       status: OnboardingStatus.initial,
     ));
