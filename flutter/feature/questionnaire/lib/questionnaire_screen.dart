@@ -67,12 +67,8 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
 
   Widget _body(BuildContext context, QuestionnaireState state) {
     final question = state.questionnaire?.questions[_currentPage];
-    final questionType = question?.questionType;
     bool showNextButton = false;
-    if ((questionType == QuestionType.single_choice &&
-            state.answers[question?.id]?.isNotEmpty == true) ||
-        (questionType == QuestionType.multiple_choice &&
-            state.answers[question?.id]?.length == 2)) {
+    if (state.answers[question?.id]?.isNotEmpty == true) {
       showNextButton = true;
     }
 
