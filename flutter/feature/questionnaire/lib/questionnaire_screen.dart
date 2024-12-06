@@ -16,8 +16,13 @@ import 'package:questionnaire_feature/bloc/questionnaire_cubit.dart';
 @RoutePage()
 class QuestionnaireScreen extends StatefulWidget {
   final QuestionnaireScreenType type;
+  final String? runningSessionId;
 
-  const QuestionnaireScreen({super.key, required this.type});
+  const QuestionnaireScreen({
+    super.key,
+    required this.type,
+    this.runningSessionId,
+  });
 
   @override
   State<QuestionnaireScreen> createState() => _QuestionnaireScreenState();
@@ -62,12 +67,8 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
 
   Widget _body(BuildContext context, QuestionnaireState state) {
     final question = state.questionnaire?.questions[_currentPage];
-    final questionType = question?.questionType;
     bool showNextButton = false;
-    if ((questionType == QuestionType.single_choice &&
-            state.answers[question?.id]?.isNotEmpty == true) ||
-        (questionType == QuestionType.multiple_choice &&
-            state.answers[question?.id]?.length == 2)) {
+    if (state.answers[question?.id]?.isNotEmpty == true) {
       showNextButton = true;
     }
 

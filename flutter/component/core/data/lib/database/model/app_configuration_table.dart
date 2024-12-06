@@ -12,4 +12,5 @@ enum AppConfigurationKey {
   isSensorConnected,
   currentSessionId,
   onboardingCompleted,
+  score,
 }

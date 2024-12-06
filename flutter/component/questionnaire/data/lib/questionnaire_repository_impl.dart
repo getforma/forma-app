@@ -24,18 +24,18 @@ class QuestionnaireRepositoryImpl implements QuestionnaireRepository {
   }
 
   @override
-  Future<Either<Exception, void>> saveQuestionnaireAnswers(
+  Future<Either<Exception, int>> saveQuestionnaireAnswers(
       {required String runningSessionId,
       required Map<String, Set<String>> answers}) async {
     try {
-      await _questionnaireDataSource.saveQuestionnaireAnswers(
+      final score = await _questionnaireDataSource.saveQuestionnaireAnswers(
           SubmitQuestionnaireAnswersRequest(
               runningSessionId: runningSessionId,
               data: answers.entries
                   .map((e) => QuestionnaireAnswer(
                       questionId: e.key, answerValue: e.value))
                   .toList()));
-      return const Right(null);
+      return Right(score);
     } catch (e) {
       return Left(Exception(e));
     }

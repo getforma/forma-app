@@ -19,12 +19,12 @@ class QuestionnaireDataSource {
     throw Exception(response.data);
   }
 
-  Future<void> saveQuestionnaireAnswers(
+  Future<int> saveQuestionnaireAnswers(
       SubmitQuestionnaireAnswersRequest request) async {
     final response =
         await _questionnaireService.saveQuestionnaireAnswers(request);
-    if (response.response.statusCode == HttpStatus.ok) {
-      return;
+    if (response.response.statusCode == HttpStatus.created) {
+      return response.data.score;
     }
     throw Exception();
   }

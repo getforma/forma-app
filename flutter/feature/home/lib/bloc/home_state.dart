@@ -8,5 +8,6 @@ class HomeState with _$HomeState {
     @Default(HomeStatus.initial) HomeStatus status,
     @Default(false) bool isSensorConnected,
     @Default([]) List<RecommendedTraining> recommendedTrainings,
+    @Default(0) int score,
   }) = _HomeState;
 }
