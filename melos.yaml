@@ -1,6 +1,6 @@
 name: forma_app
 
-sdkPath: .fvm/flutter_sdk
+# sdkPath: .fvm/flutter_sdk
 
 packages:
   - flutter/**
