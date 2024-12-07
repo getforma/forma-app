@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/split_analysis.dart';
+import 'package:session_component_domain/use_case/speak_text_use_case.dart';
 import 'package:session_component_domain/use_case/stop_session_use_case.dart';
 import 'package:session_component_domain/use_case/get_measurement_analysis_stream_use_case.dart';
 import 'package:session_component_domain/use_case/get_split_analysis_use_case.dart';
@@ -15,7 +16,7 @@ import 'package:tracking_feature/bloc/tracking_screen_status.dart';
 part 'tracking_cubit.freezed.dart';
 part 'tracking_state.dart';
 
-const _analyzeSessionDataInterval = Duration(minutes: 2);
+const _analyzeSessionDataInterval = Duration(seconds: 45);
 
 @injectable
 class TrackingCubit extends Cubit<TrackingState> {
@@ -24,7 +25,7 @@ class TrackingCubit extends Cubit<TrackingState> {
       _getMeasurementAnalysisStreamUseCase;
   final GetSplitAnalysisUseCase _getSplitAnalysisUseCase;
   final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
-
+  final SpeakTextUseCase _speakTextUseCase;
   StreamSubscription<MeasurementAnalysis?>?
       _measurementAnalysisStreamSubscription;
   StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
@@ -36,6 +37,7 @@ class TrackingCubit extends Cubit<TrackingState> {
     this._getMeasurementAnalysisStreamUseCase,
     this._getSplitAnalysisUseCase,
     this._getIsSensorConnectedStreamUseCase,
+    this._speakTextUseCase,
     @factoryParam String sessionId,
   ) : super(TrackingState(
           sessionId: sessionId,
@@ -59,6 +61,9 @@ class TrackingCubit extends Cubit<TrackingState> {
   }
 
   Future<void> stopSession() async {
+    _speakTextUseCase.invoke(
+        "Hello, how are you? It looks like something went wrong. Please try again");
+    return;
     emit(state.copyWith(status: TrackingScreenStatus.loading));
     final stopSessionResult = await _stopSessionUseCase.invoke(EmptyParam());
     if (stopSessionResult.isRight()) {
@@ -82,9 +87,6 @@ class TrackingCubit extends Cubit<TrackingState> {
 
     final splitAnalysisResult = await _getSplitAnalysisUseCase.invoke(
       GetSplitAnalysisBody(
-        // sessionId: "8aa30a78-cbcf-4e41-9e42-06e6dda1dc53",
-        // startTime: DateTime.parse("2024-11-04T12:09:03.129918"),
-        // endTime: DateTime.parse("2024-11-04T12:09:33.129918"),
         sessionId: state.sessionId,
         startTime: analyzeIntervalStartTime,
         endTime: analyzeIntervalEndTime,
@@ -98,6 +100,11 @@ class TrackingCubit extends Cubit<TrackingState> {
       analyzeIntervalStartTime: analyzeIntervalStartTime,
       analyzeIntervalEndTime: analyzeIntervalEndTime,
     ));
+
+    final feedback = splitAnalysis?.feedback;
+    if (feedback != null) {
+      _speakTextUseCase.invoke(feedback);
+    }
   }
 
   @override

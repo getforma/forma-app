@@ -110,6 +110,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   Future<Either<FirebaseAuthenticationError, Unit>> signInWithApple() async {
     try {
       final appleProvider = AppleAuthProvider();
+      appleProvider.addScope('email');
+      appleProvider.addScope('name');
       final signedCredential =
           await FirebaseAuth.instance.signInWithProvider(appleProvider);
 
@@ -128,8 +130,9 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       final isNewUser = signedCredential.additionalUserInfo?.isNewUser ?? true;
       if (isNewUser) {
         final userResponse = await _userRepository.saveUser(UserDomain.User(
-          email: signedCredential.user?.email ?? '',
-          name: signedCredential.user?.displayName ?? '',
+          email: signedCredential.user?.providerData.firstOrNull?.email ?? '',
+          name: signedCredential.user?.providerData.firstOrNull?.displayName ??
+              '',
         ));
         if (userResponse.isLeft()) {
           return left(UnknownFirebaseAuthenticationError());
