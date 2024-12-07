@@ -18,6 +18,7 @@ import 'package:session_component_domain/model/session_measurement.dart';
 import 'package:session_component_domain/model/session_request.dart';
 import 'package:session_component_domain/model/split_analysis.dart';
 import 'package:session_component_domain/session_repository.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 const _kDataSyncDuration = Duration(seconds: 30);
 
@@ -35,6 +36,8 @@ class SessionRepositoryImpl implements SessionRepository {
 
   Timer? _syncDataTimer;
 
+  late final FlutterTts _flutterTts;
+
   SessionRepositoryImpl(
     this._sessionDataSource,
     this._localDataSource,
@@ -48,6 +51,25 @@ class SessionRepositoryImpl implements SessionRepository {
         .listen((sessionId) {
       _currentSessionId = sessionId;
     });
+
+    _flutterTts = FlutterTts();
+    await _flutterTts.setSharedInstance(true);
+    await _flutterTts.setIosAudioCategory(
+      IosTextToSpeechAudioCategory.ambient,
+      [
+        IosTextToSpeechAudioCategoryOptions.allowBluetooth,
+        IosTextToSpeechAudioCategoryOptions.allowBluetoothA2DP,
+        IosTextToSpeechAudioCategoryOptions.mixWithOthers
+      ],
+      IosTextToSpeechAudioMode.voicePrompt,
+    );
+    await _flutterTts.awaitSpeakCompletion(true);
+    // final voices = await _flutterTts.getVoices;
+    // voices.forEach((voice) {
+    //   if (voice['gender'] == 'male' && voice['locale'] == 'en-US') {
+    //     print(voice);
+    //   }
+    // });
   }
 
   @override
