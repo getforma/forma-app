@@ -61,9 +61,6 @@ class TrackingCubit extends Cubit<TrackingState> {
   }
 
   Future<void> stopSession() async {
-    _speakTextUseCase.invoke(
-        "Hello, how are you? It looks like something went wrong. Please try again");
-    return;
     emit(state.copyWith(status: TrackingScreenStatus.loading));
     final stopSessionResult = await _stopSessionUseCase.invoke(EmptyParam());
     if (stopSessionResult.isRight()) {

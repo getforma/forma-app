@@ -54,9 +54,8 @@ class SessionRepositoryImpl implements SessionRepository {
 
     _flutterTts = FlutterTts();
     await _flutterTts.setLanguage('en-US');
-    await _flutterTts.setSpeechRate(1.0);
+    await _flutterTts.setSpeechRate(0.5);
     await _flutterTts.setVolume(1.0);
-    // await _flutterTts.setSharedInstance(true);
     await _flutterTts.setIosAudioCategory(
       IosTextToSpeechAudioCategory.ambient,
       [
@@ -67,12 +66,6 @@ class SessionRepositoryImpl implements SessionRepository {
       IosTextToSpeechAudioMode.voicePrompt,
     );
     await _flutterTts.awaitSpeakCompletion(true);
-    // final voices = await _flutterTts.getVoices;
-    // voices.forEach((voice) {
-    //   if (voice['gender'] == 'male' && voice['locale'] == 'en-US') {
-    //     print(voice);
-    //   }
-    // });
   }
 
   @override
