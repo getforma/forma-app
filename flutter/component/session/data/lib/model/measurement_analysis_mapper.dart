@@ -12,5 +12,6 @@ extension MeasurementAnalysisMapper on MeasurementAnalysisTableData {
         startTime: startTime,
         strideLength: strideLength,
         verticalOscillation: verticalOscillation,
+        score: score,
       );
 }

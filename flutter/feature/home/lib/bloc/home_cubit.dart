@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:core_component_domain/use_case/use_case.dart';
@@ -56,8 +57,9 @@ class HomeCubit extends Cubit<HomeState> {
     _recommendationsStreamSubscription =
         _getRecommendationsStreamUseCase.invoke(EmptyParam()).listen((value) {
       emit(state.copyWith(
-        recommendations:
-            value.sublist(0, 5).sorted((a, b) => a.date.compareTo(b.date)),
+        recommendations: value
+            .sublist(0, min(5, value.length))
+            .sorted((a, b) => a.date.compareTo(b.date)),
       ));
     });
   }

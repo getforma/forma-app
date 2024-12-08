@@ -15,6 +15,7 @@ class MeasurementAnalysis with _$MeasurementAnalysis {
     required DateTime startTime,
     required double strideLength,
     required double verticalOscillation,
+    required int score,
   }) = _MeasurementAnalysis;
 
   factory MeasurementAnalysis.fromJson(Map<String, dynamic> json) =>

@@ -12,4 +12,5 @@ class MeasurementAnalysisTable extends Table {
   DateTimeColumn get startTime => dateTime()();
   RealColumn get strideLength => real()();
   RealColumn get verticalOscillation => real()();
+  IntColumn get score => integer()();
 }

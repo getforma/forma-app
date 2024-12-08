@@ -140,12 +140,12 @@ class _TrackingScreenState extends State<TrackingScreen> {
         painter: PartialCirclePainter(
           color: AppColors.primaryBlue,
           colorInactive: AppColors.primaryBlue.withOpacity(0.1),
-          degree: 0.89 * 360,
+          degree: (state.measurementAnalysis?.score ?? 0) / 100 * 360,
           width: 10.r,
         ),
         child: Center(
           child: Text(
-            '89',
+            '${state.measurementAnalysis?.score ?? 0}',
             style: _Typography.score,
           ),
         ),
