@@ -1,12 +1,12 @@
-name: questionnaire_component_domain
-description: Questionnaire Component Domain
+name: recommendation_component_domain
+description: Recommendation Component Domain
 
-publish_to: "none"
+publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.4.0 <4.0.0"
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -14,9 +14,6 @@ dependencies:
 
   core_component_domain:
     path: ../../core/domain
-
-  recommendation_component_domain:
-    path: ../../recommendation/domain
 
   injectable: ^2.5.0
   get_it: ^8.0.0

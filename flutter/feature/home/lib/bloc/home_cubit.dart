@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:core_component_domain/use_case/use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,13 +8,15 @@ import 'package:home_feature/bloc/home_status.dart';
 import 'package:home_feature/model/recommended_training.dart';
 import 'package:injectable/injectable.dart';
 import 'package:questionnaire_component_domain/use_case/get_score_use_case.dart';
+import 'package:recommendation_component_domain/model/recommendation.dart';
 import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 import 'package:sensor_component_domain/use_case/initialize_sensor_use_case.dart';
 import 'package:sensor_component_domain/use_case/start_sensor_discovery_use_case.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/sensor_position.dart';
 import 'package:session_component_domain/use_case/create_session_use_case.dart';
-
+import 'package:recommendation_component_domain/use_case/get_recommendations_stream_use_case.dart';
+import 'package:recommendation_component_domain/use_case/update_recommendations_use_case.dart';
 part 'home_cubit.freezed.dart';
 part 'home_state.dart';
 
@@ -24,9 +27,12 @@ class HomeCubit extends Cubit<HomeState> {
   final CreateSessionUseCase _createSessionUseCase;
   final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
   final GetScoreStreamUseCase _getScoreStreamUseCase;
+  final GetRecommendationsStreamUseCase _getRecommendationsStreamUseCase;
+  final UpdateRecommendationsUseCase _updateRecommendationsUseCase;
 
   StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
   StreamSubscription<int?>? _scoreStreamSubscription;
+  StreamSubscription<List<Recommendation>>? _recommendationsStreamSubscription;
 
   HomeCubit(
     this._initializeSensorUseCase,
@@ -34,6 +40,8 @@ class HomeCubit extends Cubit<HomeState> {
     this._createSessionUseCase,
     this._getIsSensorConnectedStreamUseCase,
     this._getScoreStreamUseCase,
+    this._getRecommendationsStreamUseCase,
+    this._updateRecommendationsUseCase,
   ) : super(const HomeState()) {
     _isSensorConnectedStreamSubscription =
         _getIsSensorConnectedStreamUseCase.invoke(EmptyParam()).listen((value) {
@@ -43,6 +51,14 @@ class HomeCubit extends Cubit<HomeState> {
     _scoreStreamSubscription =
         _getScoreStreamUseCase.invoke(EmptyParam()).listen((value) {
       emit(state.copyWith(score: value ?? 0));
+    });
+
+    _recommendationsStreamSubscription =
+        _getRecommendationsStreamUseCase.invoke(EmptyParam()).listen((value) {
+      emit(state.copyWith(
+        recommendations:
+            value.sublist(0, 5).sorted((a, b) => a.date.compareTo(b.date)),
+      ));
     });
   }
 
@@ -100,32 +116,8 @@ class HomeCubit extends Cubit<HomeState> {
     ));
   }
 
-  void loadRecommendedTrainings() {
-    final now = DateTime.now();
-    emit(state.copyWith(
-      recommendedTrainings: [
-        RecommendedTraining(
-          date: now,
-          type: RecommendedTrainingType.rest,
-        ),
-        RecommendedTraining(
-          date: now.add(const Duration(days: 1)),
-          type: RecommendedTrainingType.easy,
-        ),
-        RecommendedTraining(
-          date: now.add(const Duration(days: 2)),
-          type: RecommendedTrainingType.intervals,
-        ),
-        RecommendedTraining(
-          date: now.add(const Duration(days: 3)),
-          type: RecommendedTrainingType.rest,
-        ),
-        RecommendedTraining(
-          date: now.add(const Duration(days: 4)),
-          type: RecommendedTrainingType.long,
-        ),
-      ],
-    ));
+  Future<void> loadRecommendedTrainings() async {
+    await _updateRecommendationsUseCase.invoke(EmptyParam());
   }
 
   void resetStatus() {
@@ -138,6 +130,8 @@ class HomeCubit extends Cubit<HomeState> {
     _isSensorConnectedStreamSubscription = null;
     _scoreStreamSubscription?.cancel();
     _scoreStreamSubscription = null;
+    _recommendationsStreamSubscription?.cancel();
+    _recommendationsStreamSubscription = null;
     return super.close();
   }
 }

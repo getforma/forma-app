@@ -1139,6 +1139,20 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  recommendation_component_data:
+    dependency: "direct overridden"
+    description:
+      path: "../../component/recommendation/data"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  recommendation_component_domain:
+    dependency: "direct main"
+    description:
+      path: "../../component/recommendation/domain"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   retrofit:
     dependency: transitive
     description:

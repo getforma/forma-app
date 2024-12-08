@@ -17,6 +17,7 @@ import 'package:get_it/get_it.dart';
 import 'package:home_feature/bloc/home_cubit.dart';
 import 'package:home_feature/bloc/home_status.dart';
 import 'package:home_feature/model/recommended_training.dart';
+import 'package:recommendation_component_domain/model/recommendation.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
 
 @RoutePage()
@@ -122,19 +123,12 @@ class HomeScreen extends StatelessWidget {
           ),
           22.verticalSpace,
           Row(
-            children: [
-              ...state.recommendedTrainings.expand((e) => [
-                    _recommendationItem(context, e),
-                    5.horizontalSpace,
-                  ]),
-              const Expanded(child: SizedBox()),
-              SvgPicture.asset(
-                "asset/icon/chevron_right.svg",
-                package: 'core_feature',
-                width: 24.r,
-                height: 24.r,
-              ),
-            ],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: state.recommendations
+                .map(
+                  (e) => _recommendationItem(context, e),
+                )
+                .toList(growable: false),
           ),
           5.verticalSpace,
         ],
@@ -143,17 +137,17 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _recommendationItem(
-      BuildContext context, RecommendedTraining training) {
+      BuildContext context, Recommendation recommendation) {
     return SizedBox(
-      width: 52.w,
+      width: 60.w,
       height: 76.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(training.day, style: TextStyles.darkBold12.sp),
+          Text(recommendation.day, style: TextStyles.darkBold12.sp),
           const Expanded(child: SizedBox()),
           SvgPicture.asset(
-            training.type.icon,
+            recommendation.trainingType.icon,
             package: 'home_feature',
             width: 24.r,
             height: 24.r,
@@ -164,7 +158,7 @@ class HomeScreen extends StatelessWidget {
           ),
           4.verticalSpace,
           Text(
-            training.type.text(context),
+            recommendation.trainingType.text(context),
             style: TextStyles.darkRegular12.sp,
           ),
         ],

@@ -420,6 +420,66 @@ class S {
     );
   }
 
+  /// `Tempo`
+  String get home_training_recommendation_tempo {
+    return Intl.message(
+      'Tempo',
+      name: 'home_training_recommendation_tempo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hills`
+  String get home_training_recommendation_hills {
+    return Intl.message(
+      'Hills',
+      name: 'home_training_recommendation_hills',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Strength`
+  String get home_training_recommendation_strength {
+    return Intl.message(
+      'Strength',
+      name: 'home_training_recommendation_strength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cross`
+  String get home_training_recommendation_cross {
+    return Intl.message(
+      'Cross',
+      name: 'home_training_recommendation_cross',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Moderate`
+  String get home_training_recommendation_moderate {
+    return Intl.message(
+      'Moderate',
+      name: 'home_training_recommendation_moderate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fartlek`
+  String get home_training_recommendation_fartlek {
+    return Intl.message(
+      'Fartlek',
+      name: 'home_training_recommendation_fartlek',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Insights`
   String get home_insights_title {
     return Intl.message(
