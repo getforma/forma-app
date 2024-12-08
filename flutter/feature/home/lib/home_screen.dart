@@ -123,19 +123,12 @@ class HomeScreen extends StatelessWidget {
           ),
           22.verticalSpace,
           Row(
-            children: [
-              ...state.recommendations.expand((e) => [
-                    _recommendationItem(context, e),
-                    5.horizontalSpace,
-                  ]),
-              const Expanded(child: SizedBox()),
-              SvgPicture.asset(
-                "asset/icon/chevron_right.svg",
-                package: 'core_feature',
-                width: 24.r,
-                height: 24.r,
-              ),
-            ],
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: state.recommendations
+                .map(
+                  (e) => _recommendationItem(context, e),
+                )
+                .toList(growable: false),
           ),
           5.verticalSpace,
         ],
@@ -146,7 +139,7 @@ class HomeScreen extends StatelessWidget {
   Widget _recommendationItem(
       BuildContext context, Recommendation recommendation) {
     return SizedBox(
-      width: 52.w,
+      width: 60.w,
       height: 76.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
