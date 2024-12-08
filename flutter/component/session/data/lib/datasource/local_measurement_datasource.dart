@@ -115,6 +115,7 @@ class DriftLocalSensorDataSource implements LocalSensorDataSource {
           startTime: Value(analysis.startTime),
           strideLength: Value(analysis.strideLength),
           verticalOscillation: Value(analysis.verticalOscillation),
+          score: Value(analysis.score),
         ));
   }
 
