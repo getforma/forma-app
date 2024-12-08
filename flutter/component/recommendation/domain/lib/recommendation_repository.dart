@@ -1,0 +1,2 @@
+abstract class RecommendationRepository {
+}
