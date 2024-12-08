@@ -420,6 +420,26 @@ class S {
     );
   }
 
+  /// `Tempo`
+  String get home_training_recommendation_tempo {
+    return Intl.message(
+      'Tempo',
+      name: 'home_training_recommendation_tempo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hills`
+  String get home_training_recommendation_hills {
+    return Intl.message(
+      'Hills',
+      name: 'home_training_recommendation_hills',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Insights`
   String get home_insights_title {
     return Intl.message(

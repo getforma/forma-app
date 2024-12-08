@@ -37,6 +37,8 @@
   "home_training_recommendation_intervals": "Intervals",
   "home_training_recommendation_easy": "Easy",
   "home_training_recommendation_long": "Long",
+  "home_training_recommendation_tempo": "Tempo",
+  "home_training_recommendation_hills": "Hills",
   "home_insights_title": "Insights",
   "home_insights_upgrade_pro_title": "Upgrade to Pro",
   "home_insights_upgrade_pro_description": "Get more insights while you are running",

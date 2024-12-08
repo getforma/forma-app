@@ -59,12 +59,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Stop session"),
         "home_training_recommendation_easy":
             MessageLookupByLibrary.simpleMessage("Easy"),
+        "home_training_recommendation_hills":
+            MessageLookupByLibrary.simpleMessage("Hills"),
         "home_training_recommendation_intervals":
             MessageLookupByLibrary.simpleMessage("Intervals"),
         "home_training_recommendation_long":
             MessageLookupByLibrary.simpleMessage("Long"),
         "home_training_recommendation_rest":
             MessageLookupByLibrary.simpleMessage("Rest"),
+        "home_training_recommendation_tempo":
+            MessageLookupByLibrary.simpleMessage("Tempo"),
         "home_training_recommendation_title":
             MessageLookupByLibrary.simpleMessage("Training recommendation"),
         "home_training_recommendation_today":
