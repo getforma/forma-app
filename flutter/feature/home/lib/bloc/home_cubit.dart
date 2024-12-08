@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:core_component_domain/use_case/use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -54,7 +55,10 @@ class HomeCubit extends Cubit<HomeState> {
 
     _recommendationsStreamSubscription =
         _getRecommendationsStreamUseCase.invoke(EmptyParam()).listen((value) {
-      emit(state.copyWith(recommendations: value.sublist(0, 5)));
+      emit(state.copyWith(
+        recommendations:
+            value.sublist(0, 5).sorted((a, b) => a.date.compareTo(b.date)),
+      ));
     });
   }
 

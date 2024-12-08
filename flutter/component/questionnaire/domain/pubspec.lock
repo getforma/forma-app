@@ -413,6 +413,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  recommendation_component_domain:
+    dependency: "direct main"
+    description:
+      path: "../../recommendation/domain"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   shelf:
     dependency: transitive
     description:
