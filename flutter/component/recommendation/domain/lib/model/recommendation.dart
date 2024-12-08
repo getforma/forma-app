@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:recommendation_component_domain/model/date_json_converter.dart';
 import 'package:recommendation_component_domain/model/recommendation_type.dart';
 
 part 'recommendation.freezed.dart';
@@ -9,7 +10,7 @@ class Recommendation with _$Recommendation {
   const Recommendation._();
 
   const factory Recommendation({
-    required DateTime date,
+    @DateJsonConverter() required DateTime date,
     @JsonKey(
       required: true,
       disallowNullValue: true,

@@ -21,6 +21,16 @@ extension RecommendedTrainingTypeUI on RecommendationType {
         return S.of(context).home_training_recommendation_tempo;
       case RecommendationType.hills:
         return S.of(context).home_training_recommendation_hills;
+      case RecommendationType.rest:
+        return S.of(context).home_training_recommendation_rest;
+      case RecommendationType.strength:
+        return S.of(context).home_training_recommendation_strength;
+      case RecommendationType.cross:
+        return S.of(context).home_training_recommendation_cross;
+      case RecommendationType.moderate:
+        return S.of(context).home_training_recommendation_moderate;
+      case RecommendationType.fartlek:
+        return S.of(context).home_training_recommendation_fartlek;
     }
   }
 
@@ -36,6 +46,16 @@ extension RecommendedTrainingTypeUI on RecommendationType {
         return 'asset/icon/tempo.svg';
       case RecommendationType.hills:
         return 'asset/icon/hills.svg';
+      case RecommendationType.rest:
+        return 'asset/icon/rest.svg';
+      case RecommendationType.strength:
+        return 'asset/icon/strength.svg';
+      case RecommendationType.cross:
+        return 'asset/icon/cross.svg';
+      case RecommendationType.moderate:
+        return 'asset/icon/moderate.svg';
+      case RecommendationType.fartlek:
+        return 'asset/icon/fartlek.svg';
     }
   }
 }

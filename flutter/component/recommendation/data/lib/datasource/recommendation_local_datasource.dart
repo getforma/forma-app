@@ -56,6 +56,16 @@ class RecommendationLocalDataSource {
         return RecommendationType.tempo;
       case d.RecommendationType.hills:
         return RecommendationType.hills;
+      case d.RecommendationType.rest:
+        return RecommendationType.rest;
+      case d.RecommendationType.strength:
+        return RecommendationType.strength;
+      case d.RecommendationType.cross:
+        return RecommendationType.cross;
+      case d.RecommendationType.moderate:
+        return RecommendationType.moderate;
+      case d.RecommendationType.fartlek:
+        return RecommendationType.fartlek;
     }
   }
 }

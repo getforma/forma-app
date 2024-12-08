@@ -24,6 +24,16 @@ extension RecommendationMapper on RecommendationTableData {
         return domain.RecommendationType.tempo;
       case db.RecommendationType.hills:
         return domain.RecommendationType.hills;
+      case db.RecommendationType.rest:
+        return domain.RecommendationType.rest;
+      case db.RecommendationType.strength:
+        return domain.RecommendationType.strength;
+      case db.RecommendationType.cross:
+        return domain.RecommendationType.cross;
+      case db.RecommendationType.moderate:
+        return domain.RecommendationType.moderate;
+      case db.RecommendationType.fartlek:
+        return domain.RecommendationType.fartlek;
     }
   }
 }
