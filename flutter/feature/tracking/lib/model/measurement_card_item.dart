@@ -63,7 +63,7 @@ enum MeasurementCardItem {
 
     switch (this) {
       case MeasurementCardItem.distance:
-        return "${(measurementAnalysis.distance / 100.0).toStringAsFixed(2)} ${_suffix(context)}";
+        return "${(measurementAnalysis.distance / 1000.0).toStringAsFixed(2)} ${_suffix(context)}";
       case MeasurementCardItem.averagePace:
         final minutes = measurementAnalysis.pace.toInt();
         final seconds = ((measurementAnalysis.pace % 1) * 60).toInt();
