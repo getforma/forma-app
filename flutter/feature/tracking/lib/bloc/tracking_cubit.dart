@@ -7,10 +7,10 @@ import 'package:injectable/injectable.dart';
 import 'package:sensor_component_domain/use_case/get_is_sensor_connected_stream_use_case.dart';
 import 'package:session_component_domain/model/measurement_analysis.dart';
 import 'package:session_component_domain/model/split_analysis.dart';
-import 'package:session_component_domain/use_case/speak_text_use_case.dart';
-import 'package:session_component_domain/use_case/stop_session_use_case.dart';
 import 'package:session_component_domain/use_case/get_measurement_analysis_stream_use_case.dart';
 import 'package:session_component_domain/use_case/get_split_analysis_use_case.dart';
+import 'package:session_component_domain/use_case/stop_session_use_case.dart';
+import 'package:text_to_speech_component_domain/use_case/get_speech_from_text_use_case.dart';
 import 'package:tracking_feature/bloc/tracking_screen_status.dart';
 
 part 'tracking_cubit.freezed.dart';
@@ -25,7 +25,7 @@ class TrackingCubit extends Cubit<TrackingState> {
       _getMeasurementAnalysisStreamUseCase;
   final GetSplitAnalysisUseCase _getSplitAnalysisUseCase;
   final GetIsSensorConnectedStreamUseCase _getIsSensorConnectedStreamUseCase;
-  final SpeakTextUseCase _speakTextUseCase;
+  final GetSpeechFromTextUseCase _getSpeechFromTextUseCase;
   StreamSubscription<MeasurementAnalysis?>?
       _measurementAnalysisStreamSubscription;
   StreamSubscription<bool>? _isSensorConnectedStreamSubscription;
@@ -37,7 +37,7 @@ class TrackingCubit extends Cubit<TrackingState> {
     this._getMeasurementAnalysisStreamUseCase,
     this._getSplitAnalysisUseCase,
     this._getIsSensorConnectedStreamUseCase,
-    this._speakTextUseCase,
+    this._getSpeechFromTextUseCase,
     @factoryParam String sessionId,
   ) : super(TrackingState(
           sessionId: sessionId,
@@ -100,8 +100,12 @@ class TrackingCubit extends Cubit<TrackingState> {
 
     final feedback = splitAnalysis?.feedback;
     if (feedback != null) {
-      _speakTextUseCase.invoke(feedback);
+      await _getSpeechFromTextUseCase.invoke(feedback);
     }
+  }
+
+  Future<void> speakText(String text) async {
+    await _getSpeechFromTextUseCase.invoke(text);
   }
 
   @override
