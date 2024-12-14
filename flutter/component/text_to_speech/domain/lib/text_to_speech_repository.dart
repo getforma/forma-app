@@ -1,3 +1,7 @@
+import 'package:dartz/dartz.dart';
+
 abstract class TextToSpeechRepository {
-  Future<List<int>> getSpeechFromText(String text);
+  Future<Either<Exception, Unit>> getSpeechFromText(String text);
+
+  void dispose();
 }

@@ -35,6 +35,8 @@ dependencies:
   json_serializable: ^6.8.0
   freezed_annotation: ^2.4.4
 
+  just_audio: ^0.9.42
+
 dev_dependencies:
   flutter_lints:
   build_runner:

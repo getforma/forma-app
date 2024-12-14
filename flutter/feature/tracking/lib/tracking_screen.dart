@@ -133,20 +133,26 @@ class _TrackingScreenState extends State<TrackingScreen> {
   }
 
   Widget _scoreCircle(BuildContext context, TrackingState state) {
-    return SizedBox(
-      width: 124.r,
-      height: 124.r,
-      child: CustomPaint(
-        painter: PartialCirclePainter(
-          color: AppColors.primaryBlue,
-          colorInactive: AppColors.primaryBlue.withOpacity(0.1),
-          degree: (state.measurementAnalysis?.score ?? 0) / 100 * 360,
-          width: 10.r,
-        ),
-        child: Center(
-          child: Text(
-            '${state.measurementAnalysis?.score ?? 0}',
-            style: _Typography.score,
+    return InkWell(
+      onTap: () {
+        context.read<TrackingCubit>().speakText(
+            "Great job on maintaining a steady cadence of 173 spm; however, aim to reduce your ground contact time to improve speed and efficiency. Keep pushing!");
+      },
+      child: SizedBox(
+        width: 124.r,
+        height: 124.r,
+        child: CustomPaint(
+          painter: PartialCirclePainter(
+            color: AppColors.primaryBlue,
+            colorInactive: AppColors.primaryBlue.withOpacity(0.1),
+            degree: (state.measurementAnalysis?.score ?? 0) / 100 * 360,
+            width: 10.r,
+          ),
+          child: Center(
+            child: Text(
+              '${state.measurementAnalysis?.score ?? 0}',
+              style: _Typography.score,
+            ),
           ),
         ),
       ),
