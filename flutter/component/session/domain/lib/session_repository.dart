@@ -29,7 +29,5 @@ abstract class SessionRepository {
     DateTime endTime,
   );
 
-  Future<void> speakText(String text);
-
   void dispose();
 }

@@ -51,6 +51,9 @@ dependencies:
   recommendation_component_data:
     path: flutter/component/recommendation/data
 
+  text_to_speech_component_data:
+    path: flutter/component/text_to_speech/data
+
   auto_route: ^9.2.2
   injectable: ^2.5.0
   get_it: ^8.0.0

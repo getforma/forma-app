@@ -1,12 +1,12 @@
-name: session_component_data
-description: Session Component Data
+name: text_to_speech_component_data
+description: Text To Speech Component Data
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.0 <4.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -15,20 +15,14 @@ dependencies:
   forma_app:
     path: ../../../../
 
-  session_component_domain:
+  text_to_speech_component_domain:
     path: ../domain
-
-  sensor_component_domain:
-    path: ../../sensor/domain
 
   core_component_domain:
     path: ../../core/domain
 
   core_component_data:
     path: ../../core/data
-
-  sensor_component_data:
-    path: ../../sensor/data
 
   injectable: ^2.5.0
   get_it: ^8.0.0
@@ -41,16 +35,9 @@ dependencies:
   json_serializable: ^6.8.0
   freezed_annotation: ^2.4.4
 
-  device_info_plus: ^11.0.0
-  android_id: ^0.4.0
-  geolocator: ^13.0.1
-
 dev_dependencies:
   flutter_lints:
   build_runner:
   injectable_generator:
   retrofit_generator:
   freezed: ^2.4.1
-
-#dependency_overrides:
-#  dart_style: ^2.3.7
