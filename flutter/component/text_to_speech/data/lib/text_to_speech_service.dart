@@ -15,6 +15,6 @@ abstract class TextToSpeechService {
 
   @POST("")
   @DioResponseType(ResponseType.bytes)
-  Future<HttpResponse<List<int>>> getSpeechFromText(
+  Future<HttpResponse<Uint8List>> getSpeechFromText(
       @Body() TextToSpeechRequest body);
 }
