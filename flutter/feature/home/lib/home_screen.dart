@@ -92,12 +92,12 @@ class HomeScreen extends StatelessWidget {
         painter: PartialCirclePainter(
           color: AppColors.primaryBlue,
           colorInactive: AppColors.primaryBlue.withOpacity(0.1),
-          degree: state.score / 100 * 360,
+          degree: 360 - (state.score / 100 * 360),
           width: 10.r,
         ),
         child: Center(
           child: Text(
-            state.score.toString(),
+            (100 - state.score).toString(),
             style: _Typography.scoreNumber.sp,
           ),
         ),
